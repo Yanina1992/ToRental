@@ -1,1 +1,77 @@
-<p>veicoli works!</p>
+<h1>Nuovo veicolo</h1>
+<form>
+    <h3>Inserisci i dati del veicolo</h3>
+    <div class="mb-3">
+      <label for="targa" class="form-label">Targa</label>
+      <input type="targa" class="form-control" id="targa">
+    </div>
+    <div class="mb-3">
+      <label for="dataImmatrciolazione" class="form-label">Data immatricolazione</label>
+      <input type="immatricolazione" class="form-control" id="dataImmatrciolazione">
+    </div>
+    <div class="mb-3">
+        <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+        <select id="destinazioneDUso" class="form-select">
+          <option>Da locare senza conducente</option>
+          <option>Uso proprio</option>
+          <option>Uso terzi</option>
+        </select>
+      </div>
+
+    
+
+    <button type="submit" class="btn btn-primary">Salva veicolo</button>
+  </form>
+
+
+<input
+  class="form-control"
+  placeholder="yyyy-mm-dd"
+  
+  [(ngModel)]="model"
+  (click)="toggleDatePicker()"
+  [readonly]="true" 
+/>
+
+<ngb-datepicker
+  #dp
+  [(ngModel)]="model"
+  (navigate)="date = $event.next"
+  (closed)="isDatepickerOpen = false" 
+  *ngIf="isDatepickerOpen"
+>
+
+</ngb-datepicker>
+
+<button class="btn btn-outline-primary" (click)="selectToday()">Select Today</button>
+
+
+<div>Selected date: {{ model | json }}</div>
+
+
+<!--<div class="col-6">
+  <form class="row row-cols-sm-auto">
+    <div class="col-12">
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="dd/mm/yyyy"
+          name="d2"
+          #c2="ngModel"
+          [(ngModel)]="model2"
+          ngbDatepicker
+          #d2="ngbDatepicker"
+        />
+        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()" type="button"></button>
+      </div>
+    </div>
+  </form>
+
+  <hr />
+  <button class="btn btn-sm btn-outline-primary" (click)="model2 = today">Select Today</button>
+  <hr />
+
+  <pre>Model: {{ model2 | json }}</pre>
+  <pre>State: {{ c2.status }}</pre>
+</div>
+</div>-->
