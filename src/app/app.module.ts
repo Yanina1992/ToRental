@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { VeicoliComponent } from './pages/veicoli/veicoli.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
+    DatePipe,
  ],
   bootstrap: [AppComponent],
 })
