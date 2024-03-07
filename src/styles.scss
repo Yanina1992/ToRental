@@ -16,7 +16,6 @@ form{
   padding: 2em;
 }
 
-
 .btn {
     background: linear-gradient(to right, #2600ff, #0099ff) !important;
     color: white !important;
@@ -27,6 +26,11 @@ form{
   }
   .btn:hover{
     background: #0099ff !important;
+  }
+
+  ul{
+    border: 0 !important;
+    width: fit-content;
   }
 
 /*Form*/

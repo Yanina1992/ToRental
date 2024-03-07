@@ -10,7 +10,18 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a routerLink="../../pages/home" class="nav-link active navbar-brand" aria-current="page">Home</a>
-          <a routerLink="../../pages/veicoli" class="nav-link">Veicoli</a>
+
+<!--Dropdown veicoli-->
+<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Veicoli
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" routerLink="../../pages/veicoli/add">Aggiungi un nuovo veicolo</a></li>
+            <li><a class="dropdown-item" routerLink="../../pages/veicoli/lista-veicoli">Visualizza la lista di tutti i veicoli</a></li>
+          </ul>
+        </li>
+
         </div>
       </div>
     </div>
