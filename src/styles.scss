@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /*Button*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700;900&display=swap');
+
 h1{
   text-align: center;
 }
@@ -17,7 +19,7 @@ form{
 }
 
 .btn {
-    background: linear-gradient(to right, #2600ff, #0099ff) !important;
+    background: linear-gradient(to right, #2600ff, #0099ff);
     color: white !important;
     font-family: "Poppins", sans-serif !important;
     font-weight: 700 !important;

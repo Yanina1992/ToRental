@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ServizioService } from 'src/app/servizio.service';
+/*importa la classe Tagliandi quando avrai i dati per farla*/
 
 @Component({
   selector: 'app-home',
@@ -6,5 +8,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+
+tagliandi:any[] = [""];
+
+constructor(
+  private servizio:ServizioService
+){}
+
+ngOnInit(){
+
+  this.servizio.getAll()
+  .subscribe(tagliandi => {
+    this.tagliandi = tagliandi;
+  });
+
+}
 
 }

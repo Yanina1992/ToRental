@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddComponent } from './pages/veicoli/add/add.component';
 import { ListaVeicoliComponent } from './pages/veicoli/lista-veicoli/lista-veicoli.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ListaVeicoliComponent } from './pages/veicoli/lista-veicoli/lista-veico
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [
     DatePipe,

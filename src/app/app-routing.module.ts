@@ -7,9 +7,13 @@ import { ListaVeicoliComponent } from './pages/veicoli/lista-veicoli/lista-veico
 
 const routes: Routes = [
   {
-    path: "pages/home",
+    path: "",
     component: HomeComponent,
     pathMatch: 'full',
+  },
+  {
+    path: "pages/home",
+    component: HomeComponent,
   },
   {
     path: "pages/veicoli",

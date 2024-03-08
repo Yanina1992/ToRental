@@ -1,0 +1,70 @@
+h2 {
+  text-align: center;
+}
+
+.card {
+  background-color: rgb(235 232 225 / 27%);
+  border: 0;
+}
+.card:hover {
+  border: 1px solid #ffa500ed;
+}
+
+a {
+  color: #ffa500ed;
+}
+
+.accordion-button {
+  font-family: "Poppins", sans-serif;
+  font-style: italic;
+}
+
+.accordion-button:hover,
+a:hover {
+  color: #ffa500ed;
+}
+
+h5 {
+  font-weight: 700;
+  text-align: center;
+}
+
+.fa-solid {
+  color: #ffa500ed;
+  font-size: 2em;
+  z-index: 0;
+}
+
+.fa-solid:hover {
+  color: #ffa500ed;
+}
+
+.c-b {
+  margin-top: 2.7em;
+}
+
+@media screen and (max-width: 468px) {
+  .c-b {
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .c-b {
+    margin-top: 7em;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .btn {
+    width: -moz-available;
+  }
+}
+
+.orange-icon {
+  background-color: #ff8906;
+}
+
+.icon{
+  width: 2em;
+}
