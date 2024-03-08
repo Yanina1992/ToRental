@@ -12,6 +12,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AddComponent } from './pages/veicoli/add/add.component';
 import { ListaVeicoliComponent } from './pages/veicoli/lista-veicoli/lista-veicoli.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RevisioniComponent } from './pages/home/revisioni/revisioni.component';
+import { TagliandiComponent } from './pages/home/tagliandi/tagliandi.component';
+import { ContravvenzioniComponent } from './pages/home/contravvenzioni/contravvenzioni.component';
+import { AssicurazioniComponent } from './pages/home/assicurazioni/assicurazioni.component';
+import { BolliComponent } from './pages/home/bolli/bolli.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +27,11 @@ import { HttpClientModule } from '@angular/common/http';
     VeicoliComponent,
     AddComponent,
     ListaVeicoliComponent,
+    RevisioniComponent,
+    TagliandiComponent,
+    ContravvenzioniComponent,
+    AssicurazioniComponent,
+    BolliComponent,
   ],
   imports: [
     BrowserModule,
