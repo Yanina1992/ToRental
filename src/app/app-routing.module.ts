@@ -14,12 +14,22 @@ import { TagliandiComponent } from './pages/home/tagliandi/tagliandi.component';
 import { ContravvenzioniComponent } from './pages/home/contravvenzioni/contravvenzioni.component';
 import { AssicurazioniComponent } from './pages/home/assicurazioni/assicurazioni.component';
 import { BolliComponent } from './pages/home/bolli/bolli.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: LoginComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'auth/login',
+    component: LoginComponent,
+  },
+  {
+    path: 'auth/register',
+    component: RegisterComponent,
   },
   {
     path: 'pages/home',

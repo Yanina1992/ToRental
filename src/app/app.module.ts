@@ -17,6 +17,9 @@ import { TagliandiComponent } from './pages/home/tagliandi/tagliandi.component';
 import { ContravvenzioniComponent } from './pages/home/contravvenzioni/contravvenzioni.component';
 import { AssicurazioniComponent } from './pages/home/assicurazioni/assicurazioni.component';
 import { BolliComponent } from './pages/home/bolli/bolli.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,8 @@ import { BolliComponent } from './pages/home/bolli/bolli.component';
     ContravvenzioniComponent,
     AssicurazioniComponent,
     BolliComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,8 +46,9 @@ import { BolliComponent } from './pages/home/bolli/bolli.component';
     HttpClientModule
   ],
   providers: [
-    DatePipe,
+    DatePipe, AuthService
  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
+

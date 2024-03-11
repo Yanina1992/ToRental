@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ServizioService {
 
-  private url:string="http://torental.bentraining.it/tagliando";
+  private url:string="http://torental.bentraining.it";
 
   constructor(
     private http:HttpClient
@@ -16,23 +16,23 @@ export class ServizioService {
   /* DA TIPIZZARE!!!!!!*/
 
 getAll(): Observable<any[]> {
-  return this.http.get<any[]>(this.url);
+  return this.http.get<any[]>(this.url+`/tagliando`);
 }
 
 getById(id: number): Observable<any[]> {
-  return this.http.get<any[]>(this.url + '?id=' + id);
+  return this.http.get<any[]>(this.url+ `/tagliando` + `?id=` + id);
 }
 
 create(tagliando: any): Observable<any> {
-  return this.http.post<any>(this.url, tagliando);
+  return this.http.post<any>(this.url+`/tagliando`, tagliando);
 }
 
 update(tagliando: any): Observable<any> {
-  return this.http.put<any>(this.url + '/' + tagliando.id, tagliando);
+  return this.http.put<any>(this.url + `/` + tagliando.id, tagliando);
 }
 
 delete(tagliando: any) {
-  return this.http.delete(this.url + '/' + tagliando.id);
+  return this.http.delete(this.url+ `/tagliando` + `/` + tagliando.id);
 }
 
 }
