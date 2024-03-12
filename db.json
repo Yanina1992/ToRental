@@ -1,16 +1,146 @@
 {
-    "users": [
-      {
-        "id": 1,
-        "username": "admin",
-        "password": "admin",
-        "email": "admin@example.com"
-      },
-      {
-        "id": 2,
-        "username": "user",
-        "password": "user",
-        "email": "user@example.com"
-      }
-    ]
-  }
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "admin",
+      "email": "admin@example.com"
+    },
+    {
+      "id": "2",
+      "username": "user",
+      "password": "user",
+      "email": "user@example.com"
+    },
+    {
+      "id": "bb51",
+      "nome": "",
+      "cognome": "",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "eb79",
+      "nome": "",
+      "cognome": "",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "bbe9",
+      "nome": "ciao",
+      "cognome": "ciao",
+      "email": "ciao",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "0115",
+      "nome": "ciao",
+      "cognome": "ciao",
+      "email": "ciao",
+      "password": "ciao"
+    },
+    {
+      "id": "41c3",
+      "nome": "mario",
+      "cognome": "mario",
+      "email": "mario",
+      "password": "mario"
+    },
+    {
+      "id": "f160",
+      "nome": "marianna",
+      "cognome": "marianna",
+      "email": "marianna",
+      "password": "marianna"
+    },
+    {
+      "id": "731f",
+      "nome": "marianna",
+      "cognome": "marianna",
+      "email": "marianna",
+      "password": "marianna"
+    },
+    {
+      "id": "b953",
+      "nome": "ciaone",
+      "cognome": "ciaone",
+      "email": "ciaone",
+      "password": ",b;AFnN*Ti53h\"!ciaone"
+    },
+    {
+      "id": "2785",
+      "nome": "Mario",
+      "cognome": "Rossi",
+      "email": "ciaooo",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "345c",
+      "nome": "Mario",
+      "cognome": "Rossi",
+      "email": "ciaooo",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "5b00",
+      "email": "admin@example.com",
+      "password": "admin"
+    },
+    {
+      "id": "b333",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "6176",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "0962",
+      "email": "ciao",
+      "password": ",b;AFnN*Ti53h\\\"!"
+    },
+    {
+      "id": "b825",
+      "email": "ciao",
+      "password": ",b;AFnN*Ti53h\\\"!"
+    },
+    {
+      "id": "20a4",
+      "email": "ciao",
+      "password": "ciao"
+    },
+    {
+      "id": "5f5e",
+      "email": "ciao",
+      "password": "ciao"
+    },
+    {
+      "id": "6f40",
+      "email": "ciao",
+      "password": "ciao"
+    },
+    {
+      "id": "d9e1",
+      "email": "ciao",
+      "password": "ciao"
+    },
+    {
+      "id": "1bf9",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "cdab",
+      "email": "ciao",
+      "password": "ciao"
+    },
+    {
+      "id": "1468",
+      "email": "ciao",
+      "password": "ciao"
+    }
+  ]
+}

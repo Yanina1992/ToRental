@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { ILogin } from '../ilogin';
+import { ILogin } from '../interface/ilogin';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,25 +10,17 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  formData:ILogin = {
+  formData: ILogin = {
     email: '',
-    password: ''
+    password: '',
+  };
+
+  constructor(private authSvc: AuthService) {}
+
+  login() {
+ this.authSvc.login(this.formData).subscribe(data=>{
+  
+ })
   }
-
-  constructor(
-    private authService: AuthService,
-    private router:Router
-    ){}
-
-  /*login(email: string, password: string){
-    this.authService.getCsrfCookie().subscribe(()=>{
-      this.authService.login(email, password).subscribe(response => {
-        console.log("Login ok", response);
-      }, error => {
-        console.error("Errore nel login", error);
-      })
-    })
-
-  }*/
 
 }

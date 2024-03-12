@@ -1,1 +1,30 @@
-<p>register works!</p>
+<div class="my-form">
+    <form class="w-100">
+
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" aria-describedby="nome" name="nome" placeholder="Inserisci il tuo nome" [(ngModel)]="formData.nome">
+            <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+          </div>
+          <div class="mb-3">
+            <label for="cognome" class="form-label">Cognome</label>
+            <input type="text" class="form-control" id="cognome" aria-describedby="cognome" name="cognome" placeholder="Inserisci il tuo cognome" [(ngModel)]="formData.cognome">
+            <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+          </div>
+    <div class="mb-3">
+      <label for="email1" class="form-label">Indirizzo email</label>
+      <input type="email" class="form-control" id="email" aria-describedby="email" name="email" placeholder="Inserisci la tua e-mail" [(ngModel)]="formData.email">
+      <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Scegli una password" [(ngModel)]="formData.password">
+    </div>
+    <!--<div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>-->
+    <button type="submit" class="btn btn-primary" (click)="register()">Registrati</button>
+    
+  </form>
+</div>

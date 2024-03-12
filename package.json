@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "backend": "json-server db.json -w"
   },
   "private": true,
   "dependencies": {
@@ -21,8 +22,6 @@
     "@ng-bootstrap/ng-bootstrap": "^15.1.2",
     "@popperjs/core": "^2.11.6",
     "bootstrap": "^5.2.3",
-    "json-server": "^1.0.0-alpha.23",
-    "json-server-auth": "^2.1.0",
     "moment": "^2.30.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.6.2",
@@ -35,6 +34,7 @@
     "@angular/localize": "^16.1.0",
     "@types/jasmine": "~4.3.0",
     "jasmine-core": "~4.6.0",
+    "json-server": "^1.0.0-alpha.23",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
