@@ -1,6 +1,8 @@
 <div class="my-form">
   <form class="w-100">
     
+<h2>Sei già registrato? Effettua il login</h2>
+
   <div class="mb-3">
     <label for="email1" class="form-label">Indirizzo email</label>
     <input type="email" class="form-control" id="email" aria-describedby="email" name="email" placeholder="Inserisci la tua e-mail" [(ngModel)]="formData.email">
@@ -8,7 +10,7 @@
   </div>
   <div class="mb-3">
     <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Scegli una password" [(ngModel)]="formData.password">
+    <input type="password" class="form-control" name="password" [(ngModel)]="formData.password">
   </div>
   <!--<div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -16,5 +18,8 @@
   </div>-->
   <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
   
+  <h2>Non sei ancora registrato?</h2>
+    <a routerLink="./auth/register" class="text-decoration">Registrati</a>
+
 </form>
 </div>

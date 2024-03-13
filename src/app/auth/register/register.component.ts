@@ -17,27 +17,27 @@ export class RegisterComponent {
     password: '',
   };
 
-  constructor(private authSvc: AuthService, private router: Router) {}
+  constructor(private authSvc: AuthService, private router:Router) {}
 
-  register() {
+  /*register() {*/
+  singUp(){
 
-    /*if (
+    if (
       this.formData.nome &&
       this.formData.cognome &&
       this.formData.email &&
       this.formData.password
     ) {
-      this.authSvc.signUp(this.formData)
-      .subscribe(res);
+     this.authSvc.signUp(this.formData)
+    .subscribe(res => {
+      this.router.navigate(['/pages/dashboard']);
+    },
+    error =>{
+     console.error(error); 
+    })
     } else {
       console.error('Compila tutti i campi richiesti per la registrazione.');
-    }*/
-
-    this.authSvc.signUp(this.formData)
-    .subscribe(res => {
-      console.log('registrato')
-      this.router.navigate(['/register'])
-    })
+    }
 
   }
 }

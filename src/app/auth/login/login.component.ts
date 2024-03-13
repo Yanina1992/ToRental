@@ -15,11 +15,14 @@ export class LoginComponent {
     password: '',
   };
 
-  constructor(private authSvc: AuthService) {}
+  constructor(private authSvc: AuthService, private router:Router) {}
 
   login() {
  this.authSvc.login(this.formData).subscribe(data=>{
-  
+  this.router.navigate(['/pages/dashboard']);
+ },
+ error =>{
+  console.error(error); 
  })
   }
 

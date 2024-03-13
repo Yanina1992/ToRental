@@ -3,13 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { VeicoliComponent } from './pages/veicoli/veicoli.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { CommonModule, DatePipe } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AddComponent } from './pages/veicoli/add/add.component';
-import { ListaVeicoliComponent } from './pages/veicoli/lista-veicoli/lista-veicoli.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -25,9 +22,6 @@ export function tokenGetter() {
     AppComponent,
     FooterComponent,
     NavbarComponent,
-    VeicoliComponent,
-    AddComponent,
-    ListaVeicoliComponent,
     RegisterComponent,
     LoginComponent,
   ],

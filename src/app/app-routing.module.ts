@@ -5,9 +5,6 @@ import {
   provideRouter,
   withComponentInputBinding,
 } from '@angular/router';
-import { VeicoliComponent } from './pages/veicoli/veicoli.component';
-import { AddComponent } from './pages/veicoli/add/add.component';
-import { ListaVeicoliComponent } from './pages/veicoli/lista-veicoli/lista-veicoli.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuardGuard } from './auth/auth-guard.guard';
@@ -27,21 +24,21 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
+    path: 'pages/dashboard',
+    loadChildren: () =>
+      import('./pages/dashboard/dashboard.module').then(
+        (m) => m.DashboardModule
+      ),
+    canActivate: [AuthGuardGuard],
+  },
+  {
     path: 'pages/veicoli',
-    component: VeicoliComponent,
+    loadChildren: () =>
+      import('./pages/dashboard/veicoli/veicoli.module').then(
+        (m) => m.VeicoliModule
+      ),
+    canActivate: [AuthGuardGuard],
   },
-  {
-    path: 'pages/veicoli/add',
-    component: AddComponent,
-  },
-  {
-    path: 'pages/veicoli/lista-veicoli',
-    component: ListaVeicoliComponent,
-  },
-  { path: 'pages/dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule),
-    canActivate: [AuthGuardGuard]
-}
 ];
 
 @NgModule({
@@ -49,4 +46,8 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [provideRouter(routes, withComponentInputBinding())],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+  constructor() {
+    console.log('AppRoutingModule loaded'); 
+  }
+}
