@@ -1,25 +1,56 @@
 <div class="my-form">
   <form class="w-100">
-    
-<h2>Sei già registrato? Effettua il login</h2>
+    <h2>Sei già registrato? Effettua il login</h2>
 
-  <div class="mb-3">
-    <label for="email1" class="form-label">Indirizzo email</label>
-    <input type="email" class="form-control" id="email" aria-describedby="email" name="email" placeholder="Inserisci la tua e-mail" [(ngModel)]="formData.email">
-    <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" name="password" [(ngModel)]="formData.password">
-  </div>
-  <!--<div class="mb-3 form-check">
+    <div class="mb-3">
+      <label for="email1" class="form-label">Indirizzo email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        aria-describedby="email"
+        name="email"
+        placeholder="Inserisci la tua e-mail"
+        [(ngModel)]="formData.email"
+      />
+      <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <!--<input type="password" class="form-control" name="password" [(ngModel)]="formData.password">-->
+      <div class="input-group container-fluid p-0">
+        <div class="row w-100">
+          <div class="col col-8 pe-0">
+            <input
+              [type]="passwordVisible ? 'text' : 'password'"
+              class="form-control"
+              id="password"
+              name="password"
+              [(ngModel)]="formData.password"
+            />
+          </div>
+          <div class="col col-4 p-0">
+            <button
+              type="button"
+              class="form-control"
+              (click)="togglePasswordVisibility()"
+            >
+              <i *ngIf="!passwordVisible" class="bi bi-eye"></i>
+              <i *ngIf="passwordVisible" class="bi bi-eye-slash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="mb-3 form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>-->
-  <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
-  
-  <h2>Non sei ancora registrato?</h2>
-    <a routerLink="./auth/register" class="text-decoration">Registrati</a>
+    <button type="submit" class="btn btn-primary" (click)="login()">
+      Login
+    </button>
 
-</form>
+    <h2>Non sei ancora registrato?</h2>
+    <a routerLink="./auth/register" class="text-decoration">Registrati</a>
+  </form>
 </div>

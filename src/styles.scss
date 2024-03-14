@@ -1,17 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 /*Button*/
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700;900&display=swap");
 
-h1{
+h1 {
   text-align: center;
 }
 
-.my-form{
-display: flex;
-justify-content: center;
+.my-form {
+  display: flex;
+  justify-content: center;
 }
 
-form{
+form {
   width: 100%;
   max-width: 900px;
   border: solid 1px gainsboro;
@@ -19,48 +19,54 @@ form{
 }
 
 .btn {
-    background: linear-gradient(to right, #2600ff, #0099ff);
-    color: white !important;
-    font-family: "Poppins", sans-serif !important;
-    font-weight: 700 !important;
-    width: -moz-available;
-    margin: 1em;
-  }
-  .btn:hover{
-    background: #0099ff !important;
-  }
+  background: linear-gradient(to right, #2600ff, #0099ff);
+  color: white !important;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 700 !important;
+  width: -moz-available;
+  margin: 1em;
+}
+.btn:hover {
+  background: #0099ff !important;
+}
 
-  ul{
-    border: 0 !important;
-    width: fit-content;
-  }
+ul {
+  border: 0 !important;
+  width: fit-content;
+}
 
 /*Form*/
-form{
-    margin: 2em;
+form {
+  margin: 2em;
 }
 
 @media screen and (min-width: 476px) {
-    /*.carousel.item .wider-image {
+  /*.carousel.item .wider-image {
       width: -webkit-fill-available;
     }*/
-  }
+}
 
-  @media screen and (min-width: 576px) {
-  }
+@media screen and (min-width: 576px) {
+}
 
-  @media screen and (min-width: 768px) {
-  }
+@media screen and (min-width: 768px) {
+}
 
-  @media screen and (min-width: 992px) {
-  }
+@media screen and (min-width: 992px) {
+}
 
-  @media screen and (min-width: 1200px) {
-  }
-  @media screen and (min-width: 1400px) {
-  }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@media screen and (min-width: 1200px) {
+}
+@media screen and (min-width: 1400px) {
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";

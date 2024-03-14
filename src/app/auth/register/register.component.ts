@@ -19,6 +19,12 @@ export class RegisterComponent {
 
   constructor(private authSvc: AuthService, private router:Router) {}
 
+  passwordVisible = false;
+
+  togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
+  }
+
   /*register() {*/
   singUp(){
 
