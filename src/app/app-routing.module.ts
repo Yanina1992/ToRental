@@ -9,6 +9,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuardGuard } from './auth/auth-guard.guard';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -47,7 +48,5 @@ const routes: Routes = [
   providers: [provideRouter(routes, withComponentInputBinding())],
 })
 export class AppRoutingModule {
-  constructor() {
-    console.log('AppRoutingModule loaded'); 
-  }
+ 
 }

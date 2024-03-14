@@ -12,6 +12,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import { AuthStatusToggleDirective } from './auth-status-toggle.directive';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -24,6 +25,7 @@ export function tokenGetter() {
     NavbarComponent,
     RegisterComponent,
     LoginComponent,
+    AuthStatusToggleDirective,
   ],
   imports: [
     BrowserModule,
@@ -35,8 +37,8 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        /*allowedDomains: ["example.com"],
-        disallowedRoutes: ["http://example.com/examplebadroute/"],*/
+        allowedDomains: ["dev.backend.raphp.net"],
+        //disallowedRoutes: ["http://example.com/examplebadroute/"],//
       },
     }),
   ],

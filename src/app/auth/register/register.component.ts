@@ -28,13 +28,13 @@ export class RegisterComponent {
       this.formData.email &&
       this.formData.password
     ) {
-     this.authSvc.signUp(this.formData)
-    .subscribe(res => {
+     this.authSvc.login(this.formData).subscribe(data=>{
       this.router.navigate(['/pages/dashboard']);
-    },
-    error =>{
-     console.error(error); 
-    })
+     },
+     error =>{
+      console.error(error); 
+     })
+
     } else {
       console.error('Compila tutti i campi richiesti per la registrazione.');
     }

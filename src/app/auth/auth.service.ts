@@ -14,9 +14,11 @@ export class AuthService {
   //Metodo che ci aiuta a decodificare i token jwt
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
+  //'http://dev.backend.raphp.net/users'//
+
   apiUrl: string = 'http://localhost:3000/users'; //da controllare correttezza endpoint
   //Queste cose vanno ricontrollate, qui viene seguita la documentazione di npm x json.server
-  registerUrl: string = this.apiUrl; //+`register`o whatever
+  registerUrl: string = this.apiUrl; //+ `/register`;o whatever
   loginUrl: string = this.apiUrl; //+`/login`;
 
   //Il BehaviorSubject ci dice se l'utente è loggato o no. Il valore iniziale lo settiamo a null, e poi quando si logga si cambia

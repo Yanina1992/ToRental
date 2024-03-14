@@ -1,4 +1,4 @@
-<ng-template #content let-modal>
+<!--<ng-template #content let-modal>
 	<div class="modal-header">
 		<h4 class="modal-title" id="modal-basic-title">Profile update</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
@@ -30,4 +30,141 @@
 
 <hr />
 
-<pre>{{ closeResult }}</pre>
+<pre>{{ closeResult }}</pre>-->
+
+<!------------------------------------------------->
+
+<h1>Nuovo veicolo</h1>
+<div class="my-form">
+<form>
+    <h3>Inserisci i dati del veicolo</h3>
+
+    <!--Targa-->
+    <div class="mb-3">
+      <label for="targa" class="form-label">Targa</label>
+      <input type="targa" class="form-control" id="targa">
+    </div>
+
+<!--Data immatricolazione-->
+
+
+
+<div class="mb-3">
+    <label for="dataImmatricolazione" class="form-label">Data immatricolazione</label>
+<input
+  class="form-control"
+  placeholder="Scegli una data"
+  [(ngModel)]="date"
+  (click)="toggleDatePicker()"
+  name="dataImmatricolazione"
+  [value]="formatDate(model)"
+  readonly
+/>
+
+<ngb-datepicker
+  #dp
+  [(ngModel)]="model"
+  (navigate)="date = $event.next"
+  (closed)="isDatepickerOpen = false" 
+  *ngIf="isDatepickerOpen"
+  name="datePicker"
+>
+</ngb-datepicker>
+
+<button class="btn btn-outline-primary" (click)="selectToday()">Select Today</button>
+<div>Selected date: {{ model | json }}</div>
+</div>
+
+<!--Destinazione d'uso-->
+    <div class="mb-3">
+        <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+        <select id="destinazioneDUso" class="form-select">
+          <option>Da locare senza conducente</option>
+          <option>Uso proprio</option>
+          <option>Uso terzi</option>
+        </select>
+      </div>
+
+    <!--Proprietario-->
+    <div class="mb-3">
+        <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+        <select id="destinazioneDUso" class="form-select">
+          <option>Da locare senza conducente</option>
+          <option>Uso proprio</option>
+          <option>Uso terzi</option>
+        </select>
+      </div>
+
+    <!--Tipo-->
+    <div class="mb-3">
+        <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+        <select id="destinazioneDUso" class="form-select">
+          <option>Da locare senza conducente</option>
+          <option>Uso proprio</option>
+          <option>Uso terzi</option>
+        </select>
+      </div>
+
+    <!--Marca-->
+    <div class="mb-3">
+        <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+        <select id="destinazioneDUso" class="form-select">
+          <option>Da locare senza conducente</option>
+          <option>Uso proprio</option>
+          <option>Uso terzi</option>
+        </select>
+      </div>
+
+    <!--Modello-->
+    <div class="mb-3">
+        <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+        <select id="destinazioneDUso" class="form-select">
+          <option>Da locare senza conducente</option>
+          <option>Uso proprio</option>
+          <option>Uso terzi</option>
+        </select>
+      </div>
+
+    <!--Tipo allestimento-->
+    <div class="mb-3">
+        <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+        <select id="destinazioneDUso" class="form-select">
+          <option>Da locare senza conducente</option>
+          <option>Uso proprio</option>
+          <option>Uso terzi</option>
+        </select>
+      </div>
+
+    <!--Tipo asse-->
+    <div class="mb-3">
+        <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+        <select id="destinazioneDUso" class="form-select">
+          <option>Da locare senza conducente</option>
+          <option>Uso proprio</option>
+          <option>Uso terzi</option>
+        </select>
+      </div>
+
+    <!--Tipo cambio-->
+    <div class="mb-3">
+        <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+        <select id="destinazioneDUso" class="form-select">
+          <option>Da locare senza conducente</option>
+          <option>Uso proprio</option>
+          <option>Uso terzi</option>
+        </select>
+      </div>
+
+        <!--Tipo alimentazione-->
+        <div class="mb-3">
+          <label for="destinazioneDUso" class="form-label">Destinazione d'uso</label>
+          <select id="destinazioneDUso" class="form-select">
+            <option>Da locare senza conducente</option>
+            <option>Uso proprio</option>
+            <option>Uso terzi</option>
+          </select>
+        </div>
+
+    <button type="submit" class="btn btn-primary">Salva veicolo</button>
+  </form>
+</div>

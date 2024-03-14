@@ -21,11 +21,11 @@
             <li><a class="dropdown-item" routerLink="#">Visualizza la lista di tutti i veicoli</a></li>
           </ul>
         </li>-->
-        <a routerLink="../../pages/veicoli" class="nav-link active navbar-brand" aria-current="page">Veicoli</a>
+        <a routerLink="../pages/veicoli" class="nav-link active navbar-brand" aria-current="page">Veicoli</a>
 
         <!--User icon-->
         <div class="d-flex">
-        <a routerLink="../../login" class="nav-link active navbar-brand" aria-current="page">
+        <a appAuthStatusToggle routerLink="../../auth/login" class="nav-link active navbar-brand" aria-current="page">
           <img src="../../../assets/icons/user.png" id="user-icon"/>
           Login
         </a>

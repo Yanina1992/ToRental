@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { VeicoliRoutingModule } from './veicoli-routing.module';
 import { VeicoliComponent } from './veicoli.component';
 import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     VeicoliRoutingModule,
     NgbDatepickerModule,
+    FormsModule
   ]
 })
 export class VeicoliModule { }
