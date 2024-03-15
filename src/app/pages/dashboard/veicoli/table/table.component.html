@@ -1,0 +1,47 @@
+<!--<p>You can bind our <code>NgbPagination</code> component with slicing the data list</p>-->
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Id</th>
+			<th scope="col">Tipo veicolo</th>
+			<th scope="col">Marca</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let veicolo of veicoli">
+			<th scope="row">{{ veicolo.id }}</th>
+			<td>
+				<!--<img
+					[src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag"
+					class="me-2"
+					style="width: 20px"
+				/>-->
+				{{ veicolo.id_tipo_veicolo }}
+			</td>
+			<!--<td>{{ veicolo.id_tipo_allestimento | number}}</td>
+			<td>{{ veicolo.id_marca | number }}</td>-->
+
+			<td>{{ veicolo.id_tipo_allestimento }}</td>
+			<td>{{ veicolo.id_marca }}
+
+		</tr>
+	</tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+	<ngb-pagination
+		[collectionSize]="collectionSize"
+		[(page)]="page"
+		[pageSize]="pageSize"
+		(pageChange)="refreshVeicoli()"
+	>
+	</ngb-pagination>
+
+	<select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshVeicoli()">
+		<option [ngValue]="2">2 items per page</option>
+		<option [ngValue]="4">4 items per page</option>
+		<option [ngValue]="6">6 items per page</option>
+	</select>
+</div>

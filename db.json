@@ -1,4 +1,26 @@
 {
+  "veicoli": [
+    {
+      "id": "1",
+      "id_tipo_allestimento": "bo",
+      "id_marca": "bmw"
+    },
+    {
+      "id": "2",
+      "id_tipo_allestimento": "bo",
+      "id_marca": "bmw"
+    },
+    {
+      "id": "3",
+      "id_tipo_allestimento": "bo",
+      "id_marca": "bmw"
+    },
+    {
+      "id": "4",
+      "id_tipo_allestimento": "bo",
+      "id_marca": "bmw"
+    }
+  ],
   "users": [
     {
       "id": "1",
@@ -12,32 +34,57 @@
       "password": ",b;AFnN*Ti53h\"!"
     },
     {
-      "id": "1253",
-      "email": "admin@example.com",
-      "password": "ad"
-    },
-    {
-      "id": "34d3",
-      "email": "admin@example.com",
-      "password": "admin"
-    },
-    {
-      "id": "aef4",
-      "email": "admin@example.com",
-      "password": "admin"
-    },
-    {
-      "id": "d660",
+      "id": "5580",
       "email": "",
       "password": ",b;AFnN*Ti53h\"!"
     },
     {
-      "id": "7643",
+      "id": "8bc0",
       "email": "",
       "password": ",b;AFnN*Ti53h\"!"
     },
     {
-      "id": "0936",
+      "id": "52bc",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "ad83",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "dd0a",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "2392",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "9f78",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "6919",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "8ccd",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "988a",
+      "email": "",
+      "password": ",b;AFnN*Ti53h\"!"
+    },
+    {
+      "id": "e055",
       "email": "",
       "password": ",b;AFnN*Ti53h\"!"
     }
