@@ -10,6 +10,7 @@ img{
 
 .navbar{
     background-color: rgba(196, 4, 4, 0.98);
+
 }
 @media screen and (min-width: 476px) {
 
@@ -17,9 +18,13 @@ img{
 
 @media screen and (min-width: 576px) {
     .navbar{
-        background-color: #d2d2d2fa;
+        background-color: rgb(52, 58, 64, 0.54);
         height: 100vh;
+        position: relative;
     }
+  #fixing-sidebar{
+    position: fixed;
+  }
 }
 
 @media screen and (min-width: 768px) {
@@ -37,5 +42,5 @@ img{
 
 }
 @media screen and (min-width: 1400px) {
- 
+
 }

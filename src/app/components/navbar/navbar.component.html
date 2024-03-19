@@ -1,34 +1,65 @@
 <nav class="navbar navbar-expand-lg">
+  <div id="fixing-sidebar">
+  <div class="container-fluid d-flex flex-column">
+    <!--Logo-->
+    <a routerLink="../../pages/home" class="navbar-brand">
+      <!--<img
+        alt="Logo"
+        src="http://torental.bentraining.it/assets/media/logos/logo-furgoni-2.svg"
+        class="app-sidebar-logo-default"
+      />-->
+      <h3>ToRental</h3>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav flex-column">
+        <a
+          routerLink="../../pages/home"
+          class="nav-link active navbar-brand"
+          aria-current="page"
+          >Home</a
+        >
 
-    <div class="container-fluid">
-      <!--Logo-->
-      <a routerLink="../../pages/home" class="navbar-brand">
-        <img alt="Logo" src="http://torental.bentraining.it/assets/media/logos/logo-furgoni-2.svg" class="app-sidebar-logo-default">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a routerLink="../../pages/home" class="nav-link active navbar-brand" aria-current="page">Home</a>
-
-        <a routerLink="../pages/veicoli" class="nav-link active navbar-brand" aria-current="page">Veicoli</a>
+        <a
+          routerLink="../pages/veicoli"
+          class="nav-link active navbar-brand"
+          aria-current="page"
+          >Veicoli</a
+        >
 
         <!--User icon-->
         <div class="d-flex">
-        <a appAuthStatusToggle routerLink="../../auth/login" class="nav-link active navbar-brand" aria-current="page">
-          <img src="../../../assets/icons/user.png" id="user-icon"/>
-          <!--Login-->
-        </a>
+          <a
+            appAuthStatusToggle
+            routerLink="../../auth/login"
+            class="nav-link active navbar-brand"
+            aria-current="page"
+          >
+            <img src="../../../assets/icons/user.png" id="user-icon" alt="user"/>
+            <!--Login-->
+          </a>
         </div>
 
         <!--prova guard e auth-->
-        <a routerLink="../../pages/dashboard" class="nav-link active navbar-brand" aria-current="page">
+        <a
+          routerLink="../../pages/dashboard"
+          class="nav-link active navbar-brand"
+          aria-current="page"
+        >
           dashboard
         </a>
-
-        </div>
       </div>
     </div>
-
-  </nav>
+  </div>
+  </div>
+</nav>
