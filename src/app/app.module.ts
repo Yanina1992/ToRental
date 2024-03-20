@@ -19,33 +19,35 @@ export function tokenGetter() {
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-    NavbarComponent,
-    RegisterComponent,
-    LoginComponent,
-    AuthStatusToggleDirective,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule,
-    FormsModule,
-    HttpClientModule,
-    CommonModule,
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-        allowedDomains: ["dev.backend.raphp.net"],
-        //disallowedRoutes: ["http://example.com/examplebadroute/"],//
-      },
-    }),
-  ],
-  providers: [
-    DatePipe, AuthService
- ],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        FooterComponent,
+        NavbarComponent,
+        RegisterComponent,
+        LoginComponent,
+        AuthStatusToggleDirective
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        FormsModule,
+        HttpClientModule,
+        CommonModule,
+        JwtModule.forRoot({
+            config: {
+                tokenGetter: tokenGetter,
+                allowedDomains: ["dev.backend.raphp.net"],
+                //disallowedRoutes: ["http://example.com/examplebadroute/"],//
+            },
+        }),
+    ],
+    providers: [
+        DatePipe, AuthService
+    ],
+    bootstrap: [AppComponent],
+    exports: [
+    ]
 })
 export class AppModule { }
 

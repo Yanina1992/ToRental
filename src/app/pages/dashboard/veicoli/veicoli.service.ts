@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class VeicoliService {
 
- private veicoliUrl:string="http://torental.raffo.photo/veicolo/search/lambo";
+ private veicoliUrl:string="http://torental.raffo.photo/veicolo/search/a";
 
   constructor(
     private http:HttpClient

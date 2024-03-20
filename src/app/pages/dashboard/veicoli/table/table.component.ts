@@ -17,17 +17,17 @@ import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootst
 })
 export class TableComponent {
 
-  
+
   page = 1;
-	pageSize = 4;
-	collectionSize = 0;
+	pageSize = 30;
+	collectionSize = Veicoli.length;
 	veicoli:Veicoli[] = [];
 
 	constructor(
     private veicoliSvc:VeicoliService
   ) {}
 
-  
+
   ngOnInit(){
     this.veicoliSvc.getAll()
     .subscribe((data:Veicoli[]) =>{

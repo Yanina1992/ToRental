@@ -10,7 +10,23 @@ img{
 
 .navbar{
     background-color: rgba(196, 4, 4, 0.98);
-
+    display: flex;
+    flex-direction: row-reverse;
+}
+#fixing-sidebar{
+  height: inherit;
+  width: 100%;
+}
+.navbar-brand{
+  width: 25%;
+}
+.navbar-toggler{
+  width: 15%;
+  height: fit-content;
+}
+.container-fluid{
+  flex-direction: row;
+  justify-content: space-between;
 }
 @media screen and (min-width: 476px) {
 
@@ -18,13 +34,42 @@ img{
 
 @media screen and (min-width: 576px) {
     .navbar{
-        background-color: rgb(52, 58, 64, 0.54);
+      //background-color: rgba(52, 58, 64, 0.54);
+      background-color: transparent;
         height: 100vh;
         position: relative;
     }
+  .container-fluid{
+    flex-direction: column;
+  }
   #fixing-sidebar{
     position: fixed;
   }
+
+  //reset x md
+  .navbar{
+    display: flex;
+    flex-direction: column;
+  }
+  #fixing-sidebar{
+    height: 100%;
+    width: 10%;
+  }
+  .navbar-brand{
+    width: 100%;
+  }
+  .navbar-toggler{
+    display: none;
+    width: fit-content;
+    height: fit-content;
+  }
+  .container-fluid{
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    align-items: center;
+  }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -33,7 +78,9 @@ img{
 }
 
 @media screen and (min-width: 992px) {
+.navbar-toggler{
 
+}
 
 }
 
