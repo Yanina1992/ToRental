@@ -130,7 +130,7 @@ export class VeicoliComponent implements OnInit {
       this.veicoliSvc.getAllModelli().subscribe((data: IModello[]) => {
         //filter
         this.modelli = data.filter((m) => {
-          let idMarca= m.id_marca       
+          let idMarca= m.id_marca     
           if (idMarca == selectedMarcaId) {
             return true;
           } else {
