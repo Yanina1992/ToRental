@@ -1,14 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 /*Button
 
-ARANCIONE E BLU, SFONDO GRIGIASTRO
+
+https://www.realtimecolors.com/?colors=131516-f5f8fa-3b9bc4-85cfef-fea334&fonts=Poppins-Poppins
+
+ARANCIONE E BLU, SFONDO GRIGIASTRO ><>>>>>> miglior scelta
 text:#000000
 background:#F5F5F5
-primary:#2843F0
-secondary:#037ECA
-accent:#FF6010
+primary:#2843F0  > da implementare
+secondary:#037ECA > da implementare
+accent:#FF6010 > da implementare
 
-ROSSO GIALLINO E SENAPE SFONDO BIANCO
+ROSSO GIALLINO E SENAPE SFONDO BIANCO e rossoooo nooooooo
 text: #170409;
 --background: #fefafb;
 --primary: #dc2f4e;
@@ -24,10 +27,22 @@ AZZURRO, AZZURRINO E ARANCIONE
 */
 
 
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700;900&display=swap");
+//@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap');
+
+body{
+  font-family: "Poppins", sans-serif !important;
+  color: #000000;
+  background-color: #F5F5F5 !important;
+}
 
 h1 {
   text-align: center;
+  font-weight: 700 !important;
+}
+
+h2, h3, h4, h5{
+  font-weight: 500 !important;
 }
 
 .my-form {
