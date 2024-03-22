@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { IAccessData } from './interface/iaccess-data';
 import { ILogin } from './interface/ilogin';
 import { BehaviorSubject, map, tap } from 'rxjs';
+import { environment } from './../../environments/environment.development'
+
 
 @Injectable({
   providedIn: 'root',
@@ -15,11 +17,12 @@ export class AuthService {
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
   //'http://dev.backend.raphp.net/users'//
+//'http://localhost:3000/users'
 
-  apiUrl: string = 'http://localhost:3000/users'; //da controllare correttezza endpoint
+  apiUrl: string = environment.authEndPoint; //da controllare correttezza endpoint
   //Queste cose vanno ricontrollate, qui viene seguita la documentazione di npm x json.server
-  registerUrl: string = this.apiUrl; //+ `/register`;o whatever
-  loginUrl: string = this.apiUrl; //+`/login`;
+  registerUrl: string = environment.authEndPoint; //+ `/register`;o whatever
+  loginUrl: string = environment.authEndPoint; //+`/login`;
 
   //Il BehaviorSubject ci dice se l'utente è loggato o no. Il valore iniziale lo settiamo a null, e poi quando si logga si cambia
   private authSubject = new BehaviorSubject<null | IAccessData>(null);

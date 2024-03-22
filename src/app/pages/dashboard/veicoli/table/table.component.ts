@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Veicoli } from 'src/app/pages/dashboard/veicoli/veicoli';
+import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from '../veicoli.service';
-/*import { DecimalPipe, NgFor } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { NgbPaginationModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';*/
-
 
 @Component({
   selector: 'app-table',
-  /*standalone: true,
-  imports: [
-    DecimalPipe, NgFor, FormsModule, NgbTypeaheadModule, NgbPaginationModule
-  ],*/
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
@@ -19,9 +11,10 @@ export class TableComponent {
 
 
   page = 1;
-	pageSize = 30;
+	pageSize = 10;
 	collectionSize = Veicoli.length;
 	veicoli:Veicoli[] = [];
+  veicoliToShow: Veicoli[] | undefined;
 
 	constructor(
     private veicoliSvc:VeicoliService
@@ -37,10 +30,13 @@ export class TableComponent {
     })
 
   }
-  refreshVeicoli(){
-      this.veicoli.map((veicolo, i) => ({id:i+1, ...this.veicoli})).slice(
+
+refreshVeicoli() {
+    this.veicoliToShow = this.veicoli.slice(
       (this.page - 1) * this.pageSize,
-			(this.page - 1) * this.pageSize + this.pageSize,
+      (this.page - 1) * this.pageSize + this.pageSize
     );
-  }
+}
+
+
 }

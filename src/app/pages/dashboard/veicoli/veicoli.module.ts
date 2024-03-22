@@ -7,7 +7,7 @@ import { NgbDatepickerModule, NgbPaginationModule, NgbTypeaheadModule } from '@n
 import { FormsModule } from '@angular/forms';
 import { TableComponent } from './table/table.component';
 import { HttpClientModule } from '@angular/common/http';
-//import {HeaderComponent} from "../../../components/header/header.component";
+import {HeaderComponent} from "../../../components/header/header.component";
 
 
 
@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     VeicoliComponent,
     TableComponent,
-    //HeaderComponent
+    HeaderComponent
   ],
   imports: [
     CommonModule,

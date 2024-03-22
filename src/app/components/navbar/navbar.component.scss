@@ -3,9 +3,12 @@ img{
     width: 10em;
 }
 //User icon
-#user-icon{
-    width: 1.5em;
-
+#user{
+  padding: 5px 8px;
+}
+//icons
+i{
+ font-size: xx-large;
 }
 
 .navbar{
@@ -28,6 +31,7 @@ img{
   flex-direction: row;
   justify-content: space-between;
 }
+
 @media screen and (min-width: 476px) {
 
 }

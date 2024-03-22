@@ -13,41 +13,47 @@ import { LoginComponent } from './auth/login/login.component';
 import { AuthService } from './auth/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthStatusToggleDirective } from './auth-status-toggle.directive';
+import { AuthInterceptorInterceptor } from './auth/auth-interceptor.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 export function tokenGetter() {
-  return localStorage.getItem("access_token");
+  return localStorage.getItem('access_token');
 }
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        FooterComponent,
-        NavbarComponent,
-        RegisterComponent,
-        LoginComponent,
-        AuthStatusToggleDirective
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgbModule,
-        FormsModule,
-        HttpClientModule,
-        CommonModule,
-        JwtModule.forRoot({
-            config: {
-                tokenGetter: tokenGetter,
-                allowedDomains: ["dev.backend.raphp.net"],
-                //disallowedRoutes: ["http://example.com/examplebadroute/"],//
-            },
-        }),
-    ],
-    providers: [
-        DatePipe, AuthService
-    ],
-    bootstrap: [AppComponent],
-    exports: [
-    ]
+  declarations: [
+    AppComponent,
+    FooterComponent,
+    NavbarComponent,
+    RegisterComponent,
+    LoginComponent,
+    AuthStatusToggleDirective,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    FormsModule,
+    HttpClientModule,
+    CommonModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['dev.backend.raphp.net'],
+        //disallowedRoutes: ["http://example.com/examplebadroute/"],//
+      },
+    }),
+  ],
+  providers: [
+    DatePipe,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
+  exports: [],
 })
-export class AppModule { }
-
+export class AppModule {}

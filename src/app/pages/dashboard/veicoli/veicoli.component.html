@@ -6,16 +6,129 @@
   <form>
     <h3>Inserisci i dati del veicolo</h3>
 
+    <!--Tipo veicolo-->
+    <div class="mb-3">
+      <label for="tipo_veicolo_nome" class="form-label">Tipo veicolo</label>
+      <select  id="tipo_veicolo_nome" class="form-select">
+        <option *ngFor="let tipoVeicolo of tipiVeicoli">{{ tipoVeicolo.nome }}</option>
+      </select>
+    </div>
+
+    <!--Marca-->
+    <div class="mb-3">
+      <label for="marca" class="form-label">Marca</label>
+      <select id="marca" class="form-select" [(ngModel)]="selectedMarcaId" (ngModelChange)="onMarcaChange(selectedMarcaId)" name="marca">
+        <option *ngFor="let marca of marche" [value]="marca.id">{{ marca.nome }}</option>
+      </select>
+    </div>
+
+    <!--Modello-->
+    <div class="mb-3">
+      <label for="modello" class="form-label">Modello</label>
+      <select id="modello" class="form-select" [disabled]="!selectedMarcaId" name="modello" >
+        <option *ngFor="let modello of modelli" [value]="modello.id">{{ modello.nome }}</option>
+      </select>
+    </div>
+
+    <!--Cilindrata-->
+    <div class="mb-3">
+      <label for="cilindrata" class="form-label">Cilindrata</label>
+      <input type="number" class="form-control" id="cilindrata" name="cilindrata"/>
+    </div>
+
+    <!--Colore-->
+    <div class="mb-3">
+      <label for="colore" class="form-label">Colore</label>
+      <input type="text" class="form-control" id="colore" name="colore"/>
+    </div>
+
+    <!--Destinazione d'uso-->
+    <div class="mb-3">
+      <label for="destinazione_uso_nome" class="form-label"
+        >Destinazione d'uso</label
+      >
+      <select id="destinazione_uso_nome" class="form-select">
+        <option *ngFor="let destinazione of destinazioni">{{ destinazione.nome }}</option>
+      </select>
+    </div>
+
+    <!--Massa-->
+    <div class="mb-3">
+      <label for="massa" class="form-label">Massa</label>
+      <input type="text" class="form-control" id="massa" name="massa"/>
+    </div>
+
+    <!--Numero assi-->
+    <div class="mb-3">
+      <label for="numero_assi" class="form-label">Numero assi</label>
+      <input type="number" class="form-control" id="numero_assi" name="numero_assi"/>
+    </div>
+
+    <!--Portata-->
+    <div class="mb-3">
+      <label for="portata" class="form-label">Portata</label>
+      <input type="number" class="form-control" id="portata" name="portata"/>
+    </div>
+
+    <!--Potenza-->
+    <div class="mb-3">
+      <label for="potenza" class="form-label">Potenza</label>
+      <input type="number" class="form-control" id="potenza" name="potenza"/>
+    </div>
+
+    <!--Società-->
+    <div class="mb-3">
+      <label for="societa_nome" class="form-label">Società</label>
+      <select id="societa_nome" class="form-select">
+        <option *ngFor="let societa of societas" >{{ societa.nome }}</option>
+      </select>
+    </div>
+
     <!--Targa-->
     <div class="mb-3">
       <label for="targa" class="form-label">Targa</label>
-      <input type="targa" class="form-control" id="targa" />
+      <input type="text" class="form-control" id="targa"  name="targa"/>
+    </div>
+
+    <!--Tipo alimentazione-->
+    <div class="mb-3">
+      <label for="tipo_alimentazione_nome" class="form-label"
+        >Alimentazione</label
+      >
+      <select id="tipo_alimentazione_nome" class="form-select">
+        <option *ngFor="let tipoAlimentazione of tipiAlimentazione" >{{ tipoAlimentazione.nome }}</option>
+      </select>
+    </div>
+
+    <!--Allestimento-->
+    <div class="mb-3">
+      <label for="tipo_allestimento_nome" class="form-label"
+        >Allestimento</label
+      >
+      <select id="tipo_allestimento_nome" class="form-select">
+        <option *ngFor="let allestimento of allestimenti" >{{ allestimento.nome }}</option>
+      </select>
+    </div>
+
+    <!-- Tipo asse-->
+    <div class="mb-3">
+      <label for="tipo_asse_nome" class="form-label">Tipo asse</label>
+      <select id="tipo_asse_nome" class="form-select">
+        <option *ngFor="let tipoAsse of tipiAsse" >{{ tipoAsse.nome }}</option>
+      </select>
+    </div>
+
+    <!--Cambio-->
+    <div class="mb-3">
+      <label for="tipo_cambio_nome" class="form-label">Cambio</label>
+      <select id="tipo_cambio_nome" class="form-select">
+        <option *ngFor="let tipoCambio of tipiCambio" >{{ tipoCambio.nome }}</option>
+      </select>
     </div>
 
     <!--Data immatricolazione-->
-
     <div class="mb-3">
-      <label for="dataImmatricolazione" class="form-label"
+      <label for="data_immatricolazione" class="form-label"
         >Data immatricolazione</label
       >
 
@@ -28,9 +141,7 @@
           </div>-->
 
           <div class="col col-9 p-0">
-
-
-              <input
+            <input
               class="form-control"
               placeholder="Scegli una data"
               [(ngModel)]="date"
@@ -40,7 +151,7 @@
               readonly
             />
 
-          <!--<i class="fa-solid fa-calendar-days"></i>-->
+            <!--<i class="fa-solid fa-calendar-days"></i>-->
           </div>
 
           <div class="col col-3 p-0">
@@ -60,98 +171,6 @@
       </ngb-datepicker>
 
       <!--<div>Selected date: {{ model | json }}</div>-->
-    </div>
-
-    <!--Destinazione d'uso-->
-    <div class="mb-3">
-      <label for="destinazioneDUso" class="form-label"
-        >Destinazione d'uso</label
-      >
-      <select id="destinazioneDUso" class="form-select">
-        <option>Da locare senza conducente</option>
-        <option>Uso proprio</option>
-        <option>Uso terzi</option>
-      </select>
-    </div>
-
-    <!--Proprietario-->
-    <div class="mb-3">
-      <label for="" class="form-label">Destinazione d'uso</label>
-      <select id="" class="form-select">
-        <option>Da locare senza conducente</option>
-        <option>Uso proprio</option>
-        <option>Uso terzi</option>
-      </select>
-    </div>
-
-    <!--Tipo-->
-    <div class="mb-3">
-      <label for="" class="form-label">Destinazione d'uso</label>
-      <select id="" class="form-select">
-        <option>Da locare senza conducente</option>
-        <option>Uso proprio</option>
-        <option>Uso terzi</option>
-      </select>
-    </div>
-
-    <!--Marca-->
-    <div class="mb-3">
-      <label for="" class="form-label">Destinazione d'uso</label>
-      <select id="" class="form-select">
-        <option>Da locare senza conducente</option>
-        <option>Uso proprio</option>
-        <option>Uso terzi</option>
-      </select>
-    </div>
-
-    <!--Modello-->
-    <div class="mb-3">
-      <label for="" class="form-label">Destinazione d'uso</label>
-      <select id="" class="form-select">
-        <option>Da locare senza conducente</option>
-        <option>Uso proprio</option>
-        <option>Uso terzi</option>
-      </select>
-    </div>
-
-    <!--Tipo allestimento-->
-    <div class="mb-3">
-      <label for="" class="form-label">Destinazione d'uso</label>
-      <select id="" class="form-select">
-        <option>Da locare senza conducente</option>
-        <option>Uso proprio</option>
-        <option>Uso terzi</option>
-      </select>
-    </div>
-
-    <!--Tipo asse-->
-    <div class="mb-3">
-      <label for="" class="form-label">Destinazione d'uso</label>
-      <select id="" class="form-select">
-        <option>Da locare senza conducente</option>
-        <option>Uso proprio</option>
-        <option>Uso terzi</option>
-      </select>
-    </div>
-
-    <!--Tipo cambio-->
-    <div class="mb-3">
-      <label for="" class="form-label">Destinazione d'uso</label>
-      <select id="" class="form-select">
-        <option>Da locare senza conducente</option>
-        <option>Uso proprio</option>
-        <option>Uso terzi</option>
-      </select>
-    </div>
-
-    <!--Tipo alimentazione-->
-    <div class="mb-3">
-      <label for="" class="form-label">Destinazione d'uso</label>
-      <select id="" class="form-select">
-        <option>Da locare senza conducente</option>
-        <option>Uso proprio</option>
-        <option>Uso terzi</option>
-      </select>
     </div>
 
     <button type="submit" class="btn btn-primary">Salva veicolo</button>

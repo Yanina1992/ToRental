@@ -61,41 +61,49 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav flex-column ms-2">
-        <a
-          routerLink="../../pages/home"
-          class="nav-link active navbar-brand"
-          aria-current="page"
-          >Home</a
-        >
+        <!--Dashboard-->
+        <div class="d-flex flex-column align-items-center m-3">
 
+          <i class="fa-solid fa-gauge"></i>
+        <a
+          routerLink="../../pages/dashboard"
+          class="nav-link active navbar-brand text-center m-0"
+          aria-current="page"
+          >
+          
+          Dashboard
+          </a
+        ></div>
+        <!--Veicoli-->
+        <div class="d-flex flex-column align-items-center m-3">
+          <i class="fa-solid fa-car"></i>
         <a
           routerLink="../pages/veicoli"
-          class="nav-link active navbar-brand"
+          class="nav-link active navbar-brand text-center m-0"
           aria-current="page"
-          >Veicoli</a
+          >
+          Veicoli</a
         >
-
-        <!--User icon-->
-        <div class="d-flex">
+</div>
+        <!--User-->
+        <div class="d-flex flex-column align-items-center m-3" id="user">
+          <i class="fa-solid fa-user me-1"></i>
           <a
             appAuthStatusToggle
             routerLink="../../auth/login"
-            class="nav-link active navbar-brand"
+            class="nav-link active navbar-brand p-0 text-center m-0"
             aria-current="page"
-          >
-            <img src="../../../assets/icons/user.png" id="user-icon" alt="user"/>
-            <!--Login-->
-          </a>
+          ></a>
         </div>
 
-        <!--prova guard e auth-->
+        <!--prova guard e auth
         <a
           routerLink="../../pages/dashboard"
           class="nav-link active navbar-brand"
           aria-current="page"
         >
           dashboard
-        </a>
+        </a>-->
       </div>
     </div>
   </div>
