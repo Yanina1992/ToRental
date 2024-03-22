@@ -1,5 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
-/*Button*/
+/*Button
+
+ARANCIONE E BLU, SFONDO GRIGIASTRO
+text:#000000
+background:#F5F5F5
+primary:#2843F0
+secondary:#037ECA
+accent:#FF6010
+
+ROSSO GIALLINO E SENAPE SFONDO BIANCO
+text: #170409;
+--background: #fefafb;
+--primary: #dc2f4e;
+--secondary: #ecba8e;
+--accent: #e5c863;
+
+AZZURRO, AZZURRINO E ARANCIONE
+--text: #121415;
+--background: #f5f8fa;
+--primary: #3b9bc5;
+--secondary: #83ceef;
+--accent: #fea335;
+*/
+
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700;900&display=swap");
 
 h1 {
@@ -23,7 +47,7 @@ form {
   color: white !important;
   font-family: "Poppins", sans-serif !important;
   font-weight: 700 !important;
-  width: -moz-available;
+  width: -webkit-fill-available;
   margin: 1em;
 }
 .btn:hover {

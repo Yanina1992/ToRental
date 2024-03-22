@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
-import { Veicoli } from '../../../classes/veicoli';
+import { Veicoli } from '../classes/veicoli';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { ITipoVeicolo } from 'src/app/interfaces/itipo-veicolo';
@@ -42,7 +42,7 @@ getById(id:number):Observable<Veicoli>{
 }
 //----------
 create(veicoli:Veicoli):Observable<Veicoli>{
-  return this.http.post<Veicoli>(this.veicoliUrl,veicoli)
+  return this.http.post<Veicoli>('http://dev.backend.torental.bentraining.it/veicolo',veicoli)
 }
 //Tipo veicolo
 getAllTipiVeicoli():Observable<ITipoVeicolo[]>{

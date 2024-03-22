@@ -1,8 +1,9 @@
+//Produzione
 export const environment = {
 
 authEndPoint: 'http://localhost:3000/users',
 
-veicoliEndPoint: 'http://torental.raffo.photo/veicolo/search/a',
+veicoliEndPoint: 'http://localhost:3000/veicoli',
 
 tipoVeicoloEndPoint: 'http://torental.raffo.photo/get_tipo_veicolo',
 

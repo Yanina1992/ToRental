@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Veicoli } from 'src/app/classes/veicoli';
-import { VeicoliService } from '../veicoli.service';
+import { VeicoliService } from '../../../../services/veicoli.service';
 
 @Component({
   selector: 'app-table',
