@@ -1,21 +1,40 @@
-<!--DESKTOP -- La navbar non è rossa > siamo sopra i 576px-->
-<div class="container-fluid p-0" *ngIf="!color">
-      <div class="row">
-        <div class="col col-2 p-0" style="background-color: rgba(52, 58, 64, 0.54)">
-          <app-navbar></app-navbar>
-        </div>
-        <div class="col col-10 p-0">
-          <router-outlet></router-outlet>
-          <app-footer></app-footer>
-      </div>
+<!-- MOBILE -- La navbar è rossa > siamo sotto i 576px
+<div *ngIf="color" class="container-fluid">
+  <div class="row">
+    <div class="col col-12">
+      <app-navbar></app-navbar>
     </div>
-
+    <div class="col col-12">
+       <router-outlet></router-outlet>
+        <app-footer></app-footer>
+    </div>
   </div>
+        
+       
+</div> -->
 
 
-<!-- MOBILE -- La navbar è rossa > siamo sotto i 576px -->
-<div *ngIf="color">
-    <app-navbar></app-navbar>
-    <router-outlet></router-outlet>
-    <app-footer></app-footer>
+<!--DESKTOP -- La navbar non è rossa > siamo sopra i 576px
+<div class="container-fluid p-0" *ngIf="!color">
+  <div class="row">
+    <div class="col col-2 p-0">
+      <app-navbar></app-navbar>
+    </div>
+    <div class="col col-10 p-0">
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+    </div>
+  </div>
+</div>-->
+
+<div class="container-fluid p-0">
+  <div class="row">
+    <div class="col col-12 col-sm-2 col-md-2 p-0" style="background-color: #779eb65e">
+      <app-navbar></app-navbar>
+    </div>
+    <div class="col col-12 col-sm-10 col-md-10 p-0">
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+    </div>
+  </div>
 </div>

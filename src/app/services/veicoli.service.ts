@@ -40,6 +40,9 @@ getAll():Observable<Veicoli[]>{
 getById(id:number):Observable<Veicoli>{
   return this.http.get<Veicoli>(this.veicoliUrl+'?id'+id)
 }
+//getByTarga(targa:string):Observable<Veicoli>{
+  //return.this.http.get<Veicoli>(this.veicoliUrl+...)
+//}
 //----------
 create(veicoli:Veicoli):Observable<Veicoli>{
   return this.http.post<Veicoli>('http://dev.backend.torental.bentraining.it/veicolo',veicoli)

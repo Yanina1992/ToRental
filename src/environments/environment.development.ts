@@ -3,7 +3,9 @@ export const environment = {
 
 authEndPoint: 'http://localhost:3000/users',
 
-veicoliEndPoint: 'http://localhost:3000/veicoli',
+//veicoliEndPoint: 'http://localhost:3000/veicoli',
+
+veicoliEndPoint: ' http://dev.backend.torental.bentraining.it/veicolo',
 
 tipoVeicoloEndPoint: 'http://torental.raffo.photo/get_tipo_veicolo',
 

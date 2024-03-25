@@ -4,27 +4,13 @@
 
 https://www.realtimecolors.com/?colors=131516-f5f8fa-3b9bc4-85cfef-fea334&fonts=Poppins-Poppins
 
-ARANCIONE E BLU, SFONDO GRIGIASTRO ><>>>>>> miglior scelta
-text:#000000
+ARANCIONE E BLU, SFONDO GRIGIASTRO
 background:#F5F5F5
-primary:#2843F0  > da implementare
-secondary:#037ECA > da implementare
-accent:#FF6010 > da implementare
+primary:#2843F0, #779EB6  > da implementare
+secondary:##779eb65e > da implementare
+accent:#EC7801 > da implementare*/
 
-ROSSO GIALLINO E SENAPE SFONDO BIANCO e rossoooo nooooooo
-text: #170409;
---background: #fefafb;
---primary: #dc2f4e;
---secondary: #ecba8e;
---accent: #e5c863;
 
-AZZURRO, AZZURRINO E ARANCIONE
---text: #121415;
---background: #f5f8fa;
---primary: #3b9bc5;
---secondary: #83ceef;
---accent: #fea335;
-*/
 
 
 //@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700;900&display=swap");
@@ -58,7 +44,8 @@ form {
 }
 
 .btn {
-  background: linear-gradient(to right, #2600ff, #0099ff);
+  border: 0 !important;
+  background: linear-gradient(to right, #2843F0, #779EB6);
   color: white !important;
   font-family: "Poppins", sans-serif !important;
   font-weight: 700 !important;
@@ -66,7 +53,7 @@ form {
   margin: 1em;
 }
 .btn:hover {
-  background: #0099ff !important;
+  background: #EC7801 !important;
 }
 
 ul {

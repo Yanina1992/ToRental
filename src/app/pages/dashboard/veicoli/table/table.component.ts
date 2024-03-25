@@ -1,42 +1,69 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from '../../../../services/veicoli.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime, startWith, map } from 'rxjs';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent {
-
-
+export class TableComponent implements OnInit {
   page = 1;
-	pageSize = 10;
-	collectionSize = Veicoli.length;
-	veicoli:Veicoli[] = [];
+  pageSize = 10;
+  collectionSize = Veicoli.length;
+  veicoli: Veicoli[] = [];
   veicoliToShow: Veicoli[] | undefined;
 
-	constructor(
-    private veicoliSvc:VeicoliService
-  ) {}
+  filteredVeicoli: Veicoli[] = [];
+  filter = new FormControl('');
 
+  constructor(private veicoliSvc: VeicoliService) {}
 
-  ngOnInit(){
-    this.veicoliSvc.getAll()
-    .subscribe((data:Veicoli[]) =>{
+  ngOnInit() {
+    this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
       this.veicoli = data;
       this.collectionSize = data.length;
       this.refreshVeicoli();
-    })
 
+      this.filteredVeicoli = [...this.veicoli];
+      this.setupFilter();
+
+      console.log(data);
+    });
   }
 
-refreshVeicoli() {
-    this.veicoliToShow = this.veicoli.slice(
-      (this.page - 1) * this.pageSize,
-      (this.page - 1) * this.pageSize + this.pageSize
+  setupFilter() {
+    this.filter.valueChanges
+      .pipe(
+        startWith(''),
+        debounceTime(300),
+        map((text) =>
+          text!.trim().length > 0 ? this.search(text!) : this.veicoli
+        )
+      )
+      .subscribe((filtered) => {
+        this.filteredVeicoli = filtered;
+        this.collectionSize = filtered.length;
+        this.refreshVeicoli();
+      });
+  }
+
+  search(text: string): Veicoli[] {
+    const term = text.toLowerCase();
+    console.log(text);
+
+    return this.veicoli.filter((veicolo) =>
+      (veicolo.targa || '').toLowerCase().startsWith(term)
     );
-}
+  }
 
+  refreshVeicoli() {
+    const start = (this.page - 1) * this.pageSize;
+    const end = start + this.pageSize;
 
+    this.veicoliToShow = this.filteredVeicoli.slice(start, end);
+
+  }
 }

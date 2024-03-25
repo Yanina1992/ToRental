@@ -12,7 +12,7 @@ i{
 }
 
 .navbar{
-    background-color: rgba(196, 4, 4, 0.98);
+    //background-color: #779eb65e;
     display: flex;
     flex-direction: row-reverse;
 }
@@ -38,8 +38,7 @@ i{
 
 @media screen and (min-width: 576px) {
     .navbar{
-      //background-color: rgba(52, 58, 64, 0.54);
-      background-color: transparent;
+        //background-color: #779eb65e;
         height: 100vh;
         position: relative;
     }
@@ -63,7 +62,7 @@ i{
     width: 100%;
   }
   .navbar-toggler{
-    display: none;
+    //display: none;
     width: fit-content;
     height: fit-content;
   }
