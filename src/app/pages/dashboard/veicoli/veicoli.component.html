@@ -1,7 +1,8 @@
+<h1 class="p-4">I nostri veicoli</h1>
 <app-table></app-table>
 <!--Crea veicolo----------------------------------------------->
-<div>
-<h1>Nuovo veicolo</h1>
+<div class="d-flex flex-column align-items-center">
+  <h2>Nuovo veicolo</h2>
   <form>
     <h3>Inserisci i dati del veicolo</h3>
 
@@ -291,7 +292,7 @@
       >
       </ngb-datepicker>
 
-      <!--<div>Selected date: {{ model | json }}</div>-->
+     <!--<div>Selected date: {{ model | json }}</div>-->
     </div>
 
     <button type="submit" class="btn btn-primary" (click)="creaVeicolo()" >Salva veicolo</button>

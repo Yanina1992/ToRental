@@ -1,3 +1,5 @@
+import { DatePipe } from "@angular/common";
+
 export class Veicoli
 { 
     public cilindrata: number = 0 ;
@@ -41,7 +43,7 @@ export class Veicoli
     public tipo_veicolo_nome?: string = '';
     public id_tipo_veicolo?: number = 0;
 
-    public data_immatricolazione?:Date;
+    public data_immatricolazione:any;
 
     public id?:number = 0;
 }

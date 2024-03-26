@@ -45,7 +45,7 @@ export class VeicoliComponent implements OnInit {
     this.model = this.calendar.getToday();
   }
 
-  formatDate(date: NgbDateStruct | undefined): string {
+  /*formatDate(date: NgbDateStruct | undefined): string {
     if (date) {
       return (
         this.datePipe.transform(
@@ -53,6 +53,21 @@ export class VeicoliComponent implements OnInit {
           'dd-MM-yyyy'
         ) || ''
       );
+    }
+    return '';
+  }*/
+
+  myDate:any;
+
+  formatDate(date: NgbDateStruct | undefined): string {
+    if (date) {
+      this.myDate = (
+        this.datePipe.transform(
+          new Date(date.year, date.month - 1, date.day),
+          'dd-MM-yyyy'
+        ) || ''
+      );
+      return this.myDate
     }
     return '';
   }
@@ -182,13 +197,19 @@ export class VeicoliComponent implements OnInit {
     this.veicoloForm.id_tipo_veicolo = selectedTipoVeicoloId;
     }
   }
+  
   veicoloForm:Veicoli = new Veicoli();
-
+  
   creaVeicolo(){
+    this.veicoloForm.data_immatricolazione = this.myDate
+    console.log("Submitting form with data:", this.veicoloForm);
     this.veicoliSvc.create(this.veicoloForm)
     .subscribe((res)=>{
-      console.log('Veicolo creato!'); 
-    })
+      console.log(res); 
+    }, (error) => {
+      console.error("Failed to submit form:", error);
+    });
+    }
   }
   
-}
+

@@ -45,13 +45,12 @@ getById(id:number):Observable<Veicoli>{
 //}
 //----------
 create(veicoli:Veicoli):Observable<Veicoli>{
-  return this.http.post<Veicoli>('http://dev.backend.torental.bentraining.it/veicolo',veicoli)
+  return this.http.post<Veicoli>('http://dev.backend.torental.bentraining.it/veicolo', veicoli)
 }
 //Tipo veicolo
 getAllTipiVeicoli():Observable<ITipoVeicolo[]>{
   return this.http.get<ITipoVeicolo[]>(this.tipoVeicoliUrl);
 }
-
 
 
 

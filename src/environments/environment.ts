@@ -1,6 +1,8 @@
 //Sviluppo
 export const environment = {    
 
+production: true,
+
 veicoliEndPoint: ' http://dev.backend.torental.bentraining.it/veicolo',
 
 societaEndPoint: 'http://torental.raffo.photo/get_proprietario',

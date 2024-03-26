@@ -1,6 +1,8 @@
 //Produzione
 export const environment = {
 
+    production: false,
+
 authEndPoint: 'http://localhost:3000/users',
 
 //veicoliEndPoint: 'http://localhost:3000/veicoli',
