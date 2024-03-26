@@ -19,8 +19,6 @@ import { NgbDatepickerModule, NgbPaginationModule, NgbTypeaheadModule } from '@n
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Assicurati di importare entrambi se necessario
 import { TableComponent } from './table/table.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HeaderComponent } from "../../../components/header/header.component";
-
 
 /*@NgModule({
   declarations: [
@@ -49,7 +47,6 @@ export class VeicoliModule { }*/
   declarations: [
     VeicoliComponent,
     TableComponent,
-    HeaderComponent
   ],
   imports: [
     CommonModule,

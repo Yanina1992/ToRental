@@ -15,6 +15,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AuthStatusToggleDirective } from './auth-status-toggle.directive';
 import { AuthInterceptorInterceptor } from './auth/auth-interceptor.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -28,6 +29,7 @@ export function tokenGetter() {
     RegisterComponent,
     LoginComponent,
     AuthStatusToggleDirective,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

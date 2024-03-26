@@ -19,6 +19,8 @@ export class TableComponent implements OnInit {
   filteredVeicoli: Veicoli[] = [];
   filter = new FormControl('');
 
+  spinner:Boolean | undefined = true;
+
   constructor(private veicoliSvc: VeicoliService) {}
 
   ngOnInit() {
@@ -30,6 +32,9 @@ export class TableComponent implements OnInit {
       this.filteredVeicoli = [...this.veicoli];
       this.setupFilter();
 
+      if(data){
+        this.spinner = false;
+      }
       console.log(data);
     });
   }

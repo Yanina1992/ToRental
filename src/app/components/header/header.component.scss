@@ -1,4 +1,19 @@
-form{
-  margin:0;
+form {
+  margin: 0;
   padding: 0;
 }
+
+#header {
+  background: linear-gradient(45deg, rgb(0 0 36), transparent);
+}
+
+.search-btn {
+  border: 0;
+  background-color: transparent;
+}
+
+i{
+      font-size: 2rem;
+      cursor: pointer;
+}
+

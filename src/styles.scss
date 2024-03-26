@@ -5,18 +5,23 @@
 https://www.realtimecolors.com/?colors=131516-f5f8fa-3b9bc4-85cfef-fea334&fonts=Poppins-Poppins
 
 ARANCIONE E BLU, SFONDO GRIGIASTRO
-background:#F5F5F5
-primary:#2843F0, #779EB6  > da implementare
-secondary:##779eb65e > da implementare
-accent:#EC7801 > da implementare*/
+background:#F5F5F5 > grigio chiaro
+primary:#2843F0 > blu
+secondary:#779eb65e > blu grigiastro
+accent:#EC7801 > arancione
+icone e link: rgb(0 0 36)*/
 
 
-
-
-//@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700;900&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap');
+@import "bootstrap/scss/bootstrap";
 
-body{
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
   font-family: "Poppins", sans-serif !important;
   color: #000000;
   background-color: #F5F5F5 !important;
@@ -65,8 +70,20 @@ ul {
 form {
   margin: 2em;
 }
+//---------------------
+a,i{
+  color: rgb(0 0 36) !important;
+}
+a:hover,i:hover{
+  color: #2843F0 !important;
+}
+
+svg{
+  width: 30vw;
+}
 
 @media screen and (min-width: 476px) {
+
 }
 
 @media screen and (min-width: 576px) {
@@ -83,14 +100,3 @@ form {
 @media screen and (min-width: 1400px) {
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-/* Importing Bootstrap SCSS file. */
-@import "bootstrap/scss/bootstrap";

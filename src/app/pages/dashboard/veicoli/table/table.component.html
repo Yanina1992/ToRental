@@ -1,4 +1,4 @@
-<form>
+<form id="search-form">
   <div class="mb-3 row">
     <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Cerca per targa:</label>
     <div class="col-xs-3 col-sm-auto">
@@ -6,6 +6,13 @@
     </div>
   </div>
 </form>
+
+<!--Spinner-->
+<div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
 
 <table class="table table-striped">
   <thead>
