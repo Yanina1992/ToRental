@@ -1,0 +1,30 @@
+.card-body{
+height: 18rem;
+}
+
+canvas{
+    width: 100%;
+    height: 100%;
+}
+
+@media screen and (min-width: 576px) {
+    canvas{
+
+    }
+}
+
+.fa-screwdriver-wrench{
+    font-size: 2em;
+}
+.red{
+    color: red !important;
+}
+.yellow{
+    color:yellow !important;
+}
+.green{
+color: green !important;
+}
+.card{
+    border: 0 !important;
+}
