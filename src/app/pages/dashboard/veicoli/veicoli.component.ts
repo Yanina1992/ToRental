@@ -45,18 +45,6 @@ export class VeicoliComponent implements OnInit {
     this.model = this.calendar.getToday();
   }
 
-  /*formatDate(date: NgbDateStruct | undefined): string {
-    if (date) {
-      return (
-        this.datePipe.transform(
-          new Date(date.year, date.month - 1, date.day),
-          'dd-MM-yyyy'
-        ) || ''
-      );
-    }
-    return '';
-  }*/
-
   myDate:any;
 
   formatDate(date: NgbDateStruct | undefined): string {
