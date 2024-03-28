@@ -3,25 +3,27 @@ import { Observable} from 'rxjs';
 import { Veicoli } from '../classes/veicoli';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
-import { ITipoVeicolo } from 'src/app/interfaces/itipo-veicolo';
-import { IMarca } from 'src/app/interfaces/imarca';
-import { IModello } from 'src/app/interfaces/imodello';
-import { IDestinazioneDUso } from 'src/app/interfaces/idestinazione-duso';
-import { ISocieta } from 'src/app/interfaces/isocieta';
-import { IAlimentazione } from 'src/app/interfaces/ialimentazione';
-import { IAllestimento } from 'src/app/interfaces/iallestimento';
-import { IAsse } from 'src/app/interfaces/iasse';
-import { ICambio } from 'src/app/interfaces/icambio';
+import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
+import { IMarca } from 'src/app/interfaces/options-select/imarca';
+import { IModello } from 'src/app/interfaces/options-select/imodello';
+import { IDestinazioneDUso } from 'src/app/interfaces/options-select/idestinazione-duso';
+import { ISocieta } from 'src/app/interfaces/options-select/isocieta';
+import { IAlimentazione } from 'src/app/interfaces/options-select/ialimentazione';
+import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
+import { IAsse } from 'src/app/interfaces/options-select/iasse';
+import { ICambio } from 'src/app/interfaces/options-select/icambio';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VeicoliService {
 
+  //Veicoli
  veicoliUrl: string = environment.veicoliEndPoint;
+ //Select
  tipoVeicoliUrl:string = environment.tipoVeicoloEndPoint;
  marcaUrl:string = environment.marcaEndPoint;
- modelloUrl:string = 'http://torental.raffo.photo/get_modello';
+ modelloUrl:string = environment.modelloEndPoint;
  destinazioneDUsoUrl:string = environment.destinazioneDUsoEndPoint;
  societaUrl:string = environment.societaEndPoint;
  alimentazioneUrl:string = environment.alimentazioneEndPoint;
@@ -40,12 +42,9 @@ getAll():Observable<Veicoli[]>{
 getById(id:number):Observable<Veicoli>{
   return this.http.get<Veicoli>(this.veicoliUrl+'?id'+id)
 }
-//getByTarga(targa:string):Observable<Veicoli>{
-  //return.this.http.get<Veicoli>(this.veicoliUrl+...)
-//}
 //----------
 create(veicoli:Veicoli):Observable<Veicoli>{
-  return this.http.post<Veicoli>('http://dev.backend.torental.bentraining.it/veicolo', veicoli)
+  return this.http.post<Veicoli>(this.veicoliUrl, veicoli)
 }
 //Tipo veicolo
 getAllTipiVeicoli():Observable<ITipoVeicolo[]>{

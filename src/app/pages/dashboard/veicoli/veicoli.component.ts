@@ -3,15 +3,15 @@ import { FormControl } from '@angular/forms';
 import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
 import { VeicoliService } from '../../../services/veicoli.service';
-import { ITipoVeicolo } from 'src/app/interfaces/itipo-veicolo';
-import { IMarca } from 'src/app/interfaces/imarca';
-import { IModello } from 'src/app/interfaces/imodello';
-import { IDestinazioneDUso } from 'src/app/interfaces/idestinazione-duso';
-import { ISocieta } from 'src/app/interfaces/isocieta';
-import { IAlimentazione } from 'src/app/interfaces/ialimentazione';
-import { IAllestimento } from 'src/app/interfaces/iallestimento';
-import { IAsse } from 'src/app/interfaces/iasse';
-import { ICambio } from 'src/app/interfaces/icambio';
+import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
+import { IMarca } from 'src/app/interfaces/options-select/imarca';
+import { IModello } from 'src/app/interfaces/options-select/imodello';
+import { IDestinazioneDUso } from 'src/app/interfaces/options-select/idestinazione-duso';
+import { ISocieta } from 'src/app/interfaces/options-select/isocieta';
+import { IAlimentazione } from 'src/app/interfaces/options-select/ialimentazione';
+import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
+import { IAsse } from 'src/app/interfaces/options-select/iasse';
+import { ICambio } from 'src/app/interfaces/options-select/icambio';
 import { Veicoli } from 'src/app/classes/veicoli';
 
 @Component({

@@ -27,20 +27,20 @@
       >
         <div class="d-flex justify-content-evenly">
           <i class="fa-solid fa-screwdriver-wrench red"></i>
-          <span class="red fw-bold">89</span>
+          <span class="red fw-bold">{{ nRevisioniScadenzaBreveTermine }}</span>
         </div>
         <div class="d-flex justify-content-evenly">
           <i class="fa-solid fa-screwdriver-wrench yellow"></i
-          ><span class="yellow fw-bold">100</span>
+          ><span class="yellow fw-bold">{{ nRevisioniScadenzaMedioTermine }}</span>
         </div>
         <div class="d-flex justify-content-evenly">
           <i class="fa-solid fa-screwdriver-wrench green"></i
-          ><span class="green fw-bold">378</span>
+          ><span class="green fw-bold">{{ nRevisioniScadenzaLungoTermine }}</span>
         </div>
       </div>
-      <div class="card-footer bg-transparent border-success">
+      <div class="card-footer bg-transparent border-success text-danger fw-bold">
         <i class="fa-solid fa-circle-exclamation red"></i>
-        Ci sono TOT veicoli non revisionati
+        Ci sono {{ nRevisioniScadute }} veicoli non revisionati
       </div>
     </div>
   </div>
