@@ -1,79 +1,104 @@
-<div class="row row-cols-2 row-cols-md-3 g-4">
-  <!--Torta-->
-  <div class="col">
-    <div class="card border-success mb-3">
-      <div class="card-header bg-transparent border-success">Header</div>
-      <div class="card-body text-success">
-        <div class="w-100 h-100 d-flex justify-content-center">
-          <canvas
-            baseChart
-            [data]="pieChartData"
-            [type]="pieChartType"
-            [options]="pieChartOptions"
+<div class="container">
+  <div class="row row-cols-2 row-cols-md-3 g-4">
+    <!--Torta-->
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Header</div>
+        <div class="card-body text-success">
+          <div class="w-100 h-100 d-flex justify-content-center">
+            <canvas
+              baseChart
+              [data]="pieChartData"
+              [type]="pieChartType"
+              [options]="pieChartOptions"
+            >
+            </canvas>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent border-success">Footer</div>
+      </div>
+    </div>
+
+    <!--Revisione-->
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Revisioni tecniche</div>
+        <div class="card-body d-flex flex-column justify-content-evenly">
+          <div class="d-flex justify-content-evenly">
+            <i class="fa-solid fa-screwdriver-wrench red"></i>
+            <span class="fw-bold">{{ nRevisioniScadenzaBreveTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly">
+            <i class="fa-solid fa-screwdriver-wrench yellow"></i
+            ><span class="fw-bold">{{ nRevisioniScadenzaMedioTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly">
+            <i class="fa-solid fa-screwdriver-wrench green"></i
+            ><span class="fw-bold">{{ nRevisioniScadenzaLungoTermine }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer bg-transparent border-success">
+          <i
+            class="fa-solid fa-circle-exclamation"
+            [ngClass]="isRevisioniScadute ? 'red' : 'grey'"
+          ></i>
+          Ci sono
+          <span [ngClass]="isRevisioniScadute ? 'red fw-bold' : 'grey'"
+            >
+            {{ isRevisioniScadute ? (nRevisioniScadute + ' veicoli non revisionati') : 'Non ci sono revisioni scadute' }}
+            </span
           >
-          </canvas>
         </div>
-      </div>
-      <div class="card-footer bg-transparent border-success">Footer</div>
-    </div>
-  </div>
 
-  <!--Revisioni-->
-  <div class="col">
-    <div class="card border-success mb-3">
-      <div class="card-header bg-transparent border-success">Revisioni</div>
-      <div
-        class="card-body text-success d-flex flex-column justify-content-evenly"
-      >
-        <div class="d-flex justify-content-evenly">
-          <i class="fa-solid fa-screwdriver-wrench red"></i>
-          <span class="red fw-bold">{{ nRevisioniScadenzaBreveTermine }}</span>
-        </div>
-        <div class="d-flex justify-content-evenly">
-          <i class="fa-solid fa-screwdriver-wrench yellow"></i
-          ><span class="yellow fw-bold">{{ nRevisioniScadenzaMedioTermine }}</span>
-        </div>
-        <div class="d-flex justify-content-evenly">
-          <i class="fa-solid fa-screwdriver-wrench green"></i
-          ><span class="green fw-bold">{{ nRevisioniScadenzaLungoTermine }}</span>
-        </div>
-      </div>
-      <div class="card-footer bg-transparent border-success text-danger fw-bold">
-        <i class="fa-solid fa-circle-exclamation red"></i>
-        Ci sono {{ nRevisioniScadute }} veicoli non revisionati
       </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="card border-success mb-3">
-      <div class="card-header bg-transparent border-success">Header</div>
-      <div class="card-body text-success">
-        <h5 class="card-title">Success card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-      </div>
-      <div class="card-footer bg-transparent border-success">Footer</div>
-    </div>
-  </div>
-  <div class="col">
-    <div class="card border-success mb-3">
-      <div class="card-header bg-transparent border-success">Header</div>
-      <div class="card-body text-success">
-        <h5 class="card-title">Success card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-      </div>
-      <div class="card-footer bg-transparent border-success">Footer</div>
-    </div>
-  </div>
 
+    <!--Bombole-->
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Revisioni bombole</div>
+        <div class="card-body d-flex flex-column justify-content-evenly">
+          <div class="d-flex justify-content-evenly align-items-center">
+            <img
+              src="../../../assets/icons/red-tank.png"
+              alt="tank-icon"
+              class="custom-icons red"
+            /><span class="fw-bold">{{ nBomboleScadenzaBreveTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <img
+              src="../../../assets/icons/yellow-tank.png"
+              alt="tank-icon"
+              class="custom-icons yellow"
+            /><span class="fw-bold">{{ nBomboleScadenzaMedioTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <img
+              src="../../../assets/icons/green-tank.png"
+              alt="tank-icon"
+              class="custom-icons green"
+            /><span class="fw-bold">{{ nBomboleScadenzaLungoTermine }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer bg-transparent border-success">
+          <i class="fa-solid fa-circle-exclamation"
+          [ngClass]="isBomboleScadute ? 'red' : 'grey'"></i>
+          Ci sono
+          <span 
+          [ngClass]="isBomboleScadute ? 'red fw-bold' : 'grey'"
+          >
+          {{ isBomboleScadute ? (nBomboleScadute + ' bombole non revisionate') : 'Non ci sono bombole da revisionare' }}</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!--Tagliando ------------DOVREBBE ESSERE GESTITO IN BASE AL KILOMETRAGGIO
   <div class="col">
     <div class="card border-success mb-3">
-      <div class="card-header bg-transparent border-success">Header</div>
+      <div class="card-header border-success">Header</div>
       <div class="card-body text-success">
         <h5 class="card-title">Success card title</h5>
         <p class="card-text">
@@ -82,6 +107,51 @@
         </p>
       </div>
       <div class="card-footer bg-transparent border-success">Footer</div>
+    </div>
+  </div>-->
+
+    <!--Aspetti di natura non tecnica
+      
+      ---Assicurazione
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Header</div>
+        <div class="card-body text-success">
+          <h5 class="card-title">Success card title</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-success">Footer</div>
+      </div>
+    </div>
+  
+    ----Bollo
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Header</div>
+        <div class="card-body text-success">
+          <h5 class="card-title">Success card title</h5>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+        <div class="card-footer bg-transparent border-success">Footer</div>
+      </div>
+    </div>-->
+
+    <!-- Line Chart Card -->
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Sinistri</div>
+        <div class="card-body text-success">
+          <canvas id="lineChartCanvas"></canvas>
+          <!-- Line Chart Canvas -->
+        </div>
+        <div class="card-footer bg-transparent border-success">Footer</div>
+      </div>
     </div>
   </div>
 </div>

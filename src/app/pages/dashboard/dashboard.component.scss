@@ -7,6 +7,10 @@ canvas{
     height: 100%;
 }
 
+.custom-icons{
+    width: 2em;
+}
+
 @media screen and (min-width: 576px) {
     canvas{
 
@@ -17,14 +21,26 @@ canvas{
     font-size: 2em;
 }
 .red{
-    color: red !important;
+    color: #FF0000 !important;
 }
 .yellow{
-    color:yellow !important;
+    color:#ffa200 !important;
 }
 .green{
-color: green !important;
+color: #24923A !important;
+}
+.grey{
+    color:grey !important;
 }
 .card{
     border: 0 !important;
 }
+
+.container{
+    margin: 2em 0;
+}
+.card-header{
+    background-color: #779eb65e;
+}
+
+//<div> Icons made by <a href="https://www.flaticon.com/authors/abdul-aziz" title="Abdul-Aziz"> Abdul-Aziz </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></div>

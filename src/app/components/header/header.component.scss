@@ -7,6 +7,7 @@ form {
   background: linear-gradient(45deg, rgb(0 0 36), transparent);
 }
 
+
 .search-btn {
   border: 0;
   background-color: transparent;
@@ -17,3 +18,15 @@ i{
       cursor: pointer;
 }
 
+a{
+  color:rgb(0 0 36);
+}
+a:hover{
+  color:   #2843F0;
+}
+i:hover{
+  color:   #2843F0 !important;
+}
+nav{
+  padding:0;
+}

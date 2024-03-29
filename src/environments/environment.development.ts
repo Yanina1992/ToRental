@@ -24,4 +24,5 @@ export const environment = {
 
   //Endpoints alert
   revisioniAlertEndPoint:'http://dev.backend.torental.bentraining.it/revisione/alert',
+  bomboleAlertEndPoint: 'http://dev.backend.torental.bentraining.it/bombole/alert',
 };

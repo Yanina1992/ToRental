@@ -11,8 +11,14 @@ i{
  font-size: xx-large;
 }
 
+a{
+  color:#779EB6 !important;
+}
+a:hover{
+  color:  #2843F0  !important;
+}
+
 .navbar{
-    //background-color: #779eb65e;
     display: flex;
     flex-direction: row-reverse;
 }
@@ -30,6 +36,22 @@ i{
 .container-fluid{
   flex-direction: row;
   justify-content: space-between;
+}
+
+.icon-link{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+#alert-drop-down{
+  background-color: transparent;
+  border: 0;
+  color:#779EB6 !important;
+}
+#alert-drop-down:hover{
+  color:  #2843F0  !important;
 }
 
 @media screen and (min-width: 476px) {

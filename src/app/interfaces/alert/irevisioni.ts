@@ -1,4 +1,4 @@
-export interface Revisioni {
+export interface IRevisioni {
     idVeicolo:number;
     idRevisione?:number;
     anno?:number;
