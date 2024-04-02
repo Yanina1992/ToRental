@@ -60,6 +60,9 @@ export class VeicoliComponent implements OnInit {
     return '';
   }
 
+  //Variabile per gestire validazione
+  formSubmitted:boolean = false;
+
   //Variabili per gestire le opzioni della select
   tipiVeicoli: ITipoVeicolo[] = [];
   marche: IMarca[] = [];
@@ -189,6 +192,9 @@ export class VeicoliComponent implements OnInit {
   veicoloForm:Veicoli = new Veicoli();
   
   creaVeicolo(){
+
+    this.formSubmitted = !this.formSubmitted;
+
     this.veicoloForm.data_immatricolazione = this.myDate
     console.log("Submitting form with data:", this.veicoloForm);
     this.veicoliSvc.create(this.veicoloForm)

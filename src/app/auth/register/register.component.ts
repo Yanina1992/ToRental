@@ -17,6 +17,8 @@ export class RegisterComponent {
     password: '',
   };
 
+  formSubmitted:boolean = false;
+
   constructor(private authSvc: AuthService, private router:Router) {}
 
   passwordVisible = false;
@@ -27,7 +29,8 @@ export class RegisterComponent {
 
   /*register() {*/
   singUp(){
-
+    this.formSubmitted = !this.formSubmitted
+    
     if (
       this.formData.nome &&
       this.formData.cognome &&

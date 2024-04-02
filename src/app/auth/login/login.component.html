@@ -1,20 +1,46 @@
 <div class="my-form">
-  <form class="w-100">
+  <form class="w-100" #loginForm="ngForm">
     <h2 class="text-center">Effettua il login</h2>
 
     <div class="mb-3">
-      <label for="email1" class="form-label">Indirizzo email</label>
+
+
+      
+      <label for="email" class="form-label">Indirizzo email</label>
       <input
         type="email"
-        class="form-control"
         id="email"
-        aria-describedby="email"
         name="email"
-        placeholder="Inserisci la tua e-mail"
+        class="form-control"
+        required
+        email
+        placeholder="Inserisci la tua email"
         [(ngModel)]="formData.email"
+        #email="ngModel"
+        aria-describedby="emailHelp"
       />
-      <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+
+        <div *ngIf="email.errors && (email.dirty || email.touched)"
+        class="alert fw-bold text-danger ps-0"
+      >
+
+          <div *ngIf="email.errors?.['required']">
+          Indirizzo email obbligatorio
+        </div>
+
+        <div *ngIf="email.errors?.['email']">
+          Inserire un indirizzo email valido
+        </div>
+
+      </div>
+
+
+
+
     </div>
+
+    <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+</div>-->
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
       <!--<input type="password" class="form-control" name="password" [(ngModel)]="formData.password">-->
@@ -26,7 +52,11 @@
               class="form-control"
               id="password"
               name="password"
+              class="form-control"
+              required
+              placeholder="Inserisci una password"
               [(ngModel)]="formData.password"
+              #password="ngModel"
             />
           </div>
           <div class="col col-4 p-0">
@@ -39,6 +69,14 @@
               <i *ngIf="passwordVisible" class="bi bi-eye-slash"></i>
             </button>
           </div>
+          <div
+          *ngIf="password.invalid && formSubmitted"
+          class="alert fw-bold text-danger">
+          <div
+          *ngIf="password.errors?.['required']">
+        Password obbligatoria
+        </div>
+          </div>
         </div>
       </div>
     </div>
@@ -46,15 +84,14 @@
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>-->
-    <button type="submit" class="btn btn-primary" (click)="login()">
+    <button type="submit" class="btn btn-primary" (click)="login()" [disabled]="!loginForm.valid">
       Login
     </button>
-    <hr/>
+    <hr />
 
     <div class="d-flex flex-column align-items-center">
-    <h2>Non sei ancora registrato?</h2>    
+      <h2>Non sei ancora registrato?</h2>
       <h5><a routerLink="../register" id="register">Registrati</a></h5>
     </div>
-    
   </form>
 </div>

@@ -1,6 +1,6 @@
 .my-form{
     background-image:url('../../../assets/Sfondo canva.png');
-    height: 100vh;
+    min-height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #779eb65e !important;
@@ -19,4 +19,7 @@ color: rgb(0, 0, 36) !important;
 };
 #register:hover{
     color: #2843F0 !important;
+}
+.alert{
+    color: red;
 }

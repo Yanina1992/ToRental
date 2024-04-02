@@ -1,44 +1,47 @@
-<div class="my-form">
-  <form class="w-100">
+<div class="my-form" >
+  <form class="w-100" #registerForm="ngForm">
     <h2 class="text-center">Inserisci i dati richiesti e registrati</h2>
     <div class="mb-3">
       <label for="nome" class="form-label">Nome</label>
-      <input
-        type="text"
-        class="form-control"
-        id="nome"
-        aria-describedby="nome"
-        name="nome"
-        placeholder="Inserisci il tuo nome"
-        [(ngModel)]="formData.nome"
-      />
-      <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+      <input type="text" id="nome" class="form-control" name="nome" required placeholder="Inserisci il tuo nome"
+        [(ngModel)]="formData.nome" #nome="ngModel" aria-describedby="nome" />
+
+      <div *ngIf="nome.invalid && formSubmitted" class="alert fw-bold text-danger ps-0">
+        <div *ngIf="nome.errors?.['required']">
+          Nome obbligatorio
+        </div>
+      </div>
+
+      <!--<div id="emailHelp" class="form-text">La tua email non sarà condivisa con terzi.</div>-->
     </div>
     <div class="mb-3">
       <label for="cognome" class="form-label">Cognome</label>
-      <input
-        type="text"
-        class="form-control"
-        id="cognome"
-        aria-describedby="cognome"
-        name="cognome"
-        placeholder="Inserisci il tuo cognome"
-        [(ngModel)]="formData.cognome"
-      />
-      <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+      <input type="text" id="cognome" name="cognome" class="form-control" required
+        placeholder="Inserisci il tuo cognome" [(ngModel)]="formData.cognome" #cognome="ngModel"
+        aria-describedby="cognome" />
+      <div *ngIf="cognome.invalid && formSubmitted" class="alert fw-bold text-danger ps-0">
+        <div *ngIf="email.errors?.['required']">
+          Cognome obbligatorio
+        </div>
+      </div>
+
+      <!--<div id="emailHelp" class="form-text">La tua mail non sarà condivisa con terzi.</div>-->
     </div>
     <div class="mb-3">
       <label for="email1" class="form-label">Indirizzo email</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        aria-describedby="email"
-        name="email"
-        placeholder="Inserisci la tua e-mail"
-        [(ngModel)]="formData.email"
-      />
-      <!--<div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>-->
+      <input type="email" id="email" name="email" class="form-control" required email placeholder="Inserisci la tua email"
+        [(ngModel)]="formData.email" #email="ngModel" aria-describedby="email"/>
+      <!--<div *ngIf="email.invalid && formSubmitted" class="alert fw-bold text-danger ps-0">-->
+        <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert fw-bold text-danger ps-0">
+        <!--<div *ngIf="email.errors?.['required']">-->
+          <div *ngIf="email.errors?.['required']">
+          Indirizzo email obbligatorio
+        </div>
+        <div *ngIf="email.errors?.['email']">
+          Inserire un indirizzo email valido
+        </div>
+      </div>
+      <div id="emailHelp" class="form-text">La tua email non sarà condivisa con terzi.</div>
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
@@ -47,20 +50,16 @@
       <div class="input-group container-fluid p-0">
         <div class="row w-100">
           <div class="col col-8 pe-0">
-            <input
-              [type]="passwordVisible ? 'text' : 'password'"
-              class="form-control"
-              id="password"
-              name="password"
-              [(ngModel)]="formData.password"
-            />
+            <input [type]="passwordVisible ? 'text' : 'password'" id="password" name="password" class="form-control"
+              required placeholder="Inserisci una password" [(ngModel)]="formData.password" #password="ngModel" />
+            <div *ngIf="password.invalid && formSubmitted" class="alert fw-bold text-danger ps-0">
+              <div *ngIf="password.errors?.['required']">
+                Password obbligatoria
+              </div>
+            </div>
           </div>
           <div class="col col-4 p-0">
-            <button
-              type="button"
-              class="form-control"
-              (click)="togglePasswordVisibility()"
-            >
+            <button type="button" class="form-control" (click)="togglePasswordVisibility()">
               <i *ngIf="!passwordVisible" class="bi bi-eye"></i>
               <i *ngIf="passwordVisible" class="bi bi-eye-slash"></i>
             </button>
@@ -72,7 +71,7 @@
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>-->
-    <button type="submit" class="btn btn-primary" (click)="singUp()">
+    <button type="submit" class="btn btn-primary" (click)="singUp()" [disabled]="!registerForm.valid">
       Registrati
     </button>
   </form>

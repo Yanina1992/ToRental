@@ -14,6 +14,8 @@ export class LoginComponent {
     password: '',
   };
 
+  formSubmitted: boolean = false;
+
   constructor(private authSvc: AuthService, private router: Router) {}
 
   passwordVisible = false;
@@ -23,7 +25,10 @@ export class LoginComponent {
   }
 
   login() {
-    this.authSvc.login(this.formData).subscribe(
+    this.formSubmitted = !this.formSubmitted
+    
+    if(this.formData.email && this.formData.password){
+          this.authSvc.login(this.formData).subscribe(
       (_data) => {
         this.router.navigate(['/pages/dashboard']);
       },
@@ -31,5 +36,7 @@ export class LoginComponent {
         console.error(error);
       }
     );
+    }
+
   }
 }

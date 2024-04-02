@@ -3,7 +3,7 @@
 <!--Crea veicolo----------------------------------------------->
 <div class="d-flex flex-column align-items-center">
   <h2>Nuovo veicolo</h2>
-  <form>
+  <form #createVeicolo="ngForm">
     <h3>Inserisci i dati del veicolo</h3>
 
     <!--Tipo veicolo-->
@@ -11,10 +11,12 @@
       <label for="tipo_veicolo_nome" class="form-label">Tipo veicolo</label>
       <select
         id="tipo_veicolo_nome"
+        name="tipo_veicolo_nome"
         class="form-select"
+        required
         [(ngModel)]="selectedTipoVeicoloId"
         (ngModelChange)="onTipeVeicoloChange(selectedTipoVeicoloId)"
-        name="tipoVeicolo"
+        #tipo_veicolo_nome="ngModel"
       >
         <option
           *ngFor="let tipoVeicolo of tipiVeicoli"
@@ -23,6 +25,13 @@
           {{ tipoVeicolo.nome }}
         </option>
       </select>
+
+      <div *ngIf="tipo_veicolo_nome.invalid && formSubmitted"
+      class="alert fw-bold text-danger ps-0">
+      <div *ngIf="tipo_veicolo_nome.errors?.['required']">
+        Selezionare il tipo veicolo
+      </div>
+      </div>
     </div>
 
     <!--Marca-->
@@ -295,6 +304,6 @@
      <!--<div>Selected date: {{ model | json }}</div>-->
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="creaVeicolo()" >Salva veicolo</button>
+    <button type="submit" class="btn btn-primary" (click)="creaVeicolo()" [disabled]="!createVeicolo.valid">Salva veicolo</button>
   </form>
 </div>
