@@ -16,11 +16,22 @@
     </div>
     <div class="mb-3">
       <label for="cognome" class="form-label">Cognome</label>
-      <input type="text" id="cognome" name="cognome" class="form-control" required
-        placeholder="Inserisci il tuo cognome" [(ngModel)]="formData.cognome" #cognome="ngModel"
-        aria-describedby="cognome" />
-      <div *ngIf="cognome.invalid && formSubmitted" class="alert fw-bold text-danger ps-0">
-        <div *ngIf="email.errors?.['required']">
+      <input 
+      type="text" 
+      id="cognome" 
+      name="cognome" 
+      class="form-control" 
+      required
+        placeholder="Inserisci il tuo cognome" 
+        [(ngModel)]="formData.cognome" 
+        #cognome="ngModel"
+        aria-describedby="cognome" 
+        />
+      <div 
+      *ngIf="cognome.invalid && formSubmitted" 
+      class="alert fw-bold text-danger ps-0">
+        <div 
+        *ngIf="email.errors?.['required']">
           Cognome obbligatorio
         </div>
       </div>
@@ -71,7 +82,7 @@
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>-->
-    <button type="submit" class="btn btn-primary" (click)="singUp()" [disabled]="!registerForm.valid">
+    <button type="submit" class="btn btn-primary" (click)="singUp()">
       Registrati
     </button>
   </form>

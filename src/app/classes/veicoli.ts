@@ -2,7 +2,10 @@ import { DatePipe } from "@angular/common";
 
 export class Veicoli
 { 
-    public cilindrata: number = 0 ;
+
+    //id = required
+
+    public cilindrata: number = 0 ; //+min 0
 
     public colore: string = '';
 

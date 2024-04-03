@@ -21,6 +21,8 @@ a:hover{
 .navbar{
     display: flex;
     flex-direction: row-reverse;
+    border-right: 0.5px solid;
+    color: #16163352;
 }
 #fixing-sidebar{
   height: inherit;

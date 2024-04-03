@@ -60,9 +60,6 @@ export class VeicoliComponent implements OnInit {
     return '';
   }
 
-  //Variabile per gestire validazione
-  formSubmitted:boolean = false;
-
   //Variabili per gestire le opzioni della select
   tipiVeicoli: ITipoVeicolo[] = [];
   marche: IMarca[] = [];
@@ -191,7 +188,11 @@ export class VeicoliComponent implements OnInit {
   
   veicoloForm:Veicoli = new Veicoli();
   
+    //Variabile per gestire validazione
+    formSubmitted:boolean = false;
+
   creaVeicolo(){
+
 
     this.formSubmitted = !this.formSubmitted;
 

@@ -3,7 +3,7 @@
 <!--Crea veicolo----------------------------------------------->
 <div class="d-flex flex-column align-items-center">
   <h2>Nuovo veicolo</h2>
-  <form #createVeicolo="ngForm">
+  <form #veicoliForm="ngForm">
     <h3>Inserisci i dati del veicolo</h3>
 
     <!--Tipo veicolo-->
@@ -11,13 +11,14 @@
       <label for="tipo_veicolo_nome" class="form-label">Tipo veicolo</label>
       <select
         id="tipo_veicolo_nome"
-        name="tipo_veicolo_nome"
         class="form-select"
         required
         [(ngModel)]="selectedTipoVeicoloId"
         (ngModelChange)="onTipeVeicoloChange(selectedTipoVeicoloId)"
-        #tipo_veicolo_nome="ngModel"
+        name="tipo_veicolo_nome"
+         #tipo_veicolo_nome="ngModel"
       >
+     
         <option
           *ngFor="let tipoVeicolo of tipiVeicoli"
           [value]="tipoVeicolo.id"
@@ -26,12 +27,16 @@
         </option>
       </select>
 
-      <div *ngIf="tipo_veicolo_nome.invalid && formSubmitted"
+      <div 
+      *ngIf="selectedTipoVeicoloId == 0 && formSubmitted"
       class="alert fw-bold text-danger ps-0">
-      <div *ngIf="tipo_veicolo_nome.errors?.['required']">
+      <!--<div 
+      *ngIf="tipo_veicolo_nome.errors?.['required']">
         Selezionare il tipo veicolo
+      </div>-->
+      Selezionare il tipo veicolo
       </div>
-      </div>
+
     </div>
 
     <!--Marca-->
@@ -40,6 +45,7 @@
       <select
         id="marca"
         class="form-select"
+        required
         [(ngModel)]="selectedMarcaId"
         (ngModelChange)="onMarcaChange(selectedMarcaId)"
         name="marca"
@@ -48,6 +54,13 @@
           {{ marca.nome }}
         </option>
       </select>
+
+      <div 
+      *ngIf="selectedMarcaId == 0 && formSubmitted"
+      class="alert fw-bold text-danger ps-0">
+      Selezionare la marca
+      </div>
+
     </div>
 
     <!--Modello-->
@@ -57,14 +70,24 @@
         id="modello"
         class="form-select"
         [disabled]="!selectedMarcaId"
+        required
         [(ngModel)]="selectedModelloId"
         (ngModelChange)="onModelloChange(selectedModelloId)"
         name="modello"
+        #modello="ngModel"
       >
         <option *ngFor="let modello of modelli" [value]="modello.id">
           {{ modello.nome }}
         </option>
       </select>
+
+      <div 
+      *ngIf="selectedModelloId == 0 && formSubmitted"
+      class="alert fw-bold text-danger ps-0">
+      Selezionare il modello
+      </div>
+
+
     </div>
 
     <!--Cilindrata-->
@@ -74,8 +97,10 @@
         type="number"
         class="form-control"
         id="cilindrata"
+        min="0"
         [(ngModel)]="veicoloForm.cilindrata"
         name="cilindrata"
+        #cilindrata="ngModel"
       />
     </div>
 
@@ -87,7 +112,9 @@
       class="form-control"
       id="colore"
       [(ngModel)]="veicoloForm.colore"
-      name="colore" />
+      name="colore" 
+      #colore="ngModel"
+      />
     </div>
 
     <!--Destinazione d'uso-->
@@ -99,6 +126,7 @@
         id="destinazione_uso_nome"
         class="form-select"
         [(ngModel)]="selectedDestinazioneUsoId"
+        required
         (ngModelChange)="onDestinazioneUsoChange(selectedDestinazioneUsoId)"
         name="destinazioneUso"
       >
@@ -109,6 +137,13 @@
           {{ destinazione.nome }}
         </option>
       </select>
+
+      <div 
+      *ngIf="selectedDestinazioneUsoId == 0 && formSubmitted"
+      class="alert fw-bold text-danger ps-0">
+      Selezionare la destinazione d'uso
+      </div>
+
     </div>
 
     <!--Massa-->
@@ -117,12 +152,14 @@
       <input
       type="text" 
       class="form-control" 
-      id="massa" 
+      id="massa"
+      pattern="[0-9]*"
+      min="0"
       [(ngModel)]="veicoloForm.massa"
       name="massa" />
     </div>
 
-    <!--Numero assi-->
+    <!--Numero assi-------------------------------------------------------RIPRENDI DA QUI>
     <div class="mb-3">
       <label for="numero_assi" class="form-label">Numero assi</label>
       <input
@@ -130,8 +167,10 @@
         class="form-control"
         id="numero_assi"
         [(ngModel)]="veicoloForm.numero_assi"
+        required
         name="numero_assi"
       />
+
     </div>
 
     <!--Portata-->
@@ -142,6 +181,7 @@
       class="form-control" 
       id="portata" 
       [(ngModel)]="veicoloForm.portata"
+      min="0"
       name="portata" />
     </div>
 
@@ -153,6 +193,7 @@
       class="form-control" 
       id="potenza" 
       [(ngModel)]="veicoloForm.potenza"
+      min="0"
       name="potenza" />
     </div>
 
@@ -163,6 +204,7 @@
         id="societa_nome"
         class="form-select"
         [(ngModel)]="selectedSocietaId"
+        required
         (ngModelChange)="onSocietaChange(selectedSocietaId)"
         name="societa"
       >
@@ -180,6 +222,10 @@
       class="form-control" 
       id="targa" 
       [(ngModel)]="veicoloForm.targa"
+      required
+      minlength="5"
+      maxlength="10"
+      pattern="[a-zA-Z0-9]*"
       name="targa" />
     </div>
 
@@ -190,10 +236,12 @@
       >
       <select
         id="tipo_alimentazione_nome"
+        name="alimentazione"
         class="form-select"
         [(ngModel)]="selectedAlimentazioneId"
+        required
         (ngModelChange)="onAlimentazioneChange(selectedAlimentazioneId)"
-        name="alimentazione"
+        
       >
         <option
           *ngFor="let tipoAlimentazione of tipiAlimentazione"
@@ -213,6 +261,7 @@
         id="tipo_allestimento_nome"
         class="form-select"
         [(ngModel)]="selectedAllestimentoId"
+        required
         (ngModelChange)="onAllestimentoChange(selectedAllestimentoId)"
         name="allestimento"
       >
@@ -232,6 +281,7 @@
         id="tipo_asse_nome"
         class="form-select"
         [(ngModel)]="selectedTipoAsseId"
+        required
         (ngModelChange)="onTipoAsseChange(selectedTipoAsseId)"
         name="tipoAsse"
       >
@@ -248,6 +298,7 @@
         id="tipo_cambio_nome"
         class="form-select"
         [(ngModel)]="selectedCambioId"
+        required
         (ngModelChange)="onCambioChange(selectedCambioId)"
         name="cambio"
       >
@@ -304,6 +355,6 @@
      <!--<div>Selected date: {{ model | json }}</div>-->
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="creaVeicolo()" [disabled]="!createVeicolo.valid">Salva veicolo</button>
+    <button type="submit" class="btn btn-primary" (click)="creaVeicolo()">Salva veicolo</button>
   </form>
 </div>

@@ -1,16 +1,19 @@
 .my-form{
-    background-image:url('../../../assets/Sfondo canva.png');
+    //background-image:url('../../../assets/Sfondo canva.png');
     min-height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: #779eb65e !important;
+    //background-color: #779eb65e !important;
     background-blend-mode: lighten !important;
+    
 }
 
 form{
     background: #f0f8ff69;
+    background-color: white;
     border:0;
     //box-shadow: 3px 3px 20px 20px #80808045, inset 20em 6px 11em 17px #80808038;
+    box-shadow: 5px 5px 5px 5px grey;
 }
 #register{
 text-decoration: none;
