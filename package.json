@@ -27,6 +27,7 @@
     "json-server": "1.0.0-alpha.23",
     "moment": "2.30.1",
     "ng2-charts": "^5.0.4",
+    "node-modules": "^1.0.1",
     "rxjs": "~7.8.0",
     "tslib": "2.6.2",
     "zone.js": "~0.13.0"
