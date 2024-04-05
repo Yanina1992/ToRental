@@ -27,9 +27,10 @@ export class RegisterComponent {
     this.passwordVisible = !this.passwordVisible;
   }
 
+  isRegisterOk:boolean | undefined
   /*register() {*/
   singUp(){
-    this.formSubmitted = !this.formSubmitted
+    this.formSubmitted = true;
     
     if (
       this.formData.nome &&

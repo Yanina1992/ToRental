@@ -1,5 +1,6 @@
 .card-body{
-height: 18rem;
+//height: 18rem;
+align-items: flex-start;
 }
 
 canvas{
@@ -16,6 +17,10 @@ canvas{
 .custom-icons{
     width: 2em;
 }
+.custom-icons{
+    margin: 1em;
+}
+
 
 @media screen and (min-width: 576px) {
     canvas{
@@ -23,8 +28,9 @@ canvas{
     }
 }
 
-.fa-screwdriver-wrench{
+.my-icon{
     font-size: 2em;
+    margin: 0.5em;
 }
 .red{
     color: #FF0000 !important;

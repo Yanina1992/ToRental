@@ -17,10 +17,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'auth/login',
-    component: LoginComponent,
-  },
-  {
     path: 'auth/register',
     component: RegisterComponent,
   },
@@ -30,7 +26,7 @@ const routes: Routes = [
       import('./pages/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
-    canActivate: [AuthGuardGuard],
+    //canActivate: [AuthGuardGuard], -----------DA DECOMMENTARE PER ATTIVARE LA GUARD
   },
   {
     path: 'pages/veicoli',
@@ -38,7 +34,7 @@ const routes: Routes = [
       import('./pages/dashboard/veicoli/veicoli.module').then(
         (m) => m.VeicoliModule
       ),
-    canActivate: [AuthGuardGuard],
+    //canActivate: [AuthGuardGuard], -----DA DECOMMENTARE
   },
   { path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
 ];

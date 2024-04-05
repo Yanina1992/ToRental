@@ -1,6 +1,7 @@
 <div class="my-form">
   <form class="w-100" #loginForm="ngForm">
-    <h2 class="text-center">Effettua il login</h2>
+    <h2 class="text-center">Login</h2>
+    <hr>
 
     <div class="mb-3">
 
@@ -19,9 +20,9 @@
         #email="ngModel"
         aria-describedby="emailHelp"
       />
-
-        <div *ngIf="email.errors && (email.dirty || email.touched)"
-        class="alert fw-bold text-danger ps-0"
+<!--CONTROLLARE CHE email.touched SIA DAVVERO NECESSARIO...-->
+        <div *ngIf="email.errors && email.touched && formSubmitted" 
+        class="alert text-danger ps-0"
       >
 
           <div *ngIf="email.errors?.['required']">
@@ -54,6 +55,7 @@
               name="password"
               class="form-control"
               required
+              minlength="8"
               placeholder="Inserisci una password"
               [(ngModel)]="formData.password"
               #password="ngModel"
@@ -71,10 +73,14 @@
           </div>
           <div
           *ngIf="password.invalid && formSubmitted"
-          class="alert fw-bold text-danger">
+          class="alert text-danger">
           <div
           *ngIf="password.errors?.['required']">
-        Password obbligatoria
+        Password obbligatoria.
+        </div>
+        <div
+        *ngIf="password.errors?.['minlength']">
+          Password incorretta.
         </div>
           </div>
         </div>
@@ -84,14 +90,28 @@
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>-->
-    <button type="submit" class="btn btn-primary" (click)="login()">
+
+  
+    <button 
+    type="submit" class="btn btn-primary" (click)="login()">
       Login
     </button>
+    <!--<button 
+    
+    type="submit" class="btn btn-primary" (click)="login()">
+      Login
+    </button>-->
+    <p
+    class="text-danger fw-bold"
+    *ngIf="loginForm.invalid && formSubmitted" 
+    [ngClass]="isLoginOk ? 'dNone' : 'dBlock'">
+    Impossibile effettuare il login. Email o password non valide.
+  </p>
     <hr />
 
     <div class="d-flex flex-column align-items-center">
       <h2>Non sei ancora registrato?</h2>
-      <h5><a routerLink="../register" id="register">Registrati</a></h5>
+      <h5><a routerLink="/auth/register" id="register">Registrati</a></h5>
     </div>
   </form>
 </div>

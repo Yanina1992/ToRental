@@ -24,19 +24,26 @@ export class LoginComponent {
     this.passwordVisible = !this.passwordVisible;
   }
 
+  isLoginOk:boolean | undefined;
+
+
   login() {
-    this.formSubmitted = !this.formSubmitted
-    
-    if(this.formData.email && this.formData.password){
+    this.formSubmitted = true;
+
+      if(this.isLoginOk){
+          if(this.formData.email && this.formData.password){
           this.authSvc.login(this.formData).subscribe(
       (_data) => {
         this.router.navigate(['/pages/dashboard']);
       },
       (error) => {
-        console.error(error);
+        console.error('err', error);
       }
     );
     }
+    }else{
+      
+    }
+    }
 
   }
-}

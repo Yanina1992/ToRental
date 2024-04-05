@@ -1,40 +1,21 @@
 <div class="container">
   <div class="row row-cols-2 row-cols-md-3 g-4">
-    <!--Torta-->
-    <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Header</div>
-        <div class="card-body text-success">
-          <div class="w-100 h-100 d-flex justify-content-center">
-            <canvas
-              baseChart
-              [data]="pieChartData"
-              [type]="pieChartType"
-              [options]="pieChartOptions"
-            >
-            </canvas>
-          </div>
-        </div>
-        <div class="card-footer bg-transparent border-success">Footer</div>
-      </div>
-    </div>
-
     <!--Revisione-->
     <div class="col">
       <div class="card border-success mb-3">
         <div class="card-header border-success">Revisioni tecniche</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
-          <div class="d-flex justify-content-evenly">
-            <i class="fa-solid fa-screwdriver-wrench red"></i>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-clipboard-check red my-icon"></i>
             <span class="fw-bold">{{ nRevisioniScadenzaBreveTermine }}</span>
           </div>
-          <div class="d-flex justify-content-evenly">
-            <i class="fa-solid fa-screwdriver-wrench yellow"></i
-            ><span class="fw-bold">{{ nRevisioniScadenzaMedioTermine }}</span>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-clipboard-check yellow my-icon"></i>
+            <span class="fw-bold">{{ nRevisioniScadenzaMedioTermine }}</span>
           </div>
-          <div class="d-flex justify-content-evenly">
-            <i class="fa-solid fa-screwdriver-wrench green"></i
-            ><span class="fw-bold">{{ nRevisioniScadenzaLungoTermine }}</span>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-clipboard-check green my-icon"></i>
+            <span class="fw-bold">{{ nRevisioniScadenzaLungoTermine }}</span>
           </div>
         </div>
 
@@ -43,21 +24,21 @@
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isRevisioniScadute ? 'red' : 'grey'"
           ></i>
-          Ci sono
-          <span [ngClass]="isRevisioniScadute ? 'red fw-bold' : 'grey'"
-            >
-            {{ isRevisioniScadute ? (nRevisioniScadute + ' veicoli non revisionati') : 'Non ci sono revisioni scadute' }}
-            </span
-          >
+          <span [ngClass]="isRevisioniScadute ? 'red fw-bold' : 'grey'">
+            {{
+              isRevisioniScadute
+                ? "Ci sono " + nRevisioniScadute + " veicoli non revisionati"
+                : "Non ci sono revisioni scadute"
+            }}
+          </span>
         </div>
-
       </div>
     </div>
 
-    <!--Bombole-->
+    <!--Sinistri     
     <div class="col">
       <div class="card border-success mb-3">
-        <div class="card-header border-success">Revisioni bombole</div>
+        <div class="card-header border-success">Sinistri</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <img
@@ -83,75 +64,319 @@
         </div>
 
         <div class="card-footer bg-transparent border-success">
-          <i class="fa-solid fa-circle-exclamation"
-          [ngClass]="isBomboleScadute ? 'red' : 'grey'"></i>
+          <i
+            class="fa-solid fa-circle-exclamation"
+            [ngClass]="isBomboleScadute ? 'red' : 'grey'"
+          ></i>
           Ci sono
-          <span 
-          [ngClass]="isBomboleScadute ? 'red fw-bold' : 'grey'"
+          <span [ngClass]="isBomboleScadute ? 'red fw-bold' : 'grey'">
+            {{
+              isBomboleScadute
+                ? nBomboleScadute + " bombole non revisionate"
+                : "Non ci sono bombole da revisionare"
+            }}</span
           >
-          {{ isBomboleScadute ? (nBomboleScadute + ' bombole non revisionate') : 'Non ci sono bombole da revisionare' }}</span>
         </div>
-
       </div>
-    </div>
+    </div>??   FORSE NO SU DASHBOARD-->
 
-    <!--Tagliando ------------DOVREBBE ESSERE GESTITO IN BASE AL KILOMETRAGGIO
-  <div class="col">
-    <div class="card border-success mb-3">
-      <div class="card-header border-success">Header</div>
-      <div class="card-body text-success">
-        <h5 class="card-title">Success card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-      </div>
-      <div class="card-footer bg-transparent border-success">Footer</div>
-    </div>
-  </div>-->
-
-    <!--Aspetti di natura non tecnica
-      
-      ---Assicurazione
+    <!--Assicurazione   ??-->
     <div class="col">
       <div class="card border-success mb-3">
-        <div class="card-header border-success">Header</div>
-        <div class="card-body text-success">
-          <h5 class="card-title">Success card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+        <div class="card-header border-success">Assicurazioni</div>
+        <div class="card-body d-flex flex-column justify-content-evenly">
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-shield-halved red my-icon"></i>
+            <span class="fw-bold">{{ nAssicurazioniScadenzaBreveTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-shield-halved yellow my-icon"></i>
+            <span class="fw-bold">{{ nAssicurazioniScadenzaMedioTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-shield-halved green my-icon"></i>
+            <span class="fw-bold">{{ nAssicurazioniScadenzaLungoTermine }}</span>
+          </div>
         </div>
-        <div class="card-footer bg-transparent border-success">Footer</div>
+
+        <div class="card-footer bg-transparent border-success">
+          <i
+            class="fa-solid fa-circle-exclamation"
+            [ngClass]="isAssicurazioniScadute ? 'red' : 'grey'"
+          ></i>
+          <span [ngClass]="isAssicurazioniScadute ? 'red fw-bold' : 'grey'">
+            {{
+              isAssicurazioniScadute
+                ? "Ci sono " + nAssicurazioniScadute + " assicurazioni scadute"
+                : "Non ci sono assicurazioni scadute"
+            }}</span
+          >
+        </div>
       </div>
     </div>
-  
-    ----Bollo
+
+    <!--Atp-->
     <div class="col">
       <div class="card border-success mb-3">
-        <div class="card-header border-success">Header</div>
-        <div class="card-body text-success">
-          <h5 class="card-title">Success card title</h5>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
+        <div class="card-header border-success">Atp</div>
+        <div class="card-body d-flex flex-column justify-content-evenly">
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-truck-droplet red my-icon"></i>
+            <span class="fw-bold">{{ nAtpScadenzaBreveTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-truck-droplet yellow my-icon"></i>
+            <span class="fw-bold">{{ nAtpScadenzaMedioTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-truck-droplet green my-icon"></i>
+            <span class="fw-bold">{{ nAtpScadenzaLungoTermine }}</span>
+          </div>
         </div>
-        <div class="card-footer bg-transparent border-success">Footer</div>
+
+        <div class="card-footer bg-transparent border-success">
+          <i
+            class="fa-solid fa-circle-exclamation"
+            [ngClass]="isAtpScaduti ? 'red' : 'grey'"
+          ></i>
+          <span [ngClass]="isAtpScaduti ? 'red fw-bold' : 'grey'">
+            {{
+              isAtpScaduti
+                ? "Ci sono " + nAtpScaduti + " certificati Atp scaduti"
+                : "Non ci sono certificati Atp scaduti"
+            }}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!--Bollo-->
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Bolli</div>
+        <div class="card-body d-flex flex-column justify-content-evenly">
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-stamp red my-icon"></i>
+            <span class="fw-bold">{{ nBolliScadenzaBreveTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-stamp yellow my-icon"></i>
+            <span class="fw-bold">{{ nBolliScadenzaMedioTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-stamp green my-icon"></i>
+            <span class="fw-bold">{{ nBolliScadenzaLungoTermine }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer bg-transparent border-success">
+          <i
+            class="fa-solid fa-circle-exclamation"
+            [ngClass]="isBolliScaduti ? 'red' : 'grey'"
+          ></i>
+          <span [ngClass]="isBolliScaduti ? 'red fw-bold' : 'grey'">
+            {{
+              isBolliScaduti
+                ? "Ci sono " + nBolliScaduti + " bolli scaduti"
+                : "Non ci sono bolli scaduti"
+            }}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!--Bombole-->
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Bombole</div>
+        <div class="card-body d-flex flex-column justify-content-evenly">
+          <div class="d-flex justify-content-evenly align-items-center">
+            <img
+              src="../../../assets/icons/red-tank.png"
+              alt="tank-icon"
+              class="custom-icons red"
+            /><span class="fw-bold">{{ nBomboleScadenzaBreveTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <img
+              src="../../../assets/icons/yellow-tank.png"
+              alt="tank-icon"
+              class="custom-icons yellow"
+            /><span class="fw-bold">{{ nBomboleScadenzaMedioTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <img
+              src="../../../assets/icons/green-tank.png"
+              alt="tank-icon"
+              class="custom-icons green"
+            /><span class="fw-bold">{{ nBomboleScadenzaLungoTermine }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer bg-transparent border-success">
+          <i
+            class="fa-solid fa-circle-exclamation"
+            [ngClass]="isBomboleScadute ? 'red' : 'grey'"
+          ></i>
+          <span [ngClass]="isBomboleScadute ? 'red fw-bold' : 'grey'">
+            {{
+              isBomboleScadute
+                ? "Ci sono " + nBomboleScadute + " con la revisione scaduta"
+                : "Non ci sono bombole con la revisione scaduta"
+            }}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!--Interventi
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Interventi</div>
+        <div class="card-body d-flex flex-column justify-content-evenly">
+          <div class="d-flex justify-content-evenly align-items-center">
+            <img
+              src="../../../assets/icons/red-tank.png"
+              alt="tank-icon"
+              class="custom-icons red"
+            /><span class="fw-bold">{{ nBomboleScadenzaBreveTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <img
+              src="../../../assets/icons/yellow-tank.png"
+              alt="tank-icon"
+              class="custom-icons yellow"
+            /><span class="fw-bold">{{ nBomboleScadenzaMedioTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <img
+              src="../../../assets/icons/green-tank.png"
+              alt="tank-icon"
+              class="custom-icons green"
+            /><span class="fw-bold">{{ nBomboleScadenzaLungoTermine }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer bg-transparent border-success">
+          <i
+            class="fa-solid fa-circle-exclamation"
+            [ngClass]="isBomboleScadute ? 'red' : 'grey'"
+          ></i>
+          Ci sono
+          <span [ngClass]="isBomboleScadute ? 'red fw-bold' : 'grey'">
+            {{
+              isBomboleScadute
+                ? nBomboleScadute + " bombole non revisionate"
+                : "Non ci sono bombole da revisionare"
+            }}</span
+          >
+        </div>
       </div>
     </div>-->
 
-    <!-- Line Chart Card -->
+    <!--Tachigrafo    revisione/taratura?-->
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Tachigrafo</div>
+        <div class="card-body d-flex flex-column justify-content-evenly">
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-stopwatch red my-icon"></i>
+            <span class="fw-bold">{{ nTachigrafiScadenzaBreveTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-stopwatch yellow my-icon"></i>
+            <span class="fw-bold">{{ nTachigrafiScadenzaMedioTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-stopwatch green my-icon"></i>
+            <span class="fw-bold">{{ nTachigrafiScadenzaLungoTermine }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer bg-transparent border-success">
+          <i
+            class="fa-solid fa-circle-exclamation"
+            [ngClass]="isTachigrafiScaduti ? 'red' : 'grey'"
+          ></i>
+          <span [ngClass]="isTachigrafiScaduti ? 'red fw-bold' : 'grey'">
+            {{
+              isTachigrafiScaduti
+                ? "Ci sono " + nTachigrafiScaduti + " tachigrafi non revisionati"
+                : "Non ci sono tachigrafi con la revisione scaduta"
+            }}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!--Tagliando-->
+    <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Tagliandi</div>
+        <div class="card-body d-flex flex-column justify-content-evenly">
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-screwdriver-wrench red my-icon"></i>
+            <span class="fw-bold">{{ nTagliandiScadenzaBreveTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-screwdriver-wrench yellow my-icon"></i
+              >
+            <span class="fw-bold">{{ nTagliandiScadenzaMedioTermine }}</span>
+          </div>
+          <div class="d-flex justify-content-evenly align-items-center">
+            <i class="fa-solid fa-screwdriver-wrench green my-icon"></i
+              >
+            <span class="fw-bold">{{ nTagliandiScadenzaLungoTermine }}</span>
+          </div>
+        </div>
+
+        <div class="card-footer bg-transparent border-success">
+          <i
+            class="fa-solid fa-circle-exclamation"
+            [ngClass]="isTagliandiScaduti ? 'red' : 'grey'"
+          ></i>
+          <span [ngClass]="isTagliandiScaduti ? 'red fw-bold' : 'grey'">
+            {{
+              isTagliandiScaduti
+                ? "Ci sono " + nTagliandiScaduti + " veicoli che non hanno eseguito il tagliando periodico"
+                : "Non ci sono tagliandi urgenti"
+            }}</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- GRAFICI--------------------------------------------------------------------------------
+      
+      <Line Chart Card --------
     <div class="col">
       <div class="card border-success mb-3">
         <div class="card-header border-success">Sinistri</div>
         <div class="card-body text-success">
           <canvas id="lineChartCanvas"></canvas>
-          <!-- Line Chart Canvas -->
+          <-- Line Chart Canvas --------
         </div>
         <div class="card-footer bg-transparent border-success">Footer</div>
       </div>
     </div>
+
+     <--Torta
+     <div class="col">
+      <div class="card border-success mb-3">
+        <div class="card-header border-success">Header</div>
+        <div class="card-body text-success">
+          <div class="w-100 h-100 d-flex justify-content-center">
+            <canvas
+              baseChart
+              [data]="pieChartData"
+              [type]="pieChartType"
+              [options]="pieChartOptions"
+            >
+            </canvas>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent border-success">Footer</div>
+      </div>
+    </div>--------------------------------------------------------------------------------fine grafici--->
   </div>
 </div>

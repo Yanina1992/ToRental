@@ -1,4 +1,4 @@
-//Sviluppo
+//Development
 export const environment = {    
 
 production: true,

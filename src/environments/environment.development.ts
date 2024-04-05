@@ -1,16 +1,15 @@
-//Produzione
+//Production
 export const environment = {
   production: false,
 
   //Auth
   authEndPoint: 'http://localhost:3000/users',
 
-  //veicoliEndPoint: 'http://localhost:3000/veicoli',
-
   //Veicoli
   veicoliEndPoint: ' http://dev.backend.torental.bentraining.it/veicolo',
+  //veicoliEndPoint: 'http://localhost:3000/veicoli',
 
-  //Endpoints per popolare le select del form veicoli
+  //Endpoints to fill up the select's options
   tipoVeicoloEndPoint: 'http://torental.raffo.photo/get_tipo_veicolo',
   societaEndPoint: 'http://torental.raffo.photo/get_proprietario',
   allestimentoEndPoint: 'http://torental.raffo.photo/get_tipo_allestimento',
@@ -24,5 +23,10 @@ export const environment = {
 
   //Endpoints alert
   revisioniAlertEndPoint:'http://dev.backend.torental.bentraining.it/revisione/alert',
+  assicurazioniAlertEndPoint: 'http://dev.backend.torental.bentraining.it/assicurazione/alert',
+  atpAlertEndPoint:'http://dev.backend.torental.bentraining.it/atp/alert',
+  bolliAlertEndPoint:'http://dev.backend.torental.bentraining.it/bollo/alert',
   bomboleAlertEndPoint: 'http://dev.backend.torental.bentraining.it/bombole/alert',
+  tachigrafiAlertEndPoint:'http://dev.backend.torental.bentraining.it/tachigrafo/alert',
+  tagliandiAlertEndPoint: 'http://dev.backend.torental.bentraining.it/tagliando/alert',
 };

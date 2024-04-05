@@ -120,7 +120,7 @@ export class VeicoliComponent implements OnInit {
   //di modelli
   onMarcaChange(selectedMarcaId: number | null) {
     if (selectedMarcaId){
-      //salvo il valore id nell'oggetto da mandare in post
+      //salvo il valore id nell'oggetto da mandare in post       
       this.veicoloForm.id_marca = selectedMarcaId;
       this.veicoliSvc.getAllModelli().subscribe((data: IModello[]) => {
         //filter
@@ -194,7 +194,7 @@ export class VeicoliComponent implements OnInit {
   creaVeicolo(){
 
 
-    this.formSubmitted = !this.formSubmitted;
+    this.formSubmitted = true;
 
     this.veicoloForm.data_immatricolazione = this.myDate
     console.log("Submitting form with data:", this.veicoloForm);

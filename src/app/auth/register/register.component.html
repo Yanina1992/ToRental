@@ -1,14 +1,15 @@
 <div class="my-form" >
   <form class="w-100" #registerForm="ngForm">
     <h2 class="text-center">Inserisci i dati richiesti e registrati</h2>
+    <hr>
     <div class="mb-3">
       <label for="nome" class="form-label">Nome</label>
       <input type="text" id="nome" class="form-control" name="nome" required placeholder="Inserisci il tuo nome"
         [(ngModel)]="formData.nome" #nome="ngModel" aria-describedby="nome" />
 
-      <div *ngIf="nome.invalid && formSubmitted" class="alert fw-bold text-danger ps-0">
+      <div *ngIf="nome.invalid && formSubmitted" class="alert text-danger ps-0">
         <div *ngIf="nome.errors?.['required']">
-          Nome obbligatorio
+          Nome obbligatorio.
         </div>
       </div>
 
@@ -29,10 +30,10 @@
         />
       <div 
       *ngIf="cognome.invalid && formSubmitted" 
-      class="alert fw-bold text-danger ps-0">
+      class="alert text-danger ps-0">
         <div 
-        *ngIf="email.errors?.['required']">
-          Cognome obbligatorio
+        *ngIf="cognome.errors?.['required']">
+          Cognome obbligatorio.
         </div>
       </div>
 
@@ -40,19 +41,28 @@
     </div>
     <div class="mb-3">
       <label for="email1" class="form-label">Indirizzo email</label>
-      <input type="email" id="email" name="email" class="form-control" required email placeholder="Inserisci la tua email"
-        [(ngModel)]="formData.email" #email="ngModel" aria-describedby="email"/>
+      <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      class="form-control" 
+      required 
+      email 
+      placeholder="Inserisci la tua email"
+      [(ngModel)]="formData.email" 
+      #email="ngModel" 
+      aria-describedby="email"/>
       <!--<div *ngIf="email.invalid && formSubmitted" class="alert fw-bold text-danger ps-0">-->
-        <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert fw-bold text-danger ps-0">
+        <div *ngIf="email.errors && email.dirty && formSubmitted" class="alert text-danger ps-0">
         <!--<div *ngIf="email.errors?.['required']">-->
           <div *ngIf="email.errors?.['required']">
-          Indirizzo email obbligatorio
+          Indirizzo email obbligatorio.
         </div>
         <div *ngIf="email.errors?.['email']">
-          Inserire un indirizzo email valido
+          Inserire un indirizzo email valido.
         </div>
       </div>
-      <div id="emailHelp" class="form-text">La tua email non sarà condivisa con terzi.</div>
+      <!--<div id="emailHelp" class="form-text">La tua email non sarà condivisa con terzi.</div>-->
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Password</label>
@@ -61,11 +71,22 @@
       <div class="input-group container-fluid p-0">
         <div class="row w-100">
           <div class="col col-8 pe-0">
-            <input [type]="passwordVisible ? 'text' : 'password'" id="password" name="password" class="form-control"
-              required placeholder="Inserisci una password" [(ngModel)]="formData.password" #password="ngModel" />
-            <div *ngIf="password.invalid && formSubmitted" class="alert fw-bold text-danger ps-0">
+            <input 
+            [type]="passwordVisible ? 'text' : 'password'" 
+            id="password" 
+            name="password" 
+            class="form-control"
+            required 
+            minlength="8"
+            placeholder="Inserisci una password" 
+            [(ngModel)]="formData.password" 
+            #password="ngModel" />
+            <div *ngIf="password.invalid && formSubmitted" class="alert text-danger ps-0">
               <div *ngIf="password.errors?.['required']">
-                Password obbligatoria
+                Password obbligatoria.
+              </div>
+              <div *ngIf="password.errors?.['minlength']">
+                La password deve contenere almeno otto caratteri.
               </div>
             </div>
           </div>
@@ -85,5 +106,11 @@
     <button type="submit" class="btn btn-primary" (click)="singUp()">
       Registrati
     </button>
+    <p
+    class="text-danger fw-bold"
+    *ngIf="registerForm.invalid && formSubmitted" 
+    [ngClass]="isRegisterOk ? 'dNone' : 'dBlock'">
+    Impossibile effettuare la registrazione. Verificare di aver compilato tutti i campi correttamente.
+  </p>
   </form>
 </div>
