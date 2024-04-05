@@ -7,6 +7,7 @@ import { IAccessData } from './interface/iaccess-data';
 import { ILogin } from './interface/ilogin';
 import { BehaviorSubject, map, tap } from 'rxjs';
 import { environment } from './../../environments/environment.development'
+import { CookieService } from 'ngx-cookie-service';
 
 
 @Injectable({
@@ -33,15 +34,27 @@ export class AuthService {
 
   //Proprietà in cui mi salvo un'istanza del timer che mi permetterà di fare l'autologout a token scaduto
   autoLogoutTimer: any;
+  //cookieValue: string;
 
   /*isLoggedIn = false;*/
 
   constructor(
     private http: HttpClient,
-    private router: Router) {
+    private router: Router,
+    private cookieService: CookieService
+    ) {
     //Lancio il metodo restoredUser tutte le volte che la classe viene istanziata
     this.restoredUser();
+
+    //this.cookieService.set('Test', 'Hello World');
+    //this.cookieValue = this.cookieService.get('Test');
   }
+
+readCookie(){
+  const cookieValue = this.cookieService.get('cookieName');
+  console.log(cookieValue);
+  
+}
 
   login(data: ILogin) {
     //Ci logghiamo

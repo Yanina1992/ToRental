@@ -1,12 +1,12 @@
 <div class="container">
-  <div class="row row-cols-2 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
     <!--Revisione-->
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Revisioni tecniche</div>
+      <div class="card mb-3">
+        <div class="card-header">Revisioni tecniche</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
-            <i class="fa-solid fa-clipboard-check red my-icon"></i>
+            <i class="fa-solid fa-clipboard-check orange my-icon"></i>
             <span class="fw-bold">{{ nRevisioniScadenzaBreveTermine }}</span>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-success">
+        <div class="card-footer bg-transparent">
           <i
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isRevisioniScadute ? 'red' : 'grey'"
@@ -37,8 +37,8 @@
 
     <!--Sinistri     
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Sinistri</div>
+      <div class="card mb-3">
+        <div class="card-header">Sinistri</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <img
@@ -63,7 +63,7 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-success">
+        <div class="card-footer bg-transparent">
           <i
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isBomboleScadute ? 'red' : 'grey'"
@@ -82,11 +82,11 @@
 
     <!--Assicurazione   ??-->
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Assicurazioni</div>
+      <div class="card mb-3">
+        <div class="card-header">Assicurazioni</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
-            <i class="fa-solid fa-shield-halved red my-icon"></i>
+            <i class="fa-solid fa-shield-halved orange my-icon"></i>
             <span class="fw-bold">{{ nAssicurazioniScadenzaBreveTermine }}</span>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
@@ -99,7 +99,7 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-success">
+        <div class="card-footer bg-transparent">
           <i
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isAssicurazioniScadute ? 'red' : 'grey'"
@@ -117,11 +117,11 @@
 
     <!--Atp-->
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Atp</div>
+      <div class="card mb-3">
+        <div class="card-header">Atp</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
-            <i class="fa-solid fa-truck-droplet red my-icon"></i>
+            <i class="fa-solid fa-truck-droplet orange my-icon"></i>
             <span class="fw-bold">{{ nAtpScadenzaBreveTermine }}</span>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
@@ -134,7 +134,7 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-success">
+        <div class="card-footer bg-transparent">
           <i
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isAtpScaduti ? 'red' : 'grey'"
@@ -152,11 +152,11 @@
 
     <!--Bollo-->
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Bolli</div>
+      <div class="card mb-3">
+        <div class="card-header">Bolli</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
-            <i class="fa-solid fa-stamp red my-icon"></i>
+            <i class="fa-solid fa-stamp orange my-icon"></i>
             <span class="fw-bold">{{ nBolliScadenzaBreveTermine }}</span>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
@@ -169,7 +169,7 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-success">
+        <div class="card-footer bg-transparent">
           <i
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isBolliScaduti ? 'red' : 'grey'"
@@ -187,14 +187,14 @@
 
     <!--Bombole-->
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Bombole</div>
+      <div class="card mb-3">
+        <div class="card-header">Bombole</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <img
               src="../../../assets/icons/red-tank.png"
               alt="tank-icon"
-              class="custom-icons red"
+              class="custom-icons orange"
             /><span class="fw-bold">{{ nBomboleScadenzaBreveTermine }}</span>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
@@ -213,7 +213,7 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-success">
+        <div class="card-footer bg-transparent">
           <i
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isBomboleScadute ? 'red' : 'grey'"
@@ -221,7 +221,7 @@
           <span [ngClass]="isBomboleScadute ? 'red fw-bold' : 'grey'">
             {{
               isBomboleScadute
-                ? "Ci sono " + nBomboleScadute + " con la revisione scaduta"
+                ? "Ci sono " + nBomboleScadute + " bombole con la revisione scaduta"
                 : "Non ci sono bombole con la revisione scaduta"
             }}</span
           >
@@ -231,8 +231,8 @@
 
     <!--Interventi
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Interventi</div>
+      <div class="card mb-3">
+        <div class="card-header">Interventi</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <img
@@ -257,7 +257,7 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-success">
+        <div class="card-footer bg-transparent">
           <i
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isBomboleScadute ? 'red' : 'grey'"
@@ -276,11 +276,11 @@
 
     <!--Tachigrafo    revisione/taratura?-->
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Tachigrafo</div>
+      <div class="card mb-3">
+        <div class="card-header">Tachigrafo</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
-            <i class="fa-solid fa-stopwatch red my-icon"></i>
+            <i class="fa-solid fa-stopwatch orange my-icon"></i>
             <span class="fw-bold">{{ nTachigrafiScadenzaBreveTermine }}</span>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
@@ -293,7 +293,7 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-success">
+        <div class="card-footer bg-transparent">
           <i
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isTachigrafiScaduti ? 'red' : 'grey'"
@@ -311,11 +311,11 @@
 
     <!--Tagliando-->
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Tagliandi</div>
+      <div class="card mb-3">
+        <div class="card-header">Tagliandi</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
-            <i class="fa-solid fa-screwdriver-wrench red my-icon"></i>
+            <i class="fa-solid fa-screwdriver-wrench orange my-icon"></i>
             <span class="fw-bold">{{ nTagliandiScadenzaBreveTermine }}</span>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
@@ -330,7 +330,7 @@
           </div>
         </div>
 
-        <div class="card-footer bg-transparent border-success">
+        <div class="card-footer bg-transparent">
           <i
             class="fa-solid fa-circle-exclamation"
             [ngClass]="isTagliandiScaduti ? 'red' : 'grey'"
@@ -350,20 +350,20 @@
       
       <Line Chart Card --------
     <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Sinistri</div>
+      <div class="card mb-3">
+        <div class="card-header">Sinistri</div>
         <div class="card-body text-success">
           <canvas id="lineChartCanvas"></canvas>
           <-- Line Chart Canvas --------
         </div>
-        <div class="card-footer bg-transparent border-success">Footer</div>
+        <div class="card-footer bg-transparent">Footer</div>
       </div>
     </div>
 
      <--Torta
      <div class="col">
-      <div class="card border-success mb-3">
-        <div class="card-header border-success">Header</div>
+      <div class="card mb-3">
+        <div class="card-header">Header</div>
         <div class="card-body text-success">
           <div class="w-100 h-100 d-flex justify-content-center">
             <canvas

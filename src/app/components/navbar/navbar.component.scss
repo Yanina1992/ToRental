@@ -21,7 +21,6 @@ a:hover{
 .navbar{
     display: flex;
     flex-direction: row-reverse;
-    border-right: 0.5px solid;
     color: #16163352;
 }
 #fixing-sidebar{
@@ -54,6 +53,12 @@ a:hover{
 }
 #alert-drop-down:hover{
   color:  #2843F0  !important;
+}
+
+
+a, #alert-drop-down{
+  font-size: 0.8em;
+  //padding-left: 10px;
 }
 
 @media screen and (min-width: 476px) {

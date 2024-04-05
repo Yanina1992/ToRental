@@ -1,6 +1,13 @@
-app-header{
-    position: sticky;
-    top: 0;
-    z-index: 3;
-    padding-right: 0;
+app-header {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  padding-right: 0;
+}
+.col-md-2 {
+  background-color: #08062714;
+  position: relative;
+  z-index: 1;
+  border-right: 0.5px solid grey;
+  box-shadow: 3px -4px 7px 0px;
 }
