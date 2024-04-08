@@ -13,6 +13,8 @@ i{
 
 a{
   color:#779EB6 !important;
+  width: auto !important;
+  padding: 0.4em 0 0 0;
 }
 a:hover{
   color:  #2843F0  !important;
@@ -26,17 +28,26 @@ a:hover{
 #fixing-sidebar{
   height: inherit;
   width: 100%;
+  //position: relative !important;
 }
 .navbar-brand{
   width: 25%;
 }
+//Button
 .navbar-toggler{
   width: 15%;
   height: fit-content;
+  margin-left: 0.5em;
+}
+#toggle-btn{
+  border: 0 !important;
+  background-color: transparent !important;
 }
 .container-fluid{
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: end;
+  align-items: center;
+  //position: absolute !important;
 }
 
 .icon-link{
@@ -55,17 +66,27 @@ a:hover{
   color:  #2843F0  !important;
 }
 
-
 a, #alert-drop-down{
   font-size: 0.8em;
   //padding-left: 10px;
 }
+//Dropdown alert div
+.dropdown-menu{
+    position: absolute;
+}
 
+.navbar-nav{
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
 @media screen and (min-width: 476px) {
   
 }
 
 @media screen and (min-width: 576px) {
+  .navbar-nav{
+    flex-direction: column;
+  }
 
 .dropdown-menu{
   margin-left: 8em;
@@ -80,12 +101,16 @@ a, #alert-drop-down{
     height: 100vh;
     position: relative;
 }
+
+#fixing-sidebar{
+position: relative;
+}
+
 .container-fluid{
 flex-direction: column;
+position: absolute;
 }
-#fixing-sidebar{
-position: fixed;
-}
+
 
 //reset x md
 .navbar{
@@ -99,8 +124,9 @@ width: 10%;
 .navbar-brand{
 width: 100%;
 }
+//Hamburgher button
 .navbar-toggler{
-//display: none;
+//display: ;
 width: fit-content;
 height: fit-content;
 }
@@ -130,7 +156,6 @@ align-items: center;
   }
 
 }
-
 
 @media screen and (min-width: 1200px) {
 
