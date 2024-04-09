@@ -9,17 +9,6 @@ export const environment = {
   veicoliEndPoint: 'http://dev.backend.torental.bentraining.it/veicolo',
   //veicoliEndPoint: 'http://localhost:3000/veicoli',
 
-
-
-
-
-
-
-
-
-
-
-
   //Endpoints to fill up the select's options
   tipoVeicoloEndPoint: 'http://dev.backend.torental.bentraining.it/societa_veicolo',
   societaEndPoint: 'http://dev.backend.torental.bentraining.it/societa_veicolo',
