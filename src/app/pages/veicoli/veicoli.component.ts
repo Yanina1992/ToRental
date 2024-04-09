@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe } from '@angular/common';
-import { VeicoliService } from '../../../services/veicoli.service';
+import { VeicoliService } from '../../services/veicoli.service';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
 import { IMarca } from 'src/app/interfaces/options-select/imarca';
 import { IModello } from 'src/app/interfaces/options-select/imodello';
@@ -28,6 +28,7 @@ export class VeicoliComponent implements OnInit {
   date!: { year: number; month: number };
 
   isDatepickerOpen = false;
+  dataImmatricolazione: any;
 
   constructor(
     private calendar: NgbCalendar,
@@ -38,15 +39,11 @@ export class VeicoliComponent implements OnInit {
   //Datepicker
   toggleDatePicker() {
     this.isDatepickerOpen = !this.isDatepickerOpen;
-    console.log(this.model);
   }
-
   selectToday() {
     this.model = this.calendar.getToday();
   }
-
   myDate:any;
-
   formatDate(date: NgbDateStruct | undefined): string {
     if (date) {
       this.myDate = (
@@ -132,8 +129,7 @@ export class VeicoliComponent implements OnInit {
             return false;
           }             
         });
-      }); 
-    
+      });    
     }
   }
   selectedCambioId: number | null = null;
@@ -192,10 +188,7 @@ export class VeicoliComponent implements OnInit {
     formSubmitted:boolean = false;
 
   creaVeicolo(){
-
-
     this.formSubmitted = true;
-
     this.veicoloForm.data_immatricolazione = this.myDate
     console.log("Submitting form with data:", this.veicoloForm);
     this.veicoliSvc.create(this.veicoloForm)

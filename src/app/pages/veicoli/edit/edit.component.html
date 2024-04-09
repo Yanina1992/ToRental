@@ -1,0 +1,152 @@
+<form>
+    <h2>Veicolo numero {{veicolo.id}}</h2>
+    <input
+      type="number"
+      name="id"
+      [(ngModel)]="veicolo.id"
+      class="form-control d-none"
+    />
+  
+    <label for="tipo_veicolo_nome">Tipo veicolo</label>
+    <input
+      type="text"
+      name="tipo_veicolo_nome"
+      [(ngModel)]="veicolo.tipo_veicolo_nome"
+      placeholder="Inserire il tipo di veicolo"
+      class="form-control"
+    />
+  
+    <label for="marca">Marca</label>
+    <input
+      type=""
+      name="marca"
+      [(ngModel)]="veicolo.marca_nome"
+      placeholder="Inserire la marca"
+      class="form-control"
+    />
+  
+    <label for="modello">Modello</label>
+    <input
+      type=""
+      name="modello"
+      [(ngModel)]="veicolo.modello_nome"
+      placeholder="Inserire il modello"
+      class="form-control"
+    />
+  
+    <label for="cilindrata">Cilindrata</label>
+    <input
+      type=""
+      name="cilindrata"
+      [(ngModel)]="veicolo.cilindrata"
+      placeholder="Inserire la cilindrata"
+      class="form-control"
+    />
+
+    <label for="colore">Colore</label>
+    <input
+      type=""
+      name="colore"
+      [(ngModel)]="veicolo.colore"
+      placeholder="Inserire il colore"
+      class="form-control"
+    />
+
+    <label for="destinazione_uso_nome">Destinazione d'uso</label>
+    <input
+      type=""
+      name="destinazione_uso_nome"
+      [(ngModel)]="veicolo.destinazione_uso_nome"
+      placeholder="Inserire la destinazione d'uso"
+      class="form-control"
+    />
+    <label for="massa">Massa</label>
+    <input
+      type=""
+      name="massa"
+      [(ngModel)]="veicolo.massa"
+      placeholder="Inserire la massa"
+      class="form-control"
+    />
+    <label for="numero_assi">Numero assi</label>
+    <input
+      type=""
+      name="numero_assi"
+      [(ngModel)]="veicolo.numero_assi"
+      placeholder="Inserire il numero assi"
+      class="form-control"
+    />
+    <label for="portata">Portata</label>
+    <input
+      type=""
+      name="portata"
+      [(ngModel)]="veicolo.portata"
+      placeholder="Inserire la portata"
+      class="form-control"
+    />
+
+    <label for="potenza">Potenza</label>
+    <input
+      type=""
+      name="potenza"
+      [(ngModel)]="veicolo.potenza"
+      placeholder="Inserire la potenza"
+      class="form-control"
+    />
+
+    <label for="societa_nome">Società</label>
+    <input
+      type=""
+      name="societa_nome"
+      [(ngModel)]="veicolo.societa_nome"
+      placeholder="Inserire la società proprietaria"
+      class="form-control"
+    />
+
+    <label for="targa">Targa</label>
+    <input
+      type=""
+      name="targa"
+      [(ngModel)]="veicolo.targa"
+      placeholder="Inserire la targa"
+      class="form-control"
+    />
+
+    <label for="tipo_alimentazione_nome">Tipo alimentazione</label>
+    <input
+      type=""
+      name="tipo_alimentazione_nome"
+      [(ngModel)]="veicolo.tipo_alimentazione_nome"
+      placeholder="Inserire il tipo di alimentazione"
+      class="form-control"
+    />
+
+    <label for="tipo_allestimento_nome">Tipo allestimento</label>
+    <input
+      type=""
+      name="tipo_allestimento_nome"
+      [(ngModel)]="veicolo.tipo_allestimento_nome"
+      placeholder="Inserire il tipo di allestimento"
+      class="form-control"
+    />
+    
+    <label for="tipo_asse_nome">Tipo asse</label>
+    <input
+      type=""
+      name="tipo_asse_nome"
+      [(ngModel)]="veicolo.tipo_asse_nome"
+      placeholder="Inserire il tipo di asse"
+      class="form-control"
+    />
+
+    <label for="tipo_cambio_nome">Tipo cambio</label>
+    <input
+      type=""
+      name="tipo_cambio_nome"
+      [(ngModel)]="veicolo.tipo_cambio_nome"
+      placeholder="Inserire il tipo di cambio"
+      class="form-control"
+    />
+  
+    <button (click)="editVeicolo()" class="btn btn-primary">Modifica</button>
+  </form>

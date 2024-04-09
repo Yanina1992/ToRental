@@ -1,6 +1,7 @@
 #search-form{
     border: 0;
     padding: 0;
+    max-width: -webkit-fill-available;
 }
 #spinner{
     color:#EC7801;
@@ -9,4 +10,7 @@
     width: 10em !important;
     height: 10em !important;
     font-size: xx-large !important;
+}
+i{
+    margin: 0.2em;
 }

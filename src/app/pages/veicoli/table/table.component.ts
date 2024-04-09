@@ -1,6 +1,6 @@
 import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Veicoli } from 'src/app/classes/veicoli';
-import { VeicoliService } from '../../../../services/veicoli.service';
+import { VeicoliService } from '../../../services/veicoli.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, startWith, map } from 'rxjs';
 

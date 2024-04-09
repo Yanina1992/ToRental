@@ -35,25 +35,28 @@ export class VeicoliService {
   constructor(
     private http:HttpClient
   ){}
-//Veicoli
+//CRUD Veicoli
 getAll():Observable<Veicoli[]>{
   return this.http.get<Veicoli[]>(this.veicoliUrl);
 }
-getById(id:number):Observable<Veicoli>{
-  return this.http.get<Veicoli>(this.veicoliUrl+'?id'+id)
+getById(id:number):Observable<Veicoli[]>{
+  return this.http.get<Veicoli[]>(this.veicoliUrl+'?id='+id)
 }
-//----------
 create(veicoli:Veicoli):Observable<Veicoli>{
   return this.http.post<Veicoli>(this.veicoliUrl, veicoli)
 }
+update(veicolo:Veicoli):Observable<Veicoli>{
+  return this.http.put<Veicoli>(this.veicoliUrl+'/'+veicolo.id,veicolo);
+}
+
+delete(veicolo:Veicoli){
+  return this.http.delete(this.veicoliUrl+'/'+veicolo.id);
+}
+
 //Tipo veicolo
 getAllTipiVeicoli():Observable<ITipoVeicolo[]>{
   return this.http.get<ITipoVeicolo[]>(this.tipoVeicoliUrl);
 }
-
-
-
-
 //Marca
 getAllMarche():Observable<IMarca[]>{
   return this.http.get<IMarca[]>(this.marcaUrl);
@@ -62,12 +65,6 @@ getAllMarche():Observable<IMarca[]>{
 getAllModelli():Observable<IModello[]>{
   return this.http.get<IModello[]>(this.modelloUrl);
 }
-
-
-
-
-
-
 //Destinazione d'uso
 getAllDestinazioniDUso():Observable<IDestinazioneDUso[]>{
   return this.http.get<IDestinazioneDUso[]>(this.destinazioneDUsoUrl);

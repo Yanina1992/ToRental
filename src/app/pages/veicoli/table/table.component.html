@@ -1,0 +1,107 @@
+<!--Searching by targa-->
+<form id="search-form">
+  <div class="mb-3 row justify-content-center">
+    <label
+      for="table-filtering-search"
+      class="col-xs-3 col-sm-auto col-form-label"
+      >Cerca per targa:</label
+    >
+    <div class="col-xs-3 col-sm-auto">
+      <input
+        id="table-filtering-search"
+        class="form-control"
+        type="text"
+        [formControl]="filter"
+      />
+    </div>
+  </div>
+</form>
+
+<!--Spinner-->
+<div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Nr. identificativo</th>
+      <th scope="col">Tipo veicolo</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Modello</th>
+      <th scope="col" class="d-none">Cilindrata</th>
+      <th scope="col">Colore</th>
+      <th scope="col">Destinazione d'uso</th>
+      <th scope="col" class="d-none">Massa</th>
+      <th scope="col" class="d-none">Numero assi</th>
+      <th scope="col" class="d-none">Portata</th>
+      <th scope="col" class="d-none">Potenza</th>
+      <th scope="col">Società</th>
+      <th scope="col">Targa</th>
+      <th scope="col">Alimentazione</th>
+      <th scope="col" class="d-none">Allestimento</th>
+      <th scope="col" class="d-none">Tipo asse</th>
+      <th scope="col" class="d-none">Cambio</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let veicolo of veicoliToShow">
+      <th scope="row">{{ veicolo.id }}</th>
+      <td>
+        {{ veicolo.tipo_veicolo_nome }}
+      </td>
+      <td>{{ veicolo.marca_nome }}</td>
+      <td>{{ veicolo.modello_nome }}</td>
+      <td class="d-none">{{ veicolo.cilindrata }}</td>
+      <td>{{ veicolo.colore }}</td>
+      <td>{{ veicolo.destinazione_uso_nome }}</td>
+      <td class="d-none">{{ veicolo.massa }}</td>
+      <td class="d-none">{{ veicolo.numero_assi }}</td>
+      <td class="d-none">{{ veicolo.portata }}</td>
+      <td class="d-none">{{ veicolo.potenza }}</td>
+      <td>{{ veicolo.societa_nome }}</td>
+      <td>{{ veicolo.targa }}</td>
+      <td>{{ veicolo.tipo_alimentazione_nome }}</td>
+      <td class="d-none">{{ veicolo.tipo_allestimento_nome }}</td>
+      <td class="d-none">{{ veicolo.tipo_asse_nome }}</td>
+      <td class="d-none">{{ veicolo.tipo_cambio_nome }}</td>
+      <td>
+        <a [routerLink]="['details', veicolo.id]"><i class="fa-solid fa-circle-info"></i></a> 
+        <a [routerLink]="['edit', veicolo.id]"><i class="fa-solid fa-pen-to-square"></i></a>
+        <a [routerLink]="['delete', veicolo.id]"><i class="fa-solid fa-trash"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!--Pagination-->
+<div class="d-flex justify-content-between p-2">
+  <ngb-pagination
+    [collectionSize]="collectionSize"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    (pageChange)="refreshVeicoli()"
+    [maxSize]="4"
+    [rotate]="true"
+    [boundaryLinks]="true"
+    [directionLinks]="true"
+  >
+    >
+  </ngb-pagination>
+
+  <select
+    class="form-select"
+    style="width: auto"
+    [(ngModel)]="pageSize"
+    (ngModelChange)="refreshVeicoli()"
+    name="pagination"
+  >
+    <option [ngValue]="2">Visualizza 2 veicoli per pagina</option>
+    <option [ngValue]="4">Visualizza 4 veicoli per pagina</option>
+    <option [ngValue]="6">Visualizza 6 veicoli per pagina</option>
+  </select>
+</div>
+
+<hr />

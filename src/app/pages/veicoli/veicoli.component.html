@@ -382,9 +382,15 @@
               name="dataImmatricolazione"
               [value]="formatDate(model)"
               readonly
+              #dataImmatricolazione="ngModel"
+              required
             />
+ 
+            <div *ngIf="dataImmatricolazione.touched" click="toggleDatePicker()">
+          ciaone
+            </div>
 
-            <!--<i class="fa-solid fa-calendar-days"></i>-->
+           <!--<i class="fa-solid fa-calendar-days"></i>-->
           </div>
 
           <div class="col col-3 p-0">
@@ -402,6 +408,7 @@
         name="datePicker"
       >
       </ngb-datepicker>
+
 
      <!--<div>Selected date: {{ model | json }}</div>-->
     </div>

@@ -10,6 +10,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuardGuard } from './auth/auth-guard.guard';
 
 
+
 const routes: Routes = [
   {
     path: '',
@@ -31,12 +32,13 @@ const routes: Routes = [
   {
     path: 'pages/veicoli',
     loadChildren: () =>
-      import('./pages/dashboard/veicoli/veicoli.module').then(
+      import('./pages/veicoli/veicoli.module').then(
         (m) => m.VeicoliModule
       ),
     //canActivate: [AuthGuardGuard], -----DA DECOMMENTARE
   },
   { path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  
 ];
 
 @NgModule({

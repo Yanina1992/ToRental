@@ -17,6 +17,9 @@ import { AuthInterceptorInterceptor } from './auth/auth-interceptor.interceptor'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { CookieService } from 'ngx-cookie-service';
+import { DetailsComponent } from './pages/veicoli/details/details.component';
+import { EditComponent } from './pages/veicoli/edit/edit.component';
+import { DeleteComponent } from './pages/veicoli/delete/delete.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -30,7 +33,10 @@ export function tokenGetter() {
     RegisterComponent,
     LoginComponent,
     AuthStatusToggleDirective,
-    HeaderComponent
+    HeaderComponent,
+    DetailsComponent,
+    EditComponent,
+    DeleteComponent
   ],
   imports: [
     BrowserModule,
