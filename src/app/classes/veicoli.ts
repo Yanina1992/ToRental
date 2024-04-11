@@ -44,7 +44,7 @@ export class Veicoli
     public id_tipo_cambio?: number = 0;
 
     public tipo_veicolo_nome?: string = '';
-    public id_tipo_veicolo?: number = 0;
+    public id_tipo_veicolo?: number | undefined = 0;
 
     public data_immatricolazione:any;
 

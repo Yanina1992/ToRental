@@ -68,7 +68,7 @@ export class VeicoliComponent implements OnInit {
   tipiAsse: IAsse[] = [];
   tipiCambio: ICambio[] = [];
 
-  ngOnInit() {
+  ngOnInit():void {
     //Popolo le select con i vari tipi di veicoli
     this.veicoliSvc.getAllTipiVeicoli().subscribe((data: ITipoVeicolo[]) => {
       this.tipiVeicoli = data;
@@ -78,9 +78,7 @@ export class VeicoliComponent implements OnInit {
       this.marche = data;
     });
     //di destinazioni d'uso
-    this.veicoliSvc
-      .getAllDestinazioniDUso()
-      .subscribe((data: IDestinazioneDUso[]) => {
+    this.veicoliSvc.getAllDestinazioniDUso().subscribe((data: IDestinazioneDUso[]) => {
         this.destinazioni = data;
       });
     //di società
@@ -88,9 +86,7 @@ export class VeicoliComponent implements OnInit {
       this.societas = data;
     });
     //di tipi alimentazione
-    this.veicoliSvc
-      .getAllAlimentazioni()
-      .subscribe((data: IAlimentazione[]) => {
+    this.veicoliSvc.getAllAlimentazioni().subscribe((data: IAlimentazione[]) => {
         this.tipiAlimentazione = data;
       });
     //di allestimenti
@@ -105,14 +101,11 @@ export class VeicoliComponent implements OnInit {
     this.veicoliSvc.getAllTipiCambio().subscribe((data: ICambio[]) => {
       this.tipiCambio = data;
     });
-  
-
-    console.log('selected cambio id', this.selectedCambioId);
   }
 
 
 //POST-------------------
-  //variabile per ricevere il value dela marca e poter popolare la select dei modelli di conseguenza
+  //variabile per ricevere il value della marca e poter popolare la select dei modelli di conseguenza
   selectedMarcaId: number | null = null;
   //di modelli
   onMarcaChange(selectedMarcaId: number | null) {

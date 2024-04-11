@@ -1,152 +1,244 @@
-<form>
-    <h2>Veicolo numero {{veicolo.id}}</h2>
-    <input
-      type="number"
-      name="id"
-      [(ngModel)]="veicolo.id"
-      class="form-control d-none"
-    />
-  
-    <label for="tipo_veicolo_nome">Tipo veicolo</label>
-    <input
-      type="text"
-      name="tipo_veicolo_nome"
-      [(ngModel)]="veicolo.tipo_veicolo_nome"
-      placeholder="Inserire il tipo di veicolo"
-      class="form-control"
-    />
-  
-    <label for="marca">Marca</label>
-    <input
-      type=""
+<div class="d-flex flex-column align-items-center">
+  <h2>Modifica veicolo</h2>
+  <form #modificaVeicoloForm="ngForm">
+
+    <!--Tipo veicolo-->
+    <div class="mb-3">
+      <label for="change_tipo_veicolo" class="form-label">Tipo veicolo</label>
+      <select
+      id="change_tipo_veicolo"
+      class="form-select"
+      [(ngModel)]="selectedTipoVId"
+      (ngModelChange)="onTipeVChange($event)"
+      name="tipoVeicolo"
+      >
+      <option *ngFor="let tipoVeicolo of tipiVeicoli" [value]="tipoVeicolo.id">
+        {{tipoVeicolo.nome}}
+      </option>
+      </select>
+    </div>
+
+    <!--Marca-->
+    <div class="mb-3">
+      <label for="change_marca" class="form-label">Marca</label>
+      <select
+      id="change_marca"
+      class="form-select"
+      [(ngModel)]="selectedMarcaId"
+      (ngModelChange)="onMarcaChange($event)"
       name="marca"
-      [(ngModel)]="veicolo.marca_nome"
-      placeholder="Inserire la marca"
-      class="form-control"
-    />
-  
-    <label for="modello">Modello</label>
-    <input
-      type=""
+      >
+      <option *ngFor="let marca of marche" [value]="marca.id">
+        {{marca.nome}}
+      </option>
+      </select>
+    </div>
+
+    <!--Modello-->
+    <div class="mb-3">
+      <label for="change_modello" class="form-label">Modello</label>
+      <select
+      id="change_modello"
+      class="form-select"
+      [(ngModel)]="selectedModelloId"
+      (ngModelChange)="onModelloChange($event)"
       name="modello"
-      [(ngModel)]="veicolo.modello_nome"
-      placeholder="Inserire il modello"
-      class="form-control"
-    />
-  
-    <label for="cilindrata">Cilindrata</label>
-    <input
-      type=""
+      >
+      <option *ngFor="let modello of modelli" [value]="modello.id">
+        {{modello.nome}}
+      </option>
+      </select>
+    </div>
+
+    <!--Cilindrata-->
+    <div class="mb-3">
+      <label for="change_cilindrata" class="form-label">Cilindrata</label>
+      <input
+      id="change_cilindrata"
+      type="number"
       name="cilindrata"
       [(ngModel)]="veicolo.cilindrata"
-      placeholder="Inserire la cilindrata"
+      placeholder="Inserisci la cilindrata"
       class="form-control"
-    />
+      />
+    </div>
 
-    <label for="colore">Colore</label>
-    <input
-      type=""
+    <!--Colore-->
+    <div class="mb-3">
+      <label for="change_colore" class="form-label">Colore</label>
+      <input
+      id="change_colore"
+      type="text"
       name="colore"
       [(ngModel)]="veicolo.colore"
-      placeholder="Inserire il colore"
+      placeholder="Inserisci il colore"
       class="form-control"
-    />
+      />
+    </div>
 
-    <label for="destinazione_uso_nome">Destinazione d'uso</label>
-    <input
-      type=""
-      name="destinazione_uso_nome"
-      [(ngModel)]="veicolo.destinazione_uso_nome"
-      placeholder="Inserire la destinazione d'uso"
-      class="form-control"
-    />
-    <label for="massa">Massa</label>
-    <input
-      type=""
+    <!--Destinazione d'uso-->
+    <div class="mb-3">
+      <label for="change_destinazioneUso" class="form-label">Destinazione d'uso</label>
+      <select
+      id="change_destinazioneUso"
+      class="form-select"
+      [(ngModel)]="selectedDestinazioneId"
+      (ngModelChange)="onDestinazioneUsoChange($event)"
+      name="destinazioneUso"
+      >
+      <option *ngFor="let destinazione of destinazioni" [value]="destinazione.id">
+        {{destinazione.nome}}
+      </option>
+      </select>
+    </div>
+
+    <!--Massa-->
+    <div class="mb-3">
+      <label for="change_massa" class="form-label">Massa</label>
+      <input
+      id="change_massa"
+      type="text"
       name="massa"
       [(ngModel)]="veicolo.massa"
-      placeholder="Inserire la massa"
+      placeholder="Inserisci la massa"
       class="form-control"
-    />
-    <label for="numero_assi">Numero assi</label>
-    <input
-      type=""
-      name="numero_assi"
+      />
+    </div>
+
+    <!--Numero assi-->
+    <div class="mb-3">
+      <label for="change_numeroAssi" class="form-label">Numero Assi</label>
+      <input
+      id="change_numeroAssi"
+      type="number"
+      name="numeroAssi"
       [(ngModel)]="veicolo.numero_assi"
-      placeholder="Inserire il numero assi"
+      placeholder="Inserisci il numero assi"
       class="form-control"
-    />
-    <label for="portata">Portata</label>
-    <input
-      type=""
+      />
+    </div>
+
+    <!--Portata-->
+    <div class="mb-3">
+      <label for="change_portata" class="form-label">Portata</label>
+      <input
+      id="change_portata"
+      type="number"
       name="portata"
       [(ngModel)]="veicolo.portata"
-      placeholder="Inserire la portata"
+      placeholder="Inserisci la portata"
       class="form-control"
-    />
+      />
+    </div>
 
-    <label for="potenza">Potenza</label>
-    <input
-      type=""
+    <!--Potenza-->
+    <div class="mb-3">
+      <label for="change_potenza" class="form-label">Potenza</label>
+      <input
+      id="change_potenza"
+      type="number"
       name="potenza"
       [(ngModel)]="veicolo.potenza"
-      placeholder="Inserire la potenza"
+      placeholder="Inserisci la potenza"
       class="form-control"
-    />
+      />
+    </div>
 
-    <label for="societa_nome">Società</label>
-    <input
-      type=""
-      name="societa_nome"
-      [(ngModel)]="veicolo.societa_nome"
-      placeholder="Inserire la società proprietaria"
-      class="form-control"
-    />
+    <!--Società-->
+    <div class="mb-3">
+      <label for="change_societa" class="form-label">Società</label>
+      <select
+      id="change_societa"
+      class="form-select"
+      [(ngModel)]="selectedSocietaId"
+      (ngModelChange)="onSocietaChange($event)"
+      name="societa"
+      >
 
-    <label for="targa">Targa</label>
-    <input
-      type=""
+      <option *ngFor="let societa of societas" [value]="societa.id">
+        {{societa.nome}}
+      </option>
+      </select>
+    </div>
+
+    <!--Targa-->
+    <div class="mb-3">
+      <label for="change_targa" class="form-label">Targa</label>
+      <input
+      id="change_targa"
+      type="text"
       name="targa"
       [(ngModel)]="veicolo.targa"
-      placeholder="Inserire la targa"
+      placeholder="Inserisci la targa"
       class="form-control"
-    />
+      />
+    </div>
 
-    <label for="tipo_alimentazione_nome">Tipo alimentazione</label>
-    <input
-      type=""
-      name="tipo_alimentazione_nome"
-      [(ngModel)]="veicolo.tipo_alimentazione_nome"
-      placeholder="Inserire il tipo di alimentazione"
-      class="form-control"
-    />
+    <!--Alimentazione-->
+    <div class="mb-3">
+      <label for="change_alimentazione" class="form-label">Alimentazione</label>
+      <select
+      id="change_alimentazione"
+      class="form-select"
+      [(ngModel)]="selectedTipoAlimentazioneId"
+      (ngModelChange)="onAlimentazioneChange($event)"
+      name="alimentazione"
+      >
+      <option *ngFor="let tipoAlimentazione of tipiAlimentazione" [value]="tipoAlimentazione.id">
+        {{tipoAlimentazione.nome}}
+      </option>
+      </select>
+    </div>
 
-    <label for="tipo_allestimento_nome">Tipo allestimento</label>
-    <input
-      type=""
-      name="tipo_allestimento_nome"
-      [(ngModel)]="veicolo.tipo_allestimento_nome"
-      placeholder="Inserire il tipo di allestimento"
-      class="form-control"
-    />
-    
-    <label for="tipo_asse_nome">Tipo asse</label>
-    <input
-      type=""
-      name="tipo_asse_nome"
-      [(ngModel)]="veicolo.tipo_asse_nome"
-      placeholder="Inserire il tipo di asse"
-      class="form-control"
-    />
+    <!--Allestimento-->
+    <div class="mb-3">
+      <label for="change_allestimento" class="form-label">Allestimento</label>
+      <select
+      id="change_allestimento"
+      class="form-select"
+      [(ngModel)]="selectedAllestimentoId"
+      (ngModelChange)="onAllestimentoChange($event)"
+      name="allestimento"
+      >
+      <option *ngFor="let allestimento of allestimenti" [value]="allestimento.id">
+        {{allestimento.nome}}
+      </option>
+      </select>
+    </div>
 
-    <label for="tipo_cambio_nome">Tipo cambio</label>
-    <input
-      type=""
-      name="tipo_cambio_nome"
-      [(ngModel)]="veicolo.tipo_cambio_nome"
-      placeholder="Inserire il tipo di cambio"
-      class="form-control"
-    />
-  
-    <button (click)="editVeicolo()" class="btn btn-primary">Modifica</button>
+    <!--Tipo asse-->
+    <div class="mb-3">
+      <label for="change_tipoAsse" class="form-label">Tipo asse</label>
+      <select
+      id="change_tipoAsse"
+      class="form-select"
+      [(ngModel)]="selectedTipoAsseId"
+      (ngModelChange)="onTipoAsseChange($event)"
+      name="tipoAsse"
+      >
+      <option *ngFor="let tipoAsse of tipiAsse" [value]="tipoAsse.id">
+        {{tipoAsse.nome}}
+      </option>
+      </select>
+    </div>
+
+    <!--Cambio-->
+    <div class="mb-3">
+      <label for="change_cambio" class="form-label">Cambio</label>
+      <select
+      id="change_cambio"
+      class="form-select"
+      [(ngModel)]="selectedTipoCambioId"
+      (ngModelChange)="onCambioChange($event)"
+      name="cambio"
+      >
+      <option *ngFor="let tipoCambio of tipiCambio" [value]="tipoCambio.id">
+        {{tipoCambio.nome}}
+      </option>
+      </select>
+    </div>
+
+    <!--Datepickerrrrrrr-->
+
   </form>
+</div>
