@@ -13,12 +13,18 @@ import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
 import { IAsse } from 'src/app/interfaces/options-select/iasse';
 import { ICambio } from 'src/app/interfaces/options-select/icambio';
 
+import { NgbCalendar, NgbDate, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
+
+  //Datepicker
+  model: NgbDateStruct | undefined;
+
   veicolo: Veicoli = new Veicoli();
 
   //Variables for filling in and saving the values of selects
@@ -52,8 +58,13 @@ export class EditComponent implements OnInit {
   constructor(
     private veicoliSvc: VeicoliService,
     private route: ActivatedRoute,
+    private calendar: NgbCalendar,
     private datePipe: DatePipe
   ) {}
+
+  //Datepicker
+  isDisabled = (date: NgbDate, current: { year: number ; month: number} | undefined) => date.month !== current!.month;
+	isWeekend = (date: NgbDate) => this.calendar.getWeekday(date) >= 6;
 
   ngOnInit(): void {
     //Get Veicolo by id
@@ -112,6 +123,8 @@ export class EditComponent implements OnInit {
           this.selectedTipoCambioId = this.veicolo.id_tipo_cambio;
         })
 
+        //Datepicker
+
 
       });
     });
@@ -123,7 +136,6 @@ export class EditComponent implements OnInit {
       this.veicolo.id_tipo_veicolo = selectedTipoVId;
     }
   }
-
   onMarcaChange(selectedMarcaId: any) {
     if (selectedMarcaId) {
       this.veicolo.id_marca = selectedMarcaId;
@@ -140,43 +152,36 @@ export class EditComponent implements OnInit {
       });
     }
   }
-
   onModelloChange(selectedModelloId: any) {
     if (selectedModelloId) {
       this.veicolo.id_modello = selectedModelloId;
     }
   }
-
   onDestinazioneUsoChange(selectedDestinazioneId:any){
     if(selectedDestinazioneId){
       this.veicolo.id_destinazione_uso = selectedDestinazioneId;
     }
   }
-
   onSocietaChange(selectedSocietaId:any){
     if(selectedSocietaId){
       this.veicolo.id_societa = selectedSocietaId;
     }
   }
-
   onAlimentazioneChange(selectedAlimentazioneId:any){
     if(selectedAlimentazioneId){
       this.veicolo.id_tipo_alimentazione = selectedAlimentazioneId;
     }
   }
-
   onAllestimentoChange(selectedAllestimentoId:any){
     if(selectedAllestimentoId){
       this.veicolo.id_tipo_allestimento = selectedAllestimentoId;
     }
   }
-
   onTipoAsseChange(selectedTipoAsseId:any){
     if(selectedTipoAsseId){
       this.veicolo.id_tipo_asse = selectedTipoAsseId;
     }
   }
-
   onCambioChange(selectedCambioId:any){
     if(selectedCambioId){
       this.veicolo.id_tipo_cambio = selectedCambioId;

@@ -27,7 +27,7 @@ const routes: Routes = [
       import('./pages/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
-    //canActivate: [AuthGuardGuard], -----------DA DECOMMENTARE PER ATTIVARE LA GUARD
+    canActivate: [AuthGuardGuard], //-----------DA DECOMMENTARE PER ATTIVARE LA GUARD
   },
   {
     path: 'pages/veicoli',
@@ -35,7 +35,7 @@ const routes: Routes = [
       import('./pages/veicoli/veicoli.module').then(
         (m) => m.VeicoliModule
       ),
-    //canActivate: [AuthGuardGuard], -----DA DECOMMENTARE
+    canActivate: [AuthGuardGuard], //-----DA DECOMMENTARE
   },
   { path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
   

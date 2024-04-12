@@ -18,7 +18,7 @@
         name="tipo_veicolo_nome"
          #tipo_veicolo_nome="ngModel"
       >
-     
+      
         <option
           *ngFor="let tipoVeicolo of tipiVeicoli"
           [value]="tipoVeicolo.id"
@@ -413,6 +413,6 @@
      <!--<div>Selected date: {{ model | json }}</div>-->
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="creaVeicolo()">Salva veicolo</button>
+    <button type="submit" class="btn my-btn btn-primary" (click)="creaVeicolo()">Salva veicolo</button>
   </form>
 </div>
