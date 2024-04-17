@@ -24,26 +24,26 @@ export class LoginComponent {
     this.passwordVisible = !this.passwordVisible;
   }
 
-  isLoginOk:boolean | undefined;
-
+  isLoginOk: boolean = false;
 
   login() {
+    console.log('Login method called');
+
     this.formSubmitted = true;
 
-      if(this.isLoginOk){
-          if(this.formData.email && this.formData.password){
-          this.authSvc.login(this.formData).subscribe(
-      (_data) => {
-        this.router.navigate(['/pages/dashboard']);
-      },
-      (error) => {
-        console.error('err', error);
-      }
-    );
+    if (this.formData.email && this.formData.password) {
+      this.isLoginOk = true;
+      this.authSvc.login(this.formData).subscribe(
+        (_data) => {
+          this.router.navigate(['/pages/dashboard']);
+        },
+        (error) => {
+          console.error('Login error', error);
+          this.isLoginOk = false;
+          console.log(this.isLoginOk);
+          
+        }
+      );
     }
-    }else{
-      
-    }
-    }
-
   }
+}

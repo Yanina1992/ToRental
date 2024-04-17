@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
 
   //CHARTS-------------------------------------------------------------------
   //PieChart
-  public pieChartData: ChartConfiguration['data'] = {
+  /*public pieChartData: ChartConfiguration['data'] = {
     datasets: [
       {
         data: [300, 500, 100],
@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
 
     // Initialize the Chart
     new Chart('lineChartCanvas', config);
-  }
+  }*/
   //---------------------------------//----------------------------------//
 
   //REVISIONI variables and methods
@@ -217,7 +217,7 @@ export class DashboardComponent implements OnInit {
           this.revisioniScadenzaMedioTermine.push(vehicle);
           this.nRevisioniScadenzaMedioTermine =
             this.revisioniScadenzaMedioTermine.length;
-        } else if (vehicle.livello >= 15 && vehicle.livello < 30) {
+        } else if (vehicle.livello >= 15 && vehicle.livello <= 30) {
           this.revisioniScadenzaLungoTermine.push(vehicle);
           this.nRevisioniScadenzaLungoTermine =
             this.revisioniScadenzaLungoTermine.length;
@@ -241,7 +241,7 @@ export class DashboardComponent implements OnInit {
           this.assicurazioniScadenzaMedioTermine.push(vehicle);
           this.nAssicurazioniScadenzaMedioTermine =
             this.assicurazioniScadenzaMedioTermine.length;
-        } else if (vehicle.livello >= 15 && vehicle.livello < 30) {
+        } else if (vehicle.livello >= 15 && vehicle.livello <= 30) {
           this.assicurazioniScadenzaLungoTermine.push(vehicle);
           this.nAssicurazioniScadenzaLungoTermine =
             this.assicurazioniScadenzaLungoTermine.length;
@@ -265,7 +265,7 @@ export class DashboardComponent implements OnInit {
           this.atpScadenzaMedioTermine.push(vehicle);
           this.nAtpScadenzaMedioTermine =
             this.atpScadenzaMedioTermine.length;
-        } else if (vehicle.livello >= 15 && vehicle.livello < 30) {
+        } else if (vehicle.livello >= 15 && vehicle.livello <= 30) {
           this.atpScadenzaLungoTermine.push(vehicle);
           this.nAtpScadenzaLungoTermine =
             this.atpScadenzaLungoTermine.length;
@@ -289,7 +289,7 @@ export class DashboardComponent implements OnInit {
           this.bolliScadenzaMedioTermine.push(vehicle);
           this.nBolliScadenzaMedioTermine =
             this.bolliScadenzaMedioTermine.length;
-        } else if (vehicle.livello >= 15 && vehicle.livello < 30) {
+        } else if (vehicle.livello >= 15 && vehicle.livello <= 30) {
           this.bolliScadenzaLungoTermine.push(vehicle);
           this.nBolliScadenzaLungoTermine =
             this.bolliScadenzaLungoTermine.length;
@@ -313,7 +313,7 @@ export class DashboardComponent implements OnInit {
           this.bomboleScadenzaMedioTermine.push(vehicle);
           this.nBomboleScadenzaMedioTermine =
             this.bomboleScadenzaMedioTermine.length;
-        } else if (vehicle.livello >= 15 && vehicle.livello < 30) {
+        } else if (vehicle.livello >= 15 && vehicle.livello <= 30) {
           this.bomboleScadenzaLungoTermine.push(vehicle);
           this.nBomboleScadenzaLungoTermine =
             this.bomboleScadenzaLungoTermine.length;
@@ -337,7 +337,7 @@ export class DashboardComponent implements OnInit {
           this.tachigrafiScadenzaMedioTermine.push(vehicle);
           this.nTachigrafiScadenzaMedioTermine =
             this.tachigrafiScadenzaMedioTermine.length;
-        } else if (vehicle.livello >= 15 && vehicle.livello < 30) {
+        } else if (vehicle.livello >= 15 && vehicle.livello >= 30) {
           this.tachigrafiScadenzaLungoTermine.push(vehicle);
           this.nTachigrafiScadenzaLungoTermine =
             this.tachigrafiScadenzaLungoTermine.length;
@@ -361,7 +361,7 @@ export class DashboardComponent implements OnInit {
           this.tagliandiScadenzaMedioTermine.push(vehicle);
           this.nTagliandiScadenzaMedioTermine =
             this.tagliandiScadenzaMedioTermine.length;
-        } else if (vehicle.livello >= 15 && vehicle.livello < 30) {
+        } else if (vehicle.livello >= 15 && vehicle.livello >= 30) {
           this.tagliandiScadenzaLungoTermine.push(vehicle);
           this.nTagliandiScadenzaLungoTermine =
             this.tagliandiScadenzaLungoTermine.length;
@@ -371,6 +371,6 @@ export class DashboardComponent implements OnInit {
       });
     });
     //Initialize Line Chart in the ngOnInit method
-    this.initializeLineChart();
+    //this.initializeLineChart();
   }
 }

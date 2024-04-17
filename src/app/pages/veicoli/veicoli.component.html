@@ -16,9 +16,8 @@
         [(ngModel)]="selectedTipoVeicoloId"
         (ngModelChange)="onTipeVeicoloChange(selectedTipoVeicoloId)"
         name="tipo_veicolo_nome"
-         #tipo_veicolo_nome="ngModel"
+        #tipo_veicolo_nome="ngModel"
       >
-     
         <option
           *ngFor="let tipoVeicolo of tipiVeicoli"
           [value]="tipoVeicolo.id"
@@ -27,12 +26,12 @@
         </option>
       </select>
 
-      <div 
-      *ngIf="selectedTipoVeicoloId == 0 && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare una tipologia di veicolo.
+      <div
+        *ngIf="selectedTipoVeicoloId == 0 && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare una tipologia di veicolo.
       </div>
-
     </div>
 
     <!--Marca-->
@@ -52,12 +51,12 @@
         </option>
       </select>
 
-      <div 
-      *ngIf="selectedMarcaId == null && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare una marca.
+      <div
+        *ngIf="selectedMarcaId == null && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare una marca.
       </div>
-
     </div>
 
     <!--Modello-->
@@ -78,13 +77,12 @@
         </option>
       </select>
 
-      <div 
-      *ngIf="selectedModelloId == 0 && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare un modello.
+      <div
+        *ngIf="selectedModelloId == 0 && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare un modello.
       </div>
-
-
     </div>
 
     <!--Cilindrata-->
@@ -105,24 +103,23 @@
     <div class="mb-3">
       <label for="colore" class="form-label">Colore</label>
       <input
-      type="text"
-      class="form-control"
-      id="colore"
-      [(ngModel)]="veicoloForm.colore"
-      name="colore" 
-      #colore="ngModel"
+        type="text"
+        class="form-control"
+        id="colore"
+        [(ngModel)]="veicoloForm.colore"
+        name="colore"
+        #colore="ngModel"
       />
     </div>
 
     <!--Destinazione d'uso-->
     <div class="mb-3">
       <label for="destinazione_uso_nome" class="form-label"
-        >Destinazione d'uso.</label
+        >Destinazione d'uso</label
       >
       <select
         id="destinazione_uso_nome"
         class="form-select"
-
         [(ngModel)]="selectedDestinazioneUsoId"
         required
         (ngModelChange)="onDestinazioneUsoChange(selectedDestinazioneUsoId)"
@@ -136,25 +133,26 @@
         </option>
       </select>
 
-      <div 
-      *ngIf="selectedDestinazioneUsoId == 0 && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare la destinazione d'uso
+      <div
+        *ngIf="selectedDestinazioneUsoId == 0 && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare la destinazione d'uso
       </div>
-
     </div>
 
     <!--Massa-->
     <div class="mb-3">
       <label for="massa" class="form-label">Massa</label>
       <input
-      type="text" 
-      class="form-control" 
-      id="massa"
-      pattern="[0-9]*"
-      min="0"
-      [(ngModel)]="veicoloForm.massa"
-      name="massa" />
+        type="text"
+        class="form-control"
+        id="massa"
+        pattern="[0-9]*"
+        min="0"
+        [(ngModel)]="veicoloForm.massa"
+        name="massa"
+      />
     </div>
 
     <!--Numero assi-->
@@ -164,41 +162,44 @@
         type="number"
         class="form-control"
         id="numero_assi"
+        min="0"
         [(ngModel)]="veicoloForm.numero_assi"
         required
         name="numero_assi"
       />
 
-      <div 
-      *ngIf="veicoloForm.numero_assi == 0 && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare il numero di assi.
+      <div
+        *ngIf="veicoloForm.numero_assi == 0 && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare il numero di assi.
       </div>
-
     </div>
 
     <!--Portata-->
     <div class="mb-3">
       <label for="portata" class="form-label">Portata</label>
-      <input 
-      type="number" 
-      class="form-control" 
-      id="portata" 
-      [(ngModel)]="veicoloForm.portata"
-      min="0"
-      name="portata" />
+      <input
+        type="number"
+        class="form-control"
+        id="portata"
+        [(ngModel)]="veicoloForm.portata"
+        min="0"
+        name="portata"
+      />
     </div>
 
     <!--Potenza-->
     <div class="mb-3">
       <label for="potenza" class="form-label">Potenza</label>
-      <input 
-      type="number" 
-      class="form-control" 
-      id="potenza" 
-      [(ngModel)]="veicoloForm.potenza"
-      min="0"
-      name="potenza" />
+      <input
+        type="number"
+        class="form-control"
+        id="potenza"
+        [(ngModel)]="veicoloForm.potenza"
+        min="0"
+        name="potenza"
+      />
     </div>
 
     <!--Società-->
@@ -217,41 +218,44 @@
         </option>
       </select>
 
-      <div 
-      *ngIf="selectedSocietaId == 0 && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare la società proprietaria del veicolo.
+      <div
+        *ngIf="selectedSocietaId == 0 && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare la società proprietaria del veicolo.
       </div>
-
     </div>
 
     <!--Targa-->
     <div class="mb-3">
       <label for="targa" class="form-label">Targa</label>
-      <input 
-      type="text" 
-      class="form-control" 
-      id="targa" 
-      [(ngModel)]="veicoloForm.targa"
-      required
-      minlength="5"
-      maxlength="10"
-      pattern="[a-zA-Z0-9]*"
-      name="targa"
-      #targa = "ngModel" />
+      <input
+        type="text"
+        class="form-control"
+        id="targa"
+        [(ngModel)]="veicoloForm.targa"
+        required
+        minlength="5"
+        maxlength="10"
+        pattern="[a-zA-Z0-9]*"
+        name="targa"
+        #targa="ngModel"
+        (input)="onInput()"
+      />
 
-      <div 
-      *ngIf="targa.errors && formSubmitted"
-      class="alert text-danger ps-0">
- <!--GESTIRE IL FATTO CHE LA TARGA NON DEVE ESSERE GIà PRESENTE NEL DB-->
-      <div *ngIf="targa.errors?.['required']">
-        La targa è obbligatoria.
-      </div>
-      <div *ngIf="targa.errors?.['minlength'] || targa.errors?.['maxlength']">
-        La targa inserita è incompleta.
-      </div>
+      <div *ngIf="formSubmitted" class="alert text-danger ps-0">
+        <div *ngIf="targa.errors?.['required']">La targa è obbligatoria.</div>
+        <div *ngIf="targa.errors?.['minlength'] || targa.errors?.['maxlength']">
+          La targa inserita è incompleta.
+        </div>
+        <div *ngIf="isTarga && formSubmitted" class="alert text-danger ps-0">
+          Questa targa è già presente nel database.
+        </div>
       </div>
 
+      <!--<div *ngIf="!targa.errors && formSubmitted"
+  [ngClass]="isTarga ? 'd-block alert text-danger ps-0' : 'd-none'"
+  -->
     </div>
 
     <!--Tipo alimentazione-->
@@ -266,7 +270,6 @@
         [(ngModel)]="selectedAlimentazioneId"
         required
         (ngModelChange)="onAlimentazioneChange(selectedAlimentazioneId)"
-        
       >
         <option
           *ngFor="let tipoAlimentazione of tipiAlimentazione"
@@ -276,12 +279,12 @@
         </option>
       </select>
 
-      <div 
-      *ngIf="selectedAlimentazioneId == 0 && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare un tipo di alimentazione.
+      <div
+        *ngIf="selectedAlimentazioneId == 0 && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare un tipo di alimentazione.
       </div>
-
     </div>
 
     <!--Allestimento-->
@@ -305,12 +308,12 @@
         </option>
       </select>
 
-      <div 
-      *ngIf="selectedAllestimentoId == 0 && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare un tipo di allestimento.
+      <div
+        *ngIf="selectedAllestimentoId == 0 && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare un tipo di allestimento.
       </div>
-
     </div>
 
     <!-- Tipo asse-->
@@ -329,10 +332,11 @@
         </option>
       </select>
 
-      <div 
-      *ngIf="selectedTipoAsseId == null && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare un tipo di asse.
+      <div
+        *ngIf="selectedTipoAsseId == null && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare un tipo di asse.
       </div>
     </div>
 
@@ -352,26 +356,26 @@
         </option>
       </select>
 
-      <div 
-      *ngIf="selectedCambioId == null && formSubmitted"
-      class="alert text-danger ps-0">
-      Selezionare un tipo di cambio.
+      <div
+        *ngIf="selectedCambioId == null && formSubmitted"
+        class="alert text-danger ps-0"
+      >
+        Selezionare un tipo di cambio.
       </div>
     </div>
 
-    <!--Data immatricolazione-->
+    <!--Data immatricolazione
     <div class="mb-3">
       <label for="data_immatricolazione" class="form-label"
         >Data immatricolazione</label
       >
-
       <div class="container-fluid">
-        <div class="row">
-          <!--<div class="col col-1 p-0">
+        <div class="row">-->
+    <!--<div class="col col-1 p-0">
             <i
               class="fa-solid fa-calendar-days form-control d-flex justify-content-center"
             ></i>
-          </div>-->
+          </div>
 
           <div class="col col-9 p-0">
             <input
@@ -382,9 +386,11 @@
               name="dataImmatricolazione"
               [value]="formatDate(model)"
               readonly
+              #dataImmatricolazione="ngModel"
+              required
             />
-
-            <!--<i class="fa-solid fa-calendar-days"></i>-->
+ 
+            
           </div>
 
           <div class="col col-3 p-0">
@@ -401,11 +407,71 @@
         *ngIf="isDatepickerOpen"
         name="datePicker"
       >
-      </ngb-datepicker>
+      </ngb-datepicker>-->
 
-     <!--<div>Selected date: {{ model | json }}</div>-->
+    <!--<div>Selected date: {{ model | json }}</div>-->
+
+    <!--New data immatricolazione-->
+    <div class="mb-3">
+      <label for="data_immatricolazione" class="form-label"
+        >Data immatricolazione</label
+      >
+      <div class="row row-cols-sm-auto">
+        <div class="col-12">
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="Scegli una data"
+              name="dp"
+              [(ngModel)]="model"
+              ngbDatepicker
+              [dayTemplate]="customDay"
+              [markDisabled]="isDisabled"
+              #d="ngbDatepicker"
+              [value]="formatDate(model)"
+            />
+            <!--[(ngModel)]="veicoloForm.data_immatricolazione"
+            [value]="formatDate(veicoloForm.data_immatricolazione)"
+          -->
+            <button
+              class="btn btn-outline-secondary bi bi-calendar3"
+              (click)="d.toggle()"
+              type="button"
+            ></button>
+            <div class="col col-3 p-0">
+              <button class="form-control" (click)="selectToday()">Oggi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template
+        #customDay
+        let-date
+        let-currentMonth="currentMonth"
+        let-selected="selected"
+        let-disabled="disabled"
+        let-focused="focused"
+      >
+        <span
+          class="custom-day"
+          [class.weekend]="isWeekend(date)"
+          [class.focused]="focused"
+          [class.bg-primary]="selected"
+          [class.hidden]="date.month !== currentMonth"
+          [class.text-muted]="disabled"
+        >
+          {{ date.day }}
+        </span>
+      </ng-template>
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="creaVeicolo()">Salva veicolo</button>
+    <button
+      type="submit"
+      class="btn my-btn btn-primary"
+      (click)="creaVeicolo()"
+    >
+      Salva veicolo
+    </button>
   </form>
 </div>

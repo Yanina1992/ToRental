@@ -1,6 +1,6 @@
 import { IUser } from "./iuser";
 
 export interface IAccessData {
-  accessToken: string;
+  access_token: string;
   user:IUser
 }

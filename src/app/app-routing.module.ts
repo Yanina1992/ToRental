@@ -10,10 +10,15 @@ import { RegisterComponent } from './auth/register/register.component';
 import { AuthGuardGuard } from './auth/auth-guard.guard';
 
 
+
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth/login', // Explicit path for login
     component: LoginComponent,
+  },
+  {
+    path: '',
+    redirectTo: 'auth/login', // Redirect default route to auth/login
     pathMatch: 'full',
   },
   {
@@ -26,17 +31,18 @@ const routes: Routes = [
       import('./pages/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
       ),
-    //canActivate: [AuthGuardGuard], -----------DA DECOMMENTARE PER ATTIVARE LA GUARD
+    canActivate: [AuthGuardGuard], //-----------
   },
   {
     path: 'pages/veicoli',
     loadChildren: () =>
-      import('./pages/dashboard/veicoli/veicoli.module').then(
+      import('./pages/veicoli/veicoli.module').then(
         (m) => m.VeicoliModule
       ),
-    //canActivate: [AuthGuardGuard], -----DA DECOMMENTARE
+    canActivate: [AuthGuardGuard], //-----
   },
   { path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  
 ];
 
 @NgModule({

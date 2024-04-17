@@ -1,0 +1,317 @@
+<div class="d-flex flex-column align-items-center">
+  <h2>Modifica veicolo</h2>
+  <form #modificaVeicoloForm="ngForm">
+    <!--Tipo veicolo-->
+    <div class="mb-3">
+      <label for="change_tipo_veicolo" class="form-label">Tipo veicolo</label>
+      <select
+        id="change_tipo_veicolo"
+        class="form-select"
+        [(ngModel)]="selectedTipoVId"
+        (ngModelChange)="onTipeVChange($event)"
+        name="tipoVeicolo"
+      >
+        <option
+          *ngFor="let tipoVeicolo of tipiVeicoli"
+          [value]="tipoVeicolo.id"
+        >
+          {{ tipoVeicolo.nome }}
+        </option>
+      </select>
+    </div>
+
+    <!--Marca-->
+    <div class="mb-3">
+      <label for="change_marca" class="form-label">Marca</label>
+      <select
+        id="change_marca"
+        class="form-select"
+        [(ngModel)]="selectedMarcaId"
+        (ngModelChange)="onMarcaChange($event)"
+        name="marca"
+      >
+        <option *ngFor="let marca of marche" [value]="marca.id">
+          {{ marca.nome }}
+        </option>
+      </select>
+    </div>
+
+    <!--Modello-->
+    <div class="mb-3">
+      <label for="change_modello" class="form-label">Modello</label>
+      <select
+        id="change_modello"
+        class="form-select"
+        [(ngModel)]="selectedModelloId"
+        (ngModelChange)="onModelloChange($event)"
+        name="modello"
+      >
+        <option *ngFor="let modello of modelli" [value]="modello.id">
+          {{ modello.nome }}
+        </option>
+      </select>
+    </div>
+
+    <!--Cilindrata-->
+    <div class="mb-3">
+      <label for="change_cilindrata" class="form-label">Cilindrata</label>
+      <input
+        id="change_cilindrata"
+        type="number"
+        name="cilindrata"
+        [(ngModel)]="veicolo.cilindrata"
+        placeholder="Inserisci la cilindrata"
+        class="form-control"
+      />
+    </div>
+
+    <!--Colore-->
+    <div class="mb-3">
+      <label for="change_colore" class="form-label">Colore</label>
+      <input
+        id="change_colore"
+        type="text"
+        name="colore"
+        [(ngModel)]="veicolo.colore"
+        placeholder="Inserisci il colore"
+        class="form-control"
+      />
+    </div>
+
+    <!--Destinazione d'uso-->
+    <div class="mb-3">
+      <label for="change_destinazioneUso" class="form-label"
+        >Destinazione d'uso</label
+      >
+      <select
+        id="change_destinazioneUso"
+        class="form-select"
+        [(ngModel)]="selectedDestinazioneId"
+        (ngModelChange)="onDestinazioneUsoChange($event)"
+        name="destinazioneUso"
+      >
+        <option
+          *ngFor="let destinazione of destinazioni"
+          [value]="destinazione.id"
+        >
+          {{ destinazione.nome }}
+        </option>
+      </select>
+    </div>
+
+    <!--Massa-->
+    <div class="mb-3">
+      <label for="change_massa" class="form-label">Massa</label>
+      <input
+        id="change_massa"
+        type="text"
+        name="massa"
+        [(ngModel)]="veicolo.massa"
+        placeholder="Inserisci la massa"
+        class="form-control"
+      />
+    </div>
+
+    <!--Numero assi-->
+    <div class="mb-3">
+      <label for="change_numeroAssi" class="form-label">Numero Assi</label>
+      <input
+        id="change_numeroAssi"
+        type="number"
+        name="numeroAssi"
+        [(ngModel)]="veicolo.numero_assi"
+        placeholder="Inserisci il numero assi"
+        class="form-control"
+      />
+    </div>
+
+    <!--Portata-->
+    <div class="mb-3">
+      <label for="change_portata" class="form-label">Portata</label>
+      <input
+        id="change_portata"
+        type="number"
+        name="portata"
+        [(ngModel)]="veicolo.portata"
+        placeholder="Inserisci la portata"
+        class="form-control"
+      />
+    </div>
+
+    <!--Potenza-->
+    <div class="mb-3">
+      <label for="change_potenza" class="form-label">Potenza</label>
+      <input
+        id="change_potenza"
+        type="number"
+        name="potenza"
+        [(ngModel)]="veicolo.potenza"
+        placeholder="Inserisci la potenza"
+        class="form-control"
+      />
+    </div>
+
+    <!--Società-->
+    <div class="mb-3">
+      <label for="change_societa" class="form-label">Società</label>
+      <select
+        id="change_societa"
+        class="form-select"
+        [(ngModel)]="selectedSocietaId"
+        (ngModelChange)="onSocietaChange($event)"
+        name="societa"
+      >
+        <option *ngFor="let societa of societas" [value]="societa.id">
+          {{ societa.nome }}
+        </option>
+      </select>
+    </div>
+
+    <!--Targa-->
+    <div class="mb-3">
+      <label for="change_targa" class="form-label">Targa</label>
+      <input
+        id="change_targa"
+        type="text"
+        name="targa"
+        [(ngModel)]="veicolo.targa"
+        placeholder="Inserisci la targa"
+        class="form-control"
+      />
+    </div>
+
+    <!--Alimentazione-->
+    <div class="mb-3">
+      <label for="change_alimentazione" class="form-label">Alimentazione</label>
+      <select
+        id="change_alimentazione"
+        class="form-select"
+        [(ngModel)]="selectedTipoAlimentazioneId"
+        (ngModelChange)="onAlimentazioneChange($event)"
+        name="alimentazione"
+      >
+        <option
+          *ngFor="let tipoAlimentazione of tipiAlimentazione"
+          [value]="tipoAlimentazione.id"
+        >
+          {{ tipoAlimentazione.nome }}
+        </option>
+      </select>
+    </div>
+
+    <!--Allestimento-->
+    <div class="mb-3">
+      <label for="change_allestimento" class="form-label">Allestimento</label>
+      <select
+        id="change_allestimento"
+        class="form-select"
+        [(ngModel)]="selectedAllestimentoId"
+        (ngModelChange)="onAllestimentoChange($event)"
+        name="allestimento"
+      >
+        <option
+          *ngFor="let allestimento of allestimenti"
+          [value]="allestimento.id"
+        >
+          {{ allestimento.nome }}
+        </option>
+      </select>
+    </div>
+
+    <!--Tipo asse-->
+    <div class="mb-3">
+      <label for="change_tipoAsse" class="form-label">Tipo asse</label>
+      <select
+        id="change_tipoAsse"
+        class="form-select"
+        [(ngModel)]="selectedTipoAsseId"
+        (ngModelChange)="onTipoAsseChange($event)"
+        name="tipoAsse"
+      >
+        <option *ngFor="let tipoAsse of tipiAsse" [value]="tipoAsse.id">
+          {{ tipoAsse.nome }}
+        </option>
+      </select>
+    </div>
+
+    <!--Cambio-->
+    <div class="mb-3">
+      <label for="change_cambio" class="form-label">Cambio</label>
+      <select
+        id="change_cambio"
+        class="form-select"
+        [(ngModel)]="selectedTipoCambioId"
+        (ngModelChange)="onCambioChange($event)"
+        name="cambio"
+      >
+        <option *ngFor="let tipoCambio of tipiCambio" [value]="tipoCambio.id">
+          {{ tipoCambio.nome }}
+        </option>
+      </select>
+    </div>
+
+    <!--Datepicker-->
+    <div class="mb-3">
+      <label for="data_immatricolazione" class="form-label"
+        >Data immatricolazione</label
+      >
+      <div class="row row-cols-sm-auto">
+        <div class="col-12">
+          <div class="input-group">
+            <input
+              class="form-control"
+              placeholder="Scegli una data"
+              name="dp"
+              [(ngModel)]="model"
+              ngbDatepicker
+              [dayTemplate]="customDay"
+              [markDisabled]="isDisabled"
+              #d="ngbDatepicker"
+              [value]="formatDate(model)"
+              
+            />
+            <!--[(ngModel)]="veicoloForm.data_immatricolazione"
+            
+            -->
+            <button
+              class="btn btn-outline-secondary bi bi-calendar3"
+              (click)="d.toggle()"
+              type="button"
+            ></button>
+            <div class="col col-3 p-0">
+              <button class="form-control" (click)="selectToday()">Oggi</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template
+        #customDay
+        let-date
+        let-currentMonth="currentMonth"
+        let-selected="selected"
+        let-disabled="disabled"
+        let-focused="focused"
+      >
+        <span
+          class="custom-day"
+          [class.weekend]="isWeekend(date)"
+          [class.focused]="focused"
+          [class.bg-primary]="selected"
+          [class.hidden]="date.month !== currentMonth"
+          [class.text-muted]="disabled"
+        >
+          {{ date.day }}
+        </span>
+      </ng-template>
+    </div>
+
+    <button
+    type="submit"
+    class="btn my-btn btn-primary"
+    (click)="editVeicolo()"
+  >
+    Salva modifiche
+  </button>
+  </form>
+</div>

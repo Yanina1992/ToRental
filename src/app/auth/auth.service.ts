@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IRegister } from './interface/iregister';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -16,9 +16,6 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthService {
   //Metodo che ci aiuta a decodificare i token jwt
   private jwtHelper: JwtHelperService = new JwtHelperService();
-
-  //'http://dev.backend.raphp.net/users'//
-//'http://localhost:3000/users'
 
   apiUrl: string = environment.authEndPoint; //da controllare correttezza endpoint
   //Queste cose vanno ricontrollate, qui viene seguita la documentazione di npm x json.server
@@ -53,26 +50,40 @@ export class AuthService {
 readCookie(){
   const cookieValue = this.cookieService.get('cookieName');
   console.log(cookieValue);
-  
 }
 
   login(data: ILogin) {
     //Ci logghiamo
+    console.log("AuthService login called with data:", data);
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
     return (
       this.http
-        .post<IAccessData>(this.loginUrl, data)
+        .post<IAccessData>(this.loginUrl, data, {headers})
         //elaboriamo i dati prima del subscribe
         .pipe(
           tap(data => {
+            
             //chiedo all'authSubject di usare il metodo next (che invierà un nuovo dato al subject)
             this.authSubject.next(data);
+        
+            try{
+              console.log("Saving data to locale storage:", data);
             //senza questo sistema l'utente si dovrebbe riloggare anche dopo un ricaricamento della pagina
             localStorage.setItem('accessData', JSON.stringify(data));
+            } catch (error) {
+              console.error("Error saving to localStorage:", error);
+            }
+            
 
             //Preparo la fine del token
             const expDate = this.jwtHelper.getTokenExpirationDate(
-              data.accessToken
+              data.access_token
             ) as Date;
+            console.log("Token expiration date:", expDate);
             this.autoLogout(expDate);
           })
         )
@@ -105,11 +116,17 @@ readCookie(){
   restoredUser() {
     const userJson:string|null = localStorage.getItem('accessData');
 
-    if (!userJson) return
+    if (!userJson) {
+      return
+    }
     const accessData:IAccessData = JSON.parse(userJson);
+    console.log("Token being checked:", accessData.access_token);
 
-    if (this.jwtHelper.isTokenExpired(accessData.accessToken)) return
-
+    if (this.jwtHelper.isTokenExpired(accessData.access_token)) {
+      console.log("Token expired:", accessData.access_token);
+      return;
+ }
+      console.log("User restored with access data:", accessData);
     this.authSubject.next(accessData);
-  }
-}
+ 
+}}
