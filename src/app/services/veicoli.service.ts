@@ -46,7 +46,7 @@ create(veicoli:Veicoli):Observable<Veicoli>{
   return this.http.post<Veicoli>(this.veicoliUrl, veicoli)
 }
 update(veicolo:Veicoli):Observable<Veicoli>{
-  return this.http.put<Veicoli>(this.veicoliUrl+'/'+veicolo.id,veicolo);
+  return this.http.put<Veicoli>(this.veicoliUrl+'/'+veicolo.id, veicolo);
 }
 
 delete(veicolo:Veicoli){

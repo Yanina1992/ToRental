@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
 import { VeicoliService } from 'src/app/services/veicoli.service';
 import { Veicoli } from 'src/app/classes/veicoli';
@@ -13,7 +13,12 @@ import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
 import { IAsse } from 'src/app/interfaces/options-select/iasse';
 import { ICambio } from 'src/app/interfaces/options-select/icambio';
 
-import { NgbCalendar, NgbDate, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbCalendar,
+  NgbDate,
+  NgbDatepickerModule,
+  NgbDateStruct,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit',
@@ -21,10 +26,9 @@ import { NgbCalendar, NgbDate, NgbDatepickerModule, NgbDateStruct } from '@ng-bo
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-
   //Datepicker
   model: NgbDateStruct | undefined;
-
+   
   veicolo: Veicoli = new Veicoli();
 
   //Variables for filling in and saving the values of selects
@@ -42,7 +46,7 @@ export class EditComponent implements OnInit {
 
   societas: ISocieta[] = [];
   selectedSocietaId: any;
-  
+
   tipiAlimentazione: IAlimentazione[] = [];
   selectedTipoAlimentazioneId: any;
 
@@ -59,12 +63,43 @@ export class EditComponent implements OnInit {
     private veicoliSvc: VeicoliService,
     private route: ActivatedRoute,
     private calendar: NgbCalendar,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router: Router
   ) {}
 
   //Datepicker
-  isDisabled = (date: NgbDate, current: { year: number ; month: number} | undefined) => date.month !== current!.month;
-	isWeekend = (date: NgbDate) => this.calendar.getWeekday(date) >= 6;
+  isDisabled = (
+    date: NgbDate,
+    current: { year: number; month: number } | undefined
+  ) => date.month !== current!.month;
+  isWeekend = (date: NgbDate) => this.calendar.getWeekday(date) >= 6;
+
+  myDate: any;
+
+  formatDate(date: NgbDateStruct | NgbDate | undefined): string {
+    if (date) {
+      this.myDate =
+        this.datePipe.transform(
+          new Date(date.year, date.month - 1, date.day),
+          'dd-MM-yyyy'
+        ) || '';
+      return this.myDate;
+    }
+    return '';
+  }
+
+  //DA FORMATTARE
+  selectToday() {
+    const today = this.calendar.getToday();
+    this.model = today;
+    this.myDate = this.formatDate(this.model)
+    
+    /*this.myDate = this.formatDate(today);
+    console.log('myData', this.myDate);
+    this.model = this.myDate
+    console.log('model', this.model);*/
+    }
+ 
 
   ngOnInit(): void {
     //Get Veicolo by id
@@ -87,12 +122,12 @@ export class EditComponent implements OnInit {
           this.modelli = data;
           this.selectedModelloId = this.veicolo.id_modello;
         });
-        
+
         this.veicoliSvc.getAllModelli().subscribe((data) => {
           this.modelli = data;
           this.selectedModelloId = this.veicolo.id_modello;
         });
-        
+
         this.veicoliSvc.getAllDestinazioniDUso().subscribe((data) => {
           this.destinazioni = data;
           this.selectedDestinazioneId = this.veicolo.id_destinazione_uso;
@@ -101,31 +136,29 @@ export class EditComponent implements OnInit {
         this.veicoliSvc.getAllSocieta().subscribe((data) => {
           this.societas = data;
           this.selectedSocietaId = this.veicolo.id_societa;
-        })
+        });
 
         this.veicoliSvc.getAllAlimentazioni().subscribe((data) => {
           this.tipiAlimentazione = data;
           this.selectedTipoAlimentazioneId = this.veicolo.id_tipo_alimentazione;
-        })
+        });
 
         this.veicoliSvc.getAllAllestimenti().subscribe((data) => {
           this.allestimenti = data;
           this.selectedAllestimentoId = this.veicolo.id_tipo_allestimento;
-        })
+        });
 
         this.veicoliSvc.getAllTipiAsse().subscribe((data) => {
           this.tipiAsse = data;
           this.selectedTipoAsseId = this.veicolo.id_tipo_asse;
-        })
+        });
 
         this.veicoliSvc.getAllTipiCambio().subscribe((data) => {
           this.tipiCambio = data;
           this.selectedTipoCambioId = this.veicolo.id_tipo_cambio;
-        })
+        });
 
         //Datepicker
-
-
       });
     });
   }
@@ -157,40 +190,45 @@ export class EditComponent implements OnInit {
       this.veicolo.id_modello = selectedModelloId;
     }
   }
-  onDestinazioneUsoChange(selectedDestinazioneId:any){
-    if(selectedDestinazioneId){
+  onDestinazioneUsoChange(selectedDestinazioneId: any) {
+    if (selectedDestinazioneId) {
       this.veicolo.id_destinazione_uso = selectedDestinazioneId;
     }
   }
-  onSocietaChange(selectedSocietaId:any){
-    if(selectedSocietaId){
+  onSocietaChange(selectedSocietaId: any) {
+    if (selectedSocietaId) {
       this.veicolo.id_societa = selectedSocietaId;
     }
   }
-  onAlimentazioneChange(selectedAlimentazioneId:any){
-    if(selectedAlimentazioneId){
+  onAlimentazioneChange(selectedAlimentazioneId: any) {
+    if (selectedAlimentazioneId) {
       this.veicolo.id_tipo_alimentazione = selectedAlimentazioneId;
     }
   }
-  onAllestimentoChange(selectedAllestimentoId:any){
-    if(selectedAllestimentoId){
+  onAllestimentoChange(selectedAllestimentoId: any) {
+    if (selectedAllestimentoId) {
       this.veicolo.id_tipo_allestimento = selectedAllestimentoId;
     }
   }
-  onTipoAsseChange(selectedTipoAsseId:any){
-    if(selectedTipoAsseId){
+  onTipoAsseChange(selectedTipoAsseId: any) {
+    if (selectedTipoAsseId) {
       this.veicolo.id_tipo_asse = selectedTipoAsseId;
     }
   }
-  onCambioChange(selectedCambioId:any){
-    if(selectedCambioId){
+  onCambioChange(selectedCambioId: any) {
+    if (selectedCambioId) {
       this.veicolo.id_tipo_cambio = selectedCambioId;
     }
   }
 
   editVeicolo() {
+    console.log(this.veicolo);
+    
     this.veicoliSvc.update(this.veicolo).subscribe((res) => {
-      //Logica per il redirect
+      console.log('res', res);
+      
+      this.router.navigate(['/pages/dashboard'])
+      
     });
   }
 }

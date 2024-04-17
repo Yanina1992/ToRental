@@ -4,8 +4,16 @@
     <hr>
     <div class="mb-3">
       <label for="nome" class="form-label">Nome</label>
-      <input type="text" id="nome" class="form-control" name="nome" required placeholder="Inserisci il tuo nome"
-        [(ngModel)]="formData.nome" #nome="ngModel" aria-describedby="nome" />
+      <input
+      type="text"
+      id="nome"
+      class="form-control"
+      name="nome"
+      required
+      placeholder="Inserisci il tuo nome"
+      [(ngModel)]="formData.name"
+      #nome="ngModel"
+      aria-describedby="nome" />
 
       <div *ngIf="nome.invalid && formSubmitted" class="alert text-danger ps-0">
         <div *ngIf="nome.errors?.['required']">
@@ -23,10 +31,10 @@
       name="cognome" 
       class="form-control" 
       required
-        placeholder="Inserisci il tuo cognome" 
-        [(ngModel)]="formData.cognome" 
-        #cognome="ngModel"
-        aria-describedby="cognome" 
+      placeholder="Inserisci il tuo cognome" 
+      [(ngModel)]="formData.cognome" 
+      #cognome="ngModel"
+      aria-describedby="cognome" 
         />
       <div 
       *ngIf="cognome.invalid && formSubmitted" 

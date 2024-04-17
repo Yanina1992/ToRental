@@ -3,7 +3,8 @@ export const environment = {
   production: false,
 
   //Auth
-  authEndPoint: 'http://localhost:3000/users',
+  authEndPoint: 'http://dev.backend.torental.bentraining.it/api/auth/login',
+  //authEndPoint: 'http://localhost:3000/users',
 
   //Veicoli
   veicoliEndPoint: ' http://dev.backend.torental.bentraining.it/veicolo',

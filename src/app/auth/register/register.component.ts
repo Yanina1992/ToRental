@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   
   formData: IRegister = {
-    nome: '',
+    name: '',
     cognome: '',
     email: '',
     password: '',
@@ -33,7 +33,7 @@ export class RegisterComponent {
     this.formSubmitted = true;
     
     if (
-      this.formData.nome &&
+      this.formData.name &&
       this.formData.cognome &&
       this.formData.email &&
       this.formData.password
