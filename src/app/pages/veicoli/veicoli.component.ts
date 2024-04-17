@@ -210,6 +210,10 @@ export class VeicoliComponent implements OnInit {
   formSubmitted: boolean = false;
 
   veicoli: Veicoli[] = [];
+  
+  onInput() {
+        this.isTarga = false; // reimposta formSubmitted a false quando viene rilevato un input
+      }  
 
   creaVeicolo() {
     this.formSubmitted = true;
@@ -217,7 +221,7 @@ export class VeicoliComponent implements OnInit {
     this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
       this.veicoli = data;
 
-      
+    
 
       this.veicoli.forEach((element) => {
         if (element.targa == this.veicoloForm.targa) {
@@ -225,6 +229,8 @@ export class VeicoliComponent implements OnInit {
           console.log('Targa già presente', this.isTarga);
         }
       });
+
+    
 
       if (this.isTarga == false) {
         console.log('Targa valida', this.isTarga);

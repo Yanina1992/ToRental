@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IRegister } from './interface/iregister';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -55,9 +55,14 @@ readCookie(){
   login(data: ILogin) {
     //Ci logghiamo
     console.log("AuthService login called with data:", data);
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
     return (
       this.http
-        .post<IAccessData>(this.loginUrl, data)
+        .post<IAccessData>(this.loginUrl, data, {headers})
         //elaboriamo i dati prima del subscribe
         .pipe(
           tap(data => {

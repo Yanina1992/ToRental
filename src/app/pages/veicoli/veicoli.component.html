@@ -240,21 +240,22 @@
         pattern="[a-zA-Z0-9]*"
         name="targa"
         #targa="ngModel"
+        (input)="onInput()"
       />
 
-      <div *ngIf="targa.errors? && formSubmitted" class="alert text-danger ps-0">
+      <div *ngIf="formSubmitted" class="alert text-danger ps-0">
         <div *ngIf="targa.errors?.['required']">La targa è obbligatoria.</div>
         <div *ngIf="targa.errors?.['minlength'] || targa.errors?.['maxlength']">
           La targa inserita è incompleta.
         </div>
+        <div *ngIf="isTarga && formSubmitted" class="alert text-danger ps-0">
+          Questa targa è già presente nel database.
+        </div>
       </div>
 
-      <div *ngIf="!targa.errors formSubmitted"
-        [ngClass]="isTarga ? 'd-block alert text-danger ps-0' : 'd-none'"
-      >
-        Questa targa è già presente nel database.
-      </div>
-
+      <!--<div *ngIf="!targa.errors && formSubmitted"
+  [ngClass]="isTarga ? 'd-block alert text-danger ps-0' : 'd-none'"
+  -->
     </div>
 
     <!--Tipo alimentazione-->
