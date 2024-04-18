@@ -19,25 +19,35 @@ export class TableComponent implements OnInit {
   filteredVeicoli: Veicoli[] = [];
   filter = new FormControl('');
 
-  spinner:Boolean | undefined = true;
+  spinner:boolean | undefined = true;
 
   constructor(private veicoliSvc: VeicoliService) {}
 
   ngOnInit() {
-    this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
-      this.veicoli = data;
-      this.collectionSize = data.length;
-      this.refreshVeicoli();
 
-      this.filteredVeicoli = [...this.veicoli];
-      this.setupFilter();
-
-      if(data){
-        this.spinner = false;
-      }
-      console.log(data);
-    });
+    this.veicoliSvc.refreshVeicoliTable$
+      .subscribe(() => {
+        this.getAllVeicoli()
+      });
+    this.getAllVeicoli();
   }
+    private getAllVeicoli(){
+      this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
+        this.veicoli = data;
+        this.collectionSize = data.length;
+        this.refreshVeicoli();
+
+        this.filteredVeicoli = [...this.veicoli];
+        this.setupFilter();
+
+        if(data){
+          this.spinner = false;
+        }
+        console.log(data);
+      });
+    }
+
+
 
   setupFilter() {
     this.filter.valueChanges

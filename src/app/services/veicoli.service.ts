@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import {Observable, Subject, tap} from 'rxjs';
 import { Veicoli } from '../classes/veicoli';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -30,11 +30,17 @@ export class VeicoliService {
  allestimentoUrl:string = environment.allestimentoEndPoint;
  tipoAsseUrl:string = environment.tipoAsseEndPoint;
  cambioUrl:string = environment.cambioEndPoint;
- 
+
 
   constructor(
     private http:HttpClient
   ){}
+
+  private _refreshVeicoliTable$ = new Subject<void>();
+  get refreshVeicoliTable$(){
+    return this._refreshVeicoliTable$;
+  }
+
 //CRUD Veicoli
 getAll():Observable<Veicoli[]>{
   return this.http.get<Veicoli[]>(this.veicoliUrl);
@@ -42,13 +48,24 @@ getAll():Observable<Veicoli[]>{
 getById(id:number):Observable<Veicoli[]>{
   return this.http.get<Veicoli[]>(this.veicoliUrl+'?id='+id)
 }
+
+
+
 create(veicoli:Veicoli):Observable<Veicoli>{
-  return this.http.post<Veicoli>(this.veicoliUrl, veicoli)
+  return this.http
+    .post<Veicoli>(this.veicoliUrl, veicoli)
+    .pipe(
+      tap(()=>{
+        this._refreshVeicoliTable$.next();
+      })
+    );
 }
+
+
+
 update(veicolo:Veicoli):Observable<Veicoli>{
   return this.http.put<Veicoli>(this.veicoliUrl+'/'+veicolo.id, veicolo);
 }
-
 delete(veicolo:Veicoli){
   return this.http.delete(this.veicoliUrl+'/'+veicolo.id);
 }

@@ -48,7 +48,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ['dev.backend.raphp.net'],
+        allowedDomains: ['dev.backend.torental.bentraining.it'],
         //disallowedRoutes: ["http://example.com/examplebadroute/"],//
       },
     }),

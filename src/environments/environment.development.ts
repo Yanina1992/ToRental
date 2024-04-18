@@ -7,20 +7,20 @@ export const environment = {
   //authEndPoint: 'http://localhost:3000/users',
 
   //Veicoli
-  veicoliEndPoint: ' http://dev.backend.torental.bentraining.it/veicolo',
-  //veicoliEndPoint: 'http://localhost:3000/veicoli',
+  veicoliEndPoint: 'http://dev.backend.torental.bentraining.it/veicolo',
+  //veicoliEndPoint: 'http://torental.raffo.photo/veicolo/search/a',
 
   //Endpoints to fill up the select's options
-  tipoVeicoloEndPoint: 'http://torental.raffo.photo/get_tipo_veicolo',
-  societaEndPoint: 'http://torental.raffo.photo/get_proprietario',
-  allestimentoEndPoint: 'http://torental.raffo.photo/get_tipo_allestimento',
-  marcaEndPoint: 'http://torental.raffo.photo/get_marca',
-  modelloEndPoint: 'http://torental.raffo.photo/get_modello',
-  tipoAsseEndPoint: 'http://torental.raffo.photo/get_tipo_asse',
-  cambioEndPoint: 'http://torental.raffo.photo/get_tipo_cambio',
-  alimentazioneEndPoint: 'http://torental.raffo.photo/get_alimentazione',
-  destinazioneDUsoEndPoint: 'http://torental.raffo.photo/get_destinazione_uso',
-  modelloByMarcaEndPoint: 'http://torental.raffo.photo/get-modello-by-marca',
+  tipoVeicoloEndPoint: 'http://dev.backend.torental.bentraining.it/tipo_veicolo',
+  societaEndPoint: 'http://dev.backend.torental.bentraining.it/societa_veicolo',
+  allestimentoEndPoint: 'http://dev.backend.torental.bentraining.it/allestimento_veicolo',
+  marcaEndPoint: 'http://dev.backend.torental.bentraining.it/marca_veicolo',
+  modelloEndPoint: 'http://dev.backend.torental.bentraining.it/modello_veicolo',
+  tipoAsseEndPoint: 'http://dev.backend.torental.bentraining.it/asse_veicolo',
+  cambioEndPoint: 'http://dev.backend.torental.bentraining.it/cambio_veicolo',
+  alimentazioneEndPoint: 'http:///dev.backend.torental.bentraining.it/alimentazione_veicolo',
+  destinazioneDUsoEndPoint: 'http://dev.backend.torental.bentraining.it/destinazione_veicolo',
+  modelloByMarcaEndPoint: 'http://dev.backend.torental.bentraining.it/get-modello-by-marca',
 
   //Endpoints alert
   revisioniAlertEndPoint:'http://dev.backend.torental.bentraining.it/revisione/alert',

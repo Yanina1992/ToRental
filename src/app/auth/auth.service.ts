@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { IAccessData } from './interface/iaccess-data';
 import { ILogin } from './interface/ilogin';
 import { BehaviorSubject, map, tap } from 'rxjs';
-import { environment } from './../../environments/environment.development'
+import { environment } from '../../environments/environment.development'
 import { CookieService } from 'ngx-cookie-service';
 
 
@@ -14,46 +14,40 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class AuthService {
-  //Metodo che ci aiuta a decodificare i token jwt
+  // Method that helps us decode JWT tokens
   private jwtHelper: JwtHelperService = new JwtHelperService();
 
-  apiUrl: string = environment.authEndPoint; //da controllare correttezza endpoint
-  //Queste cose vanno ricontrollate, qui viene seguita la documentazione di npm x json.server
-  registerUrl: string = environment.authEndPoint; //+ `/register`;o whatever
+  // API URLs for registration and login
+  apiUrl: string = environment.authEndPoint;
+  registerUrl: string = environment.authEndPoint; //+ `/register`;
   loginUrl: string = environment.authEndPoint; //+`/login`;
 
-  //Il BehaviorSubject ci dice se l'utente è loggato o no. Il valore iniziale lo settiamo a null, e poi quando si logga si cambia
+  // BehaviorSubject indicates whether the user is logged in or not. Initial value is set to null and then changed when the user logs in.
   private authSubject = new BehaviorSubject<null | IAccessData>(null);
   user$ = this.authSubject.asObservable();
 
-  //Il primo operatore not(!) converte il dato in booleano; il secondo lo fa tornare indietro perché è stato invertito
+  // The first operator (!) converts the data to boolean; the second one reverts it back because it has been inverted
   isLoggedIn$ = this.user$.pipe(map(user => !!user));
 
-  //Proprietà in cui mi salvo un'istanza del timer che mi permetterà di fare l'autologout a token scaduto
+  // Property to store an instance of the timer for auto-logout when the token expires
   autoLogoutTimer: any;
-  //cookieValue: string;
-
-  /*isLoggedIn = false;*/
 
   constructor(
     private http: HttpClient,
     private router: Router,
     private cookieService: CookieService
-    ) {
-    //Lancio il metodo restoredUser tutte le volte che la classe viene istanziata
+  ) {
+    // Invoke the restoredUser method every time the class is instantiated
     this.restoredUser();
-
-    //this.cookieService.set('Test', 'Hello World');
-    //this.cookieValue = this.cookieService.get('Test');
   }
 
-readCookie(){
-  const cookieValue = this.cookieService.get('cookieName');
-  console.log(cookieValue);
-}
+  readCookie(){
+    const cookieValue = this.cookieService.get('cookieName');
+    console.log(cookieValue);
+  }
 
   login(data: ILogin) {
-    //Ci logghiamo
+    // Logging in
     console.log("AuthService login called with data:", data);
 
     const headers = new HttpHeaders({
@@ -63,23 +57,23 @@ readCookie(){
     return (
       this.http
         .post<IAccessData>(this.loginUrl, data, {headers})
-        //elaboriamo i dati prima del subscribe
+        // Process the data before subscribing
         .pipe(
           tap(data => {
-            
-            //chiedo all'authSubject di usare il metodo next (che invierà un nuovo dato al subject)
+
+            // Ask authSubject to use the next method (which will send new data to the subject)
             this.authSubject.next(data);
-        
+
             try{
               console.log("Saving data to locale storage:", data);
-            //senza questo sistema l'utente si dovrebbe riloggare anche dopo un ricaricamento della pagina
-            localStorage.setItem('accessData', JSON.stringify(data));
+              // Without this system, the user would have to log in again after a page reload
+              localStorage.setItem('accessData', JSON.stringify(data));
             } catch (error) {
               console.error("Error saving to localStorage:", error);
             }
-            
 
-            //Preparo la fine del token
+
+            // Prepare token expiration
             const expDate = this.jwtHelper.getTokenExpirationDate(
               data.access_token
             ) as Date;
@@ -107,12 +101,12 @@ readCookie(){
   }
 
   signUp(data: IRegister) {
-    //faccio una chiamata post a registerUrl per creare l'utente
+    // Make a post call to registerUrl to create the user
     return this.http
       .post<IAccessData>(this.registerUrl, data)
   }
 
-  //Impediamo che l'utente venga buttato fuori
+  // Prevent the user from being kicked out
   restoredUser() {
     const userJson:string|null = localStorage.getItem('accessData');
 
@@ -125,8 +119,8 @@ readCookie(){
     if (this.jwtHelper.isTokenExpired(accessData.access_token)) {
       console.log("Token expired:", accessData.access_token);
       return;
- }
-      console.log("User restored with access data:", accessData);
+    }
+    console.log("User restored with access data:", accessData);
     this.authSubject.next(accessData);
- 
-}}
+
+  }}
