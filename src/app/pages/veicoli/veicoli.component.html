@@ -364,107 +364,55 @@
       </div>
     </div>
 
-    <!--Data immatricolazione
-    <div class="mb-3">
-      <label for="data_immatricolazione" class="form-label"
-        >Data immatricolazione</label
-      >
-      <div class="container-fluid">
-        <div class="row">-->
-    <!--<div class="col col-1 p-0">
-            <i
-              class="fa-solid fa-calendar-days form-control d-flex justify-content-center"
-            ></i>
-          </div>
-
-          <div class="col col-9 p-0">
-            <input
-              class="form-control"
-              placeholder="Scegli una data"
-              [(ngModel)]="veicoloForm.data_immatricolazione"
-              (click)="toggleDatePicker()"
-              name="dataImmatricolazione"
-              [value]="formatDate(model)"
-              readonly
-              #dataImmatricolazione="ngModel"
-              required
-            />
- 
-            
-          </div>
-
-          <div class="col col-3 p-0">
-            <button class="form-control" (click)="selectToday()">Oggi</button>
-          </div>
+    <!--Data immatricolazione-->
+<div class="mb-3">
+  <label for="data_immatricolazione" class="form-label">Data immatricolazione</label>
+  <div class="row row-cols-sm-auto">
+    <div class="col-12">
+      <div class="input-group">
+        <input
+          class="form-control"
+          placeholder="Scegli una data"
+          name="dp"
+          [(ngModel)]="myDate"
+          ngbDatepicker
+          [dayTemplate]="customDay"
+          
+          #d="ngbDatepicker"
+          [value]="formatDate(myDate)"
+        />
+        <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+        <div class="col col-3 p-0">
+          <button class="form-control" (click)="selectToday()">Oggi</button>
         </div>
       </div>
-
-      <ngb-datepicker
-        #dp
-        [(ngModel)]="model"
-        (navigate)="date = $event.next"
-        (closed)="isDatepickerOpen = false"
-        *ngIf="isDatepickerOpen"
-        name="datePicker"
-      >
-      </ngb-datepicker>-->
-
-    <!--<div>Selected date: {{ model | json }}</div>-->
-
-    <!--New data immatricolazione-->
-    <div class="mb-3">
-      <label for="data_immatricolazione" class="form-label"
-        >Data immatricolazione</label
-      >
-      <div class="row row-cols-sm-auto">
-        <div class="col-12">
-          <div class="input-group">
-            <input
-              class="form-control"
-              placeholder="Scegli una data"
-              name="dp"
-              [(ngModel)]="model"
-              ngbDatepicker
-              [dayTemplate]="customDay"
-              [markDisabled]="isDisabled"
-              #d="ngbDatepicker"
-              [value]="formatDate(model)"
-            />
-            <!--[(ngModel)]="veicoloForm.data_immatricolazione"
-            [value]="formatDate(veicoloForm.data_immatricolazione)"
-          -->
-            <button
-              class="btn btn-outline-secondary bi bi-calendar3"
-              (click)="d.toggle()"
-              type="button"
-            ></button>
-            <div class="col col-3 p-0">
-              <button class="form-control" (click)="selectToday()">Oggi</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <ng-template
-        #customDay
-        let-date
-        let-currentMonth="currentMonth"
-        let-selected="selected"
-        let-disabled="disabled"
-        let-focused="focused"
-      >
-        <span
-          class="custom-day"
-          [class.weekend]="isWeekend(date)"
-          [class.focused]="focused"
-          [class.bg-primary]="selected"
-          [class.hidden]="date.month !== currentMonth"
-          [class.text-muted]="disabled"
-        >
-          {{ date.day }}
-        </span>
-      </ng-template>
     </div>
+  </div>
+<!--[markDisabled]="isDisabled"
+
+[class.weekend]="isWeekend(date)"
+-->
+  <ng-template
+    #customDay
+    let-date
+    let-currentMonth="currentMonth"
+    let-selected="selected"
+    let-disabled="disabled"
+    let-focused="focused"
+  >
+    <span
+      class="custom-day"
+      
+      [class.focused]="focused"
+      [class.bg-primary]="selected"
+      [class.hidden]="date.month !== currentMonth"
+      [class.text-muted]="disabled"
+    >
+      {{ date.day }}
+    </span>
+  </ng-template>
+</div>
+
 
     <button
       type="submit"

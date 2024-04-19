@@ -1,24 +1,42 @@
 <div class="m-5">
+
+
+    <div class="container">
+        <div class="row">
     <h2>Dettagli del veicolo numero {{ veicolo.id}}</h2>
-    <hr>
-<p>Nr. identificativo: <span class="fw-bold">{{ veicolo.id}}</span></p>
-<p>Tipo veicolo: <span class="fw-bold">{{ veicolo.tipo_veicolo_nome}}</span></p>
-<p>Marca: <span class="fw-bold">{{ veicolo.marca_nome}}</span></p>
-<p>Modello: <span class="fw-bold">{{ veicolo.modello_nome}}</span></p>
-<p>Cilindrata: <span class="fw-bold">{{ veicolo.cilindrata}}</span></p>
-<p>Colore: <span class="fw-bold">{{ veicolo.colore}}</span></p>
-<p>Destinazione d'uso: <span class="fw-bold">{{ veicolo.destinazione_uso_nome}}</span></p>
-<p>Massa: <span class="fw-bold">{{ veicolo.massa}}</span></p>
-<p>Numero assi: <span class="fw-bold">{{ veicolo.numero_assi}}</span></p>
-<p>Portata: <span class="fw-bold">{{ veicolo.portata}}</span></p>
-<p>Potenza: <span class="fw-bold">{{ veicolo.potenza}}</span></p>
-<p>Società: <span class="fw-bold">{{ veicolo.societa_nome}}</span></p>
-<p>Targa: <span class="fw-bold">{{ veicolo.targa}}</span></p>
-<p>Alimentazione: <span class="fw-bold">{{ veicolo.tipo_alimentazione_nome}}</span></p>
-<p>Allestimento: <span class="fw-bold">{{ veicolo.tipo_allestimento_nome}}</span></p>
-<p>Tipo asse: <span class="fw-bold">{{ veicolo.tipo_asse_nome}}</span></p>
-<p>Cambio: <span class="fw-bold">{{ veicolo.tipo_cambio_nome}}</span></p>
-<hr>
+                <hr>
+
+            <div class="col">
+            <p>Nr. identificativo: <span class="fw-bold">{{ veicolo.id}}</span></p>
+            <p>Tipo veicolo: <span class="fw-bold">{{ veicolo.tipo_veicolo_nome}}</span></p>
+            <p>Marca: <span class="fw-bold">{{ veicolo.marca_nome}}</span></p>
+            <p>Modello: <span class="fw-bold">{{ veicolo.modello_nome}}</span></p>
+            <p>Cilindrata: <span class="fw-bold">{{ veicolo.cilindrata}}</span></p>
+            <p>Colore: <span class="fw-bold">{{ veicolo.colore}}</span></p>
+            <p>Destinazione d'uso: <span class="fw-bold">{{ veicolo.destinazione_uso_nome}}</span></p>
+            <p>Massa: <span class="fw-bold">{{ veicolo.massa}}</span></p>
+            <p>Numero assi: <span class="fw-bold">{{ veicolo.numero_assi}}</span></p>
+            <p>Portata: <span class="fw-bold">{{ veicolo.portata}}</span></p>
+            <p>Potenza: <span class="fw-bold">{{ veicolo.potenza}}</span></p>
+            <p>Società: <span class="fw-bold">{{ veicolo.societa_nome}}</span></p>
+            <p>Targa: <span class="fw-bold">{{ veicolo.targa}}</span></p>
+            <p>Alimentazione: <span class="fw-bold">{{ veicolo.tipo_alimentazione_nome}}</span></p>
+            <p>Allestimento: <span class="fw-bold">{{ veicolo.tipo_allestimento_nome}}</span></p>
+            <p>Tipo asse: <span class="fw-bold">{{ veicolo.tipo_asse_nome}}</span></p>
+            <p>Cambio: <span class="fw-bold">{{ veicolo.tipo_cambio_nome}}</span></p>
+            <hr>
+            </div>
+
+
+            <div class="col">
+            <p>extra {{ veicolo.extra }}</p>
+            </div>
+
+        </div>
+    </div>
+
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-6">

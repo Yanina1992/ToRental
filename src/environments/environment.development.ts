@@ -7,7 +7,8 @@ export const environment = {
   //authEndPoint: 'http://localhost:3000/users',
 
   //Veicoli
-  veicoliEndPoint: ' http://dev.backend.torental.bentraining.it/veicolo',
+  veicoliEndPoint: 'http://dev.backend.torental.bentraining.it/veicolo',
+  //veicoliExtraEndPoint: 'http://dev.backend.torental.bentraining.it/veicolo',
   //veicoliEndPoint: 'http://localhost:3000/veicoli',
 
   //Endpoints to fill up the select's options
@@ -16,6 +17,7 @@ export const environment = {
   allestimentoEndPoint: 'http://torental.raffo.photo/get_tipo_allestimento',
   marcaEndPoint: 'http://torental.raffo.photo/get_marca',
   modelloEndPoint: 'http://torental.raffo.photo/get_modello',
+
   tipoAsseEndPoint: 'http://torental.raffo.photo/get_tipo_asse',
   cambioEndPoint: 'http://torental.raffo.photo/get_tipo_cambio',
   alimentazioneEndPoint: 'http://torental.raffo.photo/get_alimentazione',

@@ -1,4 +1,5 @@
 import { DatePipe } from "@angular/common";
+import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
 
 export class Veicoli
 { 
@@ -46,7 +47,9 @@ export class Veicoli
     public tipo_veicolo_nome?: string = '';
     public id_tipo_veicolo?: number | undefined = 0;
 
-    public data_immatricolazione:any;
+    public data_immatricolazione:NgbDate | undefined | Date;
+
+    public extra:[] = [];
 
     public id?:number = 0;
 }

@@ -25,7 +25,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
-      this.veicoli = data;
+      this.veicoli = data.reverse();
       this.collectionSize = data.length;
       this.refreshVeicoli();
 
@@ -35,7 +35,7 @@ export class TableComponent implements OnInit {
       if(data){
         this.spinner = false;
       }
-      console.log(data);
+      console.log(this.veicoli);
     });
   }
 
