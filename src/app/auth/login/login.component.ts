@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ILogin } from '../interface/ilogin';
 import { Router } from '@angular/router';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,10 @@ export class LoginComponent {
 
   formSubmitted: boolean = false;
 
-  constructor(private authSvc: AuthService, private router: Router) {}
+  constructor(private authSvc: AuthService,
+              private router: Router,
+              private http:HttpClient
+              ) {}
 
   passwordVisible = false;
 
@@ -41,7 +45,7 @@ export class LoginComponent {
           console.error('Login error', error);
           this.isLoginOk = false;
           console.log(this.isLoginOk);
-          
+
         }
       );
     }

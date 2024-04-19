@@ -9,6 +9,7 @@ import { IAtp } from 'src/app/interfaces/alert/iatp';
 import { IBolli } from 'src/app/interfaces/alert/ibolli';
 import { ITachigrafi } from 'src/app/interfaces/alert/itachigrafi';
 import { ITagliandi } from 'src/app/interfaces/alert/itagliandi';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,9 @@ import { ITagliandi } from 'src/app/interfaces/alert/itagliandi';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  constructor(private alertSvc: AlertService) {}
+  constructor(private alertSvc: AlertService,
+              private http: HttpClient
+              ) {}
 
   //CHARTS-------------------------------------------------------------------
   //PieChart
@@ -200,7 +203,7 @@ export class DashboardComponent implements OnInit {
     return this.nTagliandiScaduti > 0;
   }
 
-  
+
   ngOnInit() {
     //Get all REVISIONI Alert
     this.alertSvc.getAllRevisioniAlert().subscribe((response: any) => {

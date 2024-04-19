@@ -2,5 +2,6 @@ import { IUser } from "./iuser";
 
 export interface IAccessData {
   access_token: string;
-  user:IUser
+  user:IUser,
+  status:string,
 }

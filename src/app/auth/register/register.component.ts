@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  
+
   formData: IRegister = {
     name: '',
     cognome: '',
@@ -31,7 +31,7 @@ export class RegisterComponent {
   /*register() {*/
   singUp(){
     this.formSubmitted = true;
-    
+
     if (
       this.formData.name &&
       this.formData.cognome &&
@@ -42,7 +42,7 @@ export class RegisterComponent {
       this.router.navigate(['/pages/dashboard']);
      },
      error =>{
-      console.error(error); 
+      console.error(error);
      })
 
     } else {
