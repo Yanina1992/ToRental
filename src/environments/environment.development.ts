@@ -8,23 +8,6 @@ export const environment = {
 
   //Veicoli
   veicoliEndPoint: 'http://dev.backend.torental.bentraining.it/veicolo',
-<<<<<<< HEAD
-  //veicoliExtraEndPoint: 'http://dev.backend.torental.bentraining.it/veicolo',
-  //veicoliEndPoint: 'http://localhost:3000/veicoli',
-
-  //Endpoints to fill up the select's options
-  tipoVeicoloEndPoint: 'http://torental.raffo.photo/get_tipo_veicolo',
-  societaEndPoint: 'http://torental.raffo.photo/get_proprietario',
-  allestimentoEndPoint: 'http://torental.raffo.photo/get_tipo_allestimento',
-  marcaEndPoint: 'http://torental.raffo.photo/get_marca',
-  modelloEndPoint: 'http://torental.raffo.photo/get_modello',
-
-  tipoAsseEndPoint: 'http://torental.raffo.photo/get_tipo_asse',
-  cambioEndPoint: 'http://torental.raffo.photo/get_tipo_cambio',
-  alimentazioneEndPoint: 'http://torental.raffo.photo/get_alimentazione',
-  destinazioneDUsoEndPoint: 'http://torental.raffo.photo/get_destinazione_uso',
-  modelloByMarcaEndPoint: 'http://torental.raffo.photo/get-modello-by-marca',
-=======
   //veicoliEndPoint: 'http://torental.raffo.photo/veicolo/search/a',
 
   //Endpoints to fill up the select's options
@@ -38,7 +21,6 @@ export const environment = {
   alimentazioneEndPoint: 'http:///dev.backend.torental.bentraining.it/alimentazione_veicolo',
   destinazioneDUsoEndPoint: 'http://dev.backend.torental.bentraining.it/destinazione_veicolo',
   modelloByMarcaEndPoint: 'http://dev.backend.torental.bentraining.it/get-modello-by-marca',
->>>>>>> 93baf8a053a7f3117b070731bad02078ee33463b
 
   //Endpoints alert
   revisioniAlertEndPoint:'http://dev.backend.torental.bentraining.it/revisione/alert',

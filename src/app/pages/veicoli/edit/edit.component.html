@@ -250,7 +250,7 @@
       </select>
     </div>
 
-    <!--Datepicker-->
+    <!--Data immatricolazione-->
     <div class="mb-3">
       <label for="data_immatricolazione" class="form-label"
         >Data immatricolazione</label
@@ -262,17 +262,12 @@
               class="form-control"
               placeholder="Scegli una data"
               name="dp"
-              [(ngModel)]="model"
+              [(ngModel)]="veicolo.data_immatricolazione"
               ngbDatepicker
               [dayTemplate]="customDay"
-              [markDisabled]="isDisabled"
               #d="ngbDatepicker"
-              [value]="formatDate(model)"
-              
+              [value]="formatDate(veicolo.data_immatricolazione)"
             />
-            <!--[(ngModel)]="veicoloForm.data_immatricolazione"
-            
-            -->
             <button
               class="btn btn-outline-secondary bi bi-calendar3"
               (click)="d.toggle()"
@@ -295,7 +290,6 @@
       >
         <span
           class="custom-day"
-          [class.weekend]="isWeekend(date)"
           [class.focused]="focused"
           [class.bg-primary]="selected"
           [class.hidden]="date.month !== currentMonth"
@@ -305,6 +299,7 @@
         </span>
       </ng-template>
     </div>
+
 
     <button
     type="submit"

@@ -12,13 +12,7 @@ import { IAlimentazione } from 'src/app/interfaces/options-select/ialimentazione
 import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
 import { IAsse } from 'src/app/interfaces/options-select/iasse';
 import { ICambio } from 'src/app/interfaces/options-select/icambio';
-
-import {
-  NgbCalendar,
-  NgbDate,
-  NgbDatepickerModule,
-  NgbDateStruct,
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit',
@@ -26,10 +20,11 @@ import {
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
+
   //Datepicker
-  model: NgbDateStruct | undefined;
-   
+  //model: NgbDateStruct | undefined;
   veicolo: Veicoli = new Veicoli();
+  isValidDate: any;
 
   //Variables for filling in and saving the values of selects
   tipiVeicoli: ITipoVeicolo[] = [];
@@ -66,40 +61,6 @@ export class EditComponent implements OnInit {
     private datePipe: DatePipe,
     private router: Router
   ) {}
-
-  //Datepicker
-  isDisabled = (
-    date: NgbDate,
-    current: { year: number; month: number } | undefined
-  ) => date.month !== current!.month;
-  isWeekend = (date: NgbDate) => this.calendar.getWeekday(date) >= 6;
-
-  myDate: any;
-
-  formatDate(date: NgbDateStruct | NgbDate | undefined): string {
-    if (date) {
-      this.myDate =
-        this.datePipe.transform(
-          new Date(date.year, date.month - 1, date.day),
-          'dd-MM-yyyy'
-        ) || '';
-      return this.myDate;
-    }
-    return '';
-  }
-
-  //DA FORMATTARE
-  selectToday() {
-    const today = this.calendar.getToday();
-    this.model = today;
-    this.myDate = this.formatDate(this.model)
-    
-    /*this.myDate = this.formatDate(today);
-    console.log('myData', this.myDate);
-    this.model = this.myDate
-    console.log('model', this.model);*/
-    }
- 
 
   ngOnInit(): void {
     //Get Veicolo by id
@@ -158,7 +119,6 @@ export class EditComponent implements OnInit {
           this.selectedTipoCambioId = this.veicolo.id_tipo_cambio;
         });
 
-        //Datepicker
       });
     });
   }
@@ -219,6 +179,33 @@ export class EditComponent implements OnInit {
     if (selectedCambioId) {
       this.veicolo.id_tipo_cambio = selectedCambioId;
     }
+  }
+
+  ngOnChanges(): void {
+    this.selectToday();
+    this.formatDate(this.veicolo.data_immatricolazione);
+  }
+
+  //Data immatricolazione
+  myDate: any;
+  selectToday(this: any) {
+    const today = this.calendar.getToday();
+    console.log(today);
+    this.veicolo.data_immatricolazione = today;
+    this.formatDate(this.veicolo.data_immatricolazione);
+    console.log(this.veicoloForm.data_immatricolazione);
+  }
+
+  formatDate(date: NgbDateStruct | undefined): string {
+    if (date && !isNaN(date.year) && !isNaN(date.month) && !isNaN(date.day)) {
+      this.myDate =
+        this.datePipe.transform(
+          new Date(date.year, date.month - 1, date.day),
+          'dd-MM-yyyy'
+        ) || '';
+      return this.myDate;
+    }
+    return '';
   }
 
   editVeicolo() {

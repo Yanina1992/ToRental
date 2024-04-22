@@ -24,32 +24,16 @@ export class TableComponent implements OnInit {
   constructor(private veicoliSvc: VeicoliService) {}
 
   ngOnInit() {
-<<<<<<< HEAD
-    this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
-      this.veicoli = data.reverse();
-      this.collectionSize = data.length;
-      this.refreshVeicoli();
-
-      this.filteredVeicoli = [...this.veicoli];
-      this.setupFilter();
-
-      if(data){
-        this.spinner = false;
-      }
-      console.log(this.veicoli);
-    });
-=======
 
     this.veicoliSvc.refreshVeicoliTable$
       .subscribe(() => {
         this.getAllVeicoli()
       });
     this.getAllVeicoli();
->>>>>>> 93baf8a053a7f3117b070731bad02078ee33463b
   }
     private getAllVeicoli(){
       this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
-        this.veicoli = data;
+        this.veicoli = data.reverse();
         this.collectionSize = data.length;
         this.refreshVeicoli();
 
