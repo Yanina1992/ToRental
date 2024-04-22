@@ -65,8 +65,10 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     //Get Veicolo by id
     this.route.params.subscribe((params: any) => {
-      this.veicoliSvc.getById(params.id).subscribe((res) => {
-        this.veicolo = res[0];
+      this.veicoliSvc.getExtraById(params.id).subscribe((res) => {
+        this.veicolo = res;
+        //console.log('data o non data?', res);
+        
 
         //Get for filling in the select
         this.veicoliSvc.getAllTipiVeicoli().subscribe((data) => {

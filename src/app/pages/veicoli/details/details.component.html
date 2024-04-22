@@ -29,7 +29,24 @@
 
 
             <div class="col">
-            <p>extra {{ veicolo.extra }}</p>
+                <div
+                *ngFor="let bombola of bombole"
+                >
+                <p>Nr. identificativo bombola: {{ bombola.id }}</p>
+                <p>Anno: {{ bombola.anno }}</p>
+                <p>Data pagamento: {{ bombola.data_pagamento }}</p>
+                <p>Inizio validità: {{ bombola.inizio_validita }}</p>
+                <p>Fine validità: {{ bombola.fine_validita }}</p>
+                <p>Importo: {{ bombola.importo }}</p>
+                <p>Agenzia: {{ bombola.agenzia }}</p>
+                <p>Polizza: {{ bombola.polizza }}</p>
+                <p>Tipo scadenza: {{ bombola.tipo_scadenza }}</p>
+                <p>Livello: {{ bombola.livello }}</p>
+                <p>Marca: {{ bombola.marca }}</p>
+                <p>Modello: {{ bombola.modello }}</p>
+                <p>Validità: {{ bombola.valid }}</p>
+                <p>Scadenza: {{ bombola.expired }}</p>
+            </div>
             </div>
 
         </div>

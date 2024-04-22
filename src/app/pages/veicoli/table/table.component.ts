@@ -1,7 +1,7 @@
 import { Component, OnInit, PipeTransform } from '@angular/core';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from '../../../services/veicoli.service';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { debounceTime, startWith, map } from 'rxjs';
 
 @Component({
@@ -43,7 +43,6 @@ export class TableComponent implements OnInit {
         if(data){
           this.spinner = false;
         }
-        console.log(data);
       });
     }
 
