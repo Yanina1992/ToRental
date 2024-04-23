@@ -7,46 +7,123 @@
                 <hr>
 
             <div class="col">
-            <p>Nr. identificativo: <span class="fw-bold">{{ veicolo.id}}</span></p>
-            <p>Tipo veicolo: <span class="fw-bold">{{ veicolo.tipo_veicolo_nome}}</span></p>
-            <p>Marca: <span class="fw-bold">{{ veicolo.marca_nome}}</span></p>
-            <p>Modello: <span class="fw-bold">{{ veicolo.modello_nome}}</span></p>
-            <p>Cilindrata: <span class="fw-bold">{{ veicolo.cilindrata}}</span></p>
-            <p>Colore: <span class="fw-bold">{{ veicolo.colore}}</span></p>
-            <p>Destinazione d'uso: <span class="fw-bold">{{ veicolo.destinazione_uso_nome}}</span></p>
-            <p>Massa: <span class="fw-bold">{{ veicolo.massa}}</span></p>
-            <p>Numero assi: <span class="fw-bold">{{ veicolo.numero_assi}}</span></p>
-            <p>Portata: <span class="fw-bold">{{ veicolo.portata}}</span></p>
-            <p>Potenza: <span class="fw-bold">{{ veicolo.potenza}}</span></p>
-            <p>Società: <span class="fw-bold">{{ veicolo.societa_nome}}</span></p>
-            <p>Targa: <span class="fw-bold">{{ veicolo.targa}}</span></p>
-            <p>Alimentazione: <span class="fw-bold">{{ veicolo.tipo_alimentazione_nome}}</span></p>
-            <p>Allestimento: <span class="fw-bold">{{ veicolo.tipo_allestimento_nome}}</span></p>
-            <p>Tipo asse: <span class="fw-bold">{{ veicolo.tipo_asse_nome}}</span></p>
-            <p>Cambio: <span class="fw-bold">{{ veicolo.tipo_cambio_nome}}</span></p>
+            <p class="text-decoration-underline">Anagrafica veicolo</p>
+            <p class="fst-italic">Nr. identificativo: <span class="fst-normal">{{ veicolo.id}}</span></p>
+            <p class="fst-italic">Tipo veicolo: <span class="fst-normal">{{ veicolo.tipo_veicolo_nome}}</span></p>
+            <p class="fst-italic">Marca: <span class="fst-normal">{{ veicolo.marca_nome}}</span></p>
+            <p class="fst-italic">Modello: <span class="fst-normal">{{ veicolo.modello_nome}}</span></p>
+            <p class="fst-italic">Cilindrata: <span class="fst-normal">{{ veicolo.cilindrata}}</span></p>
+            <p class="fst-italic">Colore: <span class="fst-normal">{{ veicolo.colore}}</span></p>
+            <p class="fst-italic">Destinazione d'uso: <span class="fst-normal">{{ veicolo.destinazione_uso_nome}}</span></p>
+            <p class="fst-italic">Massa: <span class="fst-normal">{{ veicolo.massa}}</span></p>
+            <p class="fst-italic">Numero assi: <span class="fst-normal">{{ veicolo.numero_assi}}</span></p>
+            <p class="fst-italic">Portata: <span class="fst-normal">{{ veicolo.portata}}</span></p>
+            <p class="fst-italic">Potenza: <span class="fst-normal">{{ veicolo.potenza}}</span></p>
+            <p class="fst-italic">Società: <span class="fst-normal">{{ veicolo.societa_nome}}</span></p>
+            <p class="fst-italic">Targa: <span class="fst-normal">{{ veicolo.targa}}</span></p>
+            <p class="fst-italic">Alimentazione: <span class="fst-normal">{{ veicolo.tipo_alimentazione_nome}}</span></p>
+            <p class="fst-italic">Allestimento: <span class="fst-normal">{{ veicolo.tipo_allestimento_nome}}</span></p>
+            <p class="fst-italic">Tipo asse: <span class="fst-normal">{{ veicolo.tipo_asse_nome}}</span></p>
+            <p class="fst-italic">Cambio: <span class="fst-normal">{{ veicolo.tipo_cambio_nome}}</span></p>
             <hr>
             </div>
 
 
             <div class="col">
+
+                <div
+                *ngFor="let assicurazione of assicurazioni"
+                ><p class="text-decoration-underline">Assicurazione</p>
+                <p class="fst-italic">Nr. identificativo assicurazione: <span class="fst-normal">{{ assicurazione.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ assicurazione.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ assicurazione.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ assicurazione.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ assicurazione.importo }}</span></p>
+            </div>
+
+                <div
+                *ngFor="let atp of atps"
+                ><p class="text-decoration-underline">Atp</p>
+                <p class="fst-italic">Nr. identificativo atp: <span class="fst-normal">{{ atp.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ atp.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ atp.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ atp.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ atp.importo }}</span></p>
+            </div>
+              
+                <div
+                *ngFor="let bollo of bolli"
+                ><p class="text-decoration-underline">Bollo</p>
+                <p class="fst-italic">Nr. identificativo bollo: <span class="fst-normal">{{ bollo.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ bollo.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ bollo.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ bollo.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ bollo.importo }}</span></p>
+            </div>
                 <div
                 *ngFor="let bombola of bombole"
-                >
-                <p>Nr. identificativo bombola: {{ bombola.id }}</p>
-                <p>Anno: {{ bombola.anno }}</p>
-                <p>Data pagamento: {{ bombola.data_pagamento }}</p>
-                <p>Inizio validità: {{ bombola.inizio_validita }}</p>
-                <p>Fine validità: {{ bombola.fine_validita }}</p>
-                <p>Importo: {{ bombola.importo }}</p>
-                <p>Agenzia: {{ bombola.agenzia }}</p>
-                <p>Polizza: {{ bombola.polizza }}</p>
-                <p>Tipo scadenza: {{ bombola.tipo_scadenza }}</p>
-                <p>Livello: {{ bombola.livello }}</p>
-                <p>Marca: {{ bombola.marca }}</p>
-                <p>Modello: {{ bombola.modello }}</p>
-                <p>Validità: {{ bombola.valid }}</p>
-                <p>Scadenza: {{ bombola.expired }}</p>
+                ><p class="text-decoration-underline">Bombola</p>
+                <p class="fst-italic">Nr. identificativo bombola: <span class="fst-normal">{{ bombola.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ bombola.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ bombola.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ bombola.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ bombola.importo }}</span></p>
             </div>
+                <div
+                *ngFor="let intervento of interventi"
+                ><p class="text-decoration-underline">Interventi</p>
+                <p class="fst-italic">Nr. identificativo intervento: <span class="fst-normal">{{ intervento.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ intervento.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ intervento.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ intervento.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ intervento.importo }}</span></p>
+            </div>
+                <div
+                *ngFor="let multa of multe"
+                ><p class="text-decoration-underline">Multe</p>
+                <p class="fst-italic">Nr. identificativo multa: <span class="fst-normal">{{ multa.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ multa.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ multa.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ multa.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ multa.importo }}</span></p>
+            </div>
+                <div
+                *ngFor="let revisione of revisioni"
+                ><p class="text-decoration-underline">Revisione</p>
+                <p class="fst-italic">Nr. identificativo revisione: <span class="fst-normal">{{ revisione.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ revisione.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ revisione.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ revisione.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ revisione.importo }}</span></p>
+            </div>
+                <div
+                *ngFor="let sinistro of sinistri"
+                ><p class="text-decoration-underline">Sinistri</p>
+                <p class="fst-italic">Nr. identificativo sinistro: <span class="fst-normal">{{ sinistro.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ sinistro.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ sinistro.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ sinistro.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ sinistro.importo }}</span></p>
+            </div>
+                <div
+                *ngFor="let tachigrafo of tachigrafi"
+                ><p class="text-decoration-underline">Tachigrafo</p>
+                <p class="fst-italic">Nr. identificativo tachigrafo: <span class="fst-normal">{{ tachigrafo.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ tachigrafo.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ tachigrafo.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ tachigrafo.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ tachigrafo.importo }}</span></p>
+            </div>
+                <div
+                *ngFor="let tagliando of tagliandi"
+                ><p class="text-decoration-underline">Tagliando</p>
+                <p class="fst-italic">Nr. identificativo tagliando: <span class="fst-normal">{{ tagliando.id }}</span></p>
+                <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ tagliando.data_pagamento }}</span></p>
+                <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ tagliando.inizio_validita }}</span></p>
+                <p class="fst-italic">Fine validità: <span class="fst-normal">{{ tagliando.fine_validita }}</span></p>
+                <p class="fst-italic">Importo: <span class="fst-normal">{{ tagliando.importo }}</span></p>
+            </div>
+
             </div>
 
         </div>

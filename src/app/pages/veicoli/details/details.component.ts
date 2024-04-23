@@ -11,10 +11,9 @@ import { VeicoliService } from 'src/app/services/veicoli.service';
 })
 export class DetailsComponent {
   veicolo: Veicoli = new Veicoli();
-  veicoloExtra: Veicoli = new Veicoli();
 
   assicurazioni: IAlert[] | undefined;
-  atp: IAlert[] | undefined;
+  atps: IAlert[] | undefined;
   bolli: IAlert[] | undefined;
   bombole: IAlert[] | undefined;
   interventi: IAlert[] | undefined;
@@ -36,11 +35,11 @@ export class DetailsComponent {
         this.veicolo = res;
 
         this.assicurazioni = this.veicolo.current?.assicurazione;
-        this.atp = this.veicolo.current?.atp;
+        this.atps = this.veicolo.current?.atp;
         this.bolli = this.veicolo.current?.bollo;
         this.bombole = this.veicolo.current?.bombole;
         this.interventi = this.veicolo.current?.intervento;
-        this. multe = this.veicolo.current?.multa;
+        this.multe = this.veicolo.current?.multa;
         this.revisioni = this.veicolo.current?.revisione;
         this.sinistri = this. veicolo.current?.sinistro;
         this.tachigrafi = this.veicolo.current?.tachigrafo;
@@ -48,9 +47,7 @@ export class DetailsComponent {
 
         //this.bombole = this.veicolo.current?.bombole[0].data_pagamento;
 
-        console.log('veicolo current', this.veicolo.current
-
-        );
+        //console.log('veicolo current', this.veicolo.current);
       });
     });
   }
