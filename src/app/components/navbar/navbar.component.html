@@ -1,7 +1,6 @@
 <nav class="navbar navbar-expand-lg">
   <div id="fixing-sidebar">
     <div class="container-fluid d-flex">
-
       <button
         [ngClass]="buttonClass"
         type="button"
@@ -15,12 +14,10 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div [ngClass]="divClass" id="navbarNavAltMarkup">
-        
         <div class="navbar-nav">
           <!--Dashboard-->
-            <div class="icon-link">
-             <i class="fa-solid fa-gauge"
-            ></i> 
+          <div class="icon-link">
+            <i class="fa-solid fa-gauge"></i>
             <a
               routerLink="../../pages/dashboard"
               class="nav-link active navbar-brand text-center m-0"
@@ -28,17 +25,15 @@
             >
               Dashboard
             </a>
-            
           </div>
           <!--Veicoli-->
           <div class="icon-link">
-            <i class="fa-solid fa-car"
-            ></i>
+            <i class="fa-solid fa-car"></i>
             <a
               routerLink="../pages/veicoli"
               class="nav-link active navbar-brand text-center m-0"
-            >Veicoli</a>
-              
+              >Veicoli</a
+            >
           </div>
 
           <!--Alert-->
@@ -48,19 +43,103 @@
             <div class="row">
               <div class="col">
                 <div ngbDropdown class="d-inline-block">
-                  <button type="button" class="nav-link active navbar-brand text-center m-0" id="alert-drop-down" ngbDropdownToggle>
+                  <button
+                    type="button"
+                    class="nav-link active navbar-brand text-center m-0"
+                    id="alert-drop-down"
+                    ngbDropdownToggle
+                  >
                     Alert
                   </button>
-                  <div ngbDropdownMenu aria-labelledby="alert-drop-down" class="p-2 dropdown-menu">
+                  <div
+                    ngbDropdownMenu
+                    aria-labelledby="alert-drop-down"
+                    class="p-2 dropdown-menu"
+                  >
                     <a ngbDropdownItem>Urgenze tecniche</a>
                     <a ngbDropdownItem>Urgenze amministrative</a>
                   </div>
                 </div>
               </div>
             </div>
-            
           </div>
-          
+
+          <!--Revisioni-->
+          <div class="icon-link">
+            <a
+              routerLink="../pages/revisioni"
+              class="nav-link active navbar-brand text-center m-0"
+              aria-current="page"
+            >
+              Revisioni
+            </a>
+          </div>
+
+          <!--Assicurazioni-->
+          <div class="icon-link">
+            <a
+              routerLink="../pages/assicurazioni"
+              class="nav-link active navbar-brand text-center m-0"
+              aria-current="page"
+            >
+              Assicurazioni
+            </a>
+          </div>
+
+          <!--Atp-->
+          <div class="icon-link">
+            <a
+              routerLink="../pages/atp"
+              class="nav-link active navbar-brand text-center m-0"
+              aria-current="page"
+            >
+              Atp
+            </a>
+          </div>
+
+          <!--Bolli-->
+          <div class="icon-link">
+            <a
+              routerLink="../pages/bolli"
+              class="nav-link active navbar-brand text-center m-0"
+              aria-current="page"
+            >
+              Bolli
+            </a>
+          </div>
+
+          <!--Bombole-->
+          <div class="icon-link">
+            <a
+              routerLink="../pages/bombole"
+              class="nav-link active navbar-brand text-center m-0"
+              aria-current="page"
+            >
+              Bombole
+            </a>
+          </div>
+
+          <!--Tachigrafi-->
+          <div class="icon-link">
+            <a
+              routerLink="../pages/tachigrafi"
+              class="nav-link active navbar-brand text-center m-0"
+              aria-current="page"
+            >
+              Tachigrafi
+            </a>
+          </div>
+
+          <!--Tagliandi-->
+          <div class="icon-link">
+            <a
+              routerLink="../pages/tagliandi"
+              class="nav-link active navbar-brand text-center m-0"
+              aria-current="page"
+            >
+              Tagliandi
+            </a>
+          </div>
 
         </div>
       </div>

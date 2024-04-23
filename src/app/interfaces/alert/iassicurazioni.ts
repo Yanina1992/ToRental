@@ -1,6 +1,6 @@
 export interface IAssicurazioni {
-    idVeicolo:number;
-    idAssicurazione?:number;
+    id_veicolo:number;
+    id?:number;
     anno?:number;
     data_pagamento:Date;
     inizio_validita:Date;

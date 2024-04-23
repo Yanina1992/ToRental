@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject, tap} from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { Veicoli } from '../classes/veicoli';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';

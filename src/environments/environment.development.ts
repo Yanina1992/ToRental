@@ -30,4 +30,7 @@ export const environment = {
   bomboleAlertEndPoint: 'http://dev.backend.torental.bentraining.it/bombole/alert',
   tachigrafiAlertEndPoint:'http://dev.backend.torental.bentraining.it/tachigrafo/alert',
   tagliandiAlertEndPoint: 'http://dev.backend.torental.bentraining.it/tagliando/alert',
+
+  //Assicurazione, Revisione, ecc > CRUD
+  generalEndPoint: 'http://dev.backend.torental.bentraining.it',
 };

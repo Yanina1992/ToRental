@@ -42,6 +42,13 @@ const routes: Routes = [
     canActivate: [AuthGuardGuard], //-----
   },
   { path: 'dashboard', loadChildren: () => import('./pages/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: 'pages/revisioni', loadChildren: () => import('./pages/revisioni/revisioni.module').then(m => m.RevisioniModule) },
+  { path: 'pages/assicurazioni', loadChildren: () => import('./pages/assicurazioni/assicurazioni.module').then(m => m.AssicurazioniModule) },
+  { path: 'pages/atp', loadChildren: () => import('./pages/atp/atp.module').then(m => m.AtpModule) },
+  { path: 'pages/bolli', loadChildren: () => import('./pages/bolli/bolli.module').then(m => m.BolliModule) },
+  { path: 'pages/bombole', loadChildren: () => import('./pages/bombole/bombole.module').then(m => m.BomboleModule) },
+  { path: 'pages/tachigrafi', loadChildren: () => import('./pages/tachigrafi/tachigrafi.module').then(m => m.TachigrafiModule) },
+  { path: 'pages/tagliandi', loadChildren: () => import('./pages/tagliandi/tagliandi.module').then(m => m.TagliandiModule) },
   
 ];
 
