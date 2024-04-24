@@ -24,13 +24,13 @@
     </div>
   </div>
   
-   <h2 class="text-center">Assicurazioni</h2>
+   <h2 class="text-center">Tachigrafo</h2>
   <table class="table table-striped ms-2">
     <thead>
       <tr>
         <th scope="col">Nr. id.</th>
         <th scope="col" class="d-none d-sm-table-cell">id veicolo</th>
-        <th scope="col" class="d-none d-sm-table-cell"> idAssicurazione</th>
+        <th scope="col" class="d-none d-sm-table-cell"> id atp</th>
         <th scope="col" class="d-none d-sm-table-cell">anno</th>
         <th scope="col" class="d-none">data_pagamento</th>
         <th scope="col" class="d-none d-lg-table-cell">inizio_validita</th>
@@ -49,30 +49,30 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let assicurazione of assicurazioniToShow">
-        <th scope="row">{{ assicurazione.id }}</th>
+      <tr *ngFor="let tachigrafo of tachigrafiToShow">
+        <th scope="row">{{ tachigrafo.id }}</th>
         <td class="d-none d-sm-table-cell">
-          {{ assicurazione.id_veicolo }}
+          {{ tachigrafo.id_veicolo }}
         </td>
-        <td class="d-none d-sm-table-cell">{{ assicurazione.anno }}</td>
-        <td class="d-none d-sm-table-cell">{{ assicurazione.data_pagamento }}</td>
-        <!--<td class="d-none">{{ assicurazione.cilindrata }}</td>
-        <td class="d-none d-lg-table-cell">{{ assicurazione.colore }}</td>
-        <td class="d-none d-md-table-cell">{{ assicurazione.destinazione_uso_nome }}</td>
-        <td class="d-none">{{ assicurazione.massa }}</td>
-        <td class="d-none">{{ assicurazione.numero_assi }}</td>
-        <td class="d-none">{{ assicurazione.portata }}</td>
-        <td class="d-none">{{ assicurazione.potenza }}</td>
-        <td class="d-none">{{ assicurazione.societa_nome }}</td>
-        <td>{{ assicurazione.targa }}</td>
-        <td class="d-none d-xl-table-cell">{{ assicurazione.tipo_alimentazione_nome }}</td>
-        <td class="d-none d-xxl-table-cell">{{ assicurazione.tipo_allestimento_nome }}</td>
-        <td class="d-none d-xxl-table-cell">{{ assicurazione.tipo_asse_nome }}</td>
-        <td class="d-none d-xxl-table-cell">{{ assicurazione.tipo_cambio_nome }}</td>
+        <td class="d-none d-sm-table-cell">{{ tachigrafo.anno }}</td>
+        <td class="d-none d-sm-table-cell">{{ tachigrafo.data_pagamento }}</td>
+        <!--<td class="d-none">{{ tachigrafo.cilindrata }}</td>
+        <td class="d-none d-lg-table-cell">{{ tachigrafo.colore }}</td>
+        <td class="d-none d-md-table-cell">{{ tachigrafo.destinazione_uso_nome }}</td>
+        <td class="d-none">{{ tachigrafo.massa }}</td>
+        <td class="d-none">{{ tachigrafo.numero_assi }}</td>
+        <td class="d-none">{{ tachigrafo.portata }}</td>
+        <td class="d-none">{{ tachigrafo.potenza }}</td>
+        <td class="d-none">{{ tachigrafo.societa_nome }}</td>
+        <td>{{ tachigrafo.targa }}</td>
+        <td class="d-none d-xl-table-cell">{{ tachigrafo.tipo_alimentazione_nome }}</td>
+        <td class="d-none d-xxl-table-cell">{{ tachigrafo.tipo_allestimento_nome }}</td>
+        <td class="d-none d-xxl-table-cell">{{ tachigrafo.tipo_asse_nome }}</td>
+        <td class="d-none d-xxl-table-cell">{{ tachigrafo.tipo_cambio_nome }}</td>
         <td>
-          <a [routerLink]="['details', assicurazione.id]"><i class="fa-solid fa-circle-info"></i></a> 
-          <a [routerLink]="['edit', assicurazione.id]"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a [routerLink]="['delete', assicurazione.id]"><i class="fa-solid fa-trash"></i></a>
+          <a [routerLink]="['details', tachigrafo.id]"><i class="fa-solid fa-circle-info"></i></a> 
+          <a [routerLink]="['edit', tachigrafo.id]"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a [routerLink]="['delete', tachigrafo.id]"><i class="fa-solid fa-trash"></i></a>
         </td>-->
       </tr>
     </tbody>
@@ -84,7 +84,7 @@
       [collectionSize]="collectionSize"
       [(page)]="page"
       [pageSize]="pageSize"
-      (pageChange)="refreshAssicurazioni()"
+      (pageChange)="refreshTachigrafi()"
       [maxSize]="4"
       [rotate]="true"
       [boundaryLinks]="true"
@@ -98,14 +98,16 @@
       class="form-select"
       style="width: auto"
       [(ngModel)]="pageSize"
-      (ngModelChange)="refreshAssicurazioni()"
+      (ngModelChange)="refreshTachigrafi()"
       name="pagination"
     >
-      <option [ngValue]="2">Visualizza 2 assicurazioni per pagina</option>
-      <option [ngValue]="4">Visualizza 4 assicurazioni per pagina</option>
-      <option [ngValue]="6">Visualizza 6 assicurazioni per pagina</option>
+      <option [ngValue]="2">Visualizza 2 certificati tachigrafi per pagina</option>
+      <option [ngValue]="4">Visualizza 4 certificati tachigrafi per pagina</option>
+      <option [ngValue]="6">Visualizza 6 certificati tachigrafi per pagina</option>
     </select>
   </div>
   
   <hr />
   
+
+

@@ -22,11 +22,11 @@ export class AssicurazioniComponent implements OnInit {
 
   spinner:boolean | undefined = true;
 
-  constructor(private assicurazioniSvc: ServizioService) {}
+  constructor(private svc: ServizioService) {}
 
   ngOnInit() {
 
-    this.assicurazioniSvc.refreshTable$
+    this.svc.refreshTable$
       .subscribe(() => {
         this.getAllAssicurazioni()
       });
@@ -34,7 +34,7 @@ export class AssicurazioniComponent implements OnInit {
   }
     private getAllAssicurazioni(){
       const firstParam = 'assicurazione'
-        this.assicurazioniSvc.getAll(firstParam).subscribe((data: IAssicurazioni[]) => {
+        this.svc.getAll(firstParam).subscribe((data: IAssicurazioni[]) => {
         this.assicurazioni = data.reverse();
         this.collectionSize = data.length;
         this.refreshAssicurazioni();

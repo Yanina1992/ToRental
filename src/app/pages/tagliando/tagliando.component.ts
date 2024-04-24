@@ -5,19 +5,19 @@ import { debounceTime, startWith, map } from 'rxjs';
 import { ServizioService } from 'src/app/services/servizio.service';
 
 @Component({
-  selector: 'app-atp',
-  templateUrl: './atp.component.html',
-  styleUrls: ['./atp.component.scss']
+  selector: 'app-tagliando',
+  templateUrl: './tagliando.component.html',
+  styleUrls: ['./tagliando.component.scss']
 })
-export class AtpComponent implements OnInit {
+export class TagliandoComponent implements OnInit {
 
   page = 1;
   pageSize = 10;
-  atp: IAlert[] = [];
-  collectionSize = this.atp.length;
-  atpToShow: IAlert[] | undefined;
+  tagliandi: IAlert[] = [];
+  collectionSize = this.tagliandi.length;
+  tagliandiToShow: IAlert[] | undefined;
 
-  filteredAtp: IAlert[] = [];
+  filteredTagliandi: IAlert[] = [];
   filter = new FormControl('');
 
   spinner:boolean | undefined = true;
@@ -28,23 +28,23 @@ export class AtpComponent implements OnInit {
 
     this.svc.refreshTable$
       .subscribe(() => {
-        this.getAllAssicurazioni()
+        this.getAllTagliandi()
       });
-    this.getAllAssicurazioni();
+    this.getAllTagliandi();
   }
-    private getAllAssicurazioni(){
-      const firstParam = 'atp'
+    private getAllTagliandi(){
+      const firstParam = 'tagliando'
         this.svc.getAll(firstParam).subscribe((data: IAlert[]) => {
-        this.atp = data.reverse();
+        this.tagliandi = data.reverse();
         this.collectionSize = data.length;
-        this.refreshAtp();
+        this.refreshTagliandi();
 
-        this.filteredAtp = [...this.atp];
+        this.filteredTagliandi = [...this.tagliandi];
         this.setupFilter();
 
         if(data){
           this.spinner = false;
-          console.log('atp', data)
+          console.log('tagliandi', data)
         }
       });
     }
@@ -55,13 +55,13 @@ export class AtpComponent implements OnInit {
         startWith(''),
         debounceTime(300),
         map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.atp
+          text!.trim().length > 0 ? this.search(text!) : this.tagliandi
         )
       )
       .subscribe((filtered) => {
-        this.filteredAtp = filtered;
+        this.filteredTagliandi = filtered;
         this.collectionSize = filtered.length;
-        this.refreshAtp();
+        this.refreshTagliandi();
       });
   }
 
@@ -69,16 +69,16 @@ export class AtpComponent implements OnInit {
     const term = text.toLowerCase();
     console.log(text);
 
-    return this.atp.filter((atp) =>
-      (atp.targa || '').toLowerCase().startsWith(term)
+    return this.tagliandi.filter((tagliandi) =>
+      (tagliandi.targa || '').toLowerCase().startsWith(term)
     );
   }
 
-  refreshAtp() {
+  refreshTagliandi() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
 
-    this.atpToShow = this.filteredAtp.slice(start, end);
+    this.tagliandiToShow = this.filteredTagliandi.slice(start, end);
 
   }
 }

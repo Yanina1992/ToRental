@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DecimalPipe, NgFor } from '@angular/common';
-
 import { AssicurazioniRoutingModule } from './assicurazioni-routing.module';
 import { AssicurazioniComponent } from './assicurazioni.component';
 import { DeleteAssicurazioniComponent } from './delete-assicurazioni/delete-assicurazioni.component';
@@ -23,7 +22,6 @@ import { NgbDatepickerModule, NgbTypeaheadModule, NgbPaginationModule } from '@n
     AssicurazioniRoutingModule,
     NgbDatepickerModule,
     FormsModule,
-    HttpClientModule,
     HttpClientModule,
     DecimalPipe, 
     NgFor, 

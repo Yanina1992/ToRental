@@ -5,19 +5,19 @@ import { debounceTime, startWith, map } from 'rxjs';
 import { ServizioService } from 'src/app/services/servizio.service';
 
 @Component({
-  selector: 'app-atp',
-  templateUrl: './atp.component.html',
-  styleUrls: ['./atp.component.scss']
+  selector: 'app-revisione',
+  templateUrl: './revisione.component.html',
+  styleUrls: ['./revisione.component.scss']
 })
-export class AtpComponent implements OnInit {
+export class RevisioneComponent implements OnInit  {
 
   page = 1;
   pageSize = 10;
-  atp: IAlert[] = [];
-  collectionSize = this.atp.length;
-  atpToShow: IAlert[] | undefined;
+  revisioni: IAlert[] = [];
+  collectionSize = this.revisioni.length;
+  revisioniToShow: IAlert[] | undefined;
 
-  filteredAtp: IAlert[] = [];
+  filteredRevisioni: IAlert[] = [];
   filter = new FormControl('');
 
   spinner:boolean | undefined = true;
@@ -28,23 +28,23 @@ export class AtpComponent implements OnInit {
 
     this.svc.refreshTable$
       .subscribe(() => {
-        this.getAllAssicurazioni()
+        this.getAllRevisioni()
       });
-    this.getAllAssicurazioni();
+    this.getAllRevisioni();
   }
-    private getAllAssicurazioni(){
-      const firstParam = 'atp'
+    private getAllRevisioni(){
+      const firstParam = 'revisione'
         this.svc.getAll(firstParam).subscribe((data: IAlert[]) => {
-        this.atp = data.reverse();
+        this.revisioni = data.reverse();
         this.collectionSize = data.length;
-        this.refreshAtp();
+        this.refreshRevisioni();
 
-        this.filteredAtp = [...this.atp];
+        this.filteredRevisioni = [...this.revisioni];
         this.setupFilter();
 
         if(data){
           this.spinner = false;
-          console.log('atp', data)
+          //console.log('revisioni', data)
         }
       });
     }
@@ -55,31 +55,32 @@ export class AtpComponent implements OnInit {
         startWith(''),
         debounceTime(300),
         map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.atp
+          text!.trim().length > 0 ? this.search(text!) : this.revisioni
         )
       )
       .subscribe((filtered) => {
-        this.filteredAtp = filtered;
+        this.filteredRevisioni = filtered;
         this.collectionSize = filtered.length;
-        this.refreshAtp();
+        this.refreshRevisioni();
       });
   }
 
-  search(text: string): IAlert[] {
-    const term = text.toLowerCase();
+   search(text: string): IAlert[] {
+   const term = text.toLowerCase();
     console.log(text);
 
-    return this.atp.filter((atp) =>
-      (atp.targa || '').toLowerCase().startsWith(term)
+    return this.revisioni.filter((revisione) =>
+      (revisione.targa || '').toLowerCase().startsWith(term)
     );
   }
 
-  refreshAtp() {
+  refreshRevisioni() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
 
-    this.atpToShow = this.filteredAtp.slice(start, end);
+    this.revisioniToShow = this.filteredRevisioni.slice(start, end);
 
   }
 }
+
 

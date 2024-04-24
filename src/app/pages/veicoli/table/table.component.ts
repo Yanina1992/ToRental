@@ -1,4 +1,4 @@
-import { Component, OnInit, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from '../../../services/veicoli.service';
 import { FormControl } from '@angular/forms';
@@ -10,6 +10,7 @@ import { debounceTime, startWith, map } from 'rxjs';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
+
   page = 1;
   pageSize = 10;
   collectionSize = Veicoli.length;
@@ -46,8 +47,6 @@ export class TableComponent implements OnInit {
       });
     }
 
-
-
   setupFilter() {
     this.filter.valueChanges
       .pipe(
@@ -76,8 +75,6 @@ export class TableComponent implements OnInit {
   refreshVeicoli() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
-
     this.veicoliToShow = this.filteredVeicoli.slice(start, end);
-
   }
 }

@@ -4,6 +4,7 @@ import { VeicoliComponent } from './veicoli.component';
 import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
+import { TableComponent } from './table/table.component';
 
 const routes: Routes = [
   
@@ -18,6 +19,10 @@ const routes: Routes = [
 {
   path: 'delete/:id',
   component: DeleteComponent,
+},
+{
+  path: 'table',
+  component: TableComponent,
 },
 { path: '',
   component: VeicoliComponent

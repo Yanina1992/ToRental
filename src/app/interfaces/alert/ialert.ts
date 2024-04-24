@@ -14,4 +14,5 @@ export interface IAlert {
     modello?: string | undefined;
     valid?: boolean | undefined;
     expired?: boolean | undefined;
+    targa:any
 }

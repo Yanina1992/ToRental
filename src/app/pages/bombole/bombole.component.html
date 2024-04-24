@@ -1,1 +1,113 @@
-<p>bombole works!</p>
+<!--Searching by targa-->
+<form id="search-form">
+    <div class="mb-3 row justify-content-center">
+      <label
+        for="table-filtering-search"
+        class="col-xs-3 col-sm-auto col-form-label"
+        >Cerca per targa:</label
+      >
+      <div class="col-xs-3 col-sm-auto">
+        <input
+          id="table-filtering-search"
+          class="form-control"
+          type="text"
+          [formControl]="filter"
+        />
+      </div>
+    </div>
+  </form>
+  
+  <!--Spinner-->
+  <div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  
+   <h2 class="text-center">Bombole</h2>
+  <table class="table table-striped ms-2">
+    <thead>
+      <tr>
+        <th scope="col">Nr. id.</th>
+        <th scope="col" class="d-none d-sm-table-cell">id veicolo</th>
+        <th scope="col" class="d-none d-sm-table-cell"> id atp</th>
+        <th scope="col" class="d-none d-sm-table-cell">anno</th>
+        <th scope="col" class="d-none">data_pagamento</th>
+        <th scope="col" class="d-none d-lg-table-cell">inizio_validita</th>
+        <th scope="col" class="d-none d-md-table-cell">importo</th>
+        <th scope="col" class="d-none">agenzia</th>
+        <th scope="col" class="d-none">polizza</th>
+        <th scope="col" class="d-none">tipo_scadenza</th>
+        <th scope="col" class="d-none">livello</th>
+        <th scope="col" class="d-none">targa</th>
+        <th scope="col">Targa</th>
+        <th scope="col" class="d-none d-xl-table-cell">marca</th>
+        <th scope="col" class="d-none" class="d-none d-xxl-table-cell">modello</th>
+        <th scope="col" class="d-none" class="d-none d-xxl-table-cell">valid</th>
+        <th scope="col" class="d-none" class="d-none d-xxl-table-cell">expired</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let bombola of bomboleToShow">
+        <th scope="row">{{ bombola.id }}</th>
+        <td class="d-none d-sm-table-cell">
+          {{ bombola.id_veicolo }}
+        </td>
+        <td class="d-none d-sm-table-cell">{{ bombola.anno }}</td>
+        <td class="d-none d-sm-table-cell">{{ bombola.data_pagamento }}</td>
+        <!--<td class="d-none">{{ bombola.cilindrata }}</td>
+        <td class="d-none d-lg-table-cell">{{ bombola.colore }}</td>
+        <td class="d-none d-md-table-cell">{{ bombola.destinazione_uso_nome }}</td>
+        <td class="d-none">{{ bombola.massa }}</td>
+        <td class="d-none">{{ bombola.numero_assi }}</td>
+        <td class="d-none">{{ bombola.portata }}</td>
+        <td class="d-none">{{ bombola.potenza }}</td>
+        <td class="d-none">{{ bombola.societa_nome }}</td>
+        <td>{{ bombola.targa }}</td>
+        <td class="d-none d-xl-table-cell">{{ bombola.tipo_alimentazione_nome }}</td>
+        <td class="d-none d-xxl-table-cell">{{ bombola.tipo_allestimento_nome }}</td>
+        <td class="d-none d-xxl-table-cell">{{ bombola.tipo_asse_nome }}</td>
+        <td class="d-none d-xxl-table-cell">{{ bombola.tipo_cambio_nome }}</td>
+        <td>
+          <a [routerLink]="['details', bombola.id]"><i class="fa-solid fa-circle-info"></i></a> 
+          <a [routerLink]="['edit', bombola.id]"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a [routerLink]="['delete', bombola.id]"><i class="fa-solid fa-trash"></i></a>
+        </td>-->
+      </tr>
+    </tbody>
+  </table>
+  
+  <!--Pagination-->
+  <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
+    <ngb-pagination
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      (pageChange)="refreshBombole()"
+      [maxSize]="4"
+      [rotate]="true"
+      [boundaryLinks]="true"
+      [directionLinks]="true"
+      id="pag"
+    >
+      >
+    </ngb-pagination>
+  
+    <select
+      class="form-select"
+      style="width: auto"
+      [(ngModel)]="pageSize"
+      (ngModelChange)="refreshBombole()"
+      name="pagination"
+    >
+      <option [ngValue]="2">Visualizza 2 bombole per pagina</option>
+      <option [ngValue]="4">Visualizza 4 bombole per pagina</option>
+      <option [ngValue]="6">Visualizza 6 bombole per pagina</option>
+    </select>
+  </div>
+  
+  <hr />
+  
+
+

@@ -5,19 +5,19 @@ import { debounceTime, startWith, map } from 'rxjs';
 import { ServizioService } from 'src/app/services/servizio.service';
 
 @Component({
-  selector: 'app-atp',
-  templateUrl: './atp.component.html',
-  styleUrls: ['./atp.component.scss']
+  selector: 'app-tachigrafo',
+  templateUrl: './tachigrafo.component.html',
+  styleUrls: ['./tachigrafo.component.scss']
 })
-export class AtpComponent implements OnInit {
+export class TachigrafoComponent implements OnInit {
 
   page = 1;
   pageSize = 10;
-  atp: IAlert[] = [];
-  collectionSize = this.atp.length;
-  atpToShow: IAlert[] | undefined;
+  tachigrafi: IAlert[] = [];
+  collectionSize = this.tachigrafi.length;
+  tachigrafiToShow: IAlert[] | undefined;
 
-  filteredAtp: IAlert[] = [];
+  filteredTachigrafi: IAlert[] = [];
   filter = new FormControl('');
 
   spinner:boolean | undefined = true;
@@ -28,23 +28,23 @@ export class AtpComponent implements OnInit {
 
     this.svc.refreshTable$
       .subscribe(() => {
-        this.getAllAssicurazioni()
+        this.getAllTachigrafi()
       });
-    this.getAllAssicurazioni();
+    this.getAllTachigrafi();
   }
-    private getAllAssicurazioni(){
-      const firstParam = 'atp'
+    private getAllTachigrafi(){
+      const firstParam = 'tachigrafo'
         this.svc.getAll(firstParam).subscribe((data: IAlert[]) => {
-        this.atp = data.reverse();
+        this.tachigrafi = data.reverse();
         this.collectionSize = data.length;
-        this.refreshAtp();
+        this.refreshTachigrafi();
 
-        this.filteredAtp = [...this.atp];
+        this.filteredTachigrafi = [...this.tachigrafi];
         this.setupFilter();
 
         if(data){
           this.spinner = false;
-          console.log('atp', data)
+          console.log('tachigrafi', data)
         }
       });
     }
@@ -55,13 +55,13 @@ export class AtpComponent implements OnInit {
         startWith(''),
         debounceTime(300),
         map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.atp
+          text!.trim().length > 0 ? this.search(text!) : this.tachigrafi
         )
       )
       .subscribe((filtered) => {
-        this.filteredAtp = filtered;
+        this.filteredTachigrafi = filtered;
         this.collectionSize = filtered.length;
-        this.refreshAtp();
+        this.refreshTachigrafi();
       });
   }
 
@@ -69,16 +69,16 @@ export class AtpComponent implements OnInit {
     const term = text.toLowerCase();
     console.log(text);
 
-    return this.atp.filter((atp) =>
-      (atp.targa || '').toLowerCase().startsWith(term)
+    return this.tachigrafi.filter((tachigrafi) =>
+      (tachigrafi.targa || '').toLowerCase().startsWith(term)
     );
   }
 
-  refreshAtp() {
+  refreshTachigrafi() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
 
-    this.atpToShow = this.filteredAtp.slice(start, end);
+    this.tachigrafiToShow = this.filteredTachigrafi.slice(start, end);
 
   }
 }

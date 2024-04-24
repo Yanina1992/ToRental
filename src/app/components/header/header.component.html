@@ -157,8 +157,10 @@
         placeholder="Search"
         aria-label="Search"
         name="search"
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="onSearch(searchTerm)"
       />
-      <button class="search-btn" type="submit">
+      <button class="search-btn" type="submit" (click)="onSearch(searchTerm)">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
       <!--User-->

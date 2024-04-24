@@ -20,37 +20,9 @@ export class ServizioService {
   get refreshTable$() {
     return this._refreshTable$;
   }
-  /*private _refreshAssicurazioniTable$ = new Subject<void>();
-  get refreshAssicurazioniTable$() {
-    return this._refreshAssicurazioniTable$;
-  }
-  private _refreshAtpTable$ = new Subject<void>();
-  get refreshAtpTable$() {
-    return this._refreshAtpTable$;
-  }
-  private _refreshBolliTable$ = new Subject<void>();
-  get refreshBolliTable$() {
-    return this._refreshBolliTable$;
-  }
-  private _refreshBomboleTable$ = new Subject<void>();
-  get refreshBomboleTable$() {
-    return this._refreshBomboleTable$;
-  }
-  private _refresRevisioniTable$ = new Subject<void>();
-  get refresRevisioniTable$() {
-    return this._refresRevisioniTable$;
-  }
-  private _refreshTachigrafiTable$ = new Subject<void>();
-  get refreshTachigrafiTable$() {
-    return this._refreshTachigrafiTable$;
-  }
-  private _refreshTagliandiTable$ = new Subject<void>();
-  get refreshTagliandiTable$() {
-    return this._refreshTagliandiTable$;
-  }*/
 
   getAll(firstParam:string): Observable<IAlert[]> {
-    return this.http.get<IAlert[]>(this.url + `/${firstParam}`);
+    return this.http.get<IAlert[]>(this.url + `/` + firstParam);
   }
 
   getById(firstParam:string, id: number): Observable<IAlert[]> {
@@ -74,16 +46,16 @@ export class ServizioService {
       );
   }
 
-  update(firstParam:string, assicurazione: IAlert): Observable<IAlert> {
+  update(firstParam:string, element: IAlert): Observable<IAlert> {
     return this.http.put<IAlert>(
-      this.url + `/${firstParam}/` + assicurazione.id,
-      assicurazione
+      this.url + `/${firstParam}/` + element.id,
+      element
     );
   }
 
-  delete(firstParam:string, assicurazione: IAlert) {
+  delete(firstParam:string, element: IAlert) {
     return this.http.delete(
-      this.url + `/${firstParam}` + `/` + assicurazione.id
+      this.url + `/${firstParam}` + `/` + element.id
     );
   }
 }

@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DecimalPipe, NgFor } from '@angular/common';
-
-import { BolliRoutingModule } from './bolli-routing.module';
-import { BolliComponent } from './bolli.component';
-import { DeleteBolliComponent } from './delete-bolli/delete-bolli.component';
-import { DetailsBolliComponent } from './details-bolli/details-bolli.component';
-import { EditBolliComponent } from './edit-bolli/edit-bolli.component';
+import { TagliandoRoutingModule } from './tagliando-routing.module';
+import { TagliandoComponent } from './tagliando.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDatepickerModule, NgbTypeaheadModule, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
@@ -13,17 +9,13 @@ import { NgbDatepickerModule, NgbTypeaheadModule, NgbPaginationModule } from '@n
 
 @NgModule({
   declarations: [
-    BolliComponent,
-    DeleteBolliComponent,
-    DetailsBolliComponent,
-    EditBolliComponent,
+    TagliandoComponent
   ],
   imports: [
     CommonModule,
-    BolliRoutingModule,
+    TagliandoRoutingModule,
     NgbDatepickerModule,
     FormsModule,
-    HttpClientModule,
     HttpClientModule,
     DecimalPipe, 
     NgFor, 
@@ -32,4 +24,4 @@ import { NgbDatepickerModule, NgbTypeaheadModule, NgbPaginationModule } from '@n
     ReactiveFormsModule
   ]
 })
-export class BolliModule { }
+export class TagliandoModule { }

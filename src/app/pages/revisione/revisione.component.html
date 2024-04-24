@@ -13,6 +13,7 @@
           type="text"
           [formControl]="filter"
         />
+       
       </div>
     </div>
   </form>
@@ -24,13 +25,13 @@
     </div>
   </div>
   
-   <h2 class="text-center">Assicurazioni</h2>
+  <h2 class="text-center">Revisioni</h2>
   <table class="table table-striped ms-2">
     <thead>
       <tr>
         <th scope="col">Nr. id.</th>
         <th scope="col" class="d-none d-sm-table-cell">id veicolo</th>
-        <th scope="col" class="d-none d-sm-table-cell"> idAssicurazione</th>
+        <th scope="col" class="d-none d-sm-table-cell"> idRevisioni</th>
         <th scope="col" class="d-none d-sm-table-cell">anno</th>
         <th scope="col" class="d-none">data_pagamento</th>
         <th scope="col" class="d-none d-lg-table-cell">inizio_validita</th>
@@ -49,30 +50,30 @@
     </thead>
 
     <tbody>
-      <tr *ngFor="let assicurazione of assicurazioniToShow">
-        <th scope="row">{{ assicurazione.id }}</th>
+      <tr *ngFor="let revisione of revisioniToShow">
+        <th scope="row">{{ revisione.id }}</th>
         <td class="d-none d-sm-table-cell">
-          {{ assicurazione.id_veicolo }}
+          {{ revisione.id_veicolo }}
         </td>
-        <td class="d-none d-sm-table-cell">{{ assicurazione.anno }}</td>
-        <td class="d-none d-sm-table-cell">{{ assicurazione.data_pagamento }}</td>
-        <!--<td class="d-none">{{ assicurazione.cilindrata }}</td>
-        <td class="d-none d-lg-table-cell">{{ assicurazione.colore }}</td>
-        <td class="d-none d-md-table-cell">{{ assicurazione.destinazione_uso_nome }}</td>
-        <td class="d-none">{{ assicurazione.massa }}</td>
-        <td class="d-none">{{ assicurazione.numero_assi }}</td>
-        <td class="d-none">{{ assicurazione.portata }}</td>
-        <td class="d-none">{{ assicurazione.potenza }}</td>
-        <td class="d-none">{{ assicurazione.societa_nome }}</td>
-        <td>{{ assicurazione.targa }}</td>
-        <td class="d-none d-xl-table-cell">{{ assicurazione.tipo_alimentazione_nome }}</td>
-        <td class="d-none d-xxl-table-cell">{{ assicurazione.tipo_allestimento_nome }}</td>
-        <td class="d-none d-xxl-table-cell">{{ assicurazione.tipo_asse_nome }}</td>
-        <td class="d-none d-xxl-table-cell">{{ assicurazione.tipo_cambio_nome }}</td>
+        <td class="d-none d-sm-table-cell">{{ revisione.anno }}</td>
+        <td class="d-none d-sm-table-cell">{{ revisione.data_pagamento }}</td>
+        <!--<td class="d-none">{{ revisione.cilindrata }}</td>
+        <td class="d-none d-lg-table-cell">{{ revisione.colore }}</td>
+        <td class="d-none d-md-table-cell">{{ revisione.destinazione_uso_nome }}</td>
+        <td class="d-none">{{ revisione.massa }}</td>
+        <td class="d-none">{{ revisione.numero_assi }}</td>
+        <td class="d-none">{{ revisione.portata }}</td>
+        <td class="d-none">{{ revisione.potenza }}</td>
+        <td class="d-none">{{ revisione.societa_nome }}</td>
+        <td>{{ revisione.targa }}</td>
+        <td class="d-none d-xl-table-cell">{{ revisione.tipo_alimentazione_nome }}</td>
+        <td class="d-none d-xxl-table-cell">{{ revisione.tipo_allestimento_nome }}</td>
+        <td class="d-none d-xxl-table-cell">{{ revisione.tipo_asse_nome }}</td>
+        <td class="d-none d-xxl-table-cell">{{ revisione.tipo_cambio_nome }}</td>
         <td>
-          <a [routerLink]="['details', assicurazione.id]"><i class="fa-solid fa-circle-info"></i></a> 
-          <a [routerLink]="['edit', assicurazione.id]"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a [routerLink]="['delete', assicurazione.id]"><i class="fa-solid fa-trash"></i></a>
+          <a [routerLink]="['details', revisione.id]"><i class="fa-solid fa-circle-info"></i></a> 
+          <a [routerLink]="['edit', revisione.id]"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a [routerLink]="['delete', revisione.id]"><i class="fa-solid fa-trash"></i></a>
         </td>-->
       </tr>
     </tbody>
@@ -84,7 +85,7 @@
       [collectionSize]="collectionSize"
       [(page)]="page"
       [pageSize]="pageSize"
-      (pageChange)="refreshAssicurazioni()"
+      (pageChange)="refreshRevisioni()"
       [maxSize]="4"
       [rotate]="true"
       [boundaryLinks]="true"
@@ -98,14 +99,16 @@
       class="form-select"
       style="width: auto"
       [(ngModel)]="pageSize"
-      (ngModelChange)="refreshAssicurazioni()"
+      (ngModelChange)="refreshRevisioni()"
       name="pagination"
     >
-      <option [ngValue]="2">Visualizza 2 assicurazioni per pagina</option>
-      <option [ngValue]="4">Visualizza 4 assicurazioni per pagina</option>
-      <option [ngValue]="6">Visualizza 6 assicurazioni per pagina</option>
+      <option [ngValue]="2">Visualizza 2 revisioni per pagina</option>
+      <option [ngValue]="4">Visualizza 4 revisioni per pagina</option>
+      <option [ngValue]="6">Visualizza 6 revisioni per pagina</option>
     </select>
   </div>
   
   <hr />
   
+
+

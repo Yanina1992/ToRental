@@ -87,7 +87,7 @@ export class AuthService {
   logout() {
     this.authSubject.next(null);
     localStorage.removeItem('accessData');
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 
   autoLogout(expDate: Date) {
@@ -98,6 +98,7 @@ export class AuthService {
     this.autoLogoutTimer = setTimeout(() => {
       this.logout();
     }, expMs);
+    this.router.navigate(['']);
   }
 
   signUp(data: IRegister) {
@@ -118,6 +119,7 @@ export class AuthService {
 
     if (this.jwtHelper.isTokenExpired(accessData.access_token)) {
       console.log("Token expired:", accessData.access_token);
+      this.router.navigate(['']);
       return;
     }
     console.log("User restored with access data:", accessData);
