@@ -89,4 +89,7 @@ export class Veicoli implements IAlert {
   } | undefined;
 
   public id?: number = 0;
+  id_asse: any;
+  id_Asse: any;
+  id_cambio: any;
 }

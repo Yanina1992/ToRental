@@ -72,11 +72,11 @@ export class DeleteComponent {
   </div>
   <div class="modal-body">
     <p>
-      <strong>Sei sicuro di voler eliminare questo veicolo?</strong>
+      <strong>Sei sicuro di voler dismettere questo veicolo?</strong>
     </p>
     <p>
       Se procedi il veicolo 
-      <span class="text-danger">verrà eliminato permanentemente</span> dal database.
+      <span class="text-danger">verrà eliminato</span> dalla lista di veicoli disponibili.
     </p>
   </div>
   <div class="modal-footer">

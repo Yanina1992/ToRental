@@ -1,10 +1,14 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-12 col-md-2">
 <!--Searching by targa-->
 <form id="search-form">
   <div class="mb-3 row justify-content-center">
     <label
       for="table-filtering-search"
       class="col-xs-3 col-sm-auto col-form-label"
-      >Cerca per targa:</label
+      >Cerca per targa</label
     >
     <div class="col-xs-3 col-sm-auto">
       <input
@@ -16,6 +20,449 @@
     </div>
   </div>
 </form>
+    </div>
+    <div class="col col-12 col-md-10">
+
+<!--Customized search-->
+<form #veicoliForm="ngForm" id="my-form">
+       
+  <h3>Cerca</h3>
+<div class="row row-cols-3 justify-content-between ">
+  <!--Tipo veicolo-->
+  <div class="mb-3 col">
+    <label for="tipo_veicolo_nome" class="form-label">Tipo veicolo</label>
+    <select
+      id="tipo_veicolo_nome"
+      class="form-select"
+      required
+      [(ngModel)]="selectedTipoVeicoloId"
+      (ngModelChange)="onTipeVeicoloChange(selectedTipoVeicoloId)"
+      name="tipo_veicolo_nome"
+      #tipo_veicolo_nome="ngModel"
+    >
+    <option selected [value]="0">Seleziona un tipo di veicolo</option>
+      <option
+        *ngFor="let tipoVeicolo of tipiVeicoli"
+        [value]="tipoVeicolo.id"
+      >
+        {{ tipoVeicolo.nome }}
+      </option>
+    </select>
+
+    <div
+      *ngIf="selectedTipoVeicoloId == 0 && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare una tipologia di veicolo.
+    </div>
+  </div>
+
+  <!--Marca-->
+  <div class="mb-3 col">
+    <label for="marca" class="form-label">Marca</label>
+    <select
+      id="marca"
+      class="form-select"
+      required
+      [(ngModel)]="selectedMarcaId"
+      (ngModelChange)="onMarcaChange(selectedMarcaId)"
+      name="marca"
+      #marca="ngModel"
+    >
+    <option selected [value]="0">Seleziona una marca</option>
+      <option *ngFor="let marca of marche" [value]="marca.id">
+        {{ marca.nome }}
+      </option>
+    </select>
+
+    <div
+      *ngIf="selectedMarcaId == null && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare una marca.
+    </div>
+  </div>
+
+  <!--Modello-->
+  <div class="mb-3 col">
+    <label for="modello" class="form-label">Modello</label>
+    <select
+      id="modello"
+      class="form-select"
+      [disabled]="!selectedMarcaId"
+      required
+      [(ngModel)]="selectedModelloId"
+      (ngModelChange)="onModelloChange(selectedModelloId)"
+      name="modello"
+      #modello="ngModel"
+    >
+    <option selected [value]="0">Seleziona un modello</option>
+      <option *ngFor="let modello of modelli" [value]="modello.id">
+        {{ modello.nome }}
+      </option>
+    </select>
+
+    <div
+      *ngIf="selectedModelloId == 0 && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare un modello.
+    </div>
+  </div>
+</div>
+
+  <!--Cilindrata
+  <div class="mb-3">
+    <label for="cilindrata" class="form-label">Cilindrata</label>
+    <input
+      type="number"
+      class="form-control"
+      id="cilindrata"
+      min="0"
+      [(ngModel)]="veicoloForm.cilindrata"
+      name="cilindrata"
+      #cilindrata="ngModel"
+    />
+  </div>-->
+
+  <!--Colore
+  <div class="mb-3">
+    <label for="colore" class="form-label">Colore</label>
+    <input
+      type="text"
+      class="form-control"
+      id="colore"
+      [(ngModel)]="veicoloForm.colore"
+      name="colore"
+      #colore="ngModel"
+    />
+  </div>-->
+
+  <div class="row row-cols-3 justify-content-between ">
+  <!--Destinazione d'uso-->
+  <div class="mb-3 col">
+    <label for="destinazione_uso_nome" class="form-label"
+      >Destinazione d'uso</label
+    >
+    <select
+      id="destinazione_uso_nome"
+      class="form-select"
+      [(ngModel)]="selectedDestinazioneUsoId"
+      required
+      (ngModelChange)="onDestinazioneUsoChange(selectedDestinazioneUsoId)"
+      name="destinazioneUso"
+    >
+    <option selected [value]="0">Seleziona la destinazione d'uso</option>
+      <option
+        *ngFor="let destinazione of destinazioni"
+        [value]="destinazione.id"
+      >
+        {{ destinazione.nome }}
+      </option>
+    </select>
+
+    <div
+      *ngIf="selectedDestinazioneUsoId == 0 && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare la destinazione d'uso
+    </div>
+  </div>
+
+  <!--Massa
+  <div class="mb-3">
+    <label for="massa" class="form-label">Massa</label>
+    <input
+      type="text"
+      class="form-control"
+      id="massa"
+      pattern="[0-9]*"
+      min="0"
+      [(ngModel)]="veicoloForm.massa"
+      name="massa"
+    />
+  </div>-->
+
+  <!--Numero assi
+  <div class="mb-3">
+    <label for="numero_assi" class="form-label">Numero assi</label>
+    <input
+      type="number"
+      class="form-control"
+      id="numero_assi"
+      min="0"
+      [(ngModel)]="veicoloForm.numero_assi"
+      required
+      name="numero_assi"
+    />
+
+    <div
+      *ngIf="veicoloForm.numero_assi == 0 && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare il numero di assi.
+    </div>
+  </div>-->
+
+  <!--Portata
+  <div class="mb-3">
+    <label for="portata" class="form-label">Portata</label>
+    <input
+      type="number"
+      class="form-control"
+      id="portata"
+      [(ngModel)]="veicoloForm.portata"
+      min="0"
+      name="portata"
+    />
+  </div>-->
+
+  <!--Potenza
+  <div class="mb-3">
+    <label for="potenza" class="form-label">Potenza</label>
+    <input
+      type="number"
+      class="form-control"
+      id="potenza"
+      [(ngModel)]="veicoloForm.potenza"
+      min="0"
+      name="potenza"
+    />
+  </div>-->
+
+  <!--Società-->
+  <div class="mb-3 col">
+    <label for="societa_nome" class="form-label">Società</label>
+    <select
+      id="societa_nome"
+      class="form-select"
+      [(ngModel)]="selectedSocietaId"
+      required
+      (ngModelChange)="onSocietaChange(selectedSocietaId)"
+      name="societa"
+    >
+    <option selected [value]="0">Seleziona una società</option>
+      <option *ngFor="let societa of societas" [value]="societa.id">
+        {{ societa.nome }}
+      </option>
+    </select>
+
+    <div
+      *ngIf="selectedSocietaId == 0 && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare la società proprietaria del veicolo.
+    </div>
+  </div>
+
+  <!--Targa
+  <div class="mb-3">
+    <label for="targa" class="form-label">Targa</label>
+    <input
+      type="text"
+      class="form-control"
+      id="targa"
+      [(ngModel)]="veicoloForm.targa"
+      required
+      minlength="5"
+      maxlength="10"
+      pattern="[a-zA-Z0-9]*"
+      name="targa"
+      #targa="ngModel"
+      (input)="onInput()"
+    />
+
+    <div *ngIf="formSubmitted" class="alert text-danger ps-0">
+      <div *ngIf="targa.errors?.['required']">La targa è obbligatoria.</div>
+      <div *ngIf="targa.errors?.['minlength'] || targa.errors?.['maxlength']">
+        La targa inserita è incompleta.
+      </div>
+      <div *ngIf="isTarga && formSubmitted" class="alert text-danger ps-0">
+        Questa targa è già presente nel database.
+      </div>
+    </div>
+
+    <div *ngIf="!targa.errors && formSubmitted"
+[ngClass]="isTarga ? 'd-block alert text-danger ps-0' : 'd-none'"
+-->
+  <!--</div>-->
+
+  <!--Tipo alimentazione-->
+  <div class="mb-3 col">
+    <label for="tipo_alimentazione_nome" class="form-label"
+      >Alimentazione</label
+    >
+    <select
+      id="tipo_alimentazione_nome"
+      name="alimentazione"
+      class="form-select"
+      [(ngModel)]="selectedAlimentazioneId"
+      required
+      (ngModelChange)="onAlimentazioneChange(selectedAlimentazioneId)"
+    >
+    <option selected [value]="0">Seleziona un tipo di alimentazione</option>
+      <option
+        *ngFor="let tipoAlimentazione of tipiAlimentazione"
+        [value]="tipoAlimentazione.id"
+      >
+        {{ tipoAlimentazione.nome }}
+      </option>
+    </select>
+
+    <div
+      *ngIf="selectedAlimentazioneId == 0 && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare un tipo di alimentazione.
+    </div>
+  </div>
+</div>
+
+<div class="row row-cols-3 justify-content-between ">
+  <!--Allestimento-->
+  <div class="mb-3 col">
+    <label for="tipo_allestimento_nome" class="form-label"
+      >Allestimento</label
+    >
+    <select
+      id="tipo_allestimento_nome"
+      class="form-select"
+      [(ngModel)]="selectedAllestimentoId"
+      required
+      (ngModelChange)="onAllestimentoChange(selectedAllestimentoId)"
+      name="allestimento"
+    >
+    <option selected [value]="0">Seleziona un tipo di allestimento</option>
+      <option
+        *ngFor="let allestimento of allestimenti"
+        [value]="allestimento.id"
+      >
+        {{ allestimento.nome }}
+      </option>
+    </select>
+
+    <div
+      *ngIf="selectedAllestimentoId == 0 && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare un tipo di allestimento.
+    </div>
+  </div>
+
+  <!-- Tipo asse-->
+  <div class="mb-3 col">
+    <label for="tipo_asse_nome" class="form-label">Tipo asse</label>
+    <select
+      id="tipo_asse_nome"
+      class="form-select"
+      [(ngModel)]="selectedTipoAsseId"
+      required
+      (ngModelChange)="onTipoAsseChange(selectedTipoAsseId)"
+      name="tipoAsse"
+    >
+    <option selected [value]="0">Seleziona un tipo di asse</option>
+      <option *ngFor="let tipoAsse of tipiAsse" [value]="tipoAsse.id">
+        {{ tipoAsse.nome }}
+      </option>
+    </select>
+
+    <div
+      *ngIf="selectedTipoAsseId == null && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare un tipo di asse.
+    </div>
+  </div>
+
+  <!--Cambio-->
+  <div class="mb-3 col">
+    <label for="tipo_cambio_nome" class="form-label">Cambio</label>
+    <select
+      id="tipo_cambio_nome"
+      class="form-select"
+      [(ngModel)]="selectedCambioId"
+      required
+      (ngModelChange)="onCambioChange(selectedCambioId)"
+      name="cambio"
+    >
+    <option selected [value]="0">Seleziona un tipo di cambio</option>
+      <option *ngFor="let tipoCambio of tipiCambio" [value]="tipoCambio.id">
+        {{ tipoCambio.nome }}
+      </option>
+    </select>
+
+    <div
+      *ngIf="selectedCambioId == null && formSubmitted"
+      class="alert text-danger ps-0"
+    >
+      Selezionare un tipo di cambio.
+    </div>
+  </div>
+</div>
+
+  <!--Data immatricolazione
+  <div class="mb-3">
+    <label for="data_immatricolazione" class="form-label"
+      >Data immatricolazione</label
+    >
+    <div class="row row-cols-sm-auto">
+      <div class="col-12">
+        <div class="input-group">
+          <input
+            class="form-control"
+            placeholder="Scegli una data"
+            name="dp"
+            [(ngModel)]="veicoloForm.data_immatricolazione"
+            ngbDatepicker
+            [dayTemplate]="customDay"
+            #d="ngbDatepicker"
+            [value]="formatDate(veicoloForm.data_immatricolazione)"
+          />
+          <button
+            class="btn btn-outline-secondary bi bi-calendar3"
+            (click)="d.toggle()"
+            type="button"
+          ></button>
+          <div class="col col-3 p-0">
+            <button class="form-control" (click)="selectToday()">Oggi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template
+      #customDay
+      let-date
+      let-currentMonth="currentMonth"
+      let-selected="selected"
+      let-disabled="disabled"
+      let-focused="focused"
+    >
+      <span
+        class="custom-day"
+        [class.focused]="focused"
+        [class.bg-primary]="selected"
+        [class.hidden]="date.month !== currentMonth"
+        [class.text-muted]="disabled"
+      >
+        {{ date.day }}
+      </span>
+    </ng-template>
+  </div>-->
+
+  <button
+    type="submit"
+    class="btn my-btn btn-primary"
+    (click)="customizedSearch2()"
+  >
+    Cerca veicolo
+  </button>
+</form>
+    </div>
+  </div>
+</div>
+
+
 
 <!--Spinner-->
 <div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
@@ -92,7 +539,7 @@
     >
   </ngb-pagination>
 
-  <select
+  <!--<select
     class="form-select"
     style="width: auto"
     [(ngModel)]="pageSize"
@@ -102,7 +549,7 @@
     <option [ngValue]="2">Visualizza 2 veicoli per pagina</option>
     <option [ngValue]="4">Visualizza 4 veicoli per pagina</option>
     <option [ngValue]="6">Visualizza 6 veicoli per pagina</option>
-  </select>
+  </select>-->
 </div>
 
 <hr />
