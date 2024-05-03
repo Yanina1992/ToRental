@@ -61,19 +61,14 @@ export class TableComponent implements OnInit {
       this.marche = data;
     });
     //destinazioni d'uso
-    this.veicoliSvc
-      .getAllDestinazioniDUso()
-      .subscribe((data: IDestinazioneDUso[]) => {
+    this.veicoliSvc.getAllDestinazioniDUso().subscribe((data: IDestinazioneDUso[]) => {
         this.destinazioni = data;
       });
     //società
-    this.veicoliSvc.getAllSocieta().subscribe((data: ISocieta[]) => {
-      this.societas = data;
+    this.veicoliSvc.getAllSocieta().subscribe((data: ISocieta[]) => {this.societas = data;
     });
     //tipi alimentazione
-    this.veicoliSvc
-      .getAllAlimentazioni()
-      .subscribe((data: IAlimentazione[]) => {
+    this.veicoliSvc.getAllAlimentazioni().subscribe((data: IAlimentazione[]) => {
         this.tipiAlimentazione = data;
       });
     //allestimenti
@@ -144,11 +139,9 @@ export class TableComponent implements OnInit {
   myFilteredVeicoli: Veicoli[] = [];
 
   customizedSearch() {
-    console.log('start filtering process');
+    this.myFilteredVeicoli = [];
     try {
-      if (
-        this.veicoloForm.id_tipo_veicolo &&
-        this.veicoloForm.id_tipo_veicolo > 0
+      if (this.veicoloForm.id_tipo_veicolo && this.veicoloForm.id_tipo_veicolo > 0
       ) {
         this.filterByTipoVeicolo();
       }
@@ -273,7 +266,6 @@ export class TableComponent implements OnInit {
     return this.myFilteredVeicoli;
   }
   filterByAlimentazione() {
-    debugger;
     console.log(this.myFilteredVeicoli);
 
     if (this.myFilteredVeicoli.length > 0) {
@@ -328,9 +320,14 @@ export class TableComponent implements OnInit {
     return this.myFilteredVeicoli;
   }
 
-  showResOfAllFilters() {
+  /*showResOfAllFilters() {
     console.log('the very last check', this.myFilteredVeicoli);
-    this.veicoliToShow = this.myFilteredVeicoli
+    this.veicoliToShow = this.myFilteredVeicoli;
+  }*/
+  showResOfAllFilters() {
+    this.filteredVeicoli = this.myFilteredVeicoli; // Aggiorna l'array filtrato
+    this.collectionSize = this.filteredVeicoli.length; // Aggiorna il numero totale di elementi filtrati
+    this.refreshVeicoli(); // Applica la paginazione
   }
 
   refreshVeicoli() {

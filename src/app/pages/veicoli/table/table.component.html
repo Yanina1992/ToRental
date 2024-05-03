@@ -1,297 +1,308 @@
-
 <div class="container-fluid">
   <div class="row">
-    <div class="col col-12 col-md-2">
-<!--Searching by targa-->
-<form id="search-form">
-  <div class="mb-3 row justify-content-center">
-    <label
-      for="table-filtering-search"
-      class="col-xs-3 col-sm-auto col-form-label"
-      >Cerca per targa</label
-    >
-    <div class="col-xs-3 col-sm-auto">
-      <input
-        id="table-filtering-search"
-        class="form-control"
-        type="text"
-        [formControl]="filter"
-      />
+
+    <div class="col col-12">
+      <!--Searching by targa-->
+      <form id="search-by-targa">
+        <h3>Cerca per targa</h3>
+        <div class="mb-3 row justify-content-center">
+          <label
+            for="table-filtering-search"
+            class="col-xs-3 col-sm-auto col-form-label"
+            >Inserisci la targa</label
+          >
+          <div class="col-xs-3 col-sm-auto">
+            <input
+              id="table-filtering-search"
+              class="form-control"
+              type="text"
+              [formControl]="filter"
+            />
+          </div>
+        </div>
+      </form>
     </div>
-  </div>
-</form>
-    </div>
-    <div class="col col-12 col-md-10">
 
-<!--Customized search-->
-<form #veicoliForm="ngForm" id="my-form">
-       
-  <h3>Cerca</h3>
-<div class="row row-cols-3 justify-content-between ">
-  <!--Tipo veicolo-->
-  <div class="mb-3 col">
-    <label for="tipo_veicolo_nome" class="form-label">Tipo veicolo</label>
-    <select
-      id="tipo_veicolo_nome"
-      class="form-select"
-      required
-      [(ngModel)]="selectedTipoVeicoloId"
-      (ngModelChange)="onTipeVeicoloChange(selectedTipoVeicoloId)"
-      name="tipo_veicolo_nome"
-      #tipo_veicolo_nome="ngModel"
-    >
-    <option selected [value]="0">Seleziona un tipo di veicolo</option>
-      <option
-        *ngFor="let tipoVeicolo of tipiVeicoli"
-        [value]="tipoVeicolo.id"
-      >
-        {{ tipoVeicolo.nome }}
-      </option>
-    </select>
+    <div class="col col-12">
+      <!--Customized search-->
+      <form #veicoliForm="ngForm" id="my-form">
+        <h3>Ricerca personalizzata</h3>
+        <div class="row row-cols-3 justify-content-between">
+          <!--Tipo veicolo-->
+          <div class="mb-3 col">
+            <label for="tipo_veicolo_nome" class="form-label"
+              >Tipo veicolo</label
+            >
+            <select
+              id="tipo_veicolo_nome"
+              class="form-select"
+              required
+              [(ngModel)]="selectedTipoVeicoloId"
+              (ngModelChange)="onTipeVeicoloChange(selectedTipoVeicoloId)"
+              name="tipo_veicolo_nome"
+              #tipo_veicolo_nome="ngModel"
+            >
+              <option selected [value]="0">Seleziona un tipo di veicolo</option>
+              <option
+                *ngFor="let tipoVeicolo of tipiVeicoli"
+                [value]="tipoVeicolo.id"
+              >
+                {{ tipoVeicolo.nome }}
+              </option>
+            </select>
 
-    <div
-      *ngIf="selectedTipoVeicoloId == 0 && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare una tipologia di veicolo.
-    </div>
-  </div>
+            <div
+              *ngIf="selectedTipoVeicoloId == 0 && formSubmitted"
+              class="alert text-danger ps-0"
+            >
+              Selezionare una tipologia di veicolo.
+            </div>
+          </div>
 
-  <!--Marca-->
-  <div class="mb-3 col">
-    <label for="marca" class="form-label">Marca</label>
-    <select
-      id="marca"
-      class="form-select"
-      required
-      [(ngModel)]="selectedMarcaId"
-      (ngModelChange)="onMarcaChange(selectedMarcaId)"
-      name="marca"
-      #marca="ngModel"
-    >
-    <option selected [value]="0">Seleziona una marca</option>
-      <option *ngFor="let marca of marche" [value]="marca.id">
-        {{ marca.nome }}
-      </option>
-    </select>
+          <!--Marca-->
+          <div class="mb-3 col">
+            <label for="marca" class="form-label">Marca</label>
+            <select
+              id="marca"
+              class="form-select"
+              required
+              [(ngModel)]="selectedMarcaId"
+              (ngModelChange)="onMarcaChange(selectedMarcaId)"
+              name="marca"
+              #marca="ngModel"
+            >
+              <option selected [value]="0">Seleziona una marca</option>
+              <option *ngFor="let marca of marche" [value]="marca.id">
+                {{ marca.nome }}
+              </option>
+            </select>
 
-    <div
-      *ngIf="selectedMarcaId == null && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare una marca.
-    </div>
-  </div>
+            <div
+              *ngIf="selectedMarcaId == null && formSubmitted"
+              class="alert text-danger ps-0"
+            >
+              Selezionare una marca.
+            </div>
+          </div>
 
-  <!--Modello-->
-  <div class="mb-3 col">
-    <label for="modello" class="form-label">Modello</label>
-    <select
-      id="modello"
-      class="form-select"
-      [disabled]="!selectedMarcaId"
-      required
-      [(ngModel)]="selectedModelloId"
-      (ngModelChange)="onModelloChange(selectedModelloId)"
-      name="modello"
-      #modello="ngModel"
-    >
-    <option selected [value]="0">Seleziona un modello</option>
-      <option *ngFor="let modello of modelli" [value]="modello.id">
-        {{ modello.nome }}
-      </option>
-    </select>
+          <!--Modello-->
+          <div class="mb-3 col">
+            <label for="modello" class="form-label">Modello</label>
+            <select
+              id="modello"
+              class="form-select"
+              [disabled]="!selectedMarcaId"
+              required
+              [(ngModel)]="selectedModelloId"
+              (ngModelChange)="onModelloChange(selectedModelloId)"
+              name="modello"
+              #modello="ngModel"
+            >
+              <option selected [value]="0">Seleziona un modello</option>
+              <option *ngFor="let modello of modelli" [value]="modello.id">
+                {{ modello.nome }}
+              </option>
+            </select>
 
-    <div
-      *ngIf="selectedModelloId == 0 && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare un modello.
+            <div
+              *ngIf="selectedModelloId == 0 && formSubmitted"
+              class="alert text-danger ps-0"
+            >
+              Selezionare un modello.
+            </div>
+          </div>
+        </div>
+
+        <div class="row row-cols-3 justify-content-between">
+          <!--Destinazione d'uso-->
+          <div class="mb-3 col">
+            <label for="destinazione_uso_nome" class="form-label"
+              >Destinazione d'uso</label
+            >
+            <select
+              id="destinazione_uso_nome"
+              class="form-select"
+              [(ngModel)]="selectedDestinazioneUsoId"
+              required
+              (ngModelChange)="
+                onDestinazioneUsoChange(selectedDestinazioneUsoId)
+              "
+              name="destinazioneUso"
+            >
+              <option selected [value]="0">
+                Seleziona la destinazione d'uso
+              </option>
+              <option
+                *ngFor="let destinazione of destinazioni"
+                [value]="destinazione.id"
+              >
+                {{ destinazione.nome }}
+              </option>
+            </select>
+
+            <div
+              *ngIf="selectedDestinazioneUsoId == 0 && formSubmitted"
+              class="alert text-danger ps-0"
+            >
+              Selezionare la destinazione d'uso
+            </div>
+          </div>
+
+          <!--Società-->
+          <div class="mb-3 col">
+            <label for="societa_nome" class="form-label">Società</label>
+            <select
+              id="societa_nome"
+              class="form-select"
+              [(ngModel)]="selectedSocietaId"
+              required
+              (ngModelChange)="onSocietaChange(selectedSocietaId)"
+              name="societa"
+            >
+              <option selected [value]="0">Seleziona una società</option>
+              <option *ngFor="let societa of societas" [value]="societa.id">
+                {{ societa.nome }}
+              </option>
+            </select>
+
+            <div
+              *ngIf="selectedSocietaId == 0 && formSubmitted"
+              class="alert text-danger ps-0"
+            >
+              Selezionare la società proprietaria del veicolo.
+            </div>
+          </div>
+
+          <!--Tipo alimentazione-->
+          <div class="mb-3 col">
+            <label for="tipo_alimentazione_nome" class="form-label"
+              >Alimentazione</label
+            >
+            <select
+              id="tipo_alimentazione_nome"
+              name="alimentazione"
+              class="form-select"
+              [(ngModel)]="selectedAlimentazioneId"
+              required
+              (ngModelChange)="onAlimentazioneChange(selectedAlimentazioneId)"
+            >
+              <option selected [value]="0">
+                Seleziona un tipo di alimentazione
+              </option>
+              <option
+                *ngFor="let tipoAlimentazione of tipiAlimentazione"
+                [value]="tipoAlimentazione.id"
+              >
+                {{ tipoAlimentazione.nome }}
+              </option>
+            </select>
+
+            <div
+              *ngIf="selectedAlimentazioneId == 0 && formSubmitted"
+              class="alert text-danger ps-0"
+            >
+              Selezionare un tipo di alimentazione.
+            </div>
+          </div>
+        </div>
+        <div class="row row-cols-3 justify-content-between">
+          <!--Allestimento-->
+          <div class="mb-3 col">
+            <label for="tipo_allestimento_nome" class="form-label"
+              >Allestimento</label
+            >
+            <select
+              id="tipo_allestimento_nome"
+              class="form-select"
+              [(ngModel)]="selectedAllestimentoId"
+              required
+              (ngModelChange)="onAllestimentoChange(selectedAllestimentoId)"
+              name="allestimento"
+            >
+              <option selected [value]="0">
+                Seleziona un tipo di allestimento
+              </option>
+              <option
+                *ngFor="let allestimento of allestimenti"
+                [value]="allestimento.id"
+              >
+                {{ allestimento.nome }}
+              </option>
+            </select>
+
+            <div
+              *ngIf="selectedAllestimentoId == 0 && formSubmitted"
+              class="alert text-danger ps-0"
+            >
+              Selezionare un tipo di allestimento.
+            </div>
+          </div>
+
+          <!-- Tipo asse-->
+          <div class="mb-3 col">
+            <label for="tipo_asse_nome" class="form-label">Tipo asse</label>
+            <select
+              id="tipo_asse_nome"
+              class="form-select"
+              [(ngModel)]="selectedTipoAsseId"
+              required
+              (ngModelChange)="onTipoAsseChange(selectedTipoAsseId)"
+              name="tipoAsse"
+            >
+              <option selected [value]="0">Seleziona un tipo di asse</option>
+              <option *ngFor="let tipoAsse of tipiAsse" [value]="tipoAsse.id">
+                {{ tipoAsse.nome }}
+              </option>
+            </select>
+
+            <div
+              *ngIf="selectedTipoAsseId == null && formSubmitted"
+              class="alert text-danger ps-0"
+            >
+              Selezionare un tipo di asse.
+            </div>
+          </div>
+
+          <!--Cambio-->
+          <div class="mb-3 col">
+            <label for="tipo_cambio_nome" class="form-label">Cambio</label>
+            <select
+              id="tipo_cambio_nome"
+              class="form-select"
+              [(ngModel)]="selectedCambioId"
+              required
+              (ngModelChange)="onCambioChange(selectedCambioId)"
+              name="cambio"
+            >
+              <option selected [value]="0">Seleziona un tipo di cambio</option>
+              <option
+                *ngFor="let tipoCambio of tipiCambio"
+                [value]="tipoCambio.id"
+              >
+                {{ tipoCambio.nome }}
+              </option>
+            </select>
+
+            <div
+              *ngIf="selectedCambioId == null && formSubmitted"
+              class="alert text-danger ps-0"
+            >
+              Selezionare un tipo di cambio.
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          class="btn my-btn btn-primary"
+          (click)="customizedSearch()"
+        >
+          Cerca veicolo
+        </button>
+      </form>
     </div>
   </div>
 </div>
-
-  <div class="row row-cols-3 justify-content-between ">
-  <!--Destinazione d'uso-->
-  <div class="mb-3 col">
-    <label for="destinazione_uso_nome" class="form-label"
-      >Destinazione d'uso</label
-    >
-    <select
-      id="destinazione_uso_nome"
-      class="form-select"
-      [(ngModel)]="selectedDestinazioneUsoId"
-      required
-      (ngModelChange)="onDestinazioneUsoChange(selectedDestinazioneUsoId)"
-      name="destinazioneUso"
-    >
-    <option selected [value]="0">Seleziona la destinazione d'uso</option>
-      <option
-        *ngFor="let destinazione of destinazioni"
-        [value]="destinazione.id"
-      >
-        {{ destinazione.nome }}
-      </option>
-    </select>
-
-    <div
-      *ngIf="selectedDestinazioneUsoId == 0 && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare la destinazione d'uso
-    </div>
-  </div>
-
-  <!--Società-->
-  <div class="mb-3 col">
-    <label for="societa_nome" class="form-label">Società</label>
-    <select
-      id="societa_nome"
-      class="form-select"
-      [(ngModel)]="selectedSocietaId"
-      required
-      (ngModelChange)="onSocietaChange(selectedSocietaId)"
-      name="societa"
-    >
-    <option selected [value]="0">Seleziona una società</option>
-      <option *ngFor="let societa of societas" [value]="societa.id">
-        {{ societa.nome }}
-      </option>
-    </select>
-
-    <div
-      *ngIf="selectedSocietaId == 0 && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare la società proprietaria del veicolo.
-    </div>
-  </div>
-
-  <!--Tipo alimentazione-->
-  <div class="mb-3 col">
-    <label for="tipo_alimentazione_nome" class="form-label"
-      >Alimentazione</label
-    >
-    <select
-      id="tipo_alimentazione_nome"
-      name="alimentazione"
-      class="form-select"
-      [(ngModel)]="selectedAlimentazioneId"
-      required
-      (ngModelChange)="onAlimentazioneChange(selectedAlimentazioneId)"
-    >
-    <option selected [value]="0">Seleziona un tipo di alimentazione</option>
-      <option
-        *ngFor="let tipoAlimentazione of tipiAlimentazione"
-        [value]="tipoAlimentazione.id"
-      >
-        {{ tipoAlimentazione.nome }}
-      </option>
-    </select>
-
-    <div
-      *ngIf="selectedAlimentazioneId == 0 && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare un tipo di alimentazione.
-    </div>
-  </div>
-</div>
-<div class="row row-cols-3 justify-content-between ">
-
-  <!--Allestimento-->
-  <div class="mb-3 col">
-    <label for="tipo_allestimento_nome" class="form-label"
-      >Allestimento</label
-    >
-    <select
-      id="tipo_allestimento_nome"
-      class="form-select"
-      [(ngModel)]="selectedAllestimentoId"
-      required
-      (ngModelChange)="onAllestimentoChange(selectedAllestimentoId)"
-      name="allestimento"
-    >
-    <option selected [value]="0">Seleziona un tipo di allestimento</option>
-      <option
-        *ngFor="let allestimento of allestimenti"
-        [value]="allestimento.id"
-      >
-        {{ allestimento.nome }}
-      </option>
-    </select>
-
-    <div
-      *ngIf="selectedAllestimentoId == 0 && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare un tipo di allestimento.
-    </div>
-  </div>
-
-  <!-- Tipo asse-->
-  <div class="mb-3 col">
-    <label for="tipo_asse_nome" class="form-label">Tipo asse</label>
-    <select
-      id="tipo_asse_nome"
-      class="form-select"
-      [(ngModel)]="selectedTipoAsseId"
-      required
-      (ngModelChange)="onTipoAsseChange(selectedTipoAsseId)"
-      name="tipoAsse"
-    >
-    <option selected [value]="0">Seleziona un tipo di asse</option>
-      <option *ngFor="let tipoAsse of tipiAsse" [value]="tipoAsse.id">
-        {{ tipoAsse.nome }}
-      </option>
-    </select>
-
-    <div
-      *ngIf="selectedTipoAsseId == null && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare un tipo di asse.
-    </div>
-  </div>
-
-  <!--Cambio-->
-  <div class="mb-3 col">
-    <label for="tipo_cambio_nome" class="form-label">Cambio</label>
-    <select
-      id="tipo_cambio_nome"
-      class="form-select"
-      [(ngModel)]="selectedCambioId"
-      required
-      (ngModelChange)="onCambioChange(selectedCambioId)"
-      name="cambio"
-    >
-    <option selected [value]="0">Seleziona un tipo di cambio</option>
-      <option *ngFor="let tipoCambio of tipiCambio" [value]="tipoCambio.id">
-        {{ tipoCambio.nome }}
-      </option>
-    </select>
-
-    <div
-      *ngIf="selectedCambioId == null && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare un tipo di cambio.
-    </div>
-  </div>
-</div>
-
-  <button
-    type="submit"
-    class="btn my-btn btn-primary"
-    (click)="customizedSearch()"
-  >
-    Cerca veicolo
-  </button>
-</form>
-    </div>
-  </div>
-</div>
-
 
 <!--Spinner-->
 <div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
@@ -317,8 +328,12 @@
       <th scope="col" class="d-none">Società</th>
       <th scope="col">Targa</th>
       <th scope="col" class="d-none d-xl-table-cell">Alimentazione</th>
-      <th scope="col" class="d-none" class="d-none d-xxl-table-cell">Allestimento</th>
-      <th scope="col" class="d-none" class="d-none d-xxl-table-cell">Tipo asse</th>
+      <th scope="col" class="d-none" class="d-none d-xxl-table-cell">
+        Allestimento
+      </th>
+      <th scope="col" class="d-none" class="d-none d-xxl-table-cell">
+        Tipo asse
+      </th>
       <th scope="col" class="d-none" class="d-none d-xxl-table-cell">Cambio</th>
     </tr>
   </thead>
@@ -332,21 +347,33 @@
       <td class="d-none d-sm-table-cell">{{ veicolo.modello_nome }}</td>
       <td class="d-none">{{ veicolo.cilindrata }}</td>
       <td class="d-none d-lg-table-cell">{{ veicolo.colore }}</td>
-      <td class="d-none d-md-table-cell">{{ veicolo.destinazione_uso_nome }}</td>
+      <td class="d-none d-md-table-cell">
+        {{ veicolo.destinazione_uso_nome }}
+      </td>
       <td class="d-none">{{ veicolo.massa }}</td>
       <td class="d-none">{{ veicolo.numero_assi }}</td>
       <td class="d-none">{{ veicolo.portata }}</td>
       <td class="d-none">{{ veicolo.potenza }}</td>
       <td class="d-none">{{ veicolo.societa_nome }}</td>
       <td>{{ veicolo.targa }}</td>
-      <td class="d-none d-xl-table-cell">{{ veicolo.tipo_alimentazione_nome }}</td>
-      <td class="d-none d-xxl-table-cell">{{ veicolo.tipo_allestimento_nome }}</td>
+      <td class="d-none d-xl-table-cell">
+        {{ veicolo.tipo_alimentazione_nome }}
+      </td>
+      <td class="d-none d-xxl-table-cell">
+        {{ veicolo.tipo_allestimento_nome }}
+      </td>
       <td class="d-none d-xxl-table-cell">{{ veicolo.tipo_asse_nome }}</td>
       <td class="d-none d-xxl-table-cell">{{ veicolo.tipo_cambio_nome }}</td>
       <td>
-        <a [routerLink]="['details', veicolo.id]"><i class="fa-solid fa-circle-info"></i></a> 
-        <a [routerLink]="['edit', veicolo.id]"><i class="fa-solid fa-pen-to-square"></i></a>
-        <a [routerLink]="['delete', veicolo.id]"><i class="fa-solid fa-trash"></i></a>
+        <a [routerLink]="['details', veicolo.id]"
+          ><i class="fa-solid fa-circle-info"></i
+        ></a>
+        <a [routerLink]="['edit', veicolo.id]"
+          ><i class="fa-solid fa-pen-to-square"></i
+        ></a>
+        <a [routerLink]="['delete', veicolo.id]"
+          ><i class="fa-solid fa-trash"></i
+        ></a>
       </td>
     </tr>
   </tbody>
@@ -367,7 +394,6 @@
   >
     >
   </ngb-pagination>
-
 </div>
 
 <hr />
