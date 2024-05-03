@@ -50,7 +50,6 @@ export class VeicoliService {
     return this.http.get<Veicoli>(this.veicoliUrl + '/' + id);
     //return this.http.get<Veicoli[]>(this.veicoliUrl+'?id='+id)
   }
-
   create(veicoli: Veicoli): Observable<Veicoli> {
     return this.http.post<Veicoli>(this.veicoliUrl, veicoli).pipe(
       tap(() => {
@@ -58,7 +57,6 @@ export class VeicoliService {
       })
     );
   }
-
   update(veicolo: Veicoli): Observable<Veicoli> {
     return this.http.put<Veicoli>(this.veicoliUrl + '/' + veicolo.id, veicolo);
   }

@@ -9,7 +9,7 @@ import { ServizioService } from 'src/app/services/servizio.service';
   templateUrl: './bolli.component.html',
   styleUrls: ['./bolli.component.scss']
 })
-export class BolliComponent implements OnInit {
+export class BolliComponent implements OnInit  {
 
   page = 1;
   pageSize = 10;
@@ -54,9 +54,10 @@ export class BolliComponent implements OnInit {
       .pipe(
         startWith(''),
         debounceTime(300),
-        map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.bolli
-        )
+        map((text) => {
+          const id = Number(text!.trim());
+          return id > 0 ? this.search(id) : this.bolli; // Assicurati che sia un ID valido e maggiore di zero
+        })
       )
       .subscribe((filtered) => {
         this.filteredBolli = filtered;
@@ -65,14 +66,14 @@ export class BolliComponent implements OnInit {
       });
   }
 
-  search(text: string): IAlert[] {
-    const term = text.toLowerCase();
-    console.log(text);
-
-    return this.bolli.filter((bolli) =>
-      (bolli.targa || '').toLowerCase().startsWith(term)
+  search(id: number): IAlert[] {
+    console.log(id);
+  
+    return this.bolli.filter((bollo) =>
+      bollo.id_veicolo === id
     );
   }
+  
 
   refreshBolli() {
     const start = (this.page - 1) * this.pageSize;
@@ -82,4 +83,5 @@ export class BolliComponent implements OnInit {
 
   }
 }
+
 

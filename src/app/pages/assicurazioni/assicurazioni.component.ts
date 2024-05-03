@@ -1,5 +1,5 @@
-import { Component, OnInit, } from '@angular/core';
-import { IAssicurazioni } from 'src/app/interfaces/alert/iassicurazioni';
+import { Component, OnInit } from '@angular/core';
+import { IAlert } from 'src/app/interfaces/alert/ialert';
 import { FormControl } from '@angular/forms';
 import { debounceTime, startWith, map } from 'rxjs';
 import { ServizioService } from 'src/app/services/servizio.service';
@@ -9,15 +9,15 @@ import { ServizioService } from 'src/app/services/servizio.service';
   templateUrl: './assicurazioni.component.html',
   styleUrls: ['./assicurazioni.component.scss']
 })
-export class AssicurazioniComponent implements OnInit {
+export class AssicurazioniComponent implements OnInit  {
 
   page = 1;
   pageSize = 10;
-  assicurazioni: IAssicurazioni[] = [];
+  assicurazioni: IAlert[] = [];
   collectionSize = this.assicurazioni.length;
-  assicurazioniToShow: IAssicurazioni[] | undefined;
+  assicurazioniToShow: IAlert[] | undefined;
 
-  filteredAssicurazioni: IAssicurazioni[] = [];
+  filteredAssicurazioni: IAlert[] = [];
   filter = new FormControl('');
 
   spinner:boolean | undefined = true;
@@ -34,7 +34,7 @@ export class AssicurazioniComponent implements OnInit {
   }
     private getAllAssicurazioni(){
       const firstParam = 'assicurazione'
-        this.svc.getAll(firstParam).subscribe((data: IAssicurazioni[]) => {
+        this.svc.getAll(firstParam).subscribe((data: IAlert[]) => {
         this.assicurazioni = data.reverse();
         this.collectionSize = data.length;
         this.refreshAssicurazioni();
@@ -54,9 +54,10 @@ export class AssicurazioniComponent implements OnInit {
       .pipe(
         startWith(''),
         debounceTime(300),
-        map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.assicurazioni
-        )
+        map((text) => {
+          const id = Number(text!.trim());
+          return id > 0 ? this.search(id) : this.assicurazioni; // Assicurati che sia un ID valido e maggiore di zero
+        })
       )
       .subscribe((filtered) => {
         this.filteredAssicurazioni = filtered;
@@ -65,14 +66,14 @@ export class AssicurazioniComponent implements OnInit {
       });
   }
 
-  search(text: string): IAssicurazioni[] {
-    const term = text.toLowerCase();
-    console.log(text);
-
-    return this.assicurazioni.filter((assicurazione) =>
-      (assicurazione.targa || '').toLowerCase().startsWith(term)
+  search(id: number): IAlert[] {
+    console.log(id);
+  
+    return this.assicurazioni.filter((revisione) =>
+      revisione.id_veicolo === id
     );
   }
+  
 
   refreshAssicurazioni() {
     const start = (this.page - 1) * this.pageSize;
@@ -82,4 +83,5 @@ export class AssicurazioniComponent implements OnInit {
 
   }
 }
+
 

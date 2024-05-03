@@ -9,7 +9,7 @@ import { ServizioService } from 'src/app/services/servizio.service';
   templateUrl: './tagliando.component.html',
   styleUrls: ['./tagliando.component.scss']
 })
-export class TagliandoComponent implements OnInit {
+export class TagliandoComponent implements OnInit  {
 
   page = 1;
   pageSize = 10;
@@ -54,9 +54,10 @@ export class TagliandoComponent implements OnInit {
       .pipe(
         startWith(''),
         debounceTime(300),
-        map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.tagliandi
-        )
+        map((text) => {
+          const id = Number(text!.trim());
+          return id > 0 ? this.search(id) : this.tagliandi; // Assicurati che sia un ID valido e maggiore di zero
+        })
       )
       .subscribe((filtered) => {
         this.filteredTagliandi = filtered;
@@ -65,14 +66,14 @@ export class TagliandoComponent implements OnInit {
       });
   }
 
-  search(text: string): IAlert[] {
-    const term = text.toLowerCase();
-    console.log(text);
-
-    return this.tagliandi.filter((tagliandi) =>
-      (tagliandi.targa || '').toLowerCase().startsWith(term)
+  search(id: number): IAlert[] {
+    console.log(id);
+  
+    return this.tagliandi.filter((tagliando) =>
+      tagliando.id_veicolo === id
     );
   }
+  
 
   refreshTagliandi() {
     const start = (this.page - 1) * this.pageSize;
@@ -82,4 +83,5 @@ export class TagliandoComponent implements OnInit {
 
   }
 }
+
 

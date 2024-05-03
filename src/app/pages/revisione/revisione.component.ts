@@ -44,7 +44,7 @@ export class RevisioneComponent implements OnInit  {
 
         if(data){
           this.spinner = false;
-          //console.log('revisioni', data)
+          console.log('revisioni', data)
         }
       });
     }
@@ -54,9 +54,10 @@ export class RevisioneComponent implements OnInit  {
       .pipe(
         startWith(''),
         debounceTime(300),
-        map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.revisioni
-        )
+        map((text) => {
+          const id = Number(text!.trim());
+          return id > 0 ? this.search(id) : this.revisioni; // Assicurati che sia un ID valido e maggiore di zero
+        })
       )
       .subscribe((filtered) => {
         this.filteredRevisioni = filtered;
@@ -65,14 +66,14 @@ export class RevisioneComponent implements OnInit  {
       });
   }
 
-   search(text: string): IAlert[] {
-   const term = text.toLowerCase();
-    console.log(text);
-
+  search(id: number): IAlert[] {
+    console.log(id);
+  
     return this.revisioni.filter((revisione) =>
-      (revisione.targa || '').toLowerCase().startsWith(term)
+      revisione.id_veicolo === id
     );
   }
+  
 
   refreshRevisioni() {
     const start = (this.page - 1) * this.pageSize;

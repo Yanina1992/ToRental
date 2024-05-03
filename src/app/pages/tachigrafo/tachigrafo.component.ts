@@ -9,7 +9,7 @@ import { ServizioService } from 'src/app/services/servizio.service';
   templateUrl: './tachigrafo.component.html',
   styleUrls: ['./tachigrafo.component.scss']
 })
-export class TachigrafoComponent implements OnInit {
+export class TachigrafoComponent implements OnInit  {
 
   page = 1;
   pageSize = 10;
@@ -54,9 +54,10 @@ export class TachigrafoComponent implements OnInit {
       .pipe(
         startWith(''),
         debounceTime(300),
-        map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.tachigrafi
-        )
+        map((text) => {
+          const id = Number(text!.trim());
+          return id > 0 ? this.search(id) : this.tachigrafi; // Assicurati che sia un ID valido e maggiore di zero
+        })
       )
       .subscribe((filtered) => {
         this.filteredTachigrafi = filtered;
@@ -65,14 +66,14 @@ export class TachigrafoComponent implements OnInit {
       });
   }
 
-  search(text: string): IAlert[] {
-    const term = text.toLowerCase();
-    console.log(text);
-
-    return this.tachigrafi.filter((tachigrafi) =>
-      (tachigrafi.targa || '').toLowerCase().startsWith(term)
+  search(id: number): IAlert[] {
+    console.log(id);
+  
+    return this.tachigrafi.filter((tachigrafo) =>
+      tachigrafo.id_veicolo === id
     );
   }
+  
 
   refreshTachigrafi() {
     const start = (this.page - 1) * this.pageSize;
@@ -82,4 +83,5 @@ export class TachigrafoComponent implements OnInit {
 
   }
 }
+
 

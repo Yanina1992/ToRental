@@ -157,12 +157,12 @@ export class TableComponent implements OnInit {
       ) {
         this.filterByDestinazione();
       }
-      if (this.veicoloForm.id_societa && this.veicoloForm.id_societa > 0) {
+      if (this.veicoloForm.id_proprietario && this.veicoloForm.id_proprietario > 0) {
         this.filterBySocieta();
       }
       if (
-        this.veicoloForm.id_tipo_alimentazione &&
-        this.veicoloForm.id_tipo_alimentazione > 0
+        this.veicoloForm.id_alimentazione &&
+        this.veicoloForm.id_alimentazione > 0
       ) {
         this.filterByAlimentazione();
       }
@@ -255,11 +255,11 @@ export class TableComponent implements OnInit {
   filterBySocieta() {
     if (this.myFilteredVeicoli.length > 0) {
       this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_societa == this.veicoloForm.id_societa
+        (e) => e.id_proprietario == this.veicoloForm.id_proprietario
       );
     } else {
       this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_societa == this.veicoloForm.id_societa
+        (e) => e.id_proprietario == this.veicoloForm.id_proprietario
       );
     }
     console.log('does filterBySocieta work?', this.myFilteredVeicoli);
@@ -270,11 +270,11 @@ export class TableComponent implements OnInit {
 
     if (this.myFilteredVeicoli.length > 0) {
       this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_tipo_alimentazione == this.veicoloForm.id_tipo_alimentazione
+        (e) => e.id_alimentazione == this.veicoloForm.id_alimentazione
       );
     } else {
       this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_tipo_alimentazione == this.veicoloForm.id_tipo_alimentazione
+        (e) => e.id_alimentazione == this.veicoloForm.id_alimentazione
       );
     }
     console.log('does filterByAlimentazione work?', this.myFilteredVeicoli);
@@ -320,14 +320,10 @@ export class TableComponent implements OnInit {
     return this.myFilteredVeicoli;
   }
 
-  /*showResOfAllFilters() {
-    console.log('the very last check', this.myFilteredVeicoli);
-    this.veicoliToShow = this.myFilteredVeicoli;
-  }*/
   showResOfAllFilters() {
-    this.filteredVeicoli = this.myFilteredVeicoli; // Aggiorna l'array filtrato
-    this.collectionSize = this.filteredVeicoli.length; // Aggiorna il numero totale di elementi filtrati
-    this.refreshVeicoli(); // Applica la paginazione
+    this.filteredVeicoli = this.myFilteredVeicoli; 
+    this.collectionSize = this.filteredVeicoli.length;
+    this.refreshVeicoli();
   }
 
   refreshVeicoli() {
@@ -376,13 +372,13 @@ export class TableComponent implements OnInit {
   selectedAlimentazioneId: number = 0;
   onAlimentazioneChange(selectedAlimentazioneId: number) {
     if (selectedAlimentazioneId) {
-      this.veicoloForm.id_tipo_alimentazione = selectedAlimentazioneId;
+      this.veicoloForm.id_alimentazione = selectedAlimentazioneId;
     }
   }
   selectedSocietaId: number = 0;
   onSocietaChange(selectedSocietaId: number) {
     if (selectedSocietaId) {
-      this.veicoloForm.id_societa = selectedSocietaId;
+      this.veicoloForm.id_proprietario = selectedSocietaId;
     }
   }
   selectedDestinazioneUsoId: number = 0;

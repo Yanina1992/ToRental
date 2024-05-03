@@ -122,13 +122,13 @@ export class VeicoliComponent implements OnInit, OnChanges {
   selectedAlimentazioneId: number = 0;
   onAlimentazioneChange(selectedAlimentazioneId: number) {
     if (selectedAlimentazioneId) {
-      this.veicoloForm.id_tipo_alimentazione = selectedAlimentazioneId;
+      this.veicoloForm.id_alimentazione = selectedAlimentazioneId;
     }
   }
   selectedSocietaId: number = 0;
   onSocietaChange(selectedSocietaId: number) {
     if (selectedSocietaId) {
-      this.veicoloForm.id_societa = selectedSocietaId;
+      this.veicoloForm.id_proprietario = selectedSocietaId;
     }
   }
   selectedDestinazioneUsoId: number = 0;

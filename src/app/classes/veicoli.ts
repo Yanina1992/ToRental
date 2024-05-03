@@ -40,13 +40,13 @@ export class Veicoli implements IAlert {
 
   public potenza: number = 0;
 
-  public societa_nome?: string = '';
-  public id_societa?: number = 0;
+  public proprietario_nome?: string = '';
+  public id_proprietario?: number = 0;
 
   public targa: string = '';
 
   public tipo_alimentazione_nome?: string = '';
-  public id_tipo_alimentazione?: number = 0;
+  public id_alimentazione?: number = 0;
 
   public tipo_allestimento_nome?: string = '';
   public id_tipo_allestimento?: number = 0;

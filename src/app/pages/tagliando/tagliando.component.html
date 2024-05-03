@@ -1,113 +1,90 @@
-<!--Searching by targa-->
+<!--Searching by id-->
 <form id="search-form">
-    <div class="mb-3 row justify-content-center">
-      <label
-        for="table-filtering-search"
-        class="col-xs-3 col-sm-auto col-form-label"
-        >Cerca per targa:</label
-      >
-      <div class="col-xs-3 col-sm-auto">
-        <input
-          id="table-filtering-search"
-          class="form-control"
-          type="text"
-          [formControl]="filter"
-        />
-      </div>
-    </div>
-  </form>
-  
-  <!--Spinner-->
-  <div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
+  <div class="mb-3 row justify-content-center">
+    <label
+      for="table-filtering-search"
+      class="col-xs-3 col-sm-auto col-form-label"
+      >Inserisci il numero identificativo del veicolo:</label
+    >
+    <div class="col-xs-3 col-sm-auto">
+      <input
+        id="table-filtering-search"
+        class="form-control"
+        type="text"
+        [formControl]="filter"
+      />
     </div>
   </div>
-  
-   <h2 class="text-center">Tagliandi</h2>
-  <table class="table table-striped ms-2">
-    <thead>
-      <tr>
-        <th scope="col">Nr. id.</th>
-        <th scope="col" class="d-none d-sm-table-cell">id veicolo</th>
-        <th scope="col" class="d-none d-sm-table-cell"> id atp</th>
-        <th scope="col" class="d-none d-sm-table-cell">anno</th>
-        <th scope="col" class="d-none">data_pagamento</th>
-        <th scope="col" class="d-none d-lg-table-cell">inizio_validita</th>
-        <th scope="col" class="d-none d-md-table-cell">importo</th>
-        <th scope="col" class="d-none">agenzia</th>
-        <th scope="col" class="d-none">polizza</th>
-        <th scope="col" class="d-none">tipo_scadenza</th>
-        <th scope="col" class="d-none">livello</th>
-        <th scope="col" class="d-none">targa</th>
-        <th scope="col">Targa</th>
-        <th scope="col" class="d-none d-xl-table-cell">marca</th>
-        <th scope="col" class="d-none" class="d-none d-xxl-table-cell">modello</th>
-        <th scope="col" class="d-none" class="d-none d-xxl-table-cell">valid</th>
-        <th scope="col" class="d-none" class="d-none d-xxl-table-cell">expired</th>
-      </tr>
-    </thead>
+</form>
 
-    <tbody>
-      <tr *ngFor="let tagliando of tagliandiToShow">
-        <th scope="row">{{ tagliando.id }}</th>
-        <td class="d-none d-sm-table-cell">
-          {{ tagliando.id_veicolo }}
-        </td>
-        <td class="d-none d-sm-table-cell">{{ tagliando.anno }}</td>
-        <td class="d-none d-sm-table-cell">{{ tagliando.data_pagamento }}</td>
-        <!--<td class="d-none">{{ tagliando.cilindrata }}</td>
-        <td class="d-none d-lg-table-cell">{{ tagliando.colore }}</td>
-        <td class="d-none d-md-table-cell">{{ tagliando.destinazione_uso_nome }}</td>
-        <td class="d-none">{{ tagliando.massa }}</td>
-        <td class="d-none">{{ tagliando.numero_assi }}</td>
-        <td class="d-none">{{ tagliando.portata }}</td>
-        <td class="d-none">{{ tagliando.potenza }}</td>
-        <td class="d-none">{{ tagliando.societa_nome }}</td>
-        <td>{{ tagliando.targa }}</td>
-        <td class="d-none d-xl-table-cell">{{ tagliando.tipo_alimentazione_nome }}</td>
-        <td class="d-none d-xxl-table-cell">{{ tagliando.tipo_allestimento_nome }}</td>
-        <td class="d-none d-xxl-table-cell">{{ tagliando.tipo_asse_nome }}</td>
-        <td class="d-none d-xxl-table-cell">{{ tagliando.tipo_cambio_nome }}</td>
-        <td>
-          <a [routerLink]="['details', tagliando.id]"><i class="fa-solid fa-circle-info"></i></a> 
-          <a [routerLink]="['edit', tagliando.id]"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a [routerLink]="['delete', tagliando.id]"><i class="fa-solid fa-trash"></i></a>
-        </td>-->
-      </tr>
-    </tbody>
-  </table>
-  
-  <!--Pagination-->
-  <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
-    <ngb-pagination
-      [collectionSize]="collectionSize"
-      [(page)]="page"
-      [pageSize]="pageSize"
-      (pageChange)="refreshTagliandi()"
-      [maxSize]="4"
-      [rotate]="true"
-      [boundaryLinks]="true"
-      [directionLinks]="true"
-      id="pag"
-    >
-      >
-    </ngb-pagination>
-  
-    <select
-      class="form-select"
-      style="width: auto"
-      [(ngModel)]="pageSize"
-      (ngModelChange)="refreshTagliandi()"
-      name="pagination"
-    >
-      <option [ngValue]="2">Visualizza 2 certificati Atp per pagina</option>
-      <option [ngValue]="4">Visualizza 4 certificati Atp per pagina</option>
-      <option [ngValue]="6">Visualizza 6 certificati Atp per pagina</option>
-    </select>
+<h2 class="text-center">Tagliandi</h2>
+
+<!--Spinner-->
+<div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
   </div>
-  
-  <hr />
-  
+</div>
 
+<table class="table table-striped ms-2">
+  <thead>
+    <tr>
+      <th scope="col">Nr. id rev.</th>
+      <th scope="col">Nr. id. veicolo</th>
+      <th scope="col">Anno</th>
+      <th scope="col">Data pagamento</th>
+      <th scope="col">Inizio validità</th>
+      <th scope="col">Fine validità</th>
+      <th scope="col">Importo</th>
+      <th scope="col" class="d-none d-sm-table-cell">Polizza</th>
+      <th scope="col" class="d-none d-sm-table-cell">Tipo scadenza</th>
+      <th scope="col" class="d-none d-sm-table-cell">Agenzia</th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <tr *ngFor="let tagliando of tagliandiToShow">
+      <th scope="row">{{ tagliando.id }}</th>
+      <td>{{ tagliando.id_veicolo }}</td>
+      <td>{{ tagliando.anno }}</td>
+      <td>{{ tagliando.data_pagamento }}</td>
+      <td>{{ tagliando.inizio_validita }}</td>
+      <td class="d-none d-lg-table-cell">{{ tagliando.fine_validita }}</td>
+      <td class="d-none d-md-table-cell">€{{ tagliando.importo }}</td>
+      <td class="d-none d-sm-table-cell">{{ tagliando.polizza }}</td>
+      <td class="d-none d-sm-table-cell">{{ tagliando.tipo_scadenza }}</td>
+      <td class="d-none d-sm-table-cell">{{ tagliando.agenzia }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!--Pagination-->
+<div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
+  <ngb-pagination
+    [collectionSize]="collectionSize"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    (pageChange)="refreshTagliandi()"
+    [maxSize]="4"
+    [rotate]="true"
+    [boundaryLinks]="true"
+    [directionLinks]="true"
+    id="pag"
+  >
+    >
+  </ngb-pagination>
+
+  <select
+    class="form-select"
+    style="width: auto"
+    [(ngModel)]="pageSize"
+    (ngModelChange)="refreshTagliandi()"
+    name="pagination"
+  >
+    <option [ngValue]="2">Visualizza 2 tagliandi per pagina</option>
+    <option [ngValue]="4">Visualizza 4 tagliandi per pagina</option>
+    <option [ngValue]="6">Visualizza 6 tagliandi per pagina</option>
+  </select>
+</div>
+
+<hr />

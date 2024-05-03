@@ -186,15 +186,15 @@
       <select
         id="change_alimentazione"
         class="form-select"
-        [(ngModel)]="selectedTipoAlimentazioneId"
+        [(ngModel)]="selectedAlimentazioneId"
         (ngModelChange)="onAlimentazioneChange($event)"
         name="alimentazione"
       >
         <option
-          *ngFor="let tipoAlimentazione of tipiAlimentazione"
-          [value]="tipoAlimentazione.id"
+          *ngFor="let alimentazione of alimentazioni"
+          [value]="alimentazione.id"
         >
-          {{ tipoAlimentazione.nome }}
+          {{ alimentazione.nome }}
         </option>
       </select>
     </div>
@@ -250,7 +250,7 @@
       </select>
     </div>
 
-    <!--Data immatricolazione-->
+    <!--Data immatricolazione ----------------------------------bisogna prima gestire l'eventuale presenza di più targhe, e quindi di più date immatricolazione, lato backend
     <div class="mb-3">
       <label for="data_immatricolazione" class="form-label"
         >Data immatricolazione</label
@@ -299,7 +299,7 @@
         </span>
       </ng-template>
     </div>
-
+-->
 
     <button
     type="submit"

@@ -115,14 +115,14 @@ export class AuthService {
       return
     }
     const accessData:IAccessData = JSON.parse(userJson);
-    console.log("Token being checked:", accessData.access_token);
+    //console.log("Token being checked:", accessData.access_token);
 
     if (this.jwtHelper.isTokenExpired(accessData.access_token)) {
       console.log("Token expired:", accessData.access_token);
       this.router.navigate(['']);
       return;
     }
-    console.log("User restored with access data:", accessData);
+    //console.log("User restored with access data:", accessData);
     this.authSubject.next(accessData);
 
   }}

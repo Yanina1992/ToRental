@@ -42,8 +42,8 @@ export class EditComponent implements OnInit {
   societas: ISocieta[] = [];
   selectedSocietaId: any;
 
-  tipiAlimentazione: IAlimentazione[] = [];
-  selectedTipoAlimentazioneId: any;
+  alimentazioni: IAlimentazione[] = [];
+  selectedAlimentazioneId: any;
 
   allestimenti: IAllestimento[] = [];
   selectedAllestimentoId: any;
@@ -67,7 +67,7 @@ export class EditComponent implements OnInit {
     this.route.params.subscribe((params: any) => {
       this.veicoliSvc.getExtraById(params.id).subscribe((res) => {
         this.veicolo = res;
-        //console.log('data o non data?', res);
+        console.log('veicolo to edit', res);
         
 
         //Get for filling in the select
@@ -86,24 +86,24 @@ export class EditComponent implements OnInit {
           this.selectedModelloId = this.veicolo.id_modello;
         });
 
-        this.veicoliSvc.getAllModelli().subscribe((data) => {
-          this.modelli = data;
-          this.selectedModelloId = this.veicolo.id_modello;
-        });
-
         this.veicoliSvc.getAllDestinazioniDUso().subscribe((data) => {
           this.destinazioni = data;
           this.selectedDestinazioneId = this.veicolo.id_destinazione_uso;
+          console.log('selected destinazione', this.selectedDestinazioneId)
         });
 
         this.veicoliSvc.getAllSocieta().subscribe((data) => {
+          console.log("Società Loaded", data)
           this.societas = data;
-          this.selectedSocietaId = this.veicolo.id_societa;
+          this.selectedSocietaId = this.veicolo.id_proprietario;
+          console.log('selected società', this.selectedSocietaId)
         });
 
         this.veicoliSvc.getAllAlimentazioni().subscribe((data) => {
-          this.tipiAlimentazione = data;
-          this.selectedTipoAlimentazioneId = this.veicolo.id_tipo_alimentazione;
+          console.log("Alimentazioni Loaded", data)
+          this.alimentazioni = data;
+          this.selectedAlimentazioneId = this.veicolo.id_alimentazione;
+          console.log('selected alimentazione', this.selectedAlimentazioneId)
         });
 
         this.veicoliSvc.getAllAllestimenti().subscribe((data) => {
@@ -159,12 +159,12 @@ export class EditComponent implements OnInit {
   }
   onSocietaChange(selectedSocietaId: any) {
     if (selectedSocietaId) {
-      this.veicolo.id_societa = selectedSocietaId;
+      this.veicolo.id_proprietario = selectedSocietaId;
     }
   }
   onAlimentazioneChange(selectedAlimentazioneId: any) {
     if (selectedAlimentazioneId) {
-      this.veicolo.id_tipo_alimentazione = selectedAlimentazioneId;
+      this.veicolo.id_alimentazione = selectedAlimentazioneId;
     }
   }
   onAllestimentoChange(selectedAllestimentoId: any) {

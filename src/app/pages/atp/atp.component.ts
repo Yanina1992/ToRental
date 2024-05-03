@@ -9,7 +9,7 @@ import { ServizioService } from 'src/app/services/servizio.service';
   templateUrl: './atp.component.html',
   styleUrls: ['./atp.component.scss']
 })
-export class AtpComponent implements OnInit {
+export class AtpComponent implements OnInit  {
 
   page = 1;
   pageSize = 10;
@@ -28,11 +28,11 @@ export class AtpComponent implements OnInit {
 
     this.svc.refreshTable$
       .subscribe(() => {
-        this.getAllAssicurazioni()
+        this.getAllAtp()
       });
-    this.getAllAssicurazioni();
+    this.getAllAtp();
   }
-    private getAllAssicurazioni(){
+    private getAllAtp(){
       const firstParam = 'atp'
         this.svc.getAll(firstParam).subscribe((data: IAlert[]) => {
         this.atp = data.reverse();
@@ -54,9 +54,10 @@ export class AtpComponent implements OnInit {
       .pipe(
         startWith(''),
         debounceTime(300),
-        map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.atp
-        )
+        map((text) => {
+          const id = Number(text!.trim());
+          return id > 0 ? this.search(id) : this.atp; // Assicurati che sia un ID valido e maggiore di zero
+        })
       )
       .subscribe((filtered) => {
         this.filteredAtp = filtered;
@@ -65,14 +66,14 @@ export class AtpComponent implements OnInit {
       });
   }
 
-  search(text: string): IAlert[] {
-    const term = text.toLowerCase();
-    console.log(text);
-
+  search(id: number): IAlert[] {
+    console.log(id);
+  
     return this.atp.filter((atp) =>
-      (atp.targa || '').toLowerCase().startsWith(term)
+      atp.id_veicolo === id
     );
   }
+  
 
   refreshAtp() {
     const start = (this.page - 1) * this.pageSize;
@@ -82,4 +83,5 @@ export class AtpComponent implements OnInit {
 
   }
 }
+
 

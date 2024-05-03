@@ -9,7 +9,7 @@ import { ServizioService } from 'src/app/services/servizio.service';
   templateUrl: './bombole.component.html',
   styleUrls: ['./bombole.component.scss']
 })
-export class BomboleComponent implements OnInit {
+export class BomboleComponent implements OnInit  {
 
   page = 1;
   pageSize = 10;
@@ -44,7 +44,7 @@ export class BomboleComponent implements OnInit {
 
         if(data){
           this.spinner = false;
-          console.log('bolli', data)
+          console.log('bombole', data)
         }
       });
     }
@@ -54,9 +54,10 @@ export class BomboleComponent implements OnInit {
       .pipe(
         startWith(''),
         debounceTime(300),
-        map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.bombole
-        )
+        map((text) => {
+          const id = Number(text!.trim());
+          return id > 0 ? this.search(id) : this.bombole; // Assicurati che sia un ID valido e maggiore di zero
+        })
       )
       .subscribe((filtered) => {
         this.filteredBombole = filtered;
@@ -65,14 +66,14 @@ export class BomboleComponent implements OnInit {
       });
   }
 
-  search(text: string): IAlert[] {
-    const term = text.toLowerCase();
-    console.log(text);
-
-    return this.bombole.filter((bombole) =>
-      (bombole.targa || '').toLowerCase().startsWith(term)
+  search(id: number): IAlert[] {
+    console.log(id);
+  
+    return this.bombole.filter((bombola) =>
+      bombola.id_veicolo === id
     );
   }
+  
 
   refreshBombole() {
     const start = (this.page - 1) * this.pageSize;
@@ -82,4 +83,5 @@ export class BomboleComponent implements OnInit {
 
   }
 }
+
 
