@@ -111,33 +111,6 @@
   </div>
 </div>
 
-  <!--Cilindrata
-  <div class="mb-3">
-    <label for="cilindrata" class="form-label">Cilindrata</label>
-    <input
-      type="number"
-      class="form-control"
-      id="cilindrata"
-      min="0"
-      [(ngModel)]="veicoloForm.cilindrata"
-      name="cilindrata"
-      #cilindrata="ngModel"
-    />
-  </div>-->
-
-  <!--Colore
-  <div class="mb-3">
-    <label for="colore" class="form-label">Colore</label>
-    <input
-      type="text"
-      class="form-control"
-      id="colore"
-      [(ngModel)]="veicoloForm.colore"
-      name="colore"
-      #colore="ngModel"
-    />
-  </div>-->
-
   <div class="row row-cols-3 justify-content-between ">
   <!--Destinazione d'uso-->
   <div class="mb-3 col">
@@ -169,67 +142,6 @@
     </div>
   </div>
 
-  <!--Massa
-  <div class="mb-3">
-    <label for="massa" class="form-label">Massa</label>
-    <input
-      type="text"
-      class="form-control"
-      id="massa"
-      pattern="[0-9]*"
-      min="0"
-      [(ngModel)]="veicoloForm.massa"
-      name="massa"
-    />
-  </div>-->
-
-  <!--Numero assi
-  <div class="mb-3">
-    <label for="numero_assi" class="form-label">Numero assi</label>
-    <input
-      type="number"
-      class="form-control"
-      id="numero_assi"
-      min="0"
-      [(ngModel)]="veicoloForm.numero_assi"
-      required
-      name="numero_assi"
-    />
-
-    <div
-      *ngIf="veicoloForm.numero_assi == 0 && formSubmitted"
-      class="alert text-danger ps-0"
-    >
-      Selezionare il numero di assi.
-    </div>
-  </div>-->
-
-  <!--Portata
-  <div class="mb-3">
-    <label for="portata" class="form-label">Portata</label>
-    <input
-      type="number"
-      class="form-control"
-      id="portata"
-      [(ngModel)]="veicoloForm.portata"
-      min="0"
-      name="portata"
-    />
-  </div>-->
-
-  <!--Potenza
-  <div class="mb-3">
-    <label for="potenza" class="form-label">Potenza</label>
-    <input
-      type="number"
-      class="form-control"
-      id="potenza"
-      [(ngModel)]="veicoloForm.potenza"
-      min="0"
-      name="potenza"
-    />
-  </div>-->
-
   <!--Società-->
   <div class="mb-3 col">
     <label for="societa_nome" class="form-label">Società</label>
@@ -254,38 +166,6 @@
       Selezionare la società proprietaria del veicolo.
     </div>
   </div>
-
-  <!--Targa
-  <div class="mb-3">
-    <label for="targa" class="form-label">Targa</label>
-    <input
-      type="text"
-      class="form-control"
-      id="targa"
-      [(ngModel)]="veicoloForm.targa"
-      required
-      minlength="5"
-      maxlength="10"
-      pattern="[a-zA-Z0-9]*"
-      name="targa"
-      #targa="ngModel"
-      (input)="onInput()"
-    />
-
-    <div *ngIf="formSubmitted" class="alert text-danger ps-0">
-      <div *ngIf="targa.errors?.['required']">La targa è obbligatoria.</div>
-      <div *ngIf="targa.errors?.['minlength'] || targa.errors?.['maxlength']">
-        La targa inserita è incompleta.
-      </div>
-      <div *ngIf="isTarga && formSubmitted" class="alert text-danger ps-0">
-        Questa targa è già presente nel database.
-      </div>
-    </div>
-
-    <div *ngIf="!targa.errors && formSubmitted"
-[ngClass]="isTarga ? 'd-block alert text-danger ps-0' : 'd-none'"
--->
-  <!--</div>-->
 
   <!--Tipo alimentazione-->
   <div class="mb-3 col">
@@ -317,8 +197,8 @@
     </div>
   </div>
 </div>
-
 <div class="row row-cols-3 justify-content-between ">
+
   <!--Allestimento-->
   <div class="mb-3 col">
     <label for="tipo_allestimento_nome" class="form-label"
@@ -400,60 +280,10 @@
   </div>
 </div>
 
-  <!--Data immatricolazione
-  <div class="mb-3">
-    <label for="data_immatricolazione" class="form-label"
-      >Data immatricolazione</label
-    >
-    <div class="row row-cols-sm-auto">
-      <div class="col-12">
-        <div class="input-group">
-          <input
-            class="form-control"
-            placeholder="Scegli una data"
-            name="dp"
-            [(ngModel)]="veicoloForm.data_immatricolazione"
-            ngbDatepicker
-            [dayTemplate]="customDay"
-            #d="ngbDatepicker"
-            [value]="formatDate(veicoloForm.data_immatricolazione)"
-          />
-          <button
-            class="btn btn-outline-secondary bi bi-calendar3"
-            (click)="d.toggle()"
-            type="button"
-          ></button>
-          <div class="col col-3 p-0">
-            <button class="form-control" (click)="selectToday()">Oggi</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <ng-template
-      #customDay
-      let-date
-      let-currentMonth="currentMonth"
-      let-selected="selected"
-      let-disabled="disabled"
-      let-focused="focused"
-    >
-      <span
-        class="custom-day"
-        [class.focused]="focused"
-        [class.bg-primary]="selected"
-        [class.hidden]="date.month !== currentMonth"
-        [class.text-muted]="disabled"
-      >
-        {{ date.day }}
-      </span>
-    </ng-template>
-  </div>-->
-
   <button
     type="submit"
     class="btn my-btn btn-primary"
-    (click)="customizedSearch2()"
+    (click)="customizedSearch()"
   >
     Cerca veicolo
   </button>
@@ -461,7 +291,6 @@
     </div>
   </div>
 </div>
-
 
 
 <!--Spinner-->
@@ -539,17 +368,6 @@
     >
   </ngb-pagination>
 
-  <!--<select
-    class="form-select"
-    style="width: auto"
-    [(ngModel)]="pageSize"
-    (ngModelChange)="refreshVeicoli()"
-    name="pagination"
-  >
-    <option [ngValue]="2">Visualizza 2 veicoli per pagina</option>
-    <option [ngValue]="4">Visualizza 4 veicoli per pagina</option>
-    <option [ngValue]="6">Visualizza 6 veicoli per pagina</option>
-  </select>-->
 </div>
 
 <hr />
