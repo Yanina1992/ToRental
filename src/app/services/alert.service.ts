@@ -2,13 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { Observable } from 'rxjs';
-import { IBombole } from '../interfaces/alert/ibombole';
-import { IRevisioni } from '../interfaces/alert/irevisioni';
-import { IAssicurazioni } from '../interfaces/alert/iassicurazioni';
-import { IAtp } from '../interfaces/alert/iatp';
-import { ITachigrafi } from '../interfaces/alert/itachigrafi';
-import { ITagliandi } from '../interfaces/alert/itagliandi';
-import { IBolli } from '../interfaces/alert/ibolli';
+import { IAlert } from '../interfaces/ialert';
 
 @Injectable({
   providedIn: 'root'
@@ -28,26 +22,26 @@ export class AlertService {
     private http:HttpClient
   ) { }
 
-  getAllRevisioniAlert():Observable<IRevisioni[]>{
-    return this.http.get<IRevisioni[]>(this.revisioniAlertUrl);
+  getAllRevisioniAlert():Observable<IAlert[]>{
+    return this.http.get<IAlert[]>(this.revisioniAlertUrl);
   }
-  getAllAssicurazioniAlert():Observable<IAssicurazioni[]>{
-    return this.http.get<IAssicurazioni[]>(this.assicurazioniAlertUrl)
+  getAllAssicurazioniAlert():Observable<IAlert[]>{
+    return this.http.get<IAlert[]>(this.assicurazioniAlertUrl)
   }
-  getAllAtpAlert():Observable<IAtp[]>{
-    return this.http.get<IAtp[]>(this.atpAlertUrl)
+  getAllAtpAlert():Observable<IAlert[]>{
+    return this.http.get<IAlert[]>(this.atpAlertUrl)
   }
-  getAllBolliAlert():Observable<IBolli[]>{
-    return this.http.get<IBolli[]>(this.bolliAlertUrl)
+  getAllBolliAlert():Observable<IAlert[]>{
+    return this.http.get<IAlert[]>(this.bolliAlertUrl)
   }
-  getAllBomboleAlert():Observable<IBombole[]>{
-    return this.http.get<IBombole[]>(this.bomboleAlertUrl);
+  getAllBomboleAlert():Observable<IAlert[]>{
+    return this.http.get<IAlert[]>(this.bomboleAlertUrl);
   }
-  getAllTachigrafiAlert():Observable<ITachigrafi[]>{
-    return this.http.get<ITachigrafi[]>(this.tachigrafiAlertUrl);
+  getAllTachigrafiAlert():Observable<IAlert[]>{
+    return this.http.get<IAlert[]>(this.tachigrafiAlertUrl);
   }
-  getAllTagliandiAlert():Observable<ITagliandi[]>{
-    return this.http.get<ITagliandi[]>(this.tagliandiAlertUrl);
+  getAllTagliandiAlert():Observable<IAlert[]>{
+    return this.http.get<IAlert[]>(this.tagliandiAlertUrl);
   }
 
 

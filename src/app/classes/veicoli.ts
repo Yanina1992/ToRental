@@ -1,4 +1,4 @@
-import { IAlert } from "../interfaces/alert/ialert";
+import { IAlert } from "../interfaces/ialert";
 
 export class Veicoli implements IAlert {
     //Alert properties

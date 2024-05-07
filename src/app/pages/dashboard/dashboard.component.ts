@@ -1,15 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
-import { IBombole } from 'src/app/interfaces/alert/ibombole';
-import { IRevisioni } from 'src/app/interfaces/alert/irevisioni';
 import { AlertService } from 'src/app/services/alert.service';
 import { Chart } from 'chart.js';
-import { IAssicurazioni } from 'src/app/interfaces/alert/iassicurazioni';
-import { IAtp } from 'src/app/interfaces/alert/iatp';
-import { IBolli } from 'src/app/interfaces/alert/ibolli';
-import { ITachigrafi } from 'src/app/interfaces/alert/itachigrafi';
-import { ITagliandi } from 'src/app/interfaces/alert/itagliandi';
 import {HttpClient} from "@angular/common/http";
+import { IAlert } from 'src/app/interfaces/ialert';
 
 @Component({
   selector: 'app-dashboard',
@@ -78,12 +72,12 @@ export class DashboardComponent implements OnInit {
   //REVISIONI variables and methods
   //Variables to save expiring R. staggered based on urgency
   //The R. coming in by calling revisionAlertUrl are only those expiring soon
-  revisioniAlert: IRevisioni[] = [];
+  revisioniAlert: IAlert[] = [];
   // Expiring R. staggered
-  revisioniScadute: IRevisioni[] = [];
-  revisioniScadenzaBreveTermine: IRevisioni[] = []; //Expires between 0-6 days (if level = 0, it means the R. expires the next day)
-  revisioniScadenzaMedioTermine: IRevisioni[] = []; //7-14
-  revisioniScadenzaLungoTermine: IRevisioni[] = []; //15-30
+  revisioniScadute: IAlert[] = [];
+  revisioniScadenzaBreveTermine: IAlert[] = []; //Expires between 0-6 days (if level = 0, it means the R. expires the next day)
+  revisioniScadenzaMedioTermine: IAlert[] = []; //7-14
+  revisioniScadenzaLungoTermine: IAlert[] = []; //15-30
   //Variables to calculate the total ammount of expired R. in each case
   nRevisioniScadute: number = 0;
   nRevisioniScadenzaBreveTermine: number = 0;
@@ -96,12 +90,12 @@ export class DashboardComponent implements OnInit {
   //ASSICURAZIONI variables and methods
   //Variables to save expiring A. staggered based on urgency
   //The A. coming in by calling assicurazioniAlertUrl are only those expiring soon
-  assicurazioniAlert: IAssicurazioni[] = [];
+  assicurazioniAlert: IAlert[] = [];
   // Expiring A. staggered
-  assicurazioniScadute: IAssicurazioni[] = [];
-  assicurazioniScadenzaBreveTermine: IAssicurazioni[] = []; //Expires between 0-6 days (if level = 0, it means the A. expires the next day)
-  assicurazioniScadenzaMedioTermine: IAssicurazioni[] = []; //7-14
-  assicurazioniScadenzaLungoTermine: IAssicurazioni[] = []; //15-30
+  assicurazioniScadute: IAlert[] = [];
+  assicurazioniScadenzaBreveTermine: IAlert[] = []; //Expires between 0-6 days (if level = 0, it means the A. expires the next day)
+  assicurazioniScadenzaMedioTermine: IAlert[] = []; //7-14
+  assicurazioniScadenzaLungoTermine: IAlert[] = []; //15-30
   //Variables to calculate the total ammount of expired A. in each case
   nAssicurazioniScadute: number = 0;
   nAssicurazioniScadenzaBreveTermine: number = 0;
@@ -114,12 +108,12 @@ export class DashboardComponent implements OnInit {
   //ATP certificates variables and methods
   //Variables to save expiring ATP certificates staggered based on urgency
   //The ATP certificates coming in by calling atpAlertUrl are only those expiring soon
-  atpAlert: IAtp[] = [];
+  atpAlert: IAlert[] = [];
   // Expiring ATP certificates staggered
-  atpScaduti: IAtp[] = [];
-  atpScadenzaBreveTermine: IAtp[] = []; //Expires between 0-6 days (if level = 0, it means the ATP expires the next day)
-  atpScadenzaMedioTermine: IAtp[] = []; //7-14
-  atpScadenzaLungoTermine: IAtp[] = []; //15-30
+  atpScaduti: IAlert[] = [];
+  atpScadenzaBreveTermine: IAlert[] = []; //Expires between 0-6 days (if level = 0, it means the ATP expires the next day)
+  atpScadenzaMedioTermine: IAlert[] = []; //7-14
+  atpScadenzaLungoTermine: IAlert[] = []; //15-30
   //Variables to calculate the total ammount of expired ATP certificates in each case
   nAtpScaduti: number = 0;
   nAtpScadenzaBreveTermine: number = 0;
@@ -132,12 +126,12 @@ export class DashboardComponent implements OnInit {
   //BOLLI variables and methods
   //Variables to save expiring B. staggered based on urgency
   //The B. coming in by calling bolliAlertUrl are only those expiring soon
-  bolliAlert: IBolli[] = [];
+  bolliAlert: IAlert[] = [];
   // Expiring B. staggered
-  bolliScaduti: IBolli[] = [];
-  bolliScadenzaBreveTermine: IBolli[] = []; //Expires between 0-6 days (if level = 0, it means the B. expires the next day)
-  bolliScadenzaMedioTermine: IBolli[] = []; //7-14
-  bolliScadenzaLungoTermine: IBolli[] = []; //15-30
+  bolliScaduti: IAlert[] = [];
+  bolliScadenzaBreveTermine: IAlert[] = []; //Expires between 0-6 days (if level = 0, it means the B. expires the next day)
+  bolliScadenzaMedioTermine: IAlert[] = []; //7-14
+  bolliScadenzaLungoTermine: IAlert[] = []; //15-30
   //Variables to calculate the total ammount of expired B. in each case
   nBolliScaduti: number = 0;
   nBolliScadenzaBreveTermine: number = 0;
@@ -151,12 +145,12 @@ export class DashboardComponent implements OnInit {
   //BOMBOLE variables and methods
   //Variables to save expiring B. staggered based on urgency
   //The R. coming in by calling bomboleAlertUrl are only those expiring soon
-  bomboleAlert: IBombole[] = [];
+  bomboleAlert: IAlert[] = [];
   // Expiring B. staggered
-  bomboleScadute: IBombole[] = [];
-  bomboleScadenzaBreveTermine: IBombole[] = []; //Expires between 0-6 days (if level = 0, it means the B. expires the next day)
-  bomboleScadenzaMedioTermine: IBombole[] = []; //7-14
-  bomboleScadenzaLungoTermine: IBombole[] = []; //15-30
+  bomboleScadute: IAlert[] = [];
+  bomboleScadenzaBreveTermine: IAlert[] = []; //Expires between 0-6 days (if level = 0, it means the B. expires the next day)
+  bomboleScadenzaMedioTermine: IAlert[] = []; //7-14
+  bomboleScadenzaLungoTermine: IAlert[] = []; //15-30
   //Variables to calculate the total ammount of expired B. in each case
   nBomboleScadute: number = 0;
   nBomboleScadenzaBreveTermine: number = 0;
@@ -169,12 +163,12 @@ export class DashboardComponent implements OnInit {
   //TACHIGRAFI variables and methods
   //Variables to save expiring T. staggered based on urgency
   //The T. coming in by calling tachigrafiAlertUrl are only those expiring soon
-  tachigrafiAlert: ITachigrafi[] = [];
+  tachigrafiAlert: IAlert[] = [];
   // Expiring T. staggered
-  tachigrafiScaduti: ITachigrafi[] = [];
-  tachigrafiScadenzaBreveTermine: ITachigrafi[] = []; //Expires between 0-6 days (if level = 0, it means the T. expires the next day)
-  tachigrafiScadenzaMedioTermine: ITachigrafi[] = []; //7-14
-  tachigrafiScadenzaLungoTermine: ITachigrafi[] = []; //15-30
+  tachigrafiScaduti: IAlert[] = [];
+  tachigrafiScadenzaBreveTermine: IAlert[] = []; //Expires between 0-6 days (if level = 0, it means the T. expires the next day)
+  tachigrafiScadenzaMedioTermine: IAlert[] = []; //7-14
+  tachigrafiScadenzaLungoTermine: IAlert[] = []; //15-30
   //Variables to calculate the total ammount of expired T. in each case
   nTachigrafiScaduti: number = 0;
   nTachigrafiScadenzaBreveTermine: number = 0;
@@ -187,12 +181,12 @@ export class DashboardComponent implements OnInit {
   //TAGLIANDI variables and methods
   //Variables to save expiring T. staggered based on urgency
   //The T. coming in by calling talgiandiAlertUrl are only those expiring soon
-  tagliandiAlert: ITagliandi[] = [];
+  tagliandiAlert: IAlert[] = [];
   // Expiring T. staggered
-  tagliandiScaduti: ITagliandi[] = [];
-  tagliandiScadenzaBreveTermine: ITagliandi[] = []; //Expires between 0-6 days (if level = 0, it means the T. expires the next day)
-  tagliandiScadenzaMedioTermine: ITagliandi[] = []; //7-14
-  tagliandiScadenzaLungoTermine: ITagliandi[] = []; //15-30
+  tagliandiScaduti: IAlert[] = [];
+  tagliandiScadenzaBreveTermine: IAlert[] = []; //Expires between 0-6 days (if level = 0, it means the T. expires the next day)
+  tagliandiScadenzaMedioTermine: IAlert[] = []; //7-14
+  tagliandiScadenzaLungoTermine: IAlert[] = []; //15-30
   //Variables to calculate the total ammount of expired T. in each case
   nTagliandiScaduti: number = 0;
   nTagliandiScadenzaBreveTermine: number = 0;

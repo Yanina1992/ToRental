@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { IAlert } from '../interfaces/alert/ialert';
 import { ActivatedRoute } from '@angular/router';
+import { IManutenzione } from '../interfaces/imanutenzione';
 
 @Injectable({
   providedIn: 'root',
@@ -21,24 +21,27 @@ export class ServizioService {
     return this._refreshTable$;
   }
 
-  getAll(firstParam:string): Observable<IAlert[]> {
-    return this.http.get<IAlert[]>(this.url + `/` + firstParam);
+  getAll(firstParam:string): Observable<IManutenzione[]> {
+    return this.http.get<IManutenzione[]>(this.url + `/` + firstParam);
   }
 
-  getById(firstParam:string, id: number): Observable<IAlert[]> {
-    return this.http.get<IAlert[]>(
+  /*getById(firstParam:string, id: number): Observable<IManutenzione> {
+    return this.http.get<IManutenzione>(
       this.url + `/${firstParam}` + `?id=` + id
     );
+  }*/
+  getById(firstParam: string, id: number): Observable<IManutenzione> {
+    return this.http.get<IManutenzione>(`${this.url}/${firstParam}/${id}`);
+  }
+  
+
+  getExtraById(id: number): Observable<IManutenzione> {
+    return this.http.get<IManutenzione>(this.url + id);
   }
 
-  getExtraById(firstParam:string, id: number): Observable<IAlert> {
-    return this.http.get<IAlert>(this.url + `/${firstParam}/` + id);
-    //return this.http.get<IAlert[]>(this.IAlertUrl+'?id='+id)
-  }
-
-  create(firstParam:string, element: IAlert): Observable<IAlert> {
+  create(firstParam:string, element: IManutenzione): Observable<IManutenzione> {
     return this.http
-      .post<IAlert>(this.url + `/${firstParam}`, element)
+      .post<IManutenzione>(this.url + `/${firstParam}`, element)
       .pipe(
         tap(() => {
           this._refreshTable$.next();
@@ -46,14 +49,14 @@ export class ServizioService {
       );
   }
 
-  update(firstParam:string, element: IAlert): Observable<IAlert> {
-    return this.http.put<IAlert>(
+  update(firstParam:string, element: IManutenzione): Observable<IManutenzione> {
+    return this.http.put<IManutenzione>(
       this.url + `/${firstParam}/` + element.id,
       element
     );
   }
 
-  delete(firstParam:string, element: IAlert) {
+  delete(firstParam:string, element: IManutenzione) {
     return this.http.delete(
       this.url + `/${firstParam}` + `/` + element.id
     );

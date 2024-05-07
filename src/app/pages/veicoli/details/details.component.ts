@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Veicoli } from 'src/app/classes/veicoli';
-import { IAlert } from 'src/app/interfaces/alert/ialert';
+import { IAlert } from 'src/app/interfaces/ialert';
 import { VeicoliService } from 'src/app/services/veicoli.service';
 
 @Component({

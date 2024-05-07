@@ -1,0 +1,66 @@
+<h2>Crea</h2>
+<form #manutenzioniForm="ngForm">
+    <h3>Inserisci i dati richiesti</h3>
+
+    <!--<div class="mb-3">
+        <label for="anno" class="form-label">Anno</label>
+        <input
+        type="number"
+        class="form-control"
+        id="anno"
+        [(ngModel)]="manutenzioneForm.anno"
+        name="anno"
+        #anno="ngModel"
+        />
+    </div>
+
+    <div class="mb-3">
+        <label for="data_pagamento" class="form-label"
+          >Data pagamento</label
+        >
+        <div class="row row-cols-sm-auto">
+          <div class="col-12">
+            <div class="input-group">
+              <input
+                class="form-control"
+                placeholder="Scegli una data"
+                name="dp"
+                [(ngModel)]="veicoloForm.data_pagamento"
+                ngbDatepicker
+                [dayTemplate]="customDay"
+                #d="ngbDatepicker"
+                [value]="formatDate(veicoloForm.data_pagamento)"
+              />
+              <button
+                class="btn btn-outline-secondary bi bi-calendar3"
+                (click)="d.toggle()"
+                type="button"
+              ></button>
+              <div class="col col-3 p-0">
+                <button class="form-control" (click)="selectToday()">Oggi</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <ng-template
+          #customDay
+          let-date
+          let-currentMonth="currentMonth"
+          let-selected="selected"
+          let-disabled="disabled"
+          let-focused="focused"
+        >
+          <span
+            class="custom-day"
+            [class.focused]="focused"
+            [class.bg-primary]="selected"
+            [class.hidden]="date.month !== currentMonth"
+            [class.text-muted]="disabled"
+          >
+            {{ date.day }}
+          </span>
+        </ng-template>
+      </div>-->
+
+</form>
