@@ -366,7 +366,7 @@
       </div>
     </div>
 
-    <!--Data immatricolazione-->
+    <!--Data immatricolazione
     <div class="mb-3">
       <label for="data_immatricolazione" class="form-label"
         >Data immatricolazione</label
@@ -414,7 +414,9 @@
           {{ date.day }}
         </span>
       </ng-template>
-    </div>
+    </div>-->
+
+    <app-datepicker (dateChange)="handleDateChange($event)"></app-datepicker>
 
     <button
       type="submit"

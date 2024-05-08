@@ -1,0 +1,23 @@
+
+<div class="row">
+	<div class="col-6">
+		<form class="row row-cols-sm-auto border border-0 p-0">
+			<div class="col-12">
+				<div class="input-group">
+					<input
+						class="form-control"
+						placeholder="dd/mm/yyyy"
+						name="d2"
+						#c2="ngModel"
+						[(ngModel)]="model2"
+						(ngModelChange)="onDateChange($event)"
+						ngbDatepicker
+						#d2="ngbDatepicker"
+					/>
+					<button class="btn btn-outline-secondary bi bi-calendar3" (click)="d2.toggle()" type="button"></button>
+				</div>
+			</div>
+		</form>
+		<button class="btn btn-sm btn-outline-primary" (click)="selectToday()">Select Today</button>
+		</div>
+</div>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -36,7 +36,7 @@ export function tokenGetter() {
     HeaderComponent,
     DetailsComponent,
     EditComponent,
-    DeleteComponent
+    DeleteComponent,
   ],
   imports: [
     BrowserModule,

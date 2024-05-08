@@ -18,19 +18,6 @@ ngAfterViewInit(): void {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    //this.getNavbarColor();
   }
-
-  /*getNavbarColor(){
-    const navbar = document.querySelector('.navbar');
-    if(navbar){
-      const NavbarColor = window.getComputedStyle(navbar).backgroundColor;
-      if(NavbarColor== 'red'){
-        this.color= true;
-      }else{
-        this.color=false;
-      }
-    }
-  }*/
 
 }

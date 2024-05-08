@@ -1,6 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
-import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { VeicoliService } from '../../services/veicoli.service';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
 import { IMarca } from 'src/app/interfaces/options-select/imarca';
@@ -18,9 +16,10 @@ import { Veicoli } from 'src/app/classes/veicoli';
   templateUrl: './veicoli.component.html',
   styleUrls: ['./veicoli.component.scss'],
 })
-export class VeicoliComponent implements OnInit, OnChanges {
+export class VeicoliComponent implements OnInit {
   veicoloForm: Veicoli = new Veicoli();
-  isValidDate: any;
+  //isValidDate: any;
+  myDate: any;
 
   //Variables to manage select options
   tipiVeicoli: ITipoVeicolo[] = [];
@@ -34,8 +33,7 @@ export class VeicoliComponent implements OnInit, OnChanges {
   tipiCambio: ICambio[] = [];
 
   constructor(
-    private calendar: NgbCalendar,
-    private datePipe: DatePipe,
+    //private datePipe: DatePipe,
     private veicoliSvc: VeicoliService
   ) {}
 
@@ -159,6 +157,11 @@ export class VeicoliComponent implements OnInit, OnChanges {
     this.isTarga = false; //Reset formSubmitted to false when input is detected
   }
 
+  handleDateChange(date:any){
+    console.log('prova nuovo date picker', date)
+    this.veicoloForm.data_immatricolazione = date;
+  }
+
   creaVeicolo() {
     this.formSubmitted = true;
     //Check if this targa already exists
@@ -172,11 +175,12 @@ export class VeicoliComponent implements OnInit, OnChanges {
       });
       if (this.isTarga == false) {
         console.log('Targa valida', this.isTarga);
-        this.veicoloForm.data_immatricolazione = this.myDate;
+
+        //this.veicoloForm.data_immatricolazione = this.myDate;
         console.log('Submitting form with data:', this.veicoloForm);
         this.veicoliSvc.create(this.veicoloForm).subscribe(
           (res) => {
-            console.log(res);
+            console.log('nuovo veicolo:', res);
           },
           (error) => {
             console.error('Failed to submit form:', error);
@@ -186,13 +190,15 @@ export class VeicoliComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnChanges(): void {
+  
+
+  /*ngOnChanges(): void {
     this.selectToday();
     this.formatDate(this.veicoloForm.data_immatricolazione);
   }
 
   //Data immatricolazione
-  myDate: any;
+  
   selectToday(this: any) {
     const today = this.calendar.getToday();
     console.log(today);
@@ -211,5 +217,5 @@ export class VeicoliComponent implements OnInit, OnChanges {
       return this.myDate;
     }
     return '';
-  }
+  }*/
 }

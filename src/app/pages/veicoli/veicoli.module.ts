@@ -6,6 +6,7 @@ import { NgbDatepickerModule, NgbPaginationModule, NgbTypeaheadModule } from '@n
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Assicurati di importare entrambi se necessario
 import { TableComponent } from './table/table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DatepickerComponent } from 'src/app/components/datepicker/datepicker.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     NgFor, 
     NgbTypeaheadModule,
     NgbPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DatepickerComponent
   ]
 })
 export class VeicoliModule { }
