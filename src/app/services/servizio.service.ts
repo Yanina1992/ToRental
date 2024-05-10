@@ -25,16 +25,10 @@ export class ServizioService {
     return this.http.get<IManutenzione[]>(this.url + `/` + firstParam);
   }
 
-  /*getById(firstParam:string, id: number): Observable<IManutenzione> {
-    return this.http.get<IManutenzione>(
-      this.url + `/${firstParam}` + `?id=` + id
-    );
-  }*/
   getById(firstParam: string, id: number): Observable<IManutenzione> {
     return this.http.get<IManutenzione>(`${this.url}/${firstParam}/${id}`);
   }
   
-
   getExtraById(id: number): Observable<IManutenzione> {
     return this.http.get<IManutenzione>(this.url + id);
   }

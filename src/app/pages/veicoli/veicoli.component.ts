@@ -158,7 +158,6 @@ export class VeicoliComponent implements OnInit {
   }
 
   handleDateChange(date:any){
-    console.log('prova nuovo date picker', date)
     this.veicoloForm.data_immatricolazione = date;
   }
 
@@ -174,9 +173,6 @@ export class VeicoliComponent implements OnInit {
         }
       });
       if (this.isTarga == false) {
-        console.log('Targa valida', this.isTarga);
-
-        //this.veicoloForm.data_immatricolazione = this.myDate;
         console.log('Submitting form with data:', this.veicoloForm);
         this.veicoliSvc.create(this.veicoloForm).subscribe(
           (res) => {
@@ -190,32 +186,4 @@ export class VeicoliComponent implements OnInit {
     });
   }
 
-  
-
-  /*ngOnChanges(): void {
-    this.selectToday();
-    this.formatDate(this.veicoloForm.data_immatricolazione);
-  }
-
-  //Data immatricolazione
-  
-  selectToday(this: any) {
-    const today = this.calendar.getToday();
-    console.log(today);
-    this.veicoloForm.data_immatricolazione = today;
-    this.formatDate(this.veicoloForm.data_immatricolazione);
-    console.log(this.veicoloForm.data_immatricolazione);
-  }
-
-  formatDate(date: NgbDateStruct | undefined): string {
-    if (date && !isNaN(date.year) && !isNaN(date.month) && !isNaN(date.day)) {
-      this.myDate =
-        this.datePipe.transform(
-          new Date(date.year, date.month - 1, date.day),
-          'dd-MM-yyyy'
-        ) || '';
-      return this.myDate;
-    }
-    return '';
-  }*/
 }

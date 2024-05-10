@@ -1,66 +1,87 @@
 <h2>Crea</h2>
 <form #manutenzioniForm="ngForm">
-    <h3>Inserisci i dati richiesti</h3>
-<app-datepicker></app-datepicker>
-    <!--<div class="mb-3">
-        <label for="anno" class="form-label">Anno</label>
-        <input
-        type="number"
-        class="form-control"
-        id="anno"
-        [(ngModel)]="manutenzioneForm.anno"
-        name="anno"
-        #anno="ngModel"
-        />
-    </div>
+  <h3>Inserisci i dati richiesti</h3>
 
-    <div class="mb-3">
-        <label for="data_pagamento" class="form-label"
-          >Data pagamento</label
-        >
-        <div class="row row-cols-sm-auto">
-          <div class="col-12">
-            <div class="input-group">
-              <input
-                class="form-control"
-                placeholder="Scegli una data"
-                name="dp"
-                [(ngModel)]="veicoloForm.data_pagamento"
-                ngbDatepicker
-                [dayTemplate]="customDay"
-                #d="ngbDatepicker"
-                [value]="formatDate(veicoloForm.data_pagamento)"
-              />
-              <button
-                class="btn btn-outline-secondary bi bi-calendar3"
-                (click)="d.toggle()"
-                type="button"
-              ></button>
-              <div class="col col-3 p-0">
-                <button class="form-control" (click)="selectToday()">Oggi</button>
-              </div>
-            </div>
-          </div>
-        </div>
+  <div class="mb-3">
+    <label for="anno" class="form-label">Anno</label>
+    <input
+      type="number"
+      class="form-control"
+      id="anno"
+      [(ngModel)]="manutenzioneForm.anno"
+      name="anno"
+      #anno="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="data_pagamento" class="form-label">Data pagamento</label>
+    <app-datepicker (onPagamentoChange)="handlePagamentoChange($event)"></app-datepicker>
+  </div>
   
-        <ng-template
-          #customDay
-          let-date
-          let-currentMonth="currentMonth"
-          let-selected="selected"
-          let-disabled="disabled"
-          let-focused="focused"
-        >
-          <span
-            class="custom-day"
-            [class.focused]="focused"
-            [class.bg-primary]="selected"
-            [class.hidden]="date.month !== currentMonth"
-            [class.text-muted]="disabled"
-          >
-            {{ date.day }}
-          </span>
-        </ng-template>
-      </div>-->
+  <div class="mb-3">
+    <label for="inizio_validita" class="form-label">Inizio validità</label>
+    <app-datepicker (onInizioValiditaChange)="handleInizioValiditaChange($event)"></app-datepicker>
+  </div>
+
+  <div class="mb-3">
+    <label for="fine_validita" class="form-label">Fine validità</label>
+    <app-datepicker (onFineValiditaChange)="handleFineValiditaChange($event)"></app-datepicker>
+  </div>
+
+  <div class="mb-3">
+    <label for="importo" class="form-label">Importo</label>
+    <input
+      type="number"
+      class="form-control"
+      id="importo"
+      [(ngModel)]="manutenzioneForm.importo"
+      name="importo"
+      #importo="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="id_veicolo" class="form-label">Nr. id veicolo</label>
+    <input
+      type="number"
+      class="form-control"
+      id="id_veicolo"
+      [(ngModel)]="manutenzioneForm.id_veicolo"
+      name="id_veicolo"
+      #id_veicolo="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="targa" class="form-label">Targa</label>
+    <input
+      type="text"
+      class="form-control"
+      id="targa"
+      [(ngModel)]="manutenzioneForm.targa"
+      name="targa"
+      #targa="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="note" class="form-label">Note</label>
+    <input
+      type="text"
+      class="form-control"
+      id="note"
+      [(ngModel)]="manutenzioneForm.note"
+      name="note"
+      #note="ngModel"
+    />
+  </div>
+
+<button
+type="submit"
+class="btn my btn btn-primary"
+(click)="creaManutenzione()">
+  Salva
+</button>
 
 </form>

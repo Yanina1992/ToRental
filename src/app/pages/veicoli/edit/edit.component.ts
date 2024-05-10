@@ -12,7 +12,11 @@ import { IAlimentazione } from 'src/app/interfaces/options-select/ialimentazione
 import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
 import { IAsse } from 'src/app/interfaces/options-select/iasse';
 import { ICambio } from 'src/app/interfaces/options-select/icambio';
-import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbCalendar,
+  NgbDate,
+  NgbDateStruct,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit',
@@ -20,7 +24,6 @@ import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap'
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-
   //Datepicker
   //model: NgbDateStruct | undefined;
   veicolo: Veicoli = new Veicoli();
@@ -68,7 +71,6 @@ export class EditComponent implements OnInit {
       this.veicoliSvc.getExtraById(params.id).subscribe((res) => {
         this.veicolo = res;
         console.log('veicolo to edit', res);
-        
 
         //Get for filling in the select
         this.veicoliSvc.getAllTipiVeicoli().subscribe((data) => {
@@ -89,21 +91,21 @@ export class EditComponent implements OnInit {
         this.veicoliSvc.getAllDestinazioniDUso().subscribe((data) => {
           this.destinazioni = data;
           this.selectedDestinazioneId = this.veicolo.id_destinazione_uso;
-          console.log('selected destinazione', this.selectedDestinazioneId)
+          console.log('selected destinazione', this.selectedDestinazioneId);
         });
 
         this.veicoliSvc.getAllSocieta().subscribe((data) => {
-          console.log("Società Loaded", data)
+          console.log('Società Loaded', data);
           this.societas = data;
           this.selectedSocietaId = this.veicolo.id_proprietario;
-          console.log('selected società', this.selectedSocietaId)
+          console.log('selected società', this.selectedSocietaId);
         });
 
         this.veicoliSvc.getAllAlimentazioni().subscribe((data) => {
-          console.log("Alimentazioni Loaded", data)
+          console.log('Alimentazioni Loaded', data);
           this.alimentazioni = data;
           this.selectedAlimentazioneId = this.veicolo.id_alimentazione;
-          console.log('selected alimentazione', this.selectedAlimentazioneId)
+          console.log('selected alimentazione', this.selectedAlimentazioneId);
         });
 
         this.veicoliSvc.getAllAllestimenti().subscribe((data) => {
@@ -120,7 +122,6 @@ export class EditComponent implements OnInit {
           this.tipiCambio = data;
           this.selectedTipoCambioId = this.veicolo.id_tipo_cambio;
         });
-
       });
     });
   }
@@ -212,12 +213,11 @@ export class EditComponent implements OnInit {
 
   editVeicolo() {
     console.log(this.veicolo);
-    
+
     this.veicoliSvc.update(this.veicolo).subscribe((res) => {
       console.log('res', res);
-      
-      this.router.navigate(['/pages/dashboard'])
-      
+
+      this.router.navigate(['/pages/dashboard']);
     });
   }
 }

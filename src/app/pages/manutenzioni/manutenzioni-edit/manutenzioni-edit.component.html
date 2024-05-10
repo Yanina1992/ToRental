@@ -1,18 +1,105 @@
 <div class="d-flex flex-column align-items-center">
-<h2>Modifica x</h2>
-<form #modificaManutenzioneForm="ngForm">
-
-    <!--<div class="mb-3">
-        <label for="id" class="form-label">Anno</label>
-        <input
+  <h2>Modifica x</h2>
+  <form #modificaManutenzioneForm="ngForm">
+    <div class="mb-3">
+      <label for="id" class="form-label">Anno</label>
+      <input
+        *ngIf="manutenzione"
         id="anno"
         type="number"
         name="anno"
         [(ngModel)]="manutenzione.anno"
         placeholder="Inserisci anno"
         class="form-control"
-        />
-    </div>-->
+        #anno="ngModel"
+      />
+    </div>
 
-</form>
+    <div class="mb-3">
+      <label for="data_pagamento" class="form-label">Data pagamento</label>
+      <app-datepicker *ngIf="manutenzione"
+        [(ngModel)]="data_pagamento"
+        name="data_pagamento"
+        (onPagamentoChange)="handlePagamentoChange($event)"
+      ></app-datepicker>
+    </div>
+
+    <div class="mb-3">
+      <label for="inizio_validita" class="form-label">Inizio validità</label>
+      <app-datepicker *ngIf="manutenzione"
+        [(ngModel)]="inizio_validita"
+        name="inizio_validita"
+        (onInizioValiditaChange)="handleInizioValiditaChange($event)"
+      ></app-datepicker>
+    </div>
+
+    <div class="mb-3">
+      <label for="fine_validita" class="form-label">Fine validità</label>
+      <app-datepicker *ngIf="manutenzione"
+      [(ngModel)]="fine_validita"
+      name="fine_validita"
+        (onFineValiditaChange)="handleFineValiditaChange($event)"
+      ></app-datepicker>
+    </div>
+
+    <div class="mb-3">
+      <label for="importo" class="form-label">Importo</label>
+      <input
+        *ngIf="manutenzione"
+        type="number"
+        class="form-control"
+        id="importo"
+        [(ngModel)]="manutenzione.importo"
+        name="importo"
+        #importo="ngModel"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="id_veicolo" class="form-label">Nr. id veicolo</label>
+      <input
+        *ngIf="manutenzione"
+        type="number"
+        class="form-control"
+        id="id_veicolo"
+        [(ngModel)]="manutenzione.id_veicolo"
+        name="id_veicolo"
+        #id_veicolo="ngModel"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="targa" class="form-label">Targa</label>
+      <input
+        *ngIf="manutenzione"
+        type="text"
+        class="form-control"
+        id="targa"
+        [(ngModel)]="manutenzione.targa"
+        name="targa"
+        #targa="ngModel"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="note" class="form-label">Note</label>
+      <input
+        *ngIf="manutenzione"
+        type="text"
+        class="form-control"
+        id="note"
+        [(ngModel)]="manutenzione.note"
+        name="note"
+        #note="ngModel"
+      />
+    </div>
+
+    <button
+      type="submit"
+      class="btn my-btn btn-primary"
+      (click)="editManutenzione()"
+    >
+      Salva modifiche
+    </button>
+  </form>
 </div>
