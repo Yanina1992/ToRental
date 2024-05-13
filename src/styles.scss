@@ -80,19 +80,17 @@ form {
 i{
   color: rgb(0 0 36) !important;
 }
-//a{
-//color: #779EB6 !important ;
-//}
-//a:hover{
-  //color: #2843F0 !important;
-//}
 
 svg{
   width: 20vw;
 }
 
-@media screen and (min-width: 476px) {
+.table-responsive{
+  overflow-x: auto;
+  width: 100%;
+}
 
+@media screen and (min-width: 476px) {
 }
 
 @media screen and (min-width: 576px) {

@@ -311,60 +311,55 @@
   </div>
 </div>
 
+<div class="table-responsive">
 <table class="table table-striped ms-2">
   <thead>
     <tr>
-      <th scope="col">Nr. id.</th>
-      <th scope="col" class="d-none d-sm-table-cell">Tipo veicolo</th>
-      <th scope="col" class="d-none d-sm-table-cell">Marca</th>
-      <th scope="col" class="d-none d-sm-table-cell">Modello</th>
-      <th scope="col" class="d-none">Cilindrata</th>
-      <th scope="col" class="d-none d-lg-table-cell">Colore</th>
-      <th scope="col" class="d-none d-md-table-cell">Destinazione d'uso</th>
-      <th scope="col" class="d-none">Massa</th>
-      <th scope="col" class="d-none">Numero assi</th>
-      <th scope="col" class="d-none">Portata</th>
-      <th scope="col" class="d-none">Potenza</th>
-      <th scope="col" class="d-none">Società</th>
+      <!--<th scope="col">Nr. id.</th>-->
+      <th></th>
+      <th scope="col">Tipo veicolo</th>
+      <th scope="col">Marca</th>
+      <th scope="col">Modello</th>
+      <th scope="col">Cilindrata</th>
+      <th scope="col">Colore</th>
+      <th scope="col">Destinazione d'uso</th>
+      <th scope="col">Massa</th>
+      <th scope="col">Numero assi</th>
+      <th scope="col">Portata</th>
+      <th scope="col">Potenza</th>
+      <th scope="col">Società</th>
       <th scope="col">Targa</th>
-      <th scope="col" class="d-none d-xl-table-cell">Alimentazione</th>
-      <th scope="col" class="d-none" class="d-none d-xxl-table-cell">
-        Allestimento
-      </th>
-      <th scope="col" class="d-none" class="d-none d-xxl-table-cell">
-        Tipo asse
-      </th>
-      <th scope="col" class="d-none" class="d-none d-xxl-table-cell">Cambio</th>
+      <th scope="col">Alimentazione</th>
+      <th scope="col">Allestimento</th>
+      <th scope="col">Tipo asse</th>
+      <th scope="col">Cambio</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let veicolo of veicoliToShow">
-      <th scope="row">{{ veicolo.id }}</th>
-      <td class="d-none d-sm-table-cell">
+      <!--<td scope="row">{{ veicolo.id }}</td>-->
+      <td><i class="fa-solid fa-screwdriver-wrench"></i></td>
+      <td class="text-truncate">
         {{ veicolo.tipo_veicolo_nome }}
       </td>
-      <td class="d-none d-sm-table-cell">{{ veicolo.marca_nome }}</td>
-      <td class="d-none d-sm-table-cell">{{ veicolo.modello_nome }}</td>
-      <td class="d-none">{{ veicolo.cilindrata }}</td>
-      <td class="d-none d-lg-table-cell">{{ veicolo.colore }}</td>
-      <td class="d-none d-md-table-cell">
+      <td class="text-truncate">{{ veicolo.marca_nome }}</td>
+      <td class="text-truncate">{{ veicolo.modello_nome }}</td>
+      <td class="text-truncate">{{ veicolo.cilindrata }}</td>
+      <td class="text-truncate">{{ veicolo.colore }}</td>
+      <td class="text-truncate">
         {{ veicolo.destinazione_uso_nome }}
       </td>
-      <td class="d-none">{{ veicolo.massa }}</td>
-      <td class="d-none">{{ veicolo.numero_assi }}</td>
-      <td class="d-none">{{ veicolo.portata }}</td>
-      <td class="d-none">{{ veicolo.potenza }}</td>
-      <td class="d-none">{{ veicolo.proprietario_nome }}</td>
-      <td>{{ veicolo.targa }}</td>
-      <td class="d-none d-xl-table-cell">
-        {{ veicolo.tipo_alimentazione_nome }}
-      </td>
-      <td class="d-none d-xxl-table-cell">
-        {{ veicolo.tipo_allestimento_nome }}
-      </td>
-      <td class="d-none d-xxl-table-cell">{{ veicolo.tipo_asse_nome }}</td>
-      <td class="d-none d-xxl-table-cell">{{ veicolo.tipo_cambio_nome }}</td>
-      <td>
+      <td class="text-truncate">{{ veicolo.massa }}</td>
+      <td class="text-truncate">{{ veicolo.numero_assi }}</td>
+      <td class="text-truncate">{{ veicolo.portata }}</td>
+      <td class="text-truncate">{{ veicolo.potenza }}</td>
+      <td class="text-truncate">{{ veicolo.proprietario_nome }}</td>
+      <td class="text-truncate">{{ veicolo.targa }}</td>
+      <td class="text-truncate">{{ veicolo.tipo_alimentazione_nome }}</td>
+      <td class="text-truncate">{{ veicolo.tipo_allestimento_nome }}</td>
+      <td class="text-truncate">{{ veicolo.tipo_asse_nome }}</td>
+      <td class="text-truncate">{{ veicolo.tipo_cambio_nome }}</td>
+      <td class="d-flex">
         <a [routerLink]="['details', veicolo.id]"
           ><i class="fa-solid fa-circle-info"></i
         ></a>
@@ -378,6 +373,7 @@
     </tr>
   </tbody>
 </table>
+</div>
 
 <!--Pagination-->
 <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">

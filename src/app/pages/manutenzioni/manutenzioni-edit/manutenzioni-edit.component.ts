@@ -11,14 +11,9 @@ import { ServizioService } from 'src/app/services/servizio.service';
 export class ManutenzioniEditComponent implements OnInit {
   manutenzione: IManutenzione | undefined;
 
-  //anno: number = 0;
   data_pagamento: string = '';
   inizio_validita: string = '';
   fine_validita: string = '';
-  /*importo: number = 0;
-  id_veicolo: number = 0;
-  targa: string = '';
-  note: string = '';*/
 
   tipo: any;
   id: any;

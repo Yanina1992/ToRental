@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AlertService } from 'src/app/services/alert.service';
+import { IAlert } from 'src/app/interfaces/ialert';
+
 import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from '../../../services/veicoli.service';
 import { FormControl } from '@angular/forms';
@@ -18,7 +22,14 @@ import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent implements OnInit, OnDestroy {
+  manutenzioniScadute: IAlert[] | undefined;
+  manutenzioniInScadenzaBreveTermine: IAlert[] | undefined;
+  manutenzioniInScadenzaMedioTermine: IAlert[] | undefined;
+  manutenzioniInScadenzaLungoTermine: IAlert[] | undefined;
+
+  private subscriptions = new Subscription();
+
   veicoloForm: Veicoli = new Veicoli();
 
   page = 1;
@@ -43,9 +54,66 @@ export class TableComponent implements OnInit {
   tipiAsse: IAsse[] = [];
   tipiCambio: ICambio[] = [];
 
-  constructor(private veicoliSvc: VeicoliService) {}
+  constructor(
+    private veicoliSvc: VeicoliService,
+    private alertService: AlertService
+  ) {}
+
+  private getAllVeicoli() {
+    this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
+      this.veicoli = data.reverse();
+      console.log('veicoli', this.veicoli);
+      this.collectionSize = data.length;
+      this.refreshVeicoli();
+
+      this.filteredVeicoli = [...this.veicoli];
+      this.setupFilter();
+
+      if (data) {
+        this.spinner = false;
+      }
+      //Variables to get alerts from alertService
+      if (this.veicoli.length > 0) {
+        try {
+          this.subscriptions.add(
+            this.alertService.manutenzioniScadute$.subscribe((data) => {
+              this.manutenzioniScadute = data;
+              console.log('manutenzioni scadute', data);
+            })
+          );
+          this.subscriptions.add(
+            this.alertService.manutenzioniInScadenzaBreveTermine$.subscribe(
+              (data) => {
+                this.manutenzioniInScadenzaBreveTermine = data;
+                console.log('manutenzioni in scadenza breve', data);
+              }
+            )
+          );
+          this.subscriptions.add(
+            this.alertService.manutenzioniInScadenzaMedioTermine$.subscribe(
+              (data) => {
+                this.manutenzioniInScadenzaMedioTermine = data;
+                console.log('manutenzioni in scadenza media', data);
+              }
+            )
+          );
+          this.subscriptions.add(
+            this.alertService.manutenzioniInScadenzaLungoTermine$.subscribe(
+              (data) => {
+                this.manutenzioniInScadenzaLungoTermine = data;
+                console.log('manutenzioni in scadenza lunga', data);
+              }
+            )
+          );
+        } catch {
+          new Error();
+        }
+      }
+    });
+  }
 
   ngOnInit() {
+    this.getAllVeicoli();
     this.veicoliSvc.refreshVeicoliTable$.subscribe(() => {
       this.getAllVeicoli();
     });
@@ -61,14 +129,19 @@ export class TableComponent implements OnInit {
       this.marche = data;
     });
     //destinazioni d'uso
-    this.veicoliSvc.getAllDestinazioniDUso().subscribe((data: IDestinazioneDUso[]) => {
+    this.veicoliSvc
+      .getAllDestinazioniDUso()
+      .subscribe((data: IDestinazioneDUso[]) => {
         this.destinazioni = data;
       });
     //società
-    this.veicoliSvc.getAllSocieta().subscribe((data: ISocieta[]) => {this.societas = data;
+    this.veicoliSvc.getAllSocieta().subscribe((data: ISocieta[]) => {
+      this.societas = data;
     });
     //tipi alimentazione
-    this.veicoliSvc.getAllAlimentazioni().subscribe((data: IAlimentazione[]) => {
+    this.veicoliSvc
+      .getAllAlimentazioni()
+      .subscribe((data: IAlimentazione[]) => {
         this.tipiAlimentazione = data;
       });
     //allestimenti
@@ -85,19 +158,8 @@ export class TableComponent implements OnInit {
     });
   }
 
-  private getAllVeicoli() {
-    this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
-      this.veicoli = data.reverse();
-      this.collectionSize = data.length;
-      this.refreshVeicoli();
-
-      this.filteredVeicoli = [...this.veicoli];
-      this.setupFilter();
-
-      if (data) {
-        this.spinner = false;
-      }
-    });
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   setupFilter() {
@@ -141,7 +203,9 @@ export class TableComponent implements OnInit {
   customizedSearch() {
     this.myFilteredVeicoli = [];
     try {
-      if (this.veicoloForm.id_tipo_veicolo && this.veicoloForm.id_tipo_veicolo > 0
+      if (
+        this.veicoloForm.id_tipo_veicolo &&
+        this.veicoloForm.id_tipo_veicolo > 0
       ) {
         this.filterByTipoVeicolo();
       }
@@ -157,7 +221,10 @@ export class TableComponent implements OnInit {
       ) {
         this.filterByDestinazione();
       }
-      if (this.veicoloForm.id_proprietario && this.veicoloForm.id_proprietario > 0) {
+      if (
+        this.veicoloForm.id_proprietario &&
+        this.veicoloForm.id_proprietario > 0
+      ) {
         this.filterBySocieta();
       }
       if (
@@ -321,7 +388,7 @@ export class TableComponent implements OnInit {
   }
 
   showResOfAllFilters() {
-    this.filteredVeicoli = this.myFilteredVeicoli; 
+    this.filteredVeicoli = this.myFilteredVeicoli;
     this.collectionSize = this.filteredVeicoli.length;
     this.refreshVeicoli();
   }

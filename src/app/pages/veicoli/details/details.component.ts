@@ -34,6 +34,8 @@ export class DetailsComponent {
       this.veicoliSvc.getExtraById(params.id).subscribe((res) => {
         this.veicolo = res;
 
+        console.log('res edit', res)
+
         this.assicurazioni = this.veicolo.current?.assicurazione;
         this.atps = this.veicolo.current?.atp;
         this.bolli = this.veicolo.current?.bollo;

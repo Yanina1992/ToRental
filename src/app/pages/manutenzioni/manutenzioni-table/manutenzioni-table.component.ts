@@ -35,7 +35,6 @@ export class ManutenzioniTableComponent implements OnInit {
     //Get the type of manutenzione
     this.route.paramMap.subscribe(params => {
       this.tipo = params.get('tipo');
-      //console.log('tipo', this.tipo)
     })
 
     //Call the method which gets the list of manutenzioni
@@ -47,7 +46,7 @@ export class ManutenzioniTableComponent implements OnInit {
 
   }
 
-  //Define the method for calling the list of manutenzioni
+  //Define the method for calling manutenzioni's list
   private getAllManutenzioni(){
       this.svc.getAll(this.tipo!).subscribe((data: IManutenzione[]) => {
       this.manutenzioni = data.reverse();
@@ -59,8 +58,9 @@ export class ManutenzioniTableComponent implements OnInit {
 
       if(data){
         this.spinner = false;
-        //console.log('manutenzioni', data)
       }
+      console.log("c'è la targa?", data);
+      
     });
   }
 
@@ -69,10 +69,9 @@ export class ManutenzioniTableComponent implements OnInit {
       .pipe(
         startWith(''),
         debounceTime(300),
-        map((text) => {
-          const id = Number(text!.trim());
-          return id > 0 ? this.search(id) : this.manutenzioni;
-        })
+        map((text) =>
+          text!.trim().length > 0 ? this.search(text!) : this.manutenzioni
+        )
       )
       .subscribe((filtered) => {
         this.filteredManutenzioni = filtered;
@@ -80,20 +79,26 @@ export class ManutenzioniTableComponent implements OnInit {
         this.refreshManutenzioni();
       });
   }
-  search(id: number): IManutenzione[] {
+  //Search by targa
+  /*search(id: number): IManutenzione[] {
     //console.log(id);
   
     return this.manutenzioni.filter((manutenzione) =>
       manutenzione.id_veicolo === id
     );
+  }*/
+  search(text: string): IManutenzione[] {
+    const term = text.toLowerCase();
+    console.log(text);
+
+    return this.manutenzioni.filter((veicolo) =>
+      (veicolo.targa || '').toLowerCase().startsWith(term)
+    );
   }
-  
 
   refreshManutenzioni() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
-
     this.manutenzioniToShow = this.filteredManutenzioni.slice(start, end);
-
   }
 }

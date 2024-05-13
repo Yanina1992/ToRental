@@ -18,7 +18,6 @@ import { Veicoli } from 'src/app/classes/veicoli';
 })
 export class VeicoliComponent implements OnInit {
   veicoloForm: Veicoli = new Veicoli();
-  //isValidDate: any;
   myDate: any;
 
   //Variables to manage select options

@@ -1,34 +1,21 @@
-<!--Searching by id
-<form id="search-form">
-    <div class="mb-3 row justify-content-center">
-      <label
-        for="table-filtering-search"
-        class="col-xs-3 col-sm-auto col-form-label"
-        >Inserisci il numero identificativo del veicolo:</label
-      >
-      <div class="col-xs-3 col-sm-auto">
-        <input
-          id="table-filtering-search"
-          class="form-control"
-          type="text"
-          [formControl]="filter"
-        />
-      </div>
-    </div>
-  </form>-->
-  
-  <h2 class="text-center">Manutenzione</h2>
-  
-  <div class="d-grid gap-2 col-6 mx-auto">
+<h2 class="text-center">Manutenzione</h2>
 
-    <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione']">Assicurazioni</a>
-    <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'atp']">Atp</a>
-    <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bollo']">Bolli</a>
-    <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bombole']">Bombole</a>
-    <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'revisione']">Revisioni</a>
-    <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tachigrafo']">Tachigrafi</a>
-    <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tagliando']">Tagliandi</a>
-
-  </div>
-  
-  
+<div class="d-grid gap-2 col-6 mx-auto">
+  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione']"
+    >Assicurazioni</a
+  >
+  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'atp']">Atp</a>
+  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bollo']">Bolli</a>
+  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bombole']"
+    >Bombole</a
+  >
+  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'revisione']"
+    >Revisioni</a
+  >
+  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tachigrafo']"
+    >Tachigrafi</a
+  >
+  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tagliando']"
+    >Tagliandi</a
+  >
+</div>

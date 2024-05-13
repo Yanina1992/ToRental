@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, tap, throwError } from 'rxjs';
 import { IAlert } from '../interfaces/ialert';
 
 @Injectable({
@@ -9,22 +9,52 @@ import { IAlert } from '../interfaces/ialert';
 })
 export class AlertService {
 
-  revisioniAlertUrl:string = environment.revisioniAlertEndPoint;
-  assicurazioniAlertUrl:string = environment.assicurazioniAlertEndPoint;
-  atpAlertUrl:string = environment.atpAlertEndPoint;
-  bolliAlertUrl:string = environment.bolliAlertEndPoint;
-  bomboleAlertUrl:string = environment.bomboleAlertEndPoint;
-  tachigrafiAlertUrl:string = environment.tachigrafiAlertEndPoint;
-  tagliandiAlertUrl:string = environment.tagliandiAlertEndPoint;
+  private revisioniAlertUrl:string = environment.revisioniAlertEndPoint;
+  private assicurazioniAlertUrl:string = environment.assicurazioniAlertEndPoint;
+  private atpAlertUrl:string = environment.atpAlertEndPoint;
+  private bolliAlertUrl:string = environment.bolliAlertEndPoint;
+  private bomboleAlertUrl:string = environment.bomboleAlertEndPoint;
+  private tachigrafiAlertUrl:string = environment.tachigrafiAlertEndPoint;
+  private tagliandiAlertUrl:string = environment.tagliandiAlertEndPoint;
 
+  //BehaviorSubject to handle alerts
+  private manutenzioniScaduteSource = new BehaviorSubject<IAlert[]>([]);
+  private manutenzioniInScadenzaBreveTermineSource = new BehaviorSubject<IAlert[]>([]);
+  private manutenzioniInScadenzaMedioTermineSource = new BehaviorSubject<IAlert[]>([]);
+  private manutenzioniInScadenzaLungoTermineSource = new BehaviorSubject<IAlert[]>([]);
+
+  //Publicly accessible observables
+  manutenzioniScadute$ = this.manutenzioniScaduteSource.asObservable();
+  manutenzioniInScadenzaBreveTermine$ = this.manutenzioniInScadenzaBreveTermineSource.asObservable();
+  manutenzioniInScadenzaMedioTermine$ = this.manutenzioniInScadenzaMedioTermineSource.asObservable();
+  manutenzioniInScadenzaLungoTermine$ = this.manutenzioniInScadenzaLungoTermineSource.asObservable();
 
   constructor(
     private http:HttpClient
   ) { }
 
+  //Fetch data and update BehaviorSubjects
   getAllRevisioniAlert():Observable<IAlert[]>{
-    return this.http.get<IAlert[]>(this.revisioniAlertUrl);
+    return this.http.get<{data: {[key: string]: IAlert}, total: number}>(this.revisioniAlertUrl).pipe(
+      map(response => Object.values(response.data)), // Convert object to array
+      tap(data => {
+          console.log("Processed data:", data); // Check the processed data
+          this.updateAlerts(data);
+      }),
+      catchError(error => {
+          console.error("Error fetching revisioni alerts:", error);
+          return throwError(() => new Error('Error fetching data'));
+      })
+  );
   }
+  private updateAlerts(data:any):void{
+    console.log("Updating alerts with data:", data);
+    this.manutenzioniScaduteSource.next(data.filter((alert: { livello: number; }) => alert.livello < 0));
+    this.manutenzioniInScadenzaBreveTermineSource.next(data.filter((alert: { livello: number; }) => alert.livello >= 0 && alert.livello < 7));
+    this.manutenzioniInScadenzaMedioTermineSource.next(data.filter((alert: { livello: number; }) => alert.livello >= 7 && alert.livello < 15));
+    this.manutenzioniInScadenzaLungoTermineSource.next(data.filter((alert: { livello: number; }) => alert.livello >= 15 && alert.livello <= 30));
+  }
+  
   getAllAssicurazioniAlert():Observable<IAlert[]>{
     return this.http.get<IAlert[]>(this.assicurazioniAlertUrl)
   }
@@ -43,6 +73,4 @@ export class AlertService {
   getAllTagliandiAlert():Observable<IAlert[]>{
     return this.http.get<IAlert[]>(this.tagliandiAlertUrl);
   }
-
-
 }

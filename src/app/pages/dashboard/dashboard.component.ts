@@ -69,6 +69,16 @@ export class DashboardComponent implements OnInit {
   }*/
   //---------------------------------//----------------------------------//
 
+
+  //Manutenzioni scadute
+  manutenzioniScadute: IAlert[] = [];
+  //Manutenzioni in scadenza breve termine
+  manutenzioniInScadenzaBreveTermine: IAlert[] = [];
+  //Manutenzioni in scadenza medio termine
+  manutenzioniInScadenzaMedioTermine: IAlert[] = [];
+  //Manutenzioni in scadenza lungo termine
+  manutenzioniInScadenzaLungoTermine: IAlert[] = [];
+
   //REVISIONI variables and methods
   //Variables to save expiring R. staggered based on urgency
   //The R. coming in by calling revisionAlertUrl are only those expiring soon
@@ -202,6 +212,7 @@ export class DashboardComponent implements OnInit {
     //Get all REVISIONI Alert
     this.alertSvc.getAllRevisioniAlert().subscribe((response: any) => {
       //Checking the 'livello' of each vehicle, in which the number of days elapsed since the expiration date is saved
+      console.log('response REVISIONI', response.data)
       Object.values(response.data).forEach((vehicle: any) => {
         if (vehicle.livello < 0) {
           this.revisioniScadute.push(vehicle);
@@ -219,7 +230,7 @@ export class DashboardComponent implements OnInit {
           this.nRevisioniScadenzaLungoTermine =
             this.revisioniScadenzaLungoTermine.length;
         } else {
-          console.warn('Livello di urgenza non gestito:', vehicle);
+          console.warn('Livello di urgenza non gestito: REVISIONI', vehicle);
         }
       });
     });
@@ -243,7 +254,7 @@ export class DashboardComponent implements OnInit {
           this.nAssicurazioniScadenzaLungoTermine =
             this.assicurazioniScadenzaLungoTermine.length;
         } else {
-          console.warn('Livello di urgenza non gestito:', vehicle);
+          console.warn('Livello di urgenza non gestito: ASSICURAZIONI', vehicle);
         }
       });
     });
@@ -267,7 +278,7 @@ export class DashboardComponent implements OnInit {
           this.nAtpScadenzaLungoTermine =
             this.atpScadenzaLungoTermine.length;
         } else {
-          console.warn('Livello di urgenza non gestito:', vehicle);
+          console.warn('Livello di urgenza non gestito: ATP', vehicle);
         }
       });
     });
@@ -291,7 +302,7 @@ export class DashboardComponent implements OnInit {
           this.nBolliScadenzaLungoTermine =
             this.bolliScadenzaLungoTermine.length;
         } else {
-          console.warn('Livello di urgenza non gestito:', vehicle);
+          console.warn('Livello di urgenza non gestito: BOLLI', vehicle);
         }
       });
     });
@@ -315,7 +326,7 @@ export class DashboardComponent implements OnInit {
           this.nBomboleScadenzaLungoTermine =
             this.bomboleScadenzaLungoTermine.length;
         } else {
-          console.warn('Livello di urgenza non gestito:', vehicle);
+          console.warn('Livello di urgenza non gestito: BOMBOLE', vehicle);
         }
       });
     });
@@ -334,12 +345,12 @@ export class DashboardComponent implements OnInit {
           this.tachigrafiScadenzaMedioTermine.push(vehicle);
           this.nTachigrafiScadenzaMedioTermine =
             this.tachigrafiScadenzaMedioTermine.length;
-        } else if (vehicle.livello >= 15 && vehicle.livello >= 30) {
+        } else if (vehicle.livello >= 15 && vehicle.livello <= 30) {
           this.tachigrafiScadenzaLungoTermine.push(vehicle);
           this.nTachigrafiScadenzaLungoTermine =
             this.tachigrafiScadenzaLungoTermine.length;
         } else {
-          console.warn('Livello di urgenza non gestito:', vehicle);
+          console.warn('Livello di urgenza non gestito: TACHIGRAFI', vehicle);
         }
       });
     });
@@ -363,7 +374,7 @@ export class DashboardComponent implements OnInit {
           this.nTagliandiScadenzaLungoTermine =
             this.tagliandiScadenzaLungoTermine.length;
         } else {
-          console.warn('Livello di urgenza non gestito:', vehicle);
+          console.warn('Livello di urgenza non gestito: TAGLIANDI', vehicle);
         }
       });
     });
