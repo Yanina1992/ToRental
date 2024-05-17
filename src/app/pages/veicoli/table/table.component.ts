@@ -23,10 +23,6 @@ import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnDestroy {
-  manutenzioniScadute: IAlert[] | undefined;
-  manutenzioniInScadenzaBreveTermine: IAlert[] | undefined;
-  manutenzioniInScadenzaMedioTermine: IAlert[] | undefined;
-  manutenzioniInScadenzaLungoTermine: IAlert[] | undefined;
 
   private subscriptions = new Subscription();
 
@@ -66,7 +62,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   constructor(
     private veicoliSvc: VeicoliService,
-    private alertService: AlertService
   ) {}
 
   private getAllVeicoli() {
@@ -82,75 +77,10 @@ export class TableComponent implements OnInit, OnDestroy {
       if (data) {
         this.spinner = false;
       }
-      //Variables to get alerts from alertService ---------------->>>>>>>>>>>>>>> credo non serva, basta controllare lo stato e la disponibilità
-      /*if (this.veicoli.length > 0) {
-        try {
-          this.subscriptions.add(
-            this.alertService.manutenzioniScadute$.subscribe((data) => {
-              this.manutenzioniScadute = data;
-              console.log('manutenzioni scadute', data);
-            })
-          );
-          this.subscriptions.add(
-            this.alertService.manutenzioniInScadenzaBreveTermine$.subscribe(
-              (data) => {
-                this.manutenzioniInScadenzaBreveTermine = data;
-                console.log('manutenzioni in scadenza breve', data);
-              }
-            )
-          );
-          this.subscriptions.add(
-            this.alertService.manutenzioniInScadenzaMedioTermine$.subscribe(
-              (data) => {
-                this.manutenzioniInScadenzaMedioTermine = data;
-                console.log('manutenzioni in scadenza media', data);
-              }
-            )
-          );
-          this.subscriptions.add(
-            this.alertService.manutenzioniInScadenzaLungoTermine$.subscribe(
-              (data) => {
-                this.manutenzioniInScadenzaLungoTermine = data;
-                console.log('manutenzioni in scadenza lunga', data);
-              }
-            )
-          );
-        } catch {
-          new Error();
-        }
-      }*/
-
-      //---------------------------------------------------
-      /*if (this.veicoli.length > 0) {
-        this.veicoli.forEach((e) => {
-          if (e.id_stato == 3) {
-            this.isVeicoloNotOk = false;
-            this.isVeicoloOk = false;
-            this.isVeicoloStatoNotDefined = false;
-            this.isVeicoloPartiallyOk = true;
-          } else if (e.id_stato == 2) {
-            this.isVeicoloOk = false;
-            this.isVeicoloStatoNotDefined = false;
-            this.isVeicoloPartiallyOk = false;
-            this.isVeicoloNotOk = true;
-          } else if (e.id_stato == 1) {
-            this.isVeicoloStatoNotDefined = false;
-            this.isVeicoloNotOk = false;
-            this.isVeicoloPartiallyOk = false
-            this.isVeicoloOk = true;
-          } else {
-            this.isVeicoloNotOk = false;
-            this.isVeicoloOk = false;
-            this.isVeicoloPartiallyOk = false;
-            this.isVeicoloStatoNotDefined = true;
-          }
-        });
-      }*/
-      
     });
   }
 
-  getIconClass(id_stato:number | undefined):string{
+  getStatoIconClass(id_stato:number | undefined):string{
     switch(id_stato){
       case 3:
         return 'my-orange-icon';
@@ -160,6 +90,24 @@ export class TableComponent implements OnInit, OnDestroy {
             return 'my-green-icon';
             default:
               return 'my-grey-icon';
+    }
+  }
+
+  getBanClass(id_disponibilita:number | undefined):string{
+    switch(id_disponibilita){
+      case 1:
+        return 'd-none';
+        default:
+          return 'd-inline-block';
+    }
+  }
+
+  getDisponibilitaIconClass(id_disponibilita:number | undefined):string{
+    switch(id_disponibilita){
+      case 1:
+        return 'd-inline-block text-success';
+        default:
+          return 'd-none';
     }
   }
 

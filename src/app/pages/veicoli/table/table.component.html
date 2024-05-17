@@ -316,8 +316,10 @@
   <thead>
     <tr>
       <th scope="col">Nr. id.</th>
-      <th></th>
+      <th>Stato</th>
+      <th>Disponibilità</th>
       <th scope="col">Tipo veicolo</th>
+      <th scope="col">Targa</th>
       <th scope="col">Marca</th>
       <th scope="col">Modello</th>
       <th scope="col">Cilindrata</th>
@@ -328,25 +330,40 @@
       <th scope="col">Portata</th>
       <th scope="col">Potenza</th>
       <th scope="col">Società</th>
-      <th scope="col">Targa</th>
       <th scope="col">Alimentazione</th>
       <th scope="col">Allestimento</th>
       <th scope="col">Tipo asse</th>
       <th scope="col">Cambio</th>
+      <th scope="col">Disponibilità</th>
+      <th scope="col">Larghezza</th>
+      <th scope="col">Lunghezza</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let veicolo of veicoliToShow">
       <td scope="row">{{ veicolo.id }}</td>
-      <td>
+      <td class="text-center">
         <i
         class="fa-solid fa-screwdriver-wrench"
-        [ngClass]="getIconClass(veicolo.id_stato)"
+        [ngClass]="getStatoIconClass(veicolo.id_stato)"
         ></i>
       </td>
+
+
+        <td class="text-center">
+          <i class="fa-solid fa-check"
+          [ngClass]="getDisponibilitaIconClass(veicolo.id_disponibilita)"
+          ></i>
+          <i class="fa-solid fa-ban"
+          [ngClass]="getBanClass(veicolo.id_disponibilita)"
+          ></i>
+        </td>
+
+      
       <td class="text-truncate">
         {{ veicolo.tipo_veicolo_nome }}
       </td>
+      <td class="text-truncate">{{ veicolo.targa }}</td>
       <td class="text-truncate">{{ veicolo.marca_nome }}</td>
       <td class="text-truncate">{{ veicolo.modello_nome }}</td>
       <td class="text-truncate">{{ veicolo.cilindrata }}</td>
@@ -359,11 +376,13 @@
       <td class="text-truncate">{{ veicolo.portata }}</td>
       <td class="text-truncate">{{ veicolo.potenza }}</td>
       <td class="text-truncate">{{ veicolo.proprietario_nome }}</td>
-      <td class="text-truncate">{{ veicolo.targa }}</td>
       <td class="text-truncate">{{ veicolo.tipo_alimentazione_nome }}</td>
       <td class="text-truncate">{{ veicolo.tipo_allestimento_nome }}</td>
       <td class="text-truncate">{{ veicolo.tipo_asse_nome }}</td>
       <td class="text-truncate">{{ veicolo.tipo_cambio_nome }}</td>
+      <td class="text-truncate">{{ veicolo.nome_disponibilita }}</td>
+      <td class="text-truncate">{{ veicolo.larghezza_esterna }}</td>
+      <td class="text-truncate">{{ veicolo.lunghezza_esterna }}</td>
       <td class="d-flex">
         <a [routerLink]="['details', veicolo.id]"
           ><i class="fa-solid fa-circle-info"></i

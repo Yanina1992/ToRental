@@ -5,34 +5,45 @@ export class Veicoli implements IAlert {
     //getAll properties
   public id_veicolo!: number;
 
-  public altre_caratteristiche?: string | undefined;
+  public id_stato?:number = 0;//------------------
+  public nome_stato?:string = '';
 
-  public cilindrata: number = 0; //+min 0
+  public id_disponibilita?:number | undefined = 0;//---------------
+  public nome_disponibilita?:string |undefined = '';
+
+  public tipo_veicolo_nome?: string = '';
+  public id_tipo_veicolo?: number | undefined = 0;
+
+  public targa: string = '';
+
+  public marca?: string | undefined;//da toglieree
+  public marca_nome?: string = '';
+  public id_marca?: number = 0;
+  
+  public modello?: string | undefined;//da togliere
+  public modello_nome?: string = '';
+  public id_modello?: number = 0;
+
+  public cilindrata: number = 0; //+min 0/
 
   public colore: string = '';
 
   public destinazione_uso_nome?: string = '';
   public id_destinazione_uso?: number = 0;
 
-  public tipo_alimentazione_nome?: string = '';
-  public id_alimentazione?: number = 0;
+  public massa: string = '';//è sbagliato, la massa è un numero!
 
-  public id_disponibilita?:number | undefined = 0;
-  public nome_disponibilita?:string |undefined = '';
+  public numero_assi: number = 0;
 
-  public marca?: string | undefined;//da toglieree
-  public marca_nome?: string = '';
-  public id_marca?: number = 0;
+  public portata: number = 0;
 
-  public modello?: string | undefined;//da togliere
-  public modello_nome?: string = '';
-  public id_modello?: number = 0;
+  public potenza: number = 0;
 
   public proprietario_nome?: string = '';
   public id_proprietario?: number = 0;
 
-  public id_stato?:number = 0;
-  public nome_stato?:string = '';
+  public tipo_alimentazione_nome?: string = '';
+  public id_alimentazione?: number = 0;
 
   public tipo_allestimento_nome?: string = '';
   public id_tipo_allestimento?: number = 0;
@@ -43,25 +54,13 @@ export class Veicoli implements IAlert {
   public tipo_cambio_nome?: string = '';
   public id_tipo_cambio?: number = 0;
 
-  public tipo_veicolo_nome?: string = '';
-  public id_tipo_veicolo?: number | undefined = 0;
+  public larghezza_esterna?:number;//----------------------
 
-  public larghezza_esterna?:number;
-  public lunghezza_esterna?:number;
+  public lunghezza_esterna?:number;//----------------------
 
-  public massa: string = '';//è sbagliato, la massa è un numero!
+  public note:string = '';//----------------------
 
-  public note:string = '';
-
-  public numero_assi: number = 0;
-
-  public portata: number = 0;
-
-  public potenza: number = 0;
-
-  public targa: string = '';
-
-
+  public altre_caratteristiche?: string | undefined;//---------------
 
   //
   public data_immatricolazione: any;

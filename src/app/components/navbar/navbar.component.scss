@@ -24,11 +24,12 @@ a:hover{
     display: flex;
     flex-direction: row-reverse;
     color: #16163352;
+    position: relative;
 }
 #fixing-sidebar{
   height: inherit;
   width: 100%;
-  //position: relative !important;
+  position: fixed !important;
 }
 .navbar-brand{
   width: 25%;
