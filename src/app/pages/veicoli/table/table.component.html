@@ -315,7 +315,7 @@
 <table class="table table-striped ms-2">
   <thead>
     <tr>
-      <!--<th scope="col">Nr. id.</th>-->
+      <th scope="col">Nr. id.</th>
       <th></th>
       <th scope="col">Tipo veicolo</th>
       <th scope="col">Marca</th>
@@ -337,8 +337,13 @@
   </thead>
   <tbody>
     <tr *ngFor="let veicolo of veicoliToShow">
-      <!--<td scope="row">{{ veicolo.id }}</td>-->
-      <td><i class="fa-solid fa-screwdriver-wrench"></i></td>
+      <td scope="row">{{ veicolo.id }}</td>
+      <td>
+        <i
+        class="fa-solid fa-screwdriver-wrench"
+        [ngClass]="getIconClass(veicolo.id_stato)"
+        ></i>
+      </td>
       <td class="text-truncate">
         {{ veicolo.tipo_veicolo_nome }}
       </td>

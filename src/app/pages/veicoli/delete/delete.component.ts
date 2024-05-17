@@ -27,10 +27,10 @@ export class DeleteComponent {
       })
     })
     
-    this.veicoliSvc.getAll()
+    /*this.veicoliSvc.getAll()
     .subscribe(veicoli => {
       this.veicoli = veicoli;
-    })
+    })*/
   }
 
 

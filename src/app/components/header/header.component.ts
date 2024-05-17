@@ -18,10 +18,10 @@ export class HeaderComponent {
   constructor(private svc: VeicoliService, private router: Router) {}
 
   ngOnInit() {
-    this.svc.getAll().subscribe((data: Veicoli[]) => {
-      this.veicoli = data;
-    });
-  }
+    //this.svc.getAll().subscribe((data: Veicoli[]) => {
+      //this.veicoli = data;
+    }
+  
 
   onSearch(text: string): Veicoli[] {
     const term = text.toLowerCase();

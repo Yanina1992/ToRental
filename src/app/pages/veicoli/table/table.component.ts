@@ -54,6 +54,16 @@ export class TableComponent implements OnInit, OnDestroy {
   tipiAsse: IAsse[] = [];
   tipiCambio: ICambio[] = [];
 
+  redIconList:Veicoli[] = [];
+  orangeIconList:Veicoli[] = [];
+  greenIconList:Veicoli[] = [];
+  greyIconList:Veicoli[] = [];
+
+  isVeicoloPartiallyOk:boolean = false;
+  isVeicoloNotOk:boolean = false;
+  isVeicoloOk:boolean = false;
+  isVeicoloStatoNotDefined:boolean = false;
+
   constructor(
     private veicoliSvc: VeicoliService,
     private alertService: AlertService
@@ -72,8 +82,8 @@ export class TableComponent implements OnInit, OnDestroy {
       if (data) {
         this.spinner = false;
       }
-      //Variables to get alerts from alertService
-      if (this.veicoli.length > 0) {
+      //Variables to get alerts from alertService ---------------->>>>>>>>>>>>>>> credo non serva, basta controllare lo stato e la disponibilità
+      /*if (this.veicoli.length > 0) {
         try {
           this.subscriptions.add(
             this.alertService.manutenzioniScadute$.subscribe((data) => {
@@ -108,8 +118,49 @@ export class TableComponent implements OnInit, OnDestroy {
         } catch {
           new Error();
         }
-      }
+      }*/
+
+      //---------------------------------------------------
+      /*if (this.veicoli.length > 0) {
+        this.veicoli.forEach((e) => {
+          if (e.id_stato == 3) {
+            this.isVeicoloNotOk = false;
+            this.isVeicoloOk = false;
+            this.isVeicoloStatoNotDefined = false;
+            this.isVeicoloPartiallyOk = true;
+          } else if (e.id_stato == 2) {
+            this.isVeicoloOk = false;
+            this.isVeicoloStatoNotDefined = false;
+            this.isVeicoloPartiallyOk = false;
+            this.isVeicoloNotOk = true;
+          } else if (e.id_stato == 1) {
+            this.isVeicoloStatoNotDefined = false;
+            this.isVeicoloNotOk = false;
+            this.isVeicoloPartiallyOk = false
+            this.isVeicoloOk = true;
+          } else {
+            this.isVeicoloNotOk = false;
+            this.isVeicoloOk = false;
+            this.isVeicoloPartiallyOk = false;
+            this.isVeicoloStatoNotDefined = true;
+          }
+        });
+      }*/
+      
     });
+  }
+
+  getIconClass(id_stato:number | undefined):string{
+    switch(id_stato){
+      case 3:
+        return 'my-orange-icon';
+        case 2:
+          return 'my-red-icon';
+          case 1:
+            return 'my-green-icon';
+            default:
+              return 'my-grey-icon';
+    }
   }
 
   ngOnInit() {

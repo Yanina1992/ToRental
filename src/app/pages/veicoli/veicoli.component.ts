@@ -163,7 +163,7 @@ export class VeicoliComponent implements OnInit {
   creaVeicolo() {
     this.formSubmitted = true;
     //Check if this targa already exists
-    this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
+    /*this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
       this.veicoli = data;
       this.veicoli.forEach((element) => {
         if (element.targa == this.veicoloForm.targa) {
@@ -172,7 +172,7 @@ export class VeicoliComponent implements OnInit {
         }
       });
       if (this.isTarga == false) {
-        console.log('Submitting form with data:', this.veicoloForm);
+        console.log('Submitting form with data:', this.veicoloForm);*/
         this.veicoliSvc.create(this.veicoloForm).subscribe(
           (res) => {
             console.log('nuovo veicolo:', res);
@@ -182,7 +182,8 @@ export class VeicoliComponent implements OnInit {
           }
         );
       }
-    });
+    }
+  /*);
   }
 
-}
+}*/
