@@ -7,7 +7,6 @@ form {
   background: linear-gradient(45deg, rgb(0 0 36), transparent);
 }
 
-
 .search-btn {
   border: 0;
   background-color: transparent;
@@ -29,4 +28,17 @@ i:hover{
 }
 nav{
   padding:0;
+  height: 70px;
+}
+svg{
+  width: 220px;
+}
+
+.flex-nowrap{
+  height: inherit;
+  border-bottom: 1px solid #EC7801;
+}
+
+#right-div{
+  height: inherit;
 }

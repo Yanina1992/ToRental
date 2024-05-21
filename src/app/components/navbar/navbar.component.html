@@ -22,6 +22,7 @@
               routerLink="../../pages/dashboard"
               class="nav-link active navbar-brand text-center m-0"
               aria-current="page"
+              (click)="currentPage('Dashboard')"
             >
               Dashboard
             </a>
@@ -32,6 +33,7 @@
             <a
               routerLink="../pages/veicoli"
               class="nav-link active navbar-brand text-center m-0"
+              (click)="currentPage('Veicoli')"
               >Veicoli</a
             >
           </div>
@@ -55,8 +57,8 @@
                     aria-labelledby="alert-drop-down"
                     class="p-2 dropdown-menu"
                   >
-                    <a ngbDropdownItem>Urgenze tecniche</a>
-                    <a ngbDropdownItem>Urgenze amministrative</a>
+                    <a ngbDropdownItem (click)="currentPage('Alert')">Urgenze tecniche</a>
+                    <a ngbDropdownItem (click)="currentPage('Alert')">Urgenze amministrative</a>
                   </div>
                 </div>
               </div>
@@ -69,6 +71,7 @@
               routerLink="../manutenzioni"
               class="nav-link active navbar-brand text-center m-0"
               aria-current="page"
+              (click)="currentPage('Manutenzione')"
             >
               Manutenzione
             </a>

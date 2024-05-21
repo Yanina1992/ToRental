@@ -9,11 +9,14 @@ app-header {
   position: relative;
   z-index: 1;
   border-right: 0.5px solid grey;
-  box-shadow: 3px -4px 7px 0px;
+  box-shadow: 1px -2px 5px 0px;
 }
 .row{
   max-width: 99.3vw;
 }
 app-footer{
   padding-right: 0;
+}
+#navbar{
+  border-right: 1px solid #EC7801;
 }

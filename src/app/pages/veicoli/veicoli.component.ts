@@ -146,6 +146,18 @@ export class VeicoliComponent implements OnInit {
       this.veicoloForm.id_tipo_veicolo = selectedTipoVeicoloId;
     }
   }
+  selectedStatoId:number = 0;
+  onStatoChange(selectedStatoId:number){
+    if(selectedStatoId){
+      this.veicoloForm.id_stato = selectedStatoId;
+    }
+  }
+  selectedDisponibilitaId:number = 0;
+  onDisponibilitaChange(selectedDisponibilitaId:number){
+    if(selectedDisponibilitaId) {
+      this.veicoloForm.id_disponibilita = selectedDisponibilitaId;
+    }
+  }
 
   //Variable to handle validation
   formSubmitted: boolean = false;

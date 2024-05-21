@@ -27,7 +27,7 @@
       <!--Customized search-->
       <form #veicoliForm="ngForm" id="my-form">
         <h3>Ricerca personalizzata</h3>
-        <div class="row row-cols-3 justify-content-between">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
           <!--Tipo veicolo-->
           <div class="mb-3 col">
             <label for="tipo_veicolo_nome" class="form-label"
@@ -111,9 +111,8 @@
               Selezionare un modello.
             </div>
           </div>
-        </div>
+        
 
-        <div class="row row-cols-3 justify-content-between">
           <!--Destinazione d'uso-->
           <div class="mb-3 col">
             <label for="destinazione_uso_nome" class="form-label"
@@ -204,8 +203,7 @@
               Selezionare un tipo di alimentazione.
             </div>
           </div>
-        </div>
-        <div class="row row-cols-3 justify-content-between">
+        
           <!--Allestimento-->
           <div class="mb-3 col">
             <label for="tipo_allestimento_nome" class="form-label"
@@ -352,7 +350,7 @@
 
         <td class="text-center">
           <i class="fa-solid fa-check"
-          [ngClass]="getDisponibilitaIconClass(veicolo.id_disponibilita)"
+          [ngClass]="getCheckIconClass(veicolo.id_disponibilita)"
           ></i>
           <i class="fa-solid fa-ban"
           [ngClass]="getBanClass(veicolo.id_disponibilita)"

@@ -67,7 +67,8 @@ export class TableComponent implements OnInit, OnDestroy {
   private getAllVeicoli() {
     this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
       this.veicoli = data.reverse();
-      console.log('veicoli', this.veicoli);
+      this.veicoli.reverse();
+      //console.log('veicoli', this.veicoli);
       this.collectionSize = data.length;
       this.refreshVeicoli();
 
@@ -102,7 +103,7 @@ export class TableComponent implements OnInit, OnDestroy {
     }
   }
 
-  getDisponibilitaIconClass(id_disponibilita:number | undefined):string{
+  getCheckIconClass(id_disponibilita:number | undefined):string{
     switch(id_disponibilita){
       case 1:
         return 'd-inline-block text-success';

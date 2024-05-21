@@ -1,39 +1,53 @@
-import { Component } from '@angular/core';
-import { Veicoli } from 'src/app/classes/veicoli';
-import { VeicoliService } from 'src/app/services/veicoli.service';
-import { FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, HostListener, ChangeDetectorRef, OnInit, OnDestroy  } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+import { ServizioService } from 'src/app/services/servizio.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
-  searchTerm: string = '';
+  isMobileSize:boolean = false;
+  buttonClass:string = '';
+  divClass:string = '';
+  currentPageName:string = '';
+  private subscriptions:Subscription = new Subscription();
+  isLoggedIn:boolean = false;
 
-  veicoli: Veicoli[] = [];
-
-  constructor(private svc: VeicoliService, private router: Router) {}
+  constructor(
+    private svc:ServizioService,
+    private cdr:ChangeDetectorRef,
+    private authSvc:AuthService
+  ) {}
 
   ngOnInit() {
-    //this.svc.getAll().subscribe((data: Veicoli[]) => {
-      //this.veicoli = data;
+    this.subscriptions.add(
+      this.authSvc.isLoggedIn$.subscribe(isLoggedIn => {
+        this.isLoggedIn = isLoggedIn;
+        if(isLoggedIn){
+          this.subscriptions.add(
+            this.svc.currentPageName$.subscribe(pageName => {
+              this.currentPageName = pageName;
+              this.cdr.detectChanges()
+            })
+          );
+        } else {
+          this.currentPageName = '';
+        }
+      })
+    );
+    }
+
+    ngOnDestroy(){
+      this.subscriptions.unsubscribe();
     }
   
-
-  onSearch(text: string): Veicoli[] {
-    const term = text.toLowerCase();
-    //console.log(text);
-     this.veicoli = this.veicoli.filter((veicolo) =>
-      (veicolo.tipo_veicolo_nome || '').toLowerCase().startsWith(term)
-    );
-    console.log('Risultato del filtro:', this.veicoli);
-    if (this.veicoli.length > 0) {
-      this.router.navigate(['pages/veicoli/table']);
+  currentPage(page: string) {
+    if(this.isLoggedIn){
+      this.svc.currentPage(page);
     }
-    return this.veicoli;
   }
-    
 }

@@ -4,12 +4,20 @@ import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { ActivatedRoute } from '@angular/router';
 import { IManutenzione } from '../interfaces/imanutenzione';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ServizioService {
   private url: string =  environment.generalEndPoint;
+
+  private currentPageNameSubject = new BehaviorSubject<string>('Dashboard');
+  currentPageName$ = this.currentPageNameSubject.asObservable();
+
+  currentPage(currentPage:string){
+    this.currentPageNameSubject.next(currentPage);
+  }
 
   constructor(
     private http: HttpClient,

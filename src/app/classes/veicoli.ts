@@ -5,11 +5,11 @@ export class Veicoli implements IAlert {
     //getAll properties
   public id_veicolo!: number;
 
-  public id_stato?:number = 0;//------------------
+  public id_stato?:number = 0;
   public nome_stato?:string = '';
 
-  public id_disponibilita?:number | undefined = 0;//---------------
-  public nome_disponibilita?:string |undefined = '';
+  public id_disponibilita?:number | undefined = 0;
+  public nome_disponibilita?:string | undefined = '';
 
   public tipo_veicolo_nome?: string = '';
   public id_tipo_veicolo?: number | undefined = 0;
