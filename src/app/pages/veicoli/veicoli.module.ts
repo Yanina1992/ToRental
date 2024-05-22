@@ -9,15 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatepickerComponent } from 'src/app/components/datepicker/datepicker.component';
 import { DeleteComponent } from './delete/delete.component';
 import { EditComponent } from './edit/edit.component';
-import { DetailsComponent } from './details/details.component';
+import { StandDetailsComponent } from './detail/stand-details.component';
 
 @NgModule({
   declarations: [
     VeicoliComponent,
     TableComponent,
     DeleteComponent,
-    EditComponent,
-    DetailsComponent
+    EditComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +30,8 @@ import { DetailsComponent } from './details/details.component';
     NgbTypeaheadModule,
     NgbPaginationModule,
     ReactiveFormsModule,
-    DatepickerComponent
+    DatepickerComponent,
+    StandDetailsComponent
   ]
 })
 export class VeicoliModule { }

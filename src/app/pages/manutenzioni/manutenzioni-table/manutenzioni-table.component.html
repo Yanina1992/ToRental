@@ -49,7 +49,7 @@
       <td>{{ manutenzione.inizio_validita }}</td>
       <td>{{ manutenzione.fine_validita }}</td>
       <td>€{{ manutenzione.importo }}</td>
-      <td>
+      <td class="d-flex justify-content-between">
         <a [routerLink]="['manutenzioni-details', manutenzione.id]"
           ><i class="fa-solid fa-circle-info"></i
         ></a>

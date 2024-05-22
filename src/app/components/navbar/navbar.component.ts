@@ -1,4 +1,4 @@
-import { Component, HostListener, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, HostListener, ChangeDetectorRef, OnInit, AfterViewInit } from '@angular/core';
 import { ServizioService } from 'src/app/services/servizio.service';
 //import { ServizioService } from 'src/app/services/servizio.service';
 
@@ -28,27 +28,28 @@ export class NavbarComponent implements OnInit {
 
   ngAfterViewInit():void{
       this.changeAreaExpanded();
-      this.cdr.detectChanges();
+      //this.cdr.detectChanges();
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event:any){
+  onResize(event:any):void{
      this.changeAreaExpanded(); 
      this.cdr.detectChanges();
   }
 
-  changeAreaExpanded(){
+  changeAreaExpanded():void{
       if(window.innerWidth >= 576){
         this.isMobileSize = true;
         this.buttonClass = 'navbar-toggler d-none';
         this.divClass = 'navbar-collapse collapse-show';
       }else{
+        this.isMobileSize = false;
         this.buttonClass = 'navbar-toggler-collapsed';
         this.divClass = 'navbar-collapse collapse';
       }
     }
 
-    currentPage(page:string){
+    currentPage(page:string):void{
       this.svc.currentPage(page);
     }
   }

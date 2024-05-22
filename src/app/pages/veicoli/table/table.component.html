@@ -347,7 +347,6 @@
         ></i>
       </td>
 
-
         <td class="text-center">
           <i class="fa-solid fa-check"
           [ngClass]="getCheckIconClass(veicolo.id_disponibilita)"
@@ -356,7 +355,6 @@
           [ngClass]="getBanClass(veicolo.id_disponibilita)"
           ></i>
         </td>
-
       
       <td class="text-truncate">
         {{ veicolo.tipo_veicolo_nome }}
@@ -382,9 +380,11 @@
       <td class="text-truncate">{{ veicolo.larghezza_esterna }}</td>
       <td class="text-truncate">{{ veicolo.lunghezza_esterna }}</td>
       <td class="d-flex">
-        <a [routerLink]="['details', veicolo.id]"
-          ><i class="fa-solid fa-circle-info"></i
-        ></a>
+
+        <!--Offcanvas-->
+   
+        <app-stand-details *ngIf="veicolo.id != undefined" [id]="veicolo.id"></app-stand-details>      
+
         <a [routerLink]="['edit', veicolo.id]"
           ><i class="fa-solid fa-pen-to-square"></i
         ></a>

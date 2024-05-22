@@ -1,7 +1,7 @@
-import { Component, HostListener, ChangeDetectorRef, OnInit, OnDestroy  } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import { Component, HostListener, ChangeDetectorRef, OnInit  } from '@angular/core';
 import { ServizioService } from 'src/app/services/servizio.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +10,9 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
 
-  isMobileSize:boolean = false;
+  /*isMobileSize:boolean = false;
   buttonClass:string = '';
-  divClass:string = '';
+  divClass:string = '';*/
   currentPageName:string = '';
   private subscriptions:Subscription = new Subscription();
   isLoggedIn:boolean = false;
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
     private authSvc:AuthService
   ) {}
 
-  ngOnInit() {
+  ngOnInit():void {
     this.subscriptions.add(
       this.authSvc.isLoggedIn$.subscribe(isLoggedIn => {
         this.isLoggedIn = isLoggedIn;
@@ -50,4 +50,21 @@ export class HeaderComponent implements OnInit {
       this.svc.currentPage(page);
     }
   }
+
+  /*private checkLoginStatus(){
+    //debugger
+    const accessData = localStorage.getItem('accessData');
+    if(accessData){
+      this.isLoggedIn = true;
+      this.subscriptions.add(
+        this.svc.currentPageName$.subscribe(pageName => {
+          this.currentPageName = pageName;
+          this.cdr.detectChanges();
+        })
+      )
+    } else {
+      //this.currentPageName = '';
+      this.isLoggedIn = false;
+    }
+  }*/
 }

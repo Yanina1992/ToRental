@@ -1,7 +1,9 @@
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-center container">
   <h2>Modifica x</h2>
   <form #modificaManutenzioneForm="ngForm">
-    <div class="mb-3">
+    <div class="row row-cols-2">
+
+    <div class="mb-3 col">
       <label for="id" class="form-label">Anno</label>
       <input
         *ngIf="manutenzione"
@@ -15,7 +17,7 @@
       />
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 col">
       <label for="data_pagamento" class="form-label">Data pagamento</label>
       <app-datepicker *ngIf="manutenzione"
         [(ngModel)]="data_pagamento"
@@ -24,16 +26,14 @@
       ></app-datepicker>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 col">
       <label for="inizio_validita" class="form-label">Inizio validità</label>
       <app-datepicker *ngIf="manutenzione"
         [(ngModel)]="inizio_validita"
         name="inizio_validita"
         (onInizioValiditaChange)="handleInizioValiditaChange($event)"
       ></app-datepicker>
-    </div>
 
-    <div class="mb-3">
       <label for="fine_validita" class="form-label">Fine validità</label>
       <app-datepicker *ngIf="manutenzione"
       [(ngModel)]="fine_validita"
@@ -42,7 +42,7 @@
       ></app-datepicker>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 col">
       <label for="importo" class="form-label">Importo</label>
       <input
         *ngIf="manutenzione"
@@ -55,7 +55,7 @@
       />
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 col">
       <label for="id_veicolo" class="form-label">Nr. id veicolo</label>
       <input
        *ngIf="manutenzione"
@@ -68,7 +68,7 @@
       />
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 col">
       <label for="targa" class="form-label">Targa</label>
       <input
         *ngIf="manutenzione"
@@ -81,7 +81,7 @@
       />
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 col">
       <label for="note" class="form-label">Note</label>
       <input
         *ngIf="manutenzione"
@@ -101,5 +101,7 @@
     >
       Salva modifiche
     </button>
-  </form>
+ </div>   
+ </form>
+
 </div>

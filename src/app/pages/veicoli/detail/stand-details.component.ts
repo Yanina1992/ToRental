@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, TemplateRef, ViewEncapsulation, Input } from '@angular/core';
+import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+//import { ActivatedRoute } from '@angular/router';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { IAlert } from 'src/app/interfaces/ialert';
 import { VeicoliService } from 'src/app/services/veicoli.service';
 
 @Component({
-  selector: 'app-details',
-  templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss'],
+  selector: 'app-stand-details',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './stand-details.component.html',
+  styleUrls: ['./stand-details.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class DetailsComponent {
+export class StandDetailsComponent {
+
+  @Input() id:number = 0;
+
   veicolo: Veicoli = new Veicoli();
 
   assicurazioni: IAlert[] | undefined;
@@ -23,15 +31,20 @@ export class DetailsComponent {
   tachigrafi: IAlert[] | undefined;
   tagliandi: IAlert[] | undefined;
 
-  constructor(
+
+  closeResult: string | undefined;
+
+	constructor(
+    private offcanvasService: NgbOffcanvas,
     private veicoliSvc: VeicoliService,
-    private route: ActivatedRoute
+    //private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
 
-    this.route.params.subscribe((params: any) => {
-      this.veicoliSvc.getExtraById(params.id).subscribe((res) => {
+	openEnd(content: TemplateRef<any>) {
+		this.offcanvasService.open(content, { position: 'end' });
+     //this.route.params.subscribe((params: any) => {
+      this.veicoliSvc.getExtraById(this.id).subscribe((res) => {
         this.veicolo = res;
 
         console.log('res edit', res)
@@ -51,6 +64,13 @@ export class DetailsComponent {
 
         //console.log('veicolo current', this.veicolo.current);
       });
-    });
-  }
+    //})
+
+	}
+
 }
+
+
+
+
+

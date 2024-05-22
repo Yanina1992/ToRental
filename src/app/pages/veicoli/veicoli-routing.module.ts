@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { VeicoliComponent } from './veicoli.component';
-import { DetailsComponent } from './details/details.component';
 import { EditComponent } from './edit/edit.component';
 import { DeleteComponent } from './delete/delete.component';
 import { TableComponent } from './table/table.component';
 
 const routes: Routes = [
-  
-{
-  path: 'details/:id',
-  component: DetailsComponent,
-},
+
 {
   path: 'edit/:id',
   component: EditComponent,

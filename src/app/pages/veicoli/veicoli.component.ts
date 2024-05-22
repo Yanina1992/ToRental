@@ -49,9 +49,7 @@ export class VeicoliComponent implements OnInit {
       this.marche = data;
     });
     //destinazioni d'uso
-    this.veicoliSvc
-      .getAllDestinazioniDUso()
-      .subscribe((data: IDestinazioneDUso[]) => {
+    this.veicoliSvc.getAllDestinazioniDUso().subscribe((data: IDestinazioneDUso[]) => {
         this.destinazioni = data;
       });
     //società
@@ -59,9 +57,7 @@ export class VeicoliComponent implements OnInit {
       this.societas = data;
     });
     //tipi alimentazione
-    this.veicoliSvc
-      .getAllAlimentazioni()
-      .subscribe((data: IAlimentazione[]) => {
+    this.veicoliSvc.getAllAlimentazioni().subscribe((data: IAlimentazione[]) => {
         this.tipiAlimentazione = data;
       });
     //allestimenti

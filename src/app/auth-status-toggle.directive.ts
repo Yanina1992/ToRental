@@ -1,33 +1,3 @@
-/*import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
-import { AuthService } from './auth/auth.service';
-
-@Directive({
-  selector: '[appAuthStatusToggle]'
-})
-export class AuthStatusToggleDirective implements OnInit {
-
-  constructor(
-    private authService:AuthService,
-    private el:ElementRef,
-    private renderer:Renderer2
-  ) { }
-
-ngOnInit(): void {
-
- this.authService.isLoggedIn$.subscribe(isAuth =>{
-    const actionText = isAuth ? 'Logout' : 'Login';
-    const actionLink = isAuth ? 'Login' : 'Logout';
-    this.renderer.setProperty(this.el.nativeElement, 'innerText', actionText);
-    this.renderer.setAttribute(this.el.nativeElement, 'routerLink', actionLink);
-
-/*if (actionText=="Logout"){
-this.authService.logout()
-}*/
-
- /*  });
-}
-}*/
-
 import { Directive, ElementRef, Renderer2, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from './auth/auth.service';
 import { Router } from '@angular/router';
@@ -52,18 +22,18 @@ export class AuthStatusToggleDirective implements OnInit, OnDestroy {
       const actionText = isAuth ? 'Logout' : 'Login';
       this.renderer.setProperty(this.el.nativeElement, 'innerText', actionText);
 
-      // Rimuovi il listener precedente per evitare duplicazioni
+      //Remove the previous listener to avoid duplications
       if (this.clickListener) {
         this.clickListener();
       }
 
-      // Aggiungi un nuovo listener di click in base allo stato di autenticazione
+      //Add a new click listener based on the authentication status
       this.clickListener = this.renderer.listen(this.el.nativeElement, 'click', () => {
         if (isAuth) {
-          // Utente loggato: esegui logout
+          //User logged in: perform logout
           this.authService.logout();
         //} else {
-          // Utente non loggato: reindirizza alla pagina di login
+          //User not logged in: redirect to the login page
           this.router.navigate(['../auth/login']);
         }
       });
@@ -71,7 +41,7 @@ export class AuthStatusToggleDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Pulisci per evitare perdite di memoria
+    //Clean up to avoid memory leaks
     if (this.clickListener) {
       this.clickListener();
     }

@@ -51,7 +51,8 @@ const routes: Routes = [
     path: 'manutenzioni',
     loadChildren: () =>
       import('./pages/manutenzioni/manutenzioni.module').then(
-        m => m.ManutenzioniModule)
+        m => m.ManutenzioniModule),
+        canActivate:[AuthGuardGuard],
   },
 ];
 

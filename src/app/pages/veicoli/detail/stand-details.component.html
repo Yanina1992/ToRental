@@ -1,12 +1,10 @@
-<div class="m-5">
-
-
-    <div class="container">
-        <div class="row">
-    <h2>Dettagli del veicolo numero {{ veicolo.id}}</h2>
-                <hr>
-
-            <div class="col">
+<ng-template #content let-offcanvas>
+	<div class="offcanvas-header">
+		<h4 class="offcanvas-title">Dettagli del veicolo numero {{ veicolo.id }}</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+	</div>
+	<div class="offcanvas-body">
+        <!--<div class="col">
             <p class="text-decoration-underline">Anagrafica veicolo</p>
             <p class="fst-italic">Nr. identificativo: <span class="fst-normal">{{ veicolo.id}}</span></p>
             <p class="fst-italic">Tipo veicolo: <span class="fst-normal">{{ veicolo.tipo_veicolo_nome}}</span></p>
@@ -30,11 +28,11 @@
             <p class="fst-italic">Note: <span class="fst-italic">{{ veicolo.note }}</span></p>
             <p class="fst-italic">Altre caratterisctiche: <span class="fst-italic">{{ veicolo.altre_caratteristiche }}</span></p>
             <hr>
-            </div>
+            </div>-->
 
-            <!--DATI DI NATURA TECNICA-->
-            <div class="col">
-
+               <!--DATI DI NATURA TECNICA-->
+               <div class="col">
+                <p class="text-decoration-underline">Dati di natura tecnica</p>
                 <div
                 *ngFor="let assicurazione of assicurazioni"
                 ><p class="text-decoration-underline">Assicurazione</p>
@@ -132,21 +130,13 @@
 
             <!--DISPONIBILITà PER IL NOLEGGIO-->
             <div class="col">
+                <p class="text-decoration-underline">Disponibilità per il noleggio</p>
             </div>
+		<div class="text-end">
+			<button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Close click')">Close</button>
+		</div>
+	</div>
+</ng-template>
 
-        </div>
-    </div>
-
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 col-md-6">
-<a class="btn btn-primary m-2" [routerLink]="['../../edit', veicolo.id]">Modifica</a>
-        </div>
-        <div class="col-12 col-md-6">
-<a class="btn btn-primary m-2" [routerLink]="['../../delete', veicolo.id]">Dismetti</a>
-        </div>
-    </div>
-</div>
-
-</div>
+<!--<button class="btn btn-lg btn-outline-primary mb-2 me-2" (click)="openEnd(content)">Right position</button>-->
+<button class="border-0 bg-transparent" (click)="openEnd(content)"><i class="fa-solid fa-circle-info"></i></button>

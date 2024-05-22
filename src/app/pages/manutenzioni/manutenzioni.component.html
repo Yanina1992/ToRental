@@ -1,21 +1,37 @@
-<h2 class="text-center">Manutenzione</h2>
+<h2 class="m-4 text-center">Manutenzione</h2>
+<div class="container">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
 
-<div class="d-grid gap-2 col-6 mx-auto">
+<!--<div class="d-grid gap-2 col-6 mx-auto">-->
+  <div class="col">
   <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione']"
     >Assicurazioni</a
   >
+</div>
+<div class="col">
   <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'atp']">Atp</a>
+</div>
+  <div class="col">
   <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bollo']">Bolli</a>
-  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bombole']"
+  </div>
+  <div class="col">
+    <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bombole']"
     >Bombole</a
   >
+  </div>
+  <div class="col">
   <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'revisione']"
     >Revisioni</a
-  >
+  ></div>
+  <div class="col">
   <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tachigrafo']"
     >Tachigrafi</a
-  >
-  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tagliando']"
+  ></div>
+  <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tagliando']"
     >Tagliandi</a
   >
+  </div>
+
+</div>
 </div>
