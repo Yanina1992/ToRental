@@ -3,6 +3,18 @@
   <h3>Inserisci i dati richiesti</h3>
 
   <div class="mb-3">
+    <label for="targa" class="form-label">Targa</label>
+    <input
+      type="text"
+      class="form-control"
+      id="targa"
+      [(ngModel)]="manutenzioneForm.targa"
+      name="targa"
+      #targa="ngModel"
+    />
+  </div>
+
+  <div class="mb-3">
     <label for="anno" class="form-label">Anno</label>
     <input
       type="number"
@@ -16,17 +28,17 @@
 
   <div class="mb-3">
     <label for="data_pagamento" class="form-label">Data pagamento</label>
-    <app-datepicker (onPagamentoChange)="handlePagamentoChange($event)"></app-datepicker>
+    <app-datepicker (dateChange)="handlePagamentoChange($event)"></app-datepicker>
   </div>
   
   <div class="mb-3">
     <label for="inizio_validita" class="form-label">Inizio validità</label>
-    <app-datepicker (onInizioValiditaChange)="handleInizioValiditaChange($event)"></app-datepicker>
+    <app-datepicker (dateChange)="handleInizioValiditaChange($event)"></app-datepicker>
   </div>
 
   <div class="mb-3">
     <label for="fine_validita" class="form-label">Fine validità</label>
-    <app-datepicker (onFineValiditaChange)="handleFineValiditaChange($event)"></app-datepicker>
+    <app-datepicker (dateChange)="handleFineValiditaChange($event)"></app-datepicker>
   </div>
 
   <div class="mb-3">
@@ -41,7 +53,7 @@
     />
   </div>
 
-  <div class="mb-3">
+  <!--<div class="mb-3">
     <label for="id_veicolo" class="form-label">Nr. id veicolo</label>
     <input
       type="number"
@@ -51,19 +63,7 @@
       name="id_veicolo"
       #id_veicolo="ngModel"
     />
-  </div>
-
-  <div class="mb-3">
-    <label for="targa" class="form-label">Targa</label>
-    <input
-      type="text"
-      class="form-control"
-      id="targa"
-      [(ngModel)]="manutenzioneForm.targa"
-      name="targa"
-      #targa="ngModel"
-    />
-  </div>
+  </div>-->
 
   <div class="mb-3">
     <label for="note" class="form-label">Note</label>

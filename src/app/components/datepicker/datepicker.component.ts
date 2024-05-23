@@ -78,7 +78,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 		}
 	],
 })
-export class DatepickerComponent {
+export class DatepickerComponent implements ControlValueAccessor {
 
 	model2: any;
 	onChange: any = () => {};
@@ -93,6 +93,7 @@ export class DatepickerComponent {
 	@Output() dateChange = new EventEmitter<string | undefined>();
 
 	onDateChange(value: string){
+		console.log('onDateChange:', value);
 		this.model2 = value;
 		this.onChange(value);
 		this.dateChange.emit(value);
@@ -100,6 +101,7 @@ export class DatepickerComponent {
 
 	selectToday(){
 		this.model2 = this.today;
+		console.log('selectToday:', this.model2);
 		this.onChange(this.model2);
 		this.dateChange.emit(this.model2)
 	}

@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { debounce } from 'rxjs';
 import { IManutenzione } from 'src/app/interfaces/imanutenzione';
 import { ServizioService } from 'src/app/services/servizio.service';
 
@@ -16,14 +17,14 @@ export class CreateManutenzioneComponent {
     inizio_validita: '',
     fine_validita: '',
     id: 0,
-    id_disponibilita: 0,
-    id_stato: 0,
+    //id_disponibilita: 0,
+    //id_stato: 0,
     importo: 0,
     id_veicolo: 0,
     targa: '',
     note: '',
 
-    cilindrata: 0,
+    /*cilindrata: 0,
     colore: '',
     id_alimentazione: 0,
     id_destinazione_uso: 0,
@@ -40,9 +41,10 @@ export class CreateManutenzioneComponent {
     massa: 0,
     numero_assi: 0,
     portata: 0,
-    potenza: 0,
+    potenza: 0,*/
   };
   isValidDate: any;
+  tipo:string = '';
 
   constructor(
     private datePipe: DatePipe,
@@ -50,37 +52,44 @@ export class CreateManutenzioneComponent {
     private route: ActivatedRoute
   ) {}
 
-  ngOnInit(): void {}
-
-  handlePagamentoChange(date:any){
-    console.log('data pagamento', date);
-    this.manutenzioneForm.data_pagamento = date; 
+  ngOnInit(): void {
+    console.log('creaManutenzione called');
+    //debugger;
+    //Take 'tipo' from parameters
+    this.route.params.subscribe((params) => {
+      let firstParam = params['tipo'];
+      this.tipo = firstParam;
+      console.log('tipo:', this.tipo);
+    })
   }
 
-  handleInizioValiditaChange(date:any){
+  handlePagamentoChange(date: any) {
+    console.log('data pagamento', date);
+    this.manutenzioneForm.data_pagamento = date;
+  }
+
+  handleInizioValiditaChange(date: any) {
     console.log('inizio validita', date);
     this.manutenzioneForm.inizio_validita = date;
   }
 
-  handleFineValiditaChange(date:any){
+  handleFineValiditaChange(date: any) {
     console.log('fine validita', date);
     this.manutenzioneForm.fine_validita = date;
   }
 
+  note:string = '';
   creaManutenzione() {
-    //Take 'tipo' from parameters
-    this.route.params.subscribe((params) => {
-      let tipo = params['tipo'];
-      let nuovaManutenzione = this.manutenzioneForm;
+    let nuovaManutenzione = this.manutenzioneForm;
+    this.svc.create(this.tipo, nuovaManutenzione).subscribe(
 
-      this.svc.create(tipo, nuovaManutenzione).subscribe(
-        (res) => {
-          console.log('nuova manutenzione:', res);
-        },
-        (error) => {
-          console.error('Failed to submit form:', error);
-        }
-      );
-    });
+      (res) => {
+        console.log('nuova manutenzione:', res);
+      },
+      (error) => {
+        console.error('Failed to submit form:', error);
+      }
+    );
+     
   }
 }

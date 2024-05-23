@@ -43,7 +43,7 @@ export class ServizioService {
 
   create(firstParam:string, element: IManutenzione): Observable<IManutenzione> {
     return this.http
-      .post<IManutenzione>(this.url + `/${firstParam}`, element)
+      .post<IManutenzione>(`${this.url}/${firstParam}`, element)
       .pipe(
         tap(() => {
           this._refreshTable$.next();

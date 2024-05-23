@@ -32,6 +32,8 @@ const routes: Routes =
   {
     path: ':tipo/create-manutenzione',
     component: CreateManutenzioneComponent
+    //path: 'manutenzione/:tipo',
+    //component: CreateManutenzioneComponent
   }
 ];
 

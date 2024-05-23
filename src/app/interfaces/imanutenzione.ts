@@ -12,7 +12,7 @@ export interface IManutenzione {
     targa:string;
     note:string;
 
-    cilindrata?:number;
+    /*cilindrata?:number;
     colore?:string;
     id_alimentazione?:number;
     id_destinazione_uso?:number;
@@ -29,6 +29,6 @@ export interface IManutenzione {
     massa?:number;
     numero_assi?:number;
     portata?:number;
-    potenza?:number;
+    potenza?:number;*/
     
 }
