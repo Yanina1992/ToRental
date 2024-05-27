@@ -62,6 +62,8 @@ export class Veicoli implements IAlert {
 
   public altre_caratteristiche?: string | undefined;//---------------
 
+  public arraySize: number = 0;
+
   //
   public data_immatricolazione: any;
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AlertService } from 'src/app/services/alert.service';
 import { IAlert } from 'src/app/interfaces/ialert';
@@ -23,7 +23,6 @@ import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnDestroy {
-
   private subscriptions = new Subscription();
 
   veicoloForm: Veicoli = new Veicoli();
@@ -50,65 +49,69 @@ export class TableComponent implements OnInit, OnDestroy {
   tipiAsse: IAsse[] = [];
   tipiCambio: ICambio[] = [];
 
-  redIconList:Veicoli[] = [];
-  orangeIconList:Veicoli[] = [];
-  greenIconList:Veicoli[] = [];
-  greyIconList:Veicoli[] = [];
+  redIconList: Veicoli[] = [];
+  orangeIconList: Veicoli[] = [];
+  greenIconList: Veicoli[] = [];
+  greyIconList: Veicoli[] = [];
 
-  isVeicoloPartiallyOk:boolean = false;
-  isVeicoloNotOk:boolean = false;
-  isVeicoloOk:boolean = false;
-  isVeicoloStatoNotDefined:boolean = false;
+  isVeicoloPartiallyOk: boolean = false;
+  isVeicoloNotOk: boolean = false;
+  isVeicoloOk: boolean = false;
+  isVeicoloStatoNotDefined: boolean = false;
 
   constructor(
     private veicoliSvc: VeicoliService,
+    private cdr: ChangeDetectorRef
   ) {}
 
-  private getAllVeicoli() {
-    this.veicoliSvc.getAll().subscribe((data: Veicoli[]) => {
-      this.veicoli = data.reverse();
-      this.veicoli.reverse();
-      //console.log('veicoli', this.veicoli);
-      this.collectionSize = data.length;
-      this.refreshVeicoli();
+  arraySize: number = 0;
+  text: string = '';
 
-      this.filteredVeicoli = [...this.veicoli];
-      this.setupFilter();
+  public getAllVeicoli() {
+    this.veicoliSvc
+      .getAllWithParams(this.page, this.pageSize, this.text)
+      .subscribe((data: Veicoli[]) => {
+        this.veicoli = data.reverse();
+        this.veicoli.reverse();
+        this.collectionSize = this.veicoli[0].arraySize;
+        this.arraySize = this.collectionSize;
+        this.refreshVeicoli();
 
-      if (data) {
-        this.spinner = false;
-      }
-    });
+        this.filteredVeicoli = [...this.veicoli];
+        this.setupFilter();
+
+        if (data) {
+          this.spinner = false;
+        }
+      });
   }
 
-  getStatoIconClass(id_stato:number | undefined):string{
-    switch(id_stato){
+  getStatoIconClass(id_stato: number | undefined): string {
+    switch (id_stato) {
       case 3:
         return 'my-orange-icon';
-        case 2:
-          return 'my-red-icon';
-          case 1:
-            return 'my-green-icon';
-            default:
-              return 'my-grey-icon';
+      case 2:
+        return 'my-red-icon';
+      case 1:
+        return 'my-green-icon';
+      default:
+        return 'my-grey-icon';
     }
   }
-
-  getBanClass(id_disponibilita:number | undefined):string{
-    switch(id_disponibilita){
+  getBanClass(id_disponibilita: number | undefined): string {
+    switch (id_disponibilita) {
       case 1:
         return 'd-none';
-        default:
-          return 'd-inline-block';
+      default:
+        return 'd-inline-block';
     }
   }
-
-  getCheckIconClass(id_disponibilita:number | undefined):string{
-    switch(id_disponibilita){
+  getCheckIconClass(id_disponibilita: number | undefined): string {
+    switch (id_disponibilita) {
       case 1:
         return 'd-inline-block text-success';
-        default:
-          return 'd-none';
+      default:
+        return 'd-none';
     }
   }
 
@@ -117,7 +120,7 @@ export class TableComponent implements OnInit, OnDestroy {
     this.veicoliSvc.refreshVeicoliTable$.subscribe(() => {
       this.getAllVeicoli();
     });
-    this.getAllVeicoli();
+    //this.getAllVeicoli();
 
     //Selects:
     //tipi di veicoli
@@ -396,7 +399,7 @@ export class TableComponent implements OnInit, OnDestroy {
   refreshVeicoli() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
-    this.veicoliToShow = this.filteredVeicoli.slice(start, end);
+    this.veicoliToShow = this.filteredVeicoli;
   }
   //Variable to receive the brand value and populate the model select accordingly
   selectedMarcaId: number | null = null;

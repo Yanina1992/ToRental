@@ -22,8 +22,8 @@ export class DeleteComponent {
   ngOnInit(){
 
     this.route.params.subscribe((params:any)=> {
-      this.veicoliSvc.getById(params.id).subscribe(res => {
-        this.veicolo = res[0];
+      this.veicoliSvc.getExtraById(params.id).subscribe(res => {
+        this.veicolo = res;
       })
     })
     

@@ -400,10 +400,10 @@
 <!--Pagination-->
 <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
   <ngb-pagination
-    [collectionSize]="collectionSize"
+    [collectionSize]= "arraySize"
     [(page)]="page"
     [pageSize]="pageSize"
-    (pageChange)="refreshVeicoli()"
+    (pageChange)="getAllVeicoli()"
     [maxSize]="4"
     [rotate]="true"
     [boundaryLinks]="true"

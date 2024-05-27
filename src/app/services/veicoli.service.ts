@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { Veicoli } from '../classes/veicoli';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
 import { IMarca } from 'src/app/interfaces/options-select/imarca';
@@ -39,13 +39,25 @@ export class VeicoliService {
     return this._refreshVeicoliTable$;
   }
 
+  /*searchByTargaOrId(typedLetter: number | string){
+    return this.http.get<Veicoli[]>(this.veicoliUrl + '?' + typedLetter)
+  }*/
+
   //CRUD Veicoli
-  getAll(): Observable<Veicoli[]> {
+  /*getAll(): Observable<Veicoli[]> {
     return this.http.get<Veicoli[]>(this.veicoliUrl);
   }
-  getById(id: number): Observable<Veicoli[]> {
-    return this.http.get<Veicoli[]>(this.veicoliUrl + '?id' + id);
+  
+  getAllWithParams(page:number, pageSize:number): Observable<Veicoli[]> {
+    return this.http.get<Veicoli[]>(this.veicoliUrl + '?page=' + page + '&pageSize=' + pageSize);
+  }*/
+  getAllWithParams(page:number, pageSize:number, text?:string): Observable<Veicoli[]> {
+    return this.http.get<Veicoli[]>(this.veicoliUrl + '?page=' + page + '&pageSize=' + pageSize + '&search=' + text);
   }
+ 
+  /*getById(id: number): Observable<Veicoli[]> {
+    return this.http.get<Veicoli[]>(this.veicoliUrl + '?id' + id);
+  }*/
   getExtraById(id: number): Observable<Veicoli> {
     return this.http.get<Veicoli>(this.veicoliUrl + '/' + id);
   }
