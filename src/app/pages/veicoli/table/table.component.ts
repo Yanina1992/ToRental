@@ -31,9 +31,9 @@ export class TableComponent implements OnInit, OnDestroy {
   pageSize = 10;
   collectionSize = Veicoli.length;
   veicoli: Veicoli[] = [];
-  veicoliToShow: Veicoli[] | undefined;
+  veicoliToShow: Veicoli[] = [];
 
-  filteredVeicoli: Veicoli[] = [];
+  filteredVeicoli: any = [];
   filter = new FormControl('');
 
   spinner: boolean | undefined = true;
@@ -182,13 +182,17 @@ export class TableComponent implements OnInit, OnDestroy {
   }
 
   //Search by targa
-  search(text: string): Veicoli[] {
+  search(text: string) {
     const term = text.toLowerCase();
-    console.log(text);
+    console.log(term);
+    this.text = term
 
-    return this.veicoli.filter((veicolo) =>
-      (veicolo.targa || '').toLowerCase().startsWith(term)
-    );
+    this.getAllVeicoli()
+    //return this.veicoli.filter((veicolo) =>
+      //(veicolo.targa || '').toLowerCase().startsWith(term)
+    return this.text
+    
+    //);
   }
 
   saveFilterByTipoVeicoloRes: Veicoli[] = [];
