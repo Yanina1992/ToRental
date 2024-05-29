@@ -28,7 +28,7 @@ export class NavbarComponent implements OnInit {
 
   ngAfterViewInit():void{
       this.changeAreaExpanded();
-      //this.cdr.detectChanges();
+      this.cdr.detectChanges();
   }
 
   @HostListener('window:resize', ['$event'])

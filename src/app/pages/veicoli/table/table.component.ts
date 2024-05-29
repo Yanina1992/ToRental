@@ -1,8 +1,5 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { AlertService } from 'src/app/services/alert.service';
-import { IAlert } from 'src/app/interfaces/ialert';
-
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription, endWith } from 'rxjs';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from '../../../services/veicoli.service';
 import { FormControl } from '@angular/forms';
@@ -31,7 +28,8 @@ export class TableComponent implements OnInit, OnDestroy {
   pageSize = 10;
   collectionSize = Veicoli.length;
   veicoli: Veicoli[] = [];
-  veicoliToShow: Veicoli[] = [];
+  veicoliToShow: any = [];
+  filteredVeicoliToShow: Veicoli[] = [];
 
   filteredVeicoli: any = [];
   filter = new FormControl('');
@@ -61,7 +59,6 @@ export class TableComponent implements OnInit, OnDestroy {
 
   constructor(
     private veicoliSvc: VeicoliService,
-    private cdr: ChangeDetectorRef
   ) {}
 
   arraySize: number = 0;
@@ -84,6 +81,8 @@ export class TableComponent implements OnInit, OnDestroy {
           this.spinner = false;
         }
       });
+      console.log('get all veicoli this.veicoli', [...this.veicoli]);
+      
   }
 
   getStatoIconClass(id_stato: number | undefined): string {
@@ -132,9 +131,7 @@ export class TableComponent implements OnInit, OnDestroy {
       this.marche = data;
     });
     //destinazioni d'uso
-    this.veicoliSvc
-      .getAllDestinazioniDUso()
-      .subscribe((data: IDestinazioneDUso[]) => {
+    this.veicoliSvc.getAllDestinazioniDUso().subscribe((data: IDestinazioneDUso[]) => {
         this.destinazioni = data;
       });
     //società
@@ -142,9 +139,7 @@ export class TableComponent implements OnInit, OnDestroy {
       this.societas = data;
     });
     //tipi alimentazione
-    this.veicoliSvc
-      .getAllAlimentazioni()
-      .subscribe((data: IAlimentazione[]) => {
+    this.veicoliSvc.getAllAlimentazioni().subscribe((data: IAlimentazione[]) => {
         this.tipiAlimentazione = data;
       });
     //allestimenti
@@ -164,36 +159,55 @@ export class TableComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
-
-  setupFilter() {
-    this.filter.valueChanges
+    setupFilter()
+    {
+    //When values changes in 'filter' form -> serch input
+    //this.filter.valueChanges
+    const subscription = this.filter.valueChanges
       .pipe(
         startWith(''),
         debounceTime(300),
-        map((text) =>
-          text!.trim().length > 0 ? this.search(text!) : this.veicoli
-        )
-      )
-      .subscribe((filtered) => {
-        this.filteredVeicoli = filtered;
-        this.collectionSize = filtered.length;
-        this.refreshVeicoli();
+        map((text) => {
+          //text!.trim().length > 0 ? this.search(text!) : this.veicoli
+          const term = text?.trim().toLowerCase() || '';
+          console.log('term', term);
+
+          return term 
+          /*&& term.length > 0
+            ? this.search(term)
+            : [...this.veicoli];*/
+    }),
+  )
+      .subscribe((term) => {
+        if (term && term.length > 0) {
+          this.search(term);
+        } else {
+          this.filteredVeicoli = [...this.veicoli];
+          this.collectionSize = this.filteredVeicoli.length;
+          this.refreshVeicoli();
+        };
       });
+    this.subscriptions.add(subscription);
   }
+
 
   //Search by targa
   search(text: string) {
     const term = text.toLowerCase();
-    console.log(term);
-    this.text = term
+    console.log('serach term', term);
+    this.text = term;
+    this.page = 1;
 
-    this.getAllVeicoli()
-    //return this.veicoli.filter((veicolo) =>
-      //(veicolo.targa || '').toLowerCase().startsWith(term)
-    return this.text
-    
-    //);
-  }
+    this.veicoliSvc
+    .getAllWithParams(this.page, this.pageSize, this.text)
+    .subscribe((data: Veicoli[]) => {
+      this.filteredVeicoli = data;
+      this.collectionSize = this.filteredVeicoli.length;
+    this.refreshVeicoli();
+
+    return this.text;
+  })
+}
 
   saveFilterByTipoVeicoloRes: Veicoli[] = [];
   saveFilterByMarcaRes: Veicoli[] = [];
@@ -403,7 +417,35 @@ export class TableComponent implements OnInit, OnDestroy {
   refreshVeicoli() {
     const start = (this.page - 1) * this.pageSize;
     const end = start + this.pageSize;
-    this.veicoliToShow = this.filteredVeicoli;
+
+    /*if(this.filter.value == '' || this.text == null){
+      this.veicoliToShow = [...this.veicoli]
+      this.filteredVeicoliToShow = []
+      console.log('aaaa', [...this.veicoli]);
+      
+    }else{
+      //this.getAllVeicoli()
+      this.filteredVeicoliToShow = this.filteredVeicoli;
+      this.veicoliToShow = []
+    }*/
+
+    if (this.filter.value?.trim() === '' || this.text === '') {
+      this.veicoliToShow = [...this.veicoli];
+      this.filteredVeicoliToShow = [];
+    } else {
+      this.filteredVeicoliToShow = this.filteredVeicoli.slice(start, end);
+      this.veicoliToShow = [];
+    }
+    
+    console.log('veicoliToShow from refreshVeicoli', this.veicoliToShow);
+    console.log('filteredVeicoliToShow from refreshVeicoli', this.filteredVeicoliToShow);
+    console.log('check text', this.text.length);
+  }
+
+  onSearchInput() {
+    this.page = 1;
+    this.filter.setValue(this.filter.value);
+    this.getAllVeicoli; // Trigger the valueChanges observable
   }
   //Variable to receive the brand value and populate the model select accordingly
   selectedMarcaId: number | null = null;
@@ -473,7 +515,7 @@ export class TableComponent implements OnInit, OnDestroy {
       this.veicoloForm.id_tipo_veicolo = selectedTipoVeicoloId;
     }
   }
-
   //Variable to handle validation
   formSubmitted: boolean = false;
 }
+

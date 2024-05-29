@@ -1,6 +1,5 @@
 <div class="container-fluid">
   <div class="row">
-
     <div class="col col-12">
       <!--Searching by targa-->
       <form id="search-by-targa">
@@ -18,6 +17,7 @@
               type="text"
               [formControl]="filter"
             />
+            <!--(input)="onSearchInput"-->
           </div>
         </div>
       </form>
@@ -111,7 +111,6 @@
               Selezionare un modello.
             </div>
           </div>
-        
 
           <!--Destinazione d'uso-->
           <div class="mb-3 col">
@@ -203,7 +202,7 @@
               Selezionare un tipo di alimentazione.
             </div>
           </div>
-        
+
           <!--Allestimento-->
           <div class="mb-3 col">
             <label for="tipo_allestimento_nome" class="form-label"
@@ -310,97 +309,164 @@
 </div>
 
 <div class="table-responsive">
-<table class="table table-striped ms-2">
-  <thead>
-    <tr>
-      <th scope="col">Nr. id.</th>
-      <th>Stato</th>
-      <th>Disponibilità</th>
-      <th scope="col">Tipo veicolo</th>
-      <th scope="col">Targa</th>
-      <th scope="col">Marca</th>
-      <th scope="col">Modello</th>
-      <th scope="col">Cilindrata</th>
-      <th scope="col">Colore</th>
-      <th scope="col">Destinazione d'uso</th>
-      <th scope="col">Massa</th>
-      <th scope="col">Numero assi</th>
-      <th scope="col">Portata</th>
-      <th scope="col">Potenza</th>
-      <th scope="col">Società</th>
-      <th scope="col">Alimentazione</th>
-      <th scope="col">Allestimento</th>
-      <th scope="col">Tipo asse</th>
-      <th scope="col">Cambio</th>
-      <th scope="col">Disponibilità</th>
-      <th scope="col">Larghezza</th>
-      <th scope="col">Lunghezza</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let veicolo of veicoliToShow">
-      <td scope="row">{{ veicolo.id }}</td>
-      <td class="text-center">
-        <i
-        class="fa-solid fa-screwdriver-wrench"
-        [ngClass]="getStatoIconClass(veicolo.id_stato)"
-        ></i>
-      </td>
+  <table class="table table-striped ms-2">
+    <thead>
+      <tr>
+        <th scope="col">Nr. id.</th>
+        <th>Stato</th>
+        <th>Disponibilità</th>
+        <th scope="col">Tipo veicolo</th>
+        <th scope="col">Targa</th>
+        <th scope="col">Marca</th>
+        <th scope="col">Modello</th>
+        <th scope="col">Cilindrata</th>
+        <th scope="col">Colore</th>
+        <th scope="col">Destinazione d'uso</th>
+        <th scope="col">Massa</th>
+        <th scope="col">Numero assi</th>
+        <th scope="col">Portata</th>
+        <th scope="col">Potenza</th>
+        <th scope="col">Società</th>
+        <th scope="col">Alimentazione</th>
+        <th scope="col">Allestimento</th>
+        <th scope="col">Tipo asse</th>
+        <th scope="col">Cambio</th>
+        <th scope="col">Disponibilità</th>
+        <th scope="col">Larghezza</th>
+        <th scope="col">Lunghezza</th>
+      </tr>
+    </thead>
 
+    <tbody *ngIf="veicoliToShow">
+      <tr *ngFor="let veicolo of veicoliToShow">
+        <td scope="row">{{ veicolo.id }}</td>
         <td class="text-center">
-          <i class="fa-solid fa-check"
-          [ngClass]="getCheckIconClass(veicolo.id_disponibilita)"
-          ></i>
-          <i class="fa-solid fa-ban"
-          [ngClass]="getBanClass(veicolo.id_disponibilita)"
+          <i
+            class="fa-solid fa-screwdriver-wrench"
+            [ngClass]="getStatoIconClass(veicolo.id_stato)"
           ></i>
         </td>
-      
-      <td class="text-truncate">
-        {{ veicolo.tipo_veicolo_nome }}
-      </td>
-      <td class="text-truncate">{{ veicolo.targa }}</td>
-      <td class="text-truncate">{{ veicolo.marca_nome }}</td>
-      <td class="text-truncate">{{ veicolo.modello_nome }}</td>
-      <td class="text-truncate">{{ veicolo.cilindrata }}</td>
-      <td class="text-truncate">{{ veicolo.colore }}</td>
-      <td class="text-truncate">
-        {{ veicolo.destinazione_uso_nome }}
-      </td>
-      <td class="text-truncate">{{ veicolo.massa }}</td>
-      <td class="text-truncate">{{ veicolo.numero_assi }}</td>
-      <td class="text-truncate">{{ veicolo.portata }}</td>
-      <td class="text-truncate">{{ veicolo.potenza }}</td>
-      <td class="text-truncate">{{ veicolo.proprietario_nome }}</td>
-      <td class="text-truncate">{{ veicolo.tipo_alimentazione_nome }}</td>
-      <td class="text-truncate">{{ veicolo.tipo_allestimento_nome }}</td>
-      <td class="text-truncate">{{ veicolo.tipo_asse_nome }}</td>
-      <td class="text-truncate">{{ veicolo.tipo_cambio_nome }}</td>
-      <td class="text-truncate">{{ veicolo.nome_disponibilita }}</td>
-      <td class="text-truncate">{{ veicolo.larghezza_esterna }}</td>
-      <td class="text-truncate">{{ veicolo.lunghezza_esterna }}</td>
-      <td class="d-flex">
 
-        <!--Offcanvas-->
-   
-        <app-stand-details *ngIf="veicolo.id != undefined" [id]="veicolo.id"></app-stand-details>      
+        <td class="text-center">
+          <i
+            class="fa-solid fa-check"
+            [ngClass]="getCheckIconClass(veicolo.id_disponibilita)"
+          ></i>
+          <i
+            class="fa-solid fa-ban"
+            [ngClass]="getBanClass(veicolo.id_disponibilita)"
+          ></i>
+        </td>
 
-        <a [routerLink]="['edit', veicolo.id]"
-          ><i class="fa-solid fa-pen-to-square"></i
-        ></a>
-        <a [routerLink]="['delete', veicolo.id]"
-          ><i class="fa-solid fa-trash"></i
-        ></a>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <td class="text-truncate">
+          {{ veicolo.tipo_veicolo_nome }}
+        </td>
+        <td class="text-truncate">{{ veicolo.targa }}</td>
+        <td class="text-truncate">{{ veicolo.marca_nome }}</td>
+        <td class="text-truncate">{{ veicolo.modello_nome }}</td>
+        <td class="text-truncate">{{ veicolo.cilindrata }}</td>
+        <td class="text-truncate">{{ veicolo.colore }}</td>
+        <td class="text-truncate">
+          {{ veicolo.destinazione_uso_nome }}
+        </td>
+        <td class="text-truncate">{{ veicolo.massa }}</td>
+        <td class="text-truncate">{{ veicolo.numero_assi }}</td>
+        <td class="text-truncate">{{ veicolo.portata }}</td>
+        <td class="text-truncate">{{ veicolo.potenza }}</td>
+        <td class="text-truncate">{{ veicolo.proprietario_nome }}</td>
+        <td class="text-truncate">{{ veicolo.tipo_alimentazione_nome }}</td>
+        <td class="text-truncate">{{ veicolo.tipo_allestimento_nome }}</td>
+        <td class="text-truncate">{{ veicolo.tipo_asse_nome }}</td>
+        <td class="text-truncate">{{ veicolo.tipo_cambio_nome }}</td>
+        <td class="text-truncate">{{ veicolo.nome_disponibilita }}</td>
+        <td class="text-truncate">{{ veicolo.larghezza_esterna }}</td>
+        <td class="text-truncate">{{ veicolo.lunghezza_esterna }}</td>
+        <td class="d-flex">
+          <!--Offcanvas-->
+
+          <app-stand-details
+            *ngIf="veicolo.id != undefined"
+            [id]="veicolo.id"
+          ></app-stand-details>
+
+          <a [routerLink]="['edit', veicolo.id]"
+            ><i class="fa-solid fa-pen-to-square"></i
+          ></a>
+          <a [routerLink]="['delete', veicolo.id]"
+            ><i class="fa-solid fa-trash"></i
+          ></a>
+        </td>
+      </tr>
+    </tbody>
+
+    <tbody *ngIf="filteredVeicoliToShow">
+      <tr *ngFor="let veicolo of filteredVeicoliToShow">
+        <td scope="row">{{ veicolo.id }}</td>
+        <td class="text-center">
+          <i
+            class="fa-solid fa-screwdriver-wrench"
+            [ngClass]="getStatoIconClass(veicolo.id_stato)"
+          ></i>
+        </td>
+
+        <td class="text-center">
+          <i
+            class="fa-solid fa-check"
+            [ngClass]="getCheckIconClass(veicolo.id_disponibilita)"
+          ></i>
+          <i
+            class="fa-solid fa-ban"
+            [ngClass]="getBanClass(veicolo.id_disponibilita)"
+          ></i>
+        </td>
+
+        <td class="text-truncate">
+          {{ veicolo.tipo_veicolo_nome }}
+        </td>
+        <td class="text-truncate">{{ veicolo.targa }}</td>
+        <td class="text-truncate">{{ veicolo.marca_nome }}</td>
+        <td class="text-truncate">{{ veicolo.modello_nome }}</td>
+        <td class="text-truncate">{{ veicolo.cilindrata }}</td>
+        <td class="text-truncate">{{ veicolo.colore }}</td>
+        <td class="text-truncate">
+          {{ veicolo.destinazione_uso_nome }}
+        </td>
+        <td class="text-truncate">{{ veicolo.massa }}</td>
+        <td class="text-truncate">{{ veicolo.numero_assi }}</td>
+        <td class="text-truncate">{{ veicolo.portata }}</td>
+        <td class="text-truncate">{{ veicolo.potenza }}</td>
+        <td class="text-truncate">{{ veicolo.proprietario_nome }}</td>
+        <td class="text-truncate">{{ veicolo.tipo_alimentazione_nome }}</td>
+        <td class="text-truncate">{{ veicolo.tipo_allestimento_nome }}</td>
+        <td class="text-truncate">{{ veicolo.tipo_asse_nome }}</td>
+        <td class="text-truncate">{{ veicolo.tipo_cambio_nome }}</td>
+        <td class="text-truncate">{{ veicolo.nome_disponibilita }}</td>
+        <td class="text-truncate">{{ veicolo.larghezza_esterna }}</td>
+        <td class="text-truncate">{{ veicolo.lunghezza_esterna }}</td>
+        <td class="d-flex">
+          <!--Offcanvas-->
+
+          <app-stand-details
+            *ngIf="veicolo.id != undefined"
+            [id]="veicolo.id"
+          ></app-stand-details>
+
+          <a [routerLink]="['edit', veicolo.id]"
+            ><i class="fa-solid fa-pen-to-square"></i
+          ></a>
+          <a [routerLink]="['delete', veicolo.id]"
+            ><i class="fa-solid fa-trash"></i
+          ></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <!--Pagination-->
 <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
   <ngb-pagination
-    [collectionSize]= "arraySize"
+    [collectionSize]="arraySize"
     [(page)]="page"
     [pageSize]="pageSize"
     (pageChange)="getAllVeicoli()"
