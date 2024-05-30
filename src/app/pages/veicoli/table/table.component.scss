@@ -1,7 +1,6 @@
 #search-by-targa{
     border-top: 0;
     border-right: 0;
-    border-bottom: 0;
     max-width: -webkit-fill-available;
     padding-top: 0;
     padding-bottom: 0;
@@ -26,11 +25,12 @@ i{
 }
 
 #my-form{
-   max-width: 1100px !important;
+   /*max-width: 1100px !important;
    max-height: 200px;
-   overflow: scroll;
+   overflow: scroll;*/
    border-top: 0;
    border-right: 0;
+   max-width: -webkit-fill-available;
 }
 
 .my-orange-icon{
@@ -44,6 +44,11 @@ i{
 }
 .my-grey-icon{
     color: grey !important;
+}
+
+h3{
+    text-align: center;
+    margin: 1em;
 }
 
 

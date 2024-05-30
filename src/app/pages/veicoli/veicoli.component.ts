@@ -146,12 +146,16 @@ export class VeicoliComponent implements OnInit {
   onStatoChange(selectedStatoId:number){
     if(selectedStatoId){
       this.veicoloForm.id_stato = selectedStatoId;
+    }else{
+      selectedStatoId = 0;
     }
   }
   selectedDisponibilitaId:number = 0;
   onDisponibilitaChange(selectedDisponibilitaId:number){
     if(selectedDisponibilitaId) {
       this.veicoloForm.id_disponibilita = selectedDisponibilitaId;
+    }else{
+      selectedDisponibilitaId = 0;
     }
   }
 
@@ -191,7 +195,3 @@ export class VeicoliComponent implements OnInit {
         );
       }
     }
-  /*);
-  }
-
-}*/

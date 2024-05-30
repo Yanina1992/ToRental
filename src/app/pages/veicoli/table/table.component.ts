@@ -31,6 +31,8 @@ export class TableComponent implements OnInit, OnDestroy {
   veicoliToShow: any = [];
   filteredVeicoliToShow: Veicoli[] = [];
 
+  myFilteredVeicoli: Veicoli[] = [];
+
   filteredVeicoli: any = [];
   filter = new FormControl('');
 
@@ -57,12 +59,13 @@ export class TableComponent implements OnInit, OnDestroy {
   isVeicoloOk: boolean = false;
   isVeicoloStatoNotDefined: boolean = false;
 
-  constructor(
-    private veicoliSvc: VeicoliService,
-  ) {}
-
   arraySize: number = 0;
   text: string = '';
+
+  //Variable to handle validation
+  formSubmitted: boolean = false;
+
+  constructor(private veicoliSvc: VeicoliService) {}
 
   public getAllVeicoli() {
     this.veicoliSvc
@@ -81,10 +84,7 @@ export class TableComponent implements OnInit, OnDestroy {
         }
         console.log('get all veicoli this.veicoli', [...this.veicoli]);
       });
-      
-      
   }
-
   getStatoIconClass(id_stato: number | undefined): string {
     switch (id_stato) {
       case 3:
@@ -113,71 +113,58 @@ export class TableComponent implements OnInit, OnDestroy {
         return 'd-none';
     }
   }
-
   ngOnInit() {
     this.getAllVeicoli();
     this.veicoliSvc.refreshVeicoliTable$.subscribe(() => {
-    this.getAllVeicoli();
+      this.getAllVeicoli();
     });
 
     //Selects:
-    //tipi di veicoli
     this.veicoliSvc.getAllTipiVeicoli().subscribe((data: ITipoVeicolo[]) => {
       this.tipiVeicoli = data;
     });
-    //marche
     this.veicoliSvc.getAllMarche().subscribe((data: IMarca[]) => {
       this.marche = data;
     });
-    //destinazioni d'uso
-    this.veicoliSvc.getAllDestinazioniDUso().subscribe((data: IDestinazioneDUso[]) => {
+    this.veicoliSvc
+      .getAllDestinazioniDUso()
+      .subscribe((data: IDestinazioneDUso[]) => {
         this.destinazioni = data;
       });
-    //società
     this.veicoliSvc.getAllSocieta().subscribe((data: ISocieta[]) => {
       this.societas = data;
     });
-    //tipi alimentazione
-    this.veicoliSvc.getAllAlimentazioni().subscribe((data: IAlimentazione[]) => {
+    this.veicoliSvc
+      .getAllAlimentazioni()
+      .subscribe((data: IAlimentazione[]) => {
         this.tipiAlimentazione = data;
       });
-    //allestimenti
     this.veicoliSvc.getAllAllestimenti().subscribe((data: IAllestimento[]) => {
       this.allestimenti = data;
     });
-    //tipi asse
     this.veicoliSvc.getAllTipiAsse().subscribe((data: IAsse[]) => {
       this.tipiAsse = data;
     });
-    //cambi
     this.veicoliSvc.getAllTipiCambio().subscribe((data: ICambio[]) => {
       this.tipiCambio = data;
     });
   }
-
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
-    setupFilter()
-    {
+  setupFilter() {
     //When values changes in 'filter' form -> serch input
-    //this.filter.valueChanges
     const subscription = this.filter.valueChanges
       .pipe(
         startWith(''),
         debounceTime(300),
         map((text) => {
-          //text!.trim().length > 0 ? this.search(text!) : this.veicoli
           const term = text?.trim().toLowerCase() || '';
           console.log('term', term);
-
-          return term 
-          /*&& term.length > 0
-            ? this.search(term)
-            : [...this.veicoli];*/
-    }),
-    endWith('')
-  )
+          return term;
+        }),
+        endWith('')
+      )
       .subscribe((term) => {
         if (term && term.length > 0) {
           this.search(term);
@@ -185,68 +172,65 @@ export class TableComponent implements OnInit, OnDestroy {
           this.filteredVeicoli = [...this.veicoli];
           this.collectionSize = this.filteredVeicoli.length;
           this.refreshVeicoli();
-        };
+        }
       });
     this.subscriptions.add(subscription);
   }
-
   //Search by targa
   search(text: string) {
     const term = text.toLowerCase();
-    console.log('serach term', term);
     this.text = term;
     this.page = 1;
 
     this.veicoliSvc
-    .getAllWithParams(this.page, this.pageSize, this.text)
-    .subscribe((data: Veicoli[]) => {
-      this.filteredVeicoli = data;
-      this.collectionSize = this.filteredVeicoli.length;
-    this.refreshVeicoli();
+      .getAllWithParams(this.page, this.pageSize, this.text)
+      .subscribe((data: Veicoli[]) => {
+        this.filteredVeicoli = data;
+        this.collectionSize = this.filteredVeicoli.length;
+        this.refreshVeicoli();
 
-    return this.text;
-  })
-}
-
-  /*saveFilterByTipoVeicoloRes: Veicoli[] = [];
-  saveFilterByMarcaRes: Veicoli[] = [];
-  saveFilterByModelloRes: Veicoli[] = [];
-  saveFilterByDestinazioneRes: Veicoli[] = [];
-  saveFilterBySocietaRes: Veicoli[] = [];
-  saveFilterByAlimentazioneRes: Veicoli[] = [];
-  saveFilterByAllestimentoRes: Veicoli[] = [];
-  saveFilterByAsseRes: Veicoli[] = [];
-  saveFilterByCambioRes: Veicoli[] = [];*/
-
-  myFilteredVeicoli: Veicoli[] = [];
-
-  refreshVeicoli() {
-    /*const start = (this.page - 1) * this.pageSize;
-    const end = start + this.pageSize;*/
-    if(this.filter.value == '' || this.text == null){
-      this.filteredVeicoliToShow = []
-      this.veicoliToShow = [...this.veicoli]
-      
-      console.log('aaaa', [...this.veicoli]);
-      
-    }else{
-      //this.getAllVeicoli()
-      this.veicoliToShow = []
-      this.filteredVeicoliToShow = this.filteredVeicoli;
-      
+        return this.text;
+      });
+  }
+  customizedSearch() {
+    try {
+      this.veicoliSvc
+        .getAllWithCustomizedParams(
+          this.page,
+          this.pageSize,
+          this.veicoloForm?.id_tipo_veicolo,
+          this.veicoloForm?.id_marca,
+          this.veicoloForm?.id_modello,
+          this.veicoloForm?.id_destinazione_uso,
+          this.veicoloForm?.id_proprietario,
+          this.veicoloForm?.id_alimentazione,
+          this.veicoloForm?.id_tipo_allestimento,
+          this.veicoloForm?.id_tipo_asse,
+          this.veicoloForm?.id_tipo_cambio,
+          this.veicoloForm?.id_stato,
+          this.veicoloForm.id_disponibilita
+        )
+        .subscribe((data: Veicoli[]) => {
+          console.log('stato', this.veicoloForm.id_stato);
+          console.log('disponibilità', this.veicoloForm.id_disponibilita)
+          
+          this.veicoli = data.reverse();
+          this.veicoli.reverse();
+          this.refreshVeicoli();
+          this.setupFilter();
+        });
+    } catch (error) {
+      console.error('Errorrrrr', error);
     }
-
-    /*if (this.filter.value?.trim() === '' || this.text === '') {
-      this.veicoliToShow = [...this.veicoli];
+  }
+  refreshVeicoli() {
+    if (this.filter.value == '' || this.text == null) {
       this.filteredVeicoliToShow = [];
+      this.veicoliToShow = [...this.veicoli];
     } else {
-      this.filteredVeicoliToShow = this.filteredVeicoli.slice(start, end);
       this.veicoliToShow = [];
-    }*/
-    
-    console.log('veicoliToShow from refreshVeicoli', this.veicoliToShow);
-    console.log('filteredVeicoliToShow from refreshVeicoli', this.filteredVeicoliToShow);
-    console.log('check text', this.text.length);
+      this.filteredVeicoliToShow = this.filteredVeicoli;
+    }
   }
   //Variable to receive the brand value and populate the model select accordingly
   selectedMarcaId: number | null = null;
@@ -316,230 +300,16 @@ export class TableComponent implements OnInit, OnDestroy {
       this.veicoloForm.id_tipo_veicolo = selectedTipoVeicoloId;
     }
   }
-  //Variable to handle validation
-  formSubmitted: boolean = false;
-
-    /*customizedSearch() {
-    this.myFilteredVeicoli = [];
-    try {
-      if (
-        this.veicoloForm.id_tipo_veicolo &&
-        this.veicoloForm.id_tipo_veicolo > 0
-      ) {
-        this.filterByTipoVeicolo();
-      }
-      if (this.veicoloForm.id_marca && this.veicoloForm.id_marca > 0) {
-        this.filterByMarca();
-      }
-      if (this.veicoloForm.id_modello && this.veicoloForm.id_modello > 0) {
-        this.filterByModello();
-      }
-      if (
-        this.veicoloForm.id_destinazione_uso &&
-        this.veicoloForm.id_destinazione_uso > 0
-      ) {
-        this.filterByDestinazione();
-      }
-      if (
-        this.veicoloForm.id_proprietario &&
-        this.veicoloForm.id_proprietario > 0
-      ) {
-        this.filterBySocieta();
-      }
-      if (
-        this.veicoloForm.id_alimentazione &&
-        this.veicoloForm.id_alimentazione > 0
-      ) {
-        this.filterByAlimentazione();
-      }
-      if (
-        this.veicoloForm.id_tipo_allestimento &&
-        this.veicoloForm.id_tipo_allestimento > 0
-      ) {
-        this.filterByAllestimento();
-      }
-      if (this.veicoloForm.id_tipo_asse && this.veicoloForm.id_tipo_asse > 0) {
-        this.filterByAsse();
-      }
-      if (
-        this.veicoloForm.id_tipo_cambio &&
-        this.veicoloForm.id_tipo_cambio > 0
-      ) {
-        this.filterByCambio();
-      }
-    } catch {
-      throw new Error();
-    } finally {
-      this.showResOfAllFilters();
+  selectedStatoId:number = 0;
+  onStatoChange(selectedStatoId:number){
+    if(selectedStatoId){
+      this.veicoloForm.id_stato = selectedStatoId;
     }
   }
-
-  filterByTipoVeicolo() {
-    // If myFilteredVeicoli has any element filter this array
-    if (this.myFilteredVeicoli.length > 0) {
-      // Make another array including only the element that have the following conditions
-      this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_tipo_veicolo == this.veicoloForm.id_tipo_veicolo
-      );
-    } else {
-      // If myFilteredVeicoli is empty, filter the veicoli array
-      this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_tipo_veicolo == this.veicoloForm.id_tipo_veicolo
-      );
+  selectedDisponibilitaId:number = 0;
+  onDisponibilitaChange(selectedDisponibilitaId:number){
+    if(selectedDisponibilitaId) {
+      this.veicoloForm.id_disponibilita = selectedDisponibilitaId;
     }
-    console.log(
-      'myFilteredVeicoli after filterByTipoVeicolo',
-      this.myFilteredVeicoli
-    );
-    return this.myFilteredVeicoli;
-  }
-  filterByMarca() {
-    if (this.myFilteredVeicoli.length > 0) {
-      this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_marca == this.veicoloForm.id_marca
-      );
-    } else {
-      this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_marca == this.veicoloForm.id_marca
-      );
-    }
-    console.log(
-      'myFilteredVeicoli after filterByMarca',
-      this.myFilteredVeicoli
-    );
-    return this.myFilteredVeicoli;
-  }
-  filterByModello() {
-    if (this.myFilteredVeicoli.length > 0) {
-      this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_modello == this.veicoloForm.id_modello
-      );
-    } else {
-      this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_modello == this.veicoloForm.id_modello
-      );
-    }
-    console.log(
-      'myFilteredVeicoli after filterByModello',
-      this.myFilteredVeicoli
-    );
-    return this.myFilteredVeicoli;
-  }
-  filterByDestinazione() {
-    if (this.myFilteredVeicoli.length > 0) {
-      this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_destinazione_uso == this.veicoloForm.id_destinazione_uso
-      );
-    } else {
-      this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_destinazione_uso == this.veicoloForm.id_destinazione_uso
-      );
-    }
-    console.log('does filterByDestinazione work?', this.myFilteredVeicoli);
-    return this.myFilteredVeicoli;
-  }
-  filterBySocieta() {
-    if (this.myFilteredVeicoli.length > 0) {
-      this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_proprietario == this.veicoloForm.id_proprietario
-      );
-    } else {
-      this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_proprietario == this.veicoloForm.id_proprietario
-      );
-    }
-    console.log('does filterBySocieta work?', this.myFilteredVeicoli);
-    return this.myFilteredVeicoli;
-  }
-  filterByAlimentazione() {
-    console.log(this.myFilteredVeicoli);
-
-    if (this.myFilteredVeicoli.length > 0) {
-      this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_alimentazione == this.veicoloForm.id_alimentazione
-      );
-    } else {
-      this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_alimentazione == this.veicoloForm.id_alimentazione
-      );
-    }
-    console.log('does filterByAlimentazione work?', this.myFilteredVeicoli);
-    return this.myFilteredVeicoli;
-  }
-  filterByAllestimento() {
-    if (this.myFilteredVeicoli.length > 0) {
-      this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_tipo_allestimento == this.veicoloForm.id_tipo_allestimento
-      );
-    } else {
-      this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_tipo_allestimento == this.veicoloForm.id_tipo_allestimento
-      );
-    }
-    console.log('does filterByAllestimento work?', this.myFilteredVeicoli);
-    return this.myFilteredVeicoli;
-  }
-  filterByAsse() {
-    if (this.myFilteredVeicoli.length > 0) {
-      this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_tipo_asse == this.veicoloForm.id_tipo_asse
-      );
-    } else {
-      this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_tipo_asse == this.veicoloForm.id_tipo_asse
-      );
-    }
-    console.log('does filterByAsse work?', this.myFilteredVeicoli);
-    return this.myFilteredVeicoli;
-  }
-  filterByCambio() {
-    if (this.myFilteredVeicoli.length > 0) {
-      this.myFilteredVeicoli = this.myFilteredVeicoli.filter(
-        (e) => e.id_tipo_cambio == this.veicoloForm.id_tipo_cambio
-      );
-    } else {
-      this.myFilteredVeicoli = this.veicoli.filter(
-        (e) => e.id_tipo_cambio == this.veicoloForm.id_tipo_cambio
-      );
-    }
-    console.log('does filterByCambio work?', this.myFilteredVeicoli);
-    return this.myFilteredVeicoli;
-  }
-
-  showResOfAllFilters() {
-    this.filteredVeicoli = this.myFilteredVeicoli;
-    this.collectionSize = this.filteredVeicoli.length;
-    this.refreshVeicoli();
-  }*/
-
-  customizedSearch(){
-    //debugger
-    this.veicoliSvc.getAllWithCustomizedParams(
-      this.page,
-      this.pageSize,
-      this.veicoloForm?.id_tipo_veicolo,
-      this.veicoloForm?.id_marca,
-      this.veicoloForm?.id_modello,
-      this.veicoloForm?.id_destinazione_uso,
-      this.veicoloForm?.id_proprietario,
-      this.veicoloForm?.id_alimentazione,
-      this.veicoloForm?.id_tipo_allestimento,
-      this.veicoloForm?.id_tipo_asse,
-      this.veicoloForm?.id_tipo_cambio
-    ).subscribe((data: Veicoli[]) => {
-      debugger
-      this.veicoli = data.reverse();
-      this.veicoli.reverse();
-      this.collectionSize = this.veicoli[0].arraySize;
-      this.arraySize = this.collectionSize;
-      this.refreshVeicoli();
-
-      this.setupFilter();
-      
-      console.log('customized search results:', this.veicoli);
-      //console.log(this.veicoloForm.id_tipo_cambio);
-      
-  })
   }
 }
-

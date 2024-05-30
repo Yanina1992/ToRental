@@ -53,7 +53,8 @@ form {
 
 .my-btn {
   border: 0 !important;
-  background: linear-gradient(to right, #2843F0, #779EB6);
+  //background: linear-gradient(to right, #2843F0, #779EB6);
+  background: #EC7801 !important;
   color: white !important;
   font-family: "Poppins", sans-serif !important;
   font-weight: 700 !important;
@@ -64,7 +65,7 @@ form {
   margin: 1em;
 }
 .btn:hover {
-  background: #EC7801 !important;
+  background: #ff8206 !important;
 }
 
 ul {
