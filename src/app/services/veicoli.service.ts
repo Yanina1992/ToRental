@@ -12,7 +12,6 @@ import { IAlimentazione } from 'src/app/interfaces/options-select/ialimentazione
 import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
 import { IAsse } from 'src/app/interfaces/options-select/iasse';
 import { ICambio } from 'src/app/interfaces/options-select/icambio';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +19,6 @@ import { Router } from '@angular/router';
 export class VeicoliService {
   //Veicoli
   veicoliUrl: string = environment.veicoliEndPoint;
-  //veicoliExtraUrl:string = environment.veicoliExtraEndPoint;
   //Select
   tipoVeicoliUrl: string = environment.tipoVeicoloEndPoint;
   marcaUrl: string = environment.marcaEndPoint;
@@ -39,25 +37,44 @@ export class VeicoliService {
     return this._refreshVeicoliTable$;
   }
 
-  /*searchByTargaOrId(typedLetter: number | string){
-    return this.http.get<Veicoli[]>(this.veicoliUrl + '?' + typedLetter)
-  }*/
-
   //CRUD Veicoli
-  /*getAll(): Observable<Veicoli[]> {
-    return this.http.get<Veicoli[]>(this.veicoliUrl);
+  getAllWithParams(page:number, pageSize:number, text?:string):Observable<Veicoli[]>{
+    return this.http.get<Veicoli[]>(this.veicoliUrl + '?page=' + page + '&pageSize=' + pageSize + '&search=' + text)
   }
-  
-  getAllWithParams(page:number, pageSize:number): Observable<Veicoli[]> {
-    return this.http.get<Veicoli[]>(this.veicoliUrl + '?page=' + page + '&pageSize=' + pageSize);
-  }*/
-  getAllWithParams(page:number, pageSize:number, text?:string): Observable<Veicoli[]> {
-    return this.http.get<Veicoli[]>(this.veicoliUrl + '?page=' + page + '&pageSize=' + pageSize + '&search=' + text);
+
+  getAllWithCustomizedParams(
+    page:number,
+    pageSize:number,
+    tipoVeicolo?:number,
+    marca?:number,
+    modello?:number,
+    destinazioneDUso?:number,
+    societa?:number,
+    alimentazione?:number,
+    allestimento?:number,
+    tipoAsse?:number,
+    cambio?:number,
+    stato?:number,
+    disponibilita?:number
+  )
+    : Observable<Veicoli[]> {
+    return this.http.get<Veicoli[]>(
+      this.veicoliUrl + '?page=' + page +
+      '&pageSize=' + pageSize +
+      '&id_tipo_veicolo=' + tipoVeicolo +
+      '&id_marca=' + marca +
+      '&id_modello=' + modello +
+      '&id_destinazione_uso=' + destinazioneDUso +
+      '&id_proprietario=' + societa +
+      '&id_alimentazione=' + alimentazione +
+      '&id_tipo_allestimento=' + allestimento +
+      '&id_tipo_asse=' + tipoAsse +
+      '&id_tipo_cambio=' + cambio +
+      '&id_stato=' + stato +
+      '&id_disponibilita=' + disponibilita
+    );
   }
- 
-  /*getById(id: number): Observable<Veicoli[]> {
-    return this.http.get<Veicoli[]>(this.veicoliUrl + '?id' + id);
-  }*/
+
   getExtraById(id: number): Observable<Veicoli> {
     return this.http.get<Veicoli>(this.veicoliUrl + '/' + id);
   }

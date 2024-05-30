@@ -74,14 +74,14 @@ export class TableComponent implements OnInit, OnDestroy {
         this.arraySize = this.collectionSize;
         this.refreshVeicoli();
 
-        this.filteredVeicoli = [...this.veicoli];
         this.setupFilter();
 
         if (data) {
           this.spinner = false;
         }
+        console.log('get all veicoli this.veicoli', [...this.veicoli]);
       });
-      console.log('get all veicoli this.veicoli', [...this.veicoli]);
+      
       
   }
 
@@ -117,9 +117,8 @@ export class TableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.getAllVeicoli();
     this.veicoliSvc.refreshVeicoliTable$.subscribe(() => {
-      this.getAllVeicoli();
+    this.getAllVeicoli();
     });
-    //this.getAllVeicoli();
 
     //Selects:
     //tipi di veicoli
@@ -177,6 +176,7 @@ export class TableComponent implements OnInit, OnDestroy {
             ? this.search(term)
             : [...this.veicoli];*/
     }),
+    endWith('')
   )
       .subscribe((term) => {
         if (term && term.length > 0) {
@@ -189,7 +189,6 @@ export class TableComponent implements OnInit, OnDestroy {
       });
     this.subscriptions.add(subscription);
   }
-
 
   //Search by targa
   search(text: string) {
@@ -209,7 +208,7 @@ export class TableComponent implements OnInit, OnDestroy {
   })
 }
 
-  saveFilterByTipoVeicoloRes: Veicoli[] = [];
+  /*saveFilterByTipoVeicoloRes: Veicoli[] = [];
   saveFilterByMarcaRes: Veicoli[] = [];
   saveFilterByModelloRes: Veicoli[] = [];
   saveFilterByDestinazioneRes: Veicoli[] = [];
@@ -217,11 +216,110 @@ export class TableComponent implements OnInit, OnDestroy {
   saveFilterByAlimentazioneRes: Veicoli[] = [];
   saveFilterByAllestimentoRes: Veicoli[] = [];
   saveFilterByAsseRes: Veicoli[] = [];
-  saveFilterByCambioRes: Veicoli[] = [];
+  saveFilterByCambioRes: Veicoli[] = [];*/
 
   myFilteredVeicoli: Veicoli[] = [];
 
-  customizedSearch() {
+  refreshVeicoli() {
+    /*const start = (this.page - 1) * this.pageSize;
+    const end = start + this.pageSize;*/
+    if(this.filter.value == '' || this.text == null){
+      this.filteredVeicoliToShow = []
+      this.veicoliToShow = [...this.veicoli]
+      
+      console.log('aaaa', [...this.veicoli]);
+      
+    }else{
+      //this.getAllVeicoli()
+      this.veicoliToShow = []
+      this.filteredVeicoliToShow = this.filteredVeicoli;
+      
+    }
+
+    /*if (this.filter.value?.trim() === '' || this.text === '') {
+      this.veicoliToShow = [...this.veicoli];
+      this.filteredVeicoliToShow = [];
+    } else {
+      this.filteredVeicoliToShow = this.filteredVeicoli.slice(start, end);
+      this.veicoliToShow = [];
+    }*/
+    
+    console.log('veicoliToShow from refreshVeicoli', this.veicoliToShow);
+    console.log('filteredVeicoliToShow from refreshVeicoli', this.filteredVeicoliToShow);
+    console.log('check text', this.text.length);
+  }
+  //Variable to receive the brand value and populate the model select accordingly
+  selectedMarcaId: number | null = null;
+  //modelli
+  onMarcaChange(selectedMarcaId: number | null) {
+    if (selectedMarcaId) {
+      //Save the ID value in the object to be sent in the post
+      this.veicoloForm.id_marca = selectedMarcaId;
+      this.veicoliSvc.getAllModelli().subscribe((data: IModello[]) => {
+        //filter
+        this.modelli = data.filter((m) => {
+          let idMarca = m.id_marca;
+          if (idMarca == selectedMarcaId) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+      });
+    }
+  }
+  selectedCambioId: number | null = null;
+  onCambioChange(selectedCambioId: number | null) {
+    if (selectedCambioId) {
+      this.veicoloForm.id_tipo_cambio = selectedCambioId;
+    }
+  }
+  selectedTipoAsseId: number | null = null;
+  onTipoAsseChange(selectedTipoAsseId: number | null) {
+    if (selectedTipoAsseId) {
+      this.veicoloForm.id_tipo_asse = selectedTipoAsseId;
+    }
+  }
+  selectedAllestimentoId: number = 0;
+  onAllestimentoChange(selectedAllestimentoId: number) {
+    if (selectedAllestimentoId) {
+      this.veicoloForm.id_tipo_allestimento = selectedAllestimentoId;
+    }
+  }
+  selectedAlimentazioneId: number = 0;
+  onAlimentazioneChange(selectedAlimentazioneId: number) {
+    if (selectedAlimentazioneId) {
+      this.veicoloForm.id_alimentazione = selectedAlimentazioneId;
+    }
+  }
+  selectedSocietaId: number = 0;
+  onSocietaChange(selectedSocietaId: number) {
+    if (selectedSocietaId) {
+      this.veicoloForm.id_proprietario = selectedSocietaId;
+    }
+  }
+  selectedDestinazioneUsoId: number = 0;
+  onDestinazioneUsoChange(selectedDestinazioneUsoId: number) {
+    if (selectedDestinazioneUsoId) {
+      this.veicoloForm.id_destinazione_uso = selectedDestinazioneUsoId;
+    }
+  }
+  selectedModelloId: number = 0;
+  onModelloChange(selectedModelloId: number) {
+    if (selectedModelloId) {
+      this.veicoloForm.id_modello = selectedModelloId;
+    }
+  }
+  selectedTipoVeicoloId: number = 0;
+  onTipeVeicoloChange(selectedTipoVeicoloId: number) {
+    if (selectedTipoVeicoloId) {
+      this.veicoloForm.id_tipo_veicolo = selectedTipoVeicoloId;
+    }
+  }
+  //Variable to handle validation
+  formSubmitted: boolean = false;
+
+    /*customizedSearch() {
     this.myFilteredVeicoli = [];
     try {
       if (
@@ -412,110 +510,36 @@ export class TableComponent implements OnInit, OnDestroy {
     this.filteredVeicoli = this.myFilteredVeicoli;
     this.collectionSize = this.filteredVeicoli.length;
     this.refreshVeicoli();
-  }
+  }*/
 
-  refreshVeicoli() {
-    const start = (this.page - 1) * this.pageSize;
-    const end = start + this.pageSize;
+  customizedSearch(){
+    //debugger
+    this.veicoliSvc.getAllWithCustomizedParams(
+      this.page,
+      this.pageSize,
+      this.veicoloForm?.id_tipo_veicolo,
+      this.veicoloForm?.id_marca,
+      this.veicoloForm?.id_modello,
+      this.veicoloForm?.id_destinazione_uso,
+      this.veicoloForm?.id_proprietario,
+      this.veicoloForm?.id_alimentazione,
+      this.veicoloForm?.id_tipo_allestimento,
+      this.veicoloForm?.id_tipo_asse,
+      this.veicoloForm?.id_tipo_cambio
+    ).subscribe((data: Veicoli[]) => {
+      debugger
+      this.veicoli = data.reverse();
+      this.veicoli.reverse();
+      this.collectionSize = this.veicoli[0].arraySize;
+      this.arraySize = this.collectionSize;
+      this.refreshVeicoli();
 
-    /*if(this.filter.value == '' || this.text == null){
-      this.veicoliToShow = [...this.veicoli]
-      this.filteredVeicoliToShow = []
-      console.log('aaaa', [...this.veicoli]);
+      this.setupFilter();
       
-    }else{
-      //this.getAllVeicoli()
-      this.filteredVeicoliToShow = this.filteredVeicoli;
-      this.veicoliToShow = []
-    }*/
-
-    if (this.filter.value?.trim() === '' || this.text === '') {
-      this.veicoliToShow = [...this.veicoli];
-      this.filteredVeicoliToShow = [];
-    } else {
-      this.filteredVeicoliToShow = this.filteredVeicoli.slice(start, end);
-      this.veicoliToShow = [];
-    }
-    
-    console.log('veicoliToShow from refreshVeicoli', this.veicoliToShow);
-    console.log('filteredVeicoliToShow from refreshVeicoli', this.filteredVeicoliToShow);
-    console.log('check text', this.text.length);
+      console.log('customized search results:', this.veicoli);
+      //console.log(this.veicoloForm.id_tipo_cambio);
+      
+  })
   }
-
-  onSearchInput() {
-    this.page = 1;
-    this.filter.setValue(this.filter.value);
-    this.getAllVeicoli; // Trigger the valueChanges observable
-  }
-  //Variable to receive the brand value and populate the model select accordingly
-  selectedMarcaId: number | null = null;
-  //modelli
-  onMarcaChange(selectedMarcaId: number | null) {
-    if (selectedMarcaId) {
-      //Save the ID value in the object to be sent in the post
-      this.veicoloForm.id_marca = selectedMarcaId;
-      this.veicoliSvc.getAllModelli().subscribe((data: IModello[]) => {
-        //filter
-        this.modelli = data.filter((m) => {
-          let idMarca = m.id_marca;
-          if (idMarca == selectedMarcaId) {
-            return true;
-          } else {
-            return false;
-          }
-        });
-      });
-    }
-  }
-  selectedCambioId: number | null = null;
-  onCambioChange(selectedCambioId: number | null) {
-    if (selectedCambioId) {
-      this.veicoloForm.id_tipo_cambio = selectedCambioId;
-    }
-  }
-  selectedTipoAsseId: number | null = null;
-  onTipoAsseChange(selectedTipoAsseId: number | null) {
-    if (selectedTipoAsseId) {
-      this.veicoloForm.id_tipo_asse = selectedTipoAsseId;
-    }
-  }
-  selectedAllestimentoId: number = 0;
-  onAllestimentoChange(selectedAllestimentoId: number) {
-    if (selectedAllestimentoId) {
-      this.veicoloForm.id_tipo_allestimento = selectedAllestimentoId;
-    }
-  }
-  selectedAlimentazioneId: number = 0;
-  onAlimentazioneChange(selectedAlimentazioneId: number) {
-    if (selectedAlimentazioneId) {
-      this.veicoloForm.id_alimentazione = selectedAlimentazioneId;
-    }
-  }
-  selectedSocietaId: number = 0;
-  onSocietaChange(selectedSocietaId: number) {
-    if (selectedSocietaId) {
-      this.veicoloForm.id_proprietario = selectedSocietaId;
-    }
-  }
-  selectedDestinazioneUsoId: number = 0;
-  onDestinazioneUsoChange(selectedDestinazioneUsoId: number) {
-    if (selectedDestinazioneUsoId) {
-      this.veicoloForm.id_destinazione_uso = selectedDestinazioneUsoId;
-    }
-  }
-  selectedModelloId: number = 0;
-  onModelloChange(selectedModelloId: number) {
-    if (selectedModelloId) {
-      this.veicoloForm.id_modello = selectedModelloId;
-    }
-  }
-  selectedTipoVeicoloId: number = 0;
-  onTipeVeicoloChange(selectedTipoVeicoloId: number) {
-    if (selectedTipoVeicoloId) {
-      this.veicoloForm.id_tipo_veicolo = selectedTipoVeicoloId;
-    }
-  }
-  //Variable to handle validation
-  formSubmitted: boolean = false;
 }
 
