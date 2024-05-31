@@ -31,12 +31,20 @@ body {
 h1 {
   font-family: "Roboto", sans-serif;
   text-align: center;
-  font-weight: 700 !important;
+  font-weight: 900 !important;
+  margin: 1em;
 }
 
 h2, h3, h4, h5{
   font-family: "Roboto", sans-serif;
   font-weight: 500 !important;
+  text-align: center;
+  margin: 1em;
+  border-bottom: solid 1px gainsboro;
+}
+h2{
+  font-weight: 700 !important;
+  border-bottom: 0;
 }
 
 .my-form {
@@ -46,9 +54,12 @@ h2, h3, h4, h5{
 
 form {
   width: 100%;
-  max-width: 900px;
   border: solid 1px gainsboro;
   padding: 2em;
+  background-color: white;
+  border-top: 0;
+  border-right: 0;
+  max-width: -webkit-fill-available;
 }
 
 .my-btn {

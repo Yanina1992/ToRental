@@ -1,26 +1,5 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col col-12">
-      <!--Searching by targa-->
-      <form id="search-by-targa">
-        <h3>Cerca per targa</h3>
-        <div class="mb-3 row justify-content-center">
-          <label
-            for="table-filtering-search"
-            class="col-xs-3 col-sm-auto col-form-label"
-            >Inserisci la targa</label
-          >
-          <div class="col-xs-3 col-sm-auto">
-            <input
-              id="table-filtering-search"
-              class="form-control"
-              type="text"
-              [formControl]="filter"
-            />
-          </div>
-        </div>
-      </form>
-    </div>
 
     <div class="col col-12">
       <!--Customized search-->
@@ -57,7 +36,6 @@
               Selezionare una tipologia di veicolo.
             </div>
           </div>
-
           <!--Marca-->
           <div class="mb-3 col">
             <label for="marca" class="form-label">Marca</label>
@@ -83,7 +61,6 @@
               Selezionare una marca.
             </div>
           </div>
-
           <!--Modello-->
           <div class="mb-3 col">
             <label for="modello" class="form-label">Modello</label>
@@ -110,7 +87,6 @@
               Selezionare un modello.
             </div>
           </div>
-
           <!--Destinazione d'uso-->
           <div class="mb-3 col">
             <label for="destinazione_uso_nome" class="form-label"
@@ -144,7 +120,6 @@
               Selezionare la destinazione d'uso
             </div>
           </div>
-
           <!--Società-->
           <div class="mb-3 col">
             <label for="societa_nome" class="form-label">Società</label>
@@ -169,7 +144,6 @@
               Selezionare la società proprietaria del veicolo.
             </div>
           </div>
-
           <!--Tipo alimentazione-->
           <div class="mb-3 col">
             <label for="tipo_alimentazione_nome" class="form-label"
@@ -201,7 +175,6 @@
               Selezionare un tipo di alimentazione.
             </div>
           </div>
-
           <!--Allestimento-->
           <div class="mb-3 col">
             <label for="tipo_allestimento_nome" class="form-label"
@@ -233,7 +206,6 @@
               Selezionare un tipo di allestimento.
             </div>
           </div>
-
           <!-- Tipo asse-->
           <div class="mb-3 col">
             <label for="tipo_asse_nome" class="form-label">Tipo asse</label>
@@ -258,7 +230,6 @@
               Selezionare un tipo di asse.
             </div>
           </div>
-
           <!--Cambio-->
           <div class="mb-3 col">
             <label for="tipo_cambio_nome" class="form-label">Cambio</label>
@@ -287,7 +258,6 @@
             </div>
           </div>
         </div>
-
       <div class="container">
         <div class="row row-cols-1 row-cols-md-2">
           <div class="col">
@@ -336,7 +306,6 @@
           </div>
         </div>
       </div>
-
         <button
           type="submit"
           class="btn my-btn btn-primary"
@@ -347,6 +316,28 @@
       </form>
     </div>
   </div>
+</div>
+
+<div class="col col-12">
+  <!--Searching by targa-->
+  <form id="search-by-targa">
+    <h3>Cerca per targa o telaio</h3>
+    <div class="mb-3 row justify-content-center">
+      <label
+        for="table-filtering-search"
+        class="col-xs-3 col-sm-auto col-form-label"
+        >Inserisci la targa o il numero di telaio</label
+      >
+      <div class="col-xs-3 col-sm-auto">
+        <input
+          id="table-filtering-search"
+          class="form-control"
+          type="text"
+          [formControl]="filter"
+        />
+      </div>
+    </div>
+  </form>
 </div>
 
 <!--Spinner-->
@@ -365,6 +356,7 @@
         <th>Disponibilità</th>
         <th scope="col">Tipo veicolo</th>
         <th scope="col">Targa</th>
+        <th scope="col">Telaio</th>
         <th scope="col">Marca</th>
         <th scope="col">Modello</th>
         <th scope="col">Cilindrata</th>
@@ -385,10 +377,11 @@
       </tr>
     </thead>
 
-    <tbody *ngIf="veicoliToShow">
+    <tbody *ngIf="veicoliToShow.length > 0">
       <tr *ngFor="let veicolo of veicoliToShow">
-        <td scope="row">{{ veicolo.id }}</td>
-        <td class="text-center">
+        <td scope="row">{{ veicolo.id }}&nbsp;</td>
+
+        <td [ngClass]="{'text-center': true}">
           <i
             class="fa-solid fa-screwdriver-wrench"
             [ngClass]="getStatoIconClass(veicolo.id_stato)"
@@ -406,29 +399,66 @@
           ></i>
         </td>
 
-        <td class="text-truncate">
-          {{ veicolo.tipo_veicolo_nome }}
-        </td>
-        <td class="text-truncate">{{ veicolo.targa }}</td>
-        <td class="text-truncate">{{ veicolo.marca_nome }}</td>
-        <td class="text-truncate">{{ veicolo.modello_nome }}</td>
-        <td class="text-truncate">{{ veicolo.cilindrata }}</td>
-        <td class="text-truncate">{{ veicolo.colore }}</td>
-        <td class="text-truncate">
-          {{ veicolo.destinazione_uso_nome }}
-        </td>
-        <td class="text-truncate">{{ veicolo.massa }}</td>
-        <td class="text-truncate">{{ veicolo.numero_assi }}</td>
-        <td class="text-truncate">{{ veicolo.portata }}</td>
-        <td class="text-truncate">{{ veicolo.potenza }}</td>
-        <td class="text-truncate">{{ veicolo.proprietario_nome }}</td>
-        <td class="text-truncate">{{ veicolo.tipo_alimentazione_nome }}</td>
-        <td class="text-truncate">{{ veicolo.tipo_allestimento_nome }}</td>
-        <td class="text-truncate">{{ veicolo.tipo_asse_nome }}</td>
-        <td class="text-truncate">{{ veicolo.tipo_cambio_nome }}</td>
-        <td class="text-truncate">{{ veicolo.nome_disponibilita }}</td>
-        <td class="text-truncate">{{ veicolo.larghezza_esterna }}</td>
-        <td class="text-truncate">{{ veicolo.lunghezza_esterna }}</td>
+        <td *ngIf="veicolo.tipo_veicolo_nome != null" class="text-truncate text-center">{{ veicolo.tipo_veicolo_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_veicolo_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.targa != null" class="text-truncate text-center">{{ veicolo.targa }}&nbsp;</td>
+        <td *ngIf="veicolo.targa == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.telaio != null" class="text-truncate text-center">{{ veicolo.telaio }}&nbsp;</td>
+        <td *ngIf="veicolo.telaio == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.marca_nome != null" class="text-truncate text-center">{{ veicolo.marca_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.marca_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.modello_nome != null" class="text-truncate text-center">{{ veicolo.modello_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.modello_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.cilindrata != null" class="text-truncate text-center">{{ veicolo.cilindrata }}&nbsp;</td>
+        <td *ngIf="veicolo.cilindrata == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.colore != null" class="text-truncate text-center">{{ veicolo.colore }}&nbsp;</td>
+        <td *ngIf="veicolo.colore == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.destinazione_uso_nome != null" class="text-truncate text-center">{{ veicolo.destinazione_uso_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.destinazione_uso_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.massa != null" class="text-truncate text-center">{{ veicolo.massa }}&nbsp;</td>
+        <td *ngIf="veicolo.massa == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.numero_assi != null" class="text-truncate text-center">{{ veicolo.numero_assi }}&nbsp;</td>
+        <td *ngIf="veicolo.numero_assi == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.portata != null" class="text-truncate text-center">{{ veicolo.portata }}&nbsp;</td>
+        <td *ngIf="veicolo.portata == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.potenza != null" class="text-truncate text-center">{{ veicolo.potenza }}&nbsp;</td>
+        <td *ngIf="veicolo.potenza == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.proprietario_nome != null" class="text-truncate text-center">{{ veicolo.proprietario_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.proprietario_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.tipo_alimentazione_nome != null" class="text-truncate text-center">{{ veicolo.tipo_alimentazione_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_alimentazione_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.tipo_allestimento_nome != null" class="text-truncate text-center">{{ veicolo.tipo_allestimento_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_allestimento_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.tipo_asse_nome != null" class="text-truncate text-center">{{ veicolo.tipo_asse_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_asse_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.tipo_cambio_nome != null" class="text-truncate text-center">{{ veicolo.tipo_cambio_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_cambio_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.nome_disponibilita != null" class="text-truncate text-center">{{ veicolo.nome_disponibilita }}&nbsp;</td>
+        <td *ngIf="veicolo.nome_disponibilita == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.larghezza_esterna != null" class="text-truncate text-center">{{ veicolo.larghezza_esterna }}&nbsp;</td>
+        <td *ngIf="veicolo.larghezza_esterna == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.lunghezza_esterna != null" class="text-truncate text-center">{{ veicolo.lunghezza_esterna }}&nbsp;</td>
+        <td *ngIf="veicolo.lunghezza_esterna == null" class="text-center"> - &nbsp;</td>
+
         <td class="d-flex">
           <!--Offcanvas-->
 
@@ -447,10 +477,11 @@
       </tr>
     </tbody>
 
-    <tbody *ngIf="filteredVeicoliToShow">
+    <tbody *ngIf="filteredVeicoliToShow.length > 0">
       <tr *ngFor="let veicolo of filteredVeicoliToShow">
-        <td scope="row">{{ veicolo.id }}</td>
-        <td class="text-center">
+        <td scope="row">{{ veicolo.id }}&nbsp;</td>
+
+        <td [ngClass]="{'text-center': true}">
           <i
             class="fa-solid fa-screwdriver-wrench"
             [ngClass]="getStatoIconClass(veicolo.id_stato)"
@@ -468,29 +499,66 @@
           ></i>
         </td>
 
-        <td class="text-truncate">
-          {{ veicolo.tipo_veicolo_nome }}
-        </td>
-        <td class="text-truncate">{{ veicolo.targa }}</td>
-        <td class="text-truncate">{{ veicolo.marca_nome }}</td>
-        <td class="text-truncate">{{ veicolo.modello_nome }}</td>
-        <td class="text-truncate">{{ veicolo.cilindrata }}</td>
-        <td class="text-truncate">{{ veicolo.colore }}</td>
-        <td class="text-truncate">
-          {{ veicolo.destinazione_uso_nome }}
-        </td>
-        <td class="text-truncate">{{ veicolo.massa }}</td>
-        <td class="text-truncate">{{ veicolo.numero_assi }}</td>
-        <td class="text-truncate">{{ veicolo.portata }}</td>
-        <td class="text-truncate">{{ veicolo.potenza }}</td>
-        <td class="text-truncate">{{ veicolo.proprietario_nome }}</td>
-        <td class="text-truncate">{{ veicolo.tipo_alimentazione_nome }}</td>
-        <td class="text-truncate">{{ veicolo.tipo_allestimento_nome }}</td>
-        <td class="text-truncate">{{ veicolo.tipo_asse_nome }}</td>
-        <td class="text-truncate">{{ veicolo.tipo_cambio_nome }}</td>
-        <td class="text-truncate">{{ veicolo.nome_disponibilita }}</td>
-        <td class="text-truncate">{{ veicolo.larghezza_esterna }}</td>
-        <td class="text-truncate">{{ veicolo.lunghezza_esterna }}</td>
+        <td *ngIf="veicolo.tipo_veicolo_nome != null" class="text-truncate text-center">{{ veicolo.tipo_veicolo_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_veicolo_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.targa != null" class="text-truncate text-center">{{ veicolo.targa }}&nbsp;</td>
+        <td *ngIf="veicolo.targa == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.telaio != null" class="text-truncate text-center">{{ veicolo.telaio }}&nbsp;</td>
+        <td *ngIf="veicolo.telaio == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.marca_nome != null" class="text-truncate text-center">{{ veicolo.marca_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.marca_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.modello_nome != null" class="text-truncate text-center">{{ veicolo.modello_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.modello_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.cilindrata != null" class="text-truncate text-center">{{ veicolo.cilindrata }}&nbsp;</td>
+        <td *ngIf="veicolo.cilindrata == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.colore != null" class="text-truncate text-center">{{ veicolo.colore }}&nbsp;</td>
+        <td *ngIf="veicolo.colore == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.destinazione_uso_nome != null" class="text-truncate text-center">{{ veicolo.destinazione_uso_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.destinazione_uso_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.massa != null" class="text-truncate text-center">{{ veicolo.massa }}&nbsp;</td>
+        <td *ngIf="veicolo.massa == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.numero_assi != null" class="text-truncate text-center">{{ veicolo.numero_assi }}&nbsp;</td>
+        <td *ngIf="veicolo.numero_assi == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.portata != null" class="text-truncate text-center">{{ veicolo.portata }}&nbsp;</td>
+        <td *ngIf="veicolo.portata == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.potenza != null" class="text-truncate text-center">{{ veicolo.potenza }}&nbsp;</td>
+        <td *ngIf="veicolo.potenza == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.proprietario_nome != null" class="text-truncate text-center">{{ veicolo.proprietario_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.proprietario_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.tipo_alimentazione_nome != null" class="text-truncate text-center">{{ veicolo.tipo_alimentazione_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_alimentazione_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.tipo_allestimento_nome != null" class="text-truncate text-center">{{ veicolo.tipo_allestimento_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_allestimento_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.tipo_asse_nome != null" class="text-truncate text-center">{{ veicolo.tipo_asse_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_asse_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.tipo_cambio_nome != null" class="text-truncate text-center">{{ veicolo.tipo_cambio_nome }}&nbsp;</td>
+        <td *ngIf="veicolo.tipo_cambio_nome == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.nome_disponibilita != null" class="text-truncate text-center">{{ veicolo.nome_disponibilita }}&nbsp;</td>
+        <td *ngIf="veicolo.nome_disponibilita == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.larghezza_esterna != null" class="text-truncate text-center">{{ veicolo.larghezza_esterna }}&nbsp;</td>
+        <td *ngIf="veicolo.larghezza_esterna == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="veicolo.lunghezza_esterna != null" class="text-truncate text-center">{{ veicolo.lunghezza_esterna }}&nbsp;</td>
+        <td *ngIf="veicolo.lunghezza_esterna == null" class="text-center"> - &nbsp;</td>
+
         <td class="d-flex">
           <!--Offcanvas-->
 

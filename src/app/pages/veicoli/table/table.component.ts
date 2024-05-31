@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Subscription, endWith } from 'rxjs';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from '../../../services/veicoli.service';
@@ -33,7 +33,7 @@ export class TableComponent implements OnInit, OnDestroy {
 
   myFilteredVeicoli: Veicoli[] = [];
 
-  filteredVeicoli: any = [];
+  filteredVeicoli: Veicoli[] = [];
   filter = new FormControl('');
 
   spinner: boolean | undefined = true;
@@ -176,8 +176,8 @@ export class TableComponent implements OnInit, OnDestroy {
       });
     this.subscriptions.add(subscription);
   }
-  //Search by targa
-  search(text: string) {
+  //Search by targa or telaio
+  /*search(text: string) {
     const term = text.toLowerCase();
     this.text = term;
     this.page = 1;
@@ -186,12 +186,29 @@ export class TableComponent implements OnInit, OnDestroy {
       .getAllWithParams(this.page, this.pageSize, this.text)
       .subscribe((data: Veicoli[]) => {
         this.filteredVeicoli = data;
+        console.log('veicoli filtrati', data[1]);
+        
         this.collectionSize = this.filteredVeicoli.length;
         this.refreshVeicoli();
 
         return this.text;
       });
+  }*/
+  search(text: string) {
+    const term = text.toLowerCase();
+    this.text = term;
+    this.page = 1;
+  
+    this.veicoliSvc
+      .getAllWithParams(this.page, this.pageSize, this.text)
+      .subscribe((data: Veicoli[]) => {
+        this.filteredVeicoli = data;
+        this.collectionSize = this.filteredVeicoli.length;
+        this.refreshVeicoli();
+      });
   }
+  
+
   customizedSearch() {
     try {
       this.veicoliSvc
@@ -223,7 +240,8 @@ export class TableComponent implements OnInit, OnDestroy {
       console.error('Errorrrrr', error);
     }
   }
-  refreshVeicoli() {
+
+  /*refreshVeicoli() {
     if (this.filter.value == '' || this.text == null) {
       this.filteredVeicoliToShow = [];
       this.veicoliToShow = [...this.veicoli];
@@ -231,7 +249,19 @@ export class TableComponent implements OnInit, OnDestroy {
       this.veicoliToShow = [];
       this.filteredVeicoliToShow = this.filteredVeicoli;
     }
-  }
+    console.log('filtered veicoli to show', this.filteredVeicoliToShow);
+    console.log('veicoli to show', this.veicoliToShow);
+  }*/
+  refreshVeicoli() {
+    if (!this.text || this.text.length == 0) {
+      this.filteredVeicoliToShow = [];
+      this.veicoliToShow = [...this.veicoli];
+    } else {
+      this.veicoliToShow = [];
+      this.filteredVeicoliToShow = [...this.filteredVeicoli];
+    }
+  }  
+
   //Variable to receive the brand value and populate the model select accordingly
   selectedMarcaId: number | null = null;
   //modelli

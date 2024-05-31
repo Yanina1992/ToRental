@@ -14,7 +14,9 @@ export class Veicoli implements IAlert {
   public tipo_veicolo_nome?: string = '';
   public id_tipo_veicolo?: number | undefined = 0;
 
-  public targa: string = '';
+  public targa?: string | undefined;
+
+  public telaio?: string | undefined;
 
   public marca?: string | undefined;//da toglieree
   public marca_nome?: string = '';
