@@ -161,13 +161,28 @@ export class EditComponent implements OnInit {
       this.veicolo.id_tipo_cambio = selectedCambioId;
     }
   }
-
+  selectedStatoId:number = 0;
+  onStatoChange(selectedStatoId:number){
+    if(selectedStatoId){
+      this.veicolo.id_stato = selectedStatoId;
+    }else{
+      selectedStatoId = 0;
+    }
+  }
+  selectedDisponibilitaId:number = 0;
+  onDisponibilitaChange(selectedDisponibilitaId:number){
+    if(selectedDisponibilitaId) {
+      this.veicolo.id_disponibilita = selectedDisponibilitaId;
+    }else{
+      selectedDisponibilitaId = 0;
+    }
+  }
   handleDateChange(date:any){
     this.veicolo.data_immatricolazione = date;
   }
 
   editVeicolo() {
-    this.veicoliSvc.update(this.veicolo).subscribe((res) => {
+      this.veicoliSvc.update(this.veicolo).subscribe((res) => {
       this.router.navigate(['/pages/dashboard']);
     });
   }

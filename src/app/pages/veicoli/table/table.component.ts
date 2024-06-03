@@ -13,6 +13,9 @@ import { IMarca } from 'src/app/interfaces/options-select/imarca';
 import { IModello } from 'src/app/interfaces/options-select/imodello';
 import { ISocieta } from 'src/app/interfaces/options-select/isocieta';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
+import { LogarithmicScale } from 'chart.js';
+//import { ChangeDetectorRef } from '@angular/core';
+
 
 @Component({
   selector: 'app-table',
@@ -26,15 +29,15 @@ export class TableComponent implements OnInit, OnDestroy {
 
   page = 1;
   pageSize = 10;
-  collectionSize = Veicoli.length;
   veicoli: Veicoli[] = [];
-  veicoliToShow: any = [];
-  filteredVeicoliToShow: Veicoli[] = [];
-
-  myFilteredVeicoli: Veicoli[] = [];
-
-  filteredVeicoli: Veicoli[] = [];
+  veicoliOnInit: Veicoli[] = [];
+  collectionSize = 0;
   filter = new FormControl('');
+
+  term:string | undefined;
+
+  myArraySize: number = 0;
+  text: string = '';
 
   spinner: boolean | undefined = true;
 
@@ -59,32 +62,29 @@ export class TableComponent implements OnInit, OnDestroy {
   isVeicoloOk: boolean = false;
   isVeicoloStatoNotDefined: boolean = false;
 
-  arraySize: number = 0;
-  text: string = '';
-
   //Variable to handle validation
   formSubmitted: boolean = false;
 
-  constructor(private veicoliSvc: VeicoliService) {}
+  constructor(
+    private veicoliSvc: VeicoliService
+  ) {}
 
   public getAllVeicoli() {
-    this.veicoliSvc
+       this.veicoliSvc
       .getAllWithParams(this.page, this.pageSize, this.text)
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data.reverse();
         this.veicoli.reverse();
         this.collectionSize = this.veicoli[0].arraySize;
-        this.arraySize = this.collectionSize;
-        this.refreshVeicoli();
-
+        this.myArraySize = this.collectionSize;
         this.setupFilter();
 
         if (data) {
           this.spinner = false;
         }
-        console.log('get all veicoli this.veicoli', [...this.veicoli]);
       });
-  }
+      }
+   
   getStatoIconClass(id_stato: number | undefined): string {
     switch (id_stato) {
       case 3:
@@ -148,7 +148,16 @@ export class TableComponent implements OnInit, OnDestroy {
     this.veicoliSvc.getAllTipiCambio().subscribe((data: ICambio[]) => {
       this.tipiCambio = data;
     });
+
   }
+  /*getAllOninit(){
+    this.veicoliSvc.getAllWithParams(this.page, this.pageSize, this.text = '')
+    .subscribe((data: Veicoli[]) => {
+    this.veicoli = [...data];
+    console.log('veicoliOnInit', this.veicoli);
+  });
+
+  }*/
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
@@ -159,56 +168,48 @@ export class TableComponent implements OnInit, OnDestroy {
         startWith(''),
         debounceTime(300),
         map((text) => {
-          const term = text?.trim().toLowerCase() || '';
-          console.log('term', term);
-          return term;
+          this.term = text?.trim().toLowerCase() || '';
+          console.log('setupFilter value term', this.term);
+          if(this.term == ''){
+
+            console.log("this.term is ''", this.term);
+            console.log('veicoliOnInit on setupFilter', this.veicoliOnInit);
+
+          }
+          return this.term;
         }),
         endWith('')
       )
-      .subscribe((term) => {
-        if (term && term.length > 0) {
-          this.search(term);
+      .subscribe((t) => {
+        if (t && t.length > 0) {
+          this.search(t);
         } else {
-          this.filteredVeicoli = [...this.veicoli];
-          this.collectionSize = this.filteredVeicoli.length;
-          this.refreshVeicoli();
+          this.collectionSize = this.veicoli[0].arraySize;
+          this.myArraySize = this.collectionSize
         }
       });
     this.subscriptions.add(subscription);
+   
   }
   //Search by targa or telaio
-  /*search(text: string) {
-    const term = text.toLowerCase();
-    this.text = term;
+ search(text: string) {
+    this.term = text.toLowerCase();
+    this.text = this.term;
     this.page = 1;
 
     this.veicoliSvc
       .getAllWithParams(this.page, this.pageSize, this.text)
       .subscribe((data: Veicoli[]) => {
-        this.filteredVeicoli = data;
-        console.log('veicoli filtrati', data[1]);
+        this.veicoli = data;
         
-        this.collectionSize = this.filteredVeicoli.length;
-        this.refreshVeicoli();
+        this.collectionSize = this.veicoli[0].arraySize;
+        this.myArraySize = this.collectionSize
+        //this.refreshVeicoli();
 
         return this.text;
       });
-  }*/
-  search(text: string) {
-    const term = text.toLowerCase();
-    this.text = term;
-    this.page = 1;
-  
-    this.veicoliSvc
-      .getAllWithParams(this.page, this.pageSize, this.text)
-      .subscribe((data: Veicoli[]) => {
-        this.filteredVeicoli = data;
-        this.collectionSize = this.filteredVeicoli.length;
-        this.refreshVeicoli();
-      });
+      
   }
-  
-
   customizedSearch() {
     try {
       this.veicoliSvc
@@ -233,34 +234,37 @@ export class TableComponent implements OnInit, OnDestroy {
           
           this.veicoli = data.reverse();
           this.veicoli.reverse();
-          this.refreshVeicoli();
+          //this.refreshVeicoli();
           this.setupFilter();
         });
     } catch (error) {
       console.error('Errorrrrr', error);
     }
+   this.scrollToResults()
   }
-
+  scrollToResults() {
+    const element = document.getElementById('results-table');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
   /*refreshVeicoli() {
-    if (this.filter.value == '' || this.text == null) {
+    if (this.term == undefined) {
+      console.log('term value term == undefined', this.term)
+      this.veicoli = this.veicoli;
+    }else if(this.term == '' && this.term.length == 0){
+      console.log("term value term == ''", this.term)
+      console.log('term.length if length is 0', this.term.length)
       this.filteredVeicoliToShow = [];
       this.veicoliToShow = [...this.veicoli];
-    } else {
+      console.log('[this.veicoli when term and term length == 0 ]', this.veicoli);
+    }else{
+      console.log("term value term != undefined || ''", this.term)
+      console.log('term.length if length is > 0', this.term.length)
       this.veicoliToShow = [];
-      this.filteredVeicoliToShow = this.filteredVeicoli;
-    }
-    console.log('filtered veicoli to show', this.filteredVeicoliToShow);
-    console.log('veicoli to show', this.veicoliToShow);
-  }*/
-  refreshVeicoli() {
-    if (!this.text || this.text.length == 0) {
-      this.filteredVeicoliToShow = [];
-      this.veicoliToShow = [...this.veicoli];
-    } else {
-      this.veicoliToShow = [];
-      this.filteredVeicoliToShow = [...this.filteredVeicoli];
-    }
-  }  
+      this.filteredVeicoliToShow = this.veicoli;
+    }*/
+ 
 
   //Variable to receive the brand value and populate the model select accordingly
   selectedMarcaId: number | null = null;
@@ -342,4 +346,4 @@ export class TableComponent implements OnInit, OnDestroy {
       this.veicoloForm.id_disponibilita = selectedDisponibilitaId;
     }
   }
-}
+ }

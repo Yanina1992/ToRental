@@ -1,5 +1,5 @@
 <div class="d-flex flex-column align-items-center container">
-  <h2>Modifica veicolo</h2>
+  <h2 class="m-4">Modifica veicolo</h2>
   <form #modificaVeicoloForm="ngForm">
     <div class="row row-cols-2 row-cols-md-3">
       <!--Tipo veicolo-->
@@ -10,7 +10,8 @@
           class="form-select"
           [(ngModel)]="selectedTipoVId"
           (ngModelChange)="onTipeVChange($event)"
-          name="tipoVeicolo"
+          name="tipo_veicolo_nome"
+          #tipo_veicolo_nome="ngModel"
         >
           <option
             *ngFor="let tipoVeicolo of tipiVeicoli"
@@ -30,6 +31,7 @@
           [(ngModel)]="selectedMarcaId"
           (ngModelChange)="onMarcaChange($event)"
           name="marca"
+          #marca="ngModel"
         >
           <option *ngFor="let marca of marche" [value]="marca.id">
             {{ marca.nome }}
@@ -46,6 +48,7 @@
           [(ngModel)]="selectedModelloId"
           (ngModelChange)="onModelloChange($event)"
           name="modello"
+          #modello="ngModel"
         >
           <option *ngFor="let modello of modelli" [value]="modello.id">
             {{ modello.nome }}
@@ -63,6 +66,7 @@
           [(ngModel)]="veicolo.cilindrata"
           placeholder="Inserisci cilindrata"
           class="form-control"
+          #cilindrata="ngModel"
         />
       </div>
 
@@ -76,6 +80,7 @@
           [(ngModel)]="veicolo.colore"
           placeholder="Inserisci il colore"
           class="form-control"
+          #colore="ngModel"
         />
       </div>
 
@@ -107,6 +112,8 @@
           id="change_massa"
           type="text"
           name="massa"
+          pattern="[0-9]*"
+          min="0"
           [(ngModel)]="veicolo.massa"
           placeholder="Inserisci la massa"
           class="form-control"
@@ -119,7 +126,8 @@
         <input
           id="change_numeroAssi"
           type="number"
-          name="numeroAssi"
+          name="numero_assi"
+          min="0"
           [(ngModel)]="veicolo.numero_assi"
           placeholder="Inserisci il numero assi"
           class="form-control"
@@ -133,6 +141,7 @@
           id="change_portata"
           type="number"
           name="portata"
+          min="0"
           [(ngModel)]="veicolo.portata"
           placeholder="Inserisci la portata"
           class="form-control"
@@ -146,6 +155,7 @@
           id="change_potenza"
           type="number"
           name="potenza"
+          min="0"
           [(ngModel)]="veicolo.potenza"
           placeholder="Inserisci potenza"
           class="form-control"
@@ -168,7 +178,7 @@
         </select>
       </div>
 
-      <!--Targa-->
+      <!--Targa ----- LA MODIFICA DELLA TARGA E DELLA DATA D'IMMATRICOLAZIONE DEVONO ESSERE GESTTE IN UNA CRUD A PARTE CHE COMUNICHI DIRETTAMENTE CON LE RELATIVE TABELLE-->
       <div class="mb-3 col">
         <label for="change_targa" class="form-label">Targa</label>
         <input
@@ -271,6 +281,7 @@
         <input
           id="larghezza_esterna"
           type="number"
+          min="0"
           name="larghezza_esterna"
           [(ngModel)]="veicolo.larghezza_esterna"
           placeholder="Inserisci la larghezza esterna"
@@ -301,6 +312,7 @@
           [(ngModel)]="veicolo.note"
           placeholder="Inserisci eventuali note"
           class="form-control"
+          #note="ngModel"
         />
       </div>
 
@@ -314,8 +326,51 @@
           [(ngModel)]="veicolo.altre_caratteristiche"
           placeholder="Informazioni aggiuntive"
           class="form-control"
+          #altre_caratteristiche="ngModel"
         />
       </div>
+
+      <div class="container w-100">
+        <div class="row">
+          <!--Stato-->
+          <div class="mb-3 col col-12 col-md-6 d-flex flex-column">
+            <label for="nome_stato" class="form-label d-block">Stato</label>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="stato" id="irregolare" value="3"
+                [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
+              <label class="form-check-label" for="irregolare">Irregolare</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="stato" id="gravementeIrr" value="2"
+                [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
+              <label class="form-check-label" for="gravementeIrr">Gravemente irregolare</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="stato" id="regolare" value="1" [(ngModel)]="selectedStatoId"
+                (ngModelChange)="onStatoChange(selectedStatoId)">
+              <label class="form-check-label" for="regolare">Regolare</label>
+            </div>
+          </div>
+
+      <!--Disponibilità-->
+      <div class="mb-3 col col-12 col-md-6 d-flex flex-column">
+        <label for="nome_disponibilita" class="form-label d-block">
+          Disponibilità
+        </label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="disponibilita" id="disponibile" value="1"
+            [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
+          <label class="form-check-label" for="disponibile">Disponibile</label>
+        </div>
+        <div class="form-check form-check-inline">
+  
+          <input class="form-check-input" type="radio" name="disponibilita" id="nonDisponibile" value="2"
+            [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
+          <label class="form-check-label" for="nonDisponibile">Non disponibile</label>
+        </div>
+      </div>
+    </div>
+  </div>
 
       <button
         type="submit"

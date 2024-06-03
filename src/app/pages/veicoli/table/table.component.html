@@ -283,6 +283,12 @@
                 <label class="form-check-label" for="regolare">Regolare</label>
               </div>
 
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="stato" id="tuttiGliStati" value="0"
+                  [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
+                <label class="form-check-label" for="tuttiGliStati">Tutti gli stati</label>
+              </div>
+
             </div>
           </div>
           <div class="col">
@@ -291,17 +297,25 @@
               <label for="nome_disponibilita" class="form-label d-block">
                 Disponibilità
               </label>
+
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="disponibilita" id="disponibile" value="1"
                   [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
                 <label class="form-check-label" for="disponibile">Disponibile</label>
               </div>
+
               <div class="form-check form-check-inline">
-      
                 <input class="form-check-input" type="radio" name="disponibilita" id="nonDisponibile" value="2"
                   [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
                 <label class="form-check-label" for="nonDisponibile">Non disponibile</label>
               </div>
+
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="disponibilita" id="tutteLeDisponibilita" value="0"
+                  [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
+                <label class="form-check-label" for="tutteLeDisponibilita">Tutte le disponibilità</label>
+              </div>
+
             </div>
           </div>
         </div>
@@ -347,38 +361,40 @@
   </div>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive" id="results-table">
+  <h2 class="m-4 border-bottom">Flotta:</h2>
   <table class="table table-striped ms-2">
+    
     <thead>
       <tr>
         <th scope="col">Nr. id.</th>
         <th>Stato</th>
         <th>Disponibilità</th>
-        <th scope="col">Tipo veicolo</th>
-        <th scope="col">Targa</th>
-        <th scope="col">Telaio</th>
-        <th scope="col">Marca</th>
-        <th scope="col">Modello</th>
-        <th scope="col">Cilindrata</th>
-        <th scope="col">Colore</th>
-        <th scope="col">Destinazione d'uso</th>
-        <th scope="col">Massa</th>
-        <th scope="col">Numero assi</th>
-        <th scope="col">Portata</th>
-        <th scope="col">Potenza</th>
-        <th scope="col">Società</th>
-        <th scope="col">Alimentazione</th>
-        <th scope="col">Allestimento</th>
-        <th scope="col">Tipo asse</th>
-        <th scope="col">Cambio</th>
-        <th scope="col">Disponibilità</th>
-        <th scope="col">Larghezza</th>
-        <th scope="col">Lunghezza</th>
+        <th scope="col" class="text-center">Tipo veicolo</th>
+        <th scope="col" class="text-center">Targa</th>
+        <th scope="col" class="text-center">Telaio</th>
+        <th scope="col" class="text-center">Marca</th>
+        <th scope="col" class="text-center">Modello</th>
+        <th scope="col" class="text-center">Cilindrata</th>
+        <th scope="col" class="text-center">Colore</th>
+        <th scope="col" class="text-center">Destinazione d'uso</th>
+        <th scope="col" class="text-center">Massa</th>
+        <th scope="col" class="text-center">Numero assi</th>
+        <th scope="col" class="text-center">Portata</th>
+        <th scope="col" class="text-center">Potenza</th>
+        <th scope="col" class="text-center">Società</th>
+        <th scope="col" class="text-center">Alimentazione</th>
+        <th scope="col" class="text-center">Allestimento</th>
+        <th scope="col" class="text-center">Tipo asse</th>
+        <th scope="col" class="text-center">Cambio</th>
+        <th scope="col" class="text-center">Disponibilità</th>
+        <th scope="col" class="text-center">Larghezza</th>
+        <th scope="col" class="text-center">Lunghezza</th>
       </tr>
     </thead>
 
-    <tbody *ngIf="veicoliToShow.length > 0">
-      <tr *ngFor="let veicolo of veicoliToShow">
+      <tbody>
+      <tr *ngFor="let veicolo of veicoli">
         <td scope="row">{{ veicolo.id }}&nbsp;</td>
 
         <td [ngClass]="{'text-center': true}">
@@ -475,9 +491,9 @@
           ></a>
         </td>
       </tr>
-    </tbody>
+      </tbody>
 
-    <tbody *ngIf="filteredVeicoliToShow.length > 0">
+    <!--<tbody *ngIf="filteredVeicoliToShow.length > 0">
       <tr *ngFor="let veicolo of filteredVeicoliToShow">
         <td scope="row">{{ veicolo.id }}&nbsp;</td>
 
@@ -560,7 +576,7 @@
         <td *ngIf="veicolo.lunghezza_esterna == null" class="text-center"> - &nbsp;</td>
 
         <td class="d-flex">
-          <!--Offcanvas-->
+         -Offcanvas
 
           <app-stand-details
             *ngIf="veicolo.id != undefined"
@@ -575,14 +591,15 @@
           ></a>
         </td>
       </tr>
-    </tbody>
+    </tbody>-->
+
   </table>
 </div>
 
 <!--Pagination-->
 <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
   <ngb-pagination
-    [collectionSize]="arraySize"
+    [collectionSize]="myArraySize"
     [(page)]="page"
     [pageSize]="pageSize"
     (pageChange)="getAllVeicoli()"
