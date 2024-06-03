@@ -19,4 +19,10 @@ app-footer{
 }
 #navbar{
   border-right: 1px solid #EC7801;
+  //width: 150px;
+}
+@media screen and (max-width: 576px) {
+  #navbar{
+    height: 6vh !important;
+  }  
 }

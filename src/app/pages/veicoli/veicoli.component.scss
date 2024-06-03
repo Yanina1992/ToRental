@@ -23,7 +23,9 @@ form{
     display: none;
 }
 .my-btn{
-    width: -webkit-fill-available;
+    width: 100%;
+    max-width: -moz-available;
+    max-width: -webkit-fill-available;
 }
 h3{
     margin: 1em;

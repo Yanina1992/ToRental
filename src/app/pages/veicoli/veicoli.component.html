@@ -3,7 +3,7 @@
 <!--Create veicolo----------------------------------------------->
 <div class="d-flex flex-column align-items-center container">
   <h2>Nuovo veicolo</h2>
-  <form #veicoliForm="ngForm">
+  <form #veicoliForm="ngForm" class="my-form flex-column">
     <h3>Inserisci i dati del veicolo</h3>
     <div class="row row-cols-2 row-cols-md-3">
 
@@ -249,6 +249,36 @@
   [ngClass]="isTarga ? 'd-block alert text-danger ps-0' : 'd-none'"
   -->
       </div>
+      <!--Telaio-->
+      <div class="mb-3 col">
+        <label for="telaio" class="form-label">Telaio</label>
+        <input
+          type="text"
+          class="form-control"
+          id="telaio"
+          [(ngModel)]="veicoloForm.telaio"
+          required
+          name="telaio"
+          minlength="17"
+          maxlength="17"
+          #telaio="ngModel"
+        />
+
+        <div *ngIf="formSubmitted" class="alert text-danger ps-0">
+          <div *ngIf="telaio.errors?.['required']">Il telaio è obbligatoria.</div>
+          <div
+            *ngIf="telaio.errors?.['minlength'] || telaio.errors?.['maxlength']"
+          >
+            Il numero di telaio inserito è incompleto.
+          </div>
+          <div *ngIf="isTarga && formSubmitted" class="alert text-danger ps-0">
+            Questo numero telaio è già presente nel database.
+          </div>
+        </div>
+        </div>
+
+        
+
       <!--Tipo alimentazione-->
       <div class="mb-3 col">
         <label for="tipo_alimentazione_nome" class="form-label"

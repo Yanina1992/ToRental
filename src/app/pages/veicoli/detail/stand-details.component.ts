@@ -1,20 +1,26 @@
 import { Component, TemplateRef, ViewEncapsulation, Input } from '@angular/core';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
-//import { ActivatedRoute } from '@angular/router';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { IAlert } from 'src/app/interfaces/ialert';
 import { VeicoliService } from 'src/app/services/veicoli.service';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-stand-details',
   standalone: true,
-  imports: [CommonModule],
+  imports:
+  [
+    CommonModule,
+    NgbCollapseModule
+  ],
   templateUrl: './stand-details.component.html',
   styleUrls: ['./stand-details.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class StandDetailsComponent {
+
+  public isCollapsed = false;
 
   @Input() id:number = 0;
 

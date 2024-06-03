@@ -142,20 +142,20 @@ export class VeicoliComponent implements OnInit {
       this.veicoloForm.id_tipo_veicolo = selectedTipoVeicoloId;
     }
   }
-  selectedStatoId:number = 0;
-  onStatoChange(selectedStatoId:number){
+  selectedStatoId:number | undefined = undefined;
+  onStatoChange(selectedStatoId:number | undefined){
     if(selectedStatoId){
       this.veicoloForm.id_stato = selectedStatoId;
-    }else{
-      selectedStatoId = 0;
-    }
+  }else{
+    this.veicoloForm.id_stato = undefined;
   }
-  selectedDisponibilitaId:number = 0;
-  onDisponibilitaChange(selectedDisponibilitaId:number){
+}
+  selectedDisponibilitaId:number | undefined = undefined;
+  onDisponibilitaChange(selectedDisponibilitaId:number | undefined){
     if(selectedDisponibilitaId) {
       this.veicoloForm.id_disponibilita = selectedDisponibilitaId;
     }else{
-      selectedDisponibilitaId = 0;
+      this.veicoloForm.id_disponibilita = undefined;
     }
   }
 

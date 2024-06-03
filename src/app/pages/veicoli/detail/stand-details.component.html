@@ -3,32 +3,51 @@
 		<h4 class="offcanvas-title">Dettagli del veicolo numero {{ veicolo.id }}</h4>
 		<button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
 	</div>
-	<div class="offcanvas-body">
-        <!--<div class="col">
-            <p class="text-decoration-underline">Anagrafica veicolo</p>
-            <p class="fst-italic">Nr. identificativo: <span class="fst-normal">{{ veicolo.id}}</span></p>
-            <p class="fst-italic">Tipo veicolo: <span class="fst-normal">{{ veicolo.tipo_veicolo_nome}}</span></p>
-            <p class="fst-italic">Marca: <span class="fst-normal">{{ veicolo.marca_nome}}</span></p>
-            <p class="fst-italic">Modello: <span class="fst-normal">{{ veicolo.modello_nome}}</span></p>
-            <p class="fst-italic">Cilindrata: <span class="fst-normal">{{ veicolo.cilindrata}}</span></p>
-            <p class="fst-italic">Colore: <span class="fst-normal">{{ veicolo.colore}}</span></p>
-            <p class="fst-italic">Destinazione d'uso: <span class="fst-normal">{{ veicolo.destinazione_uso_nome}}</span></p>
-            <p class="fst-italic">Massa: <span class="fst-normal">{{ veicolo.massa}}</span></p>
-            <p class="fst-italic">Numero assi: <span class="fst-normal">{{ veicolo.numero_assi}}</span></p>
-            <p class="fst-italic">Portata: <span class="fst-normal">{{ veicolo.portata}}</span></p>
-            <p class="fst-italic">Potenza: <span class="fst-normal">{{ veicolo.potenza}}</span></p>
-            <p class="fst-italic">Società: <span class="fst-normal">{{ veicolo.proprietario_nome}}</span></p>
-            <p class="fst-italic">Targa: <span class="fst-normal">{{ veicolo.targa}}</span></p>
-            <p class="fst-italic">Alimentazione: <span class="fst-normal">{{ veicolo.tipo_alimentazione_nome}}</span></p>
-            <p class="fst-italic">Allestimento: <span class="fst-normal">{{ veicolo.tipo_allestimento_nome}}</span></p>
-            <p class="fst-italic">Tipo asse: <span class="fst-normal">{{ veicolo.tipo_asse_nome}}</span></p>
-            <p class="fst-italic">Cambio: <span class="fst-normal">{{ veicolo.tipo_cambio_nome}}</span></p>
-            <p class="fst-italic">Larghezza esterna: <span class="fst-italic">{{ veicolo.larghezza_esterna }}</span></p>
-            <p class="fst-italic">Lunghezza esterna: <span class="fst-italic">{{ veicolo.lunghezza_esterna }}</span></p>
-            <p class="fst-italic">Note: <span class="fst-italic">{{ veicolo.note }}</span></p>
-            <p class="fst-italic">Altre caratterisctiche: <span class="fst-italic">{{ veicolo.altre_caratteristiche }}</span></p>
+    <div class="offcanvas-body">
+        <div class="col">
+            <button
+            class="text-decoration-underline"
+            type="button"
+            (click)="collapse.toggle()"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample"
+            >
+                Anagrafica veicolo
+            </button>
+            <div #collapse="ngbCollapse" [(ngbCollapse)]="!isCollapsed">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="fst-italic">Nr. identificativo: <span class="fst-normal">{{ veicolo.id}}</span></p>
+                        <p class="fst-italic">Tipo veicolo: <span class="fst-normal">{{ veicolo.tipo_veicolo_nome}}</span></p>
+                        <p class="fst-italic">Marca: <span class="fst-normal">{{ veicolo.marca_nome}}</span></p>
+                        <p class="fst-italic">Modello: <span class="fst-normal">{{ veicolo.modello_nome}}</span></p>
+                        <p class="fst-italic">Cilindrata: <span class="fst-normal">{{ veicolo.cilindrata}}</span></p>
+                        <p class="fst-italic">Colore: <span class="fst-normal">{{ veicolo.colore}}</span></p>
+                        <p class="fst-italic">Destinazione d'uso: <span class="fst-normal">{{ veicolo.destinazione_uso_nome}}</span>
+                        </p>
+                        <p class="fst-italic">Massa: <span class="fst-normal">{{ veicolo.massa}}</span></p>
+                        <p class="fst-italic">Numero assi: <span class="fst-normal">{{ veicolo.numero_assi}}</span></p>
+                        <p class="fst-italic">Portata: <span class="fst-normal">{{ veicolo.portata}}</span></p>
+                        <p class="fst-italic">Potenza: <span class="fst-normal">{{ veicolo.potenza}}</span></p>
+                        <p class="fst-italic">Società: <span class="fst-normal">{{ veicolo.proprietario_nome}}</span></p>
+                        <p class="fst-italic">Targa: <span class="fst-normal">{{ veicolo.targa}}</span></p>
+                        <p class="fst-italic">Alimentazione: <span class="fst-normal">{{ veicolo.tipo_alimentazione_nome}}</span>
+                        </p>
+                        <p class="fst-italic">Allestimento: <span class="fst-normal">{{ veicolo.tipo_allestimento_nome}}</span></p>
+                        <p class="fst-italic">Tipo asse: <span class="fst-normal">{{ veicolo.tipo_asse_nome}}</span></p>
+                        <p class="fst-italic">Cambio: <span class="fst-normal">{{ veicolo.tipo_cambio_nome}}</span></p>
+                        <p class="fst-italic">Larghezza esterna: <span class="fst-italic">{{ veicolo.larghezza_esterna }}</span></p>
+                        <p class="fst-italic">Lunghezza esterna: <span class="fst-italic">{{ veicolo.lunghezza_esterna }}</span></p>
+                        <p class="fst-italic">Note: <span class="fst-italic">{{ veicolo.note }}</span></p>
+                        <p class="fst-italic">Altre caratterisctiche: <span class="fst-italic">{{ veicolo.altre_caratteristiche
+                                }}</span></p>
+                    </div>
+            
+                </div>
+            </div>
+            
             <hr>
-            </div>-->
+        </div>
 
                <!--DATI DI NATURA TECNICA-->
                <div class="col">
@@ -132,6 +151,7 @@
             <div class="col">
                 <p class="text-decoration-underline">Disponibilità per il noleggio</p>
             </div>
+
 		<div class="text-end">
 			<button type="button" class="btn btn-outline-dark" (click)="offcanvas.close('Close click')">Close</button>
 		</div>

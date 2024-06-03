@@ -13,8 +13,6 @@ import { IMarca } from 'src/app/interfaces/options-select/imarca';
 import { IModello } from 'src/app/interfaces/options-select/imodello';
 import { ISocieta } from 'src/app/interfaces/options-select/isocieta';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
-import { LogarithmicScale } from 'chart.js';
-//import { ChangeDetectorRef } from '@angular/core';
 
 
 @Component({
@@ -150,14 +148,15 @@ export class TableComponent implements OnInit, OnDestroy {
     });
 
   }
+
   /*getAllOninit(){
     this.veicoliSvc.getAllWithParams(this.page, this.pageSize, this.text = '')
     .subscribe((data: Veicoli[]) => {
     this.veicoli = [...data];
     console.log('veicoliOnInit', this.veicoli);
   });
-
   }*/
+
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
@@ -169,12 +168,11 @@ export class TableComponent implements OnInit, OnDestroy {
         debounceTime(300),
         map((text) => {
           this.term = text?.trim().toLowerCase() || '';
-          console.log('setupFilter value term', this.term);
-          if(this.term == ''){
-
-            console.log("this.term is ''", this.term);
-            console.log('veicoliOnInit on setupFilter', this.veicoliOnInit);
-
+          //console.log('setupFilter value term', this.term);
+          if(this.term == '' && this.term.length == 0){
+            //è qui che dovrei lavorare per correggere l'ultimo bug
+            //console.log("this.term is '' this.term.length 0", this.term.length);
+            //console.log('veicoliOnInit on setupFilter', this.veicoliOnInit);
           }
           return this.term;
         }),
@@ -215,7 +213,7 @@ export class TableComponent implements OnInit, OnDestroy {
       this.veicoliSvc
         .getAllWithCustomizedParams(
           this.page,
-          this.pageSize,
+          this.pageSize,          
           this.veicoloForm?.id_tipo_veicolo,
           this.veicoloForm?.id_marca,
           this.veicoloForm?.id_modello,
@@ -226,11 +224,11 @@ export class TableComponent implements OnInit, OnDestroy {
           this.veicoloForm?.id_tipo_asse,
           this.veicoloForm?.id_tipo_cambio,
           this.veicoloForm?.id_stato,
-          this.veicoloForm.id_disponibilita
+          this.veicoloForm?.id_disponibilita,
         )
         .subscribe((data: Veicoli[]) => {
-          console.log('stato', this.veicoloForm.id_stato);
-          console.log('disponibilità', this.veicoloForm.id_disponibilita)
+          //console.log('stato', this.veicoloForm.id_stato);
+          //console.log('disponibilità', this.veicoloForm.id_disponibilita)
           
           this.veicoli = data.reverse();
           this.veicoli.reverse();
