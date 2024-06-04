@@ -10,6 +10,7 @@ import { DatepickerComponent } from 'src/app/components/datepicker/datepicker.co
 import { DeleteComponent } from './delete/delete.component';
 import { EditComponent } from './edit/edit.component';
 import { StandDetailsComponent } from './detail/stand-details.component';
+import { AlertSuccessComponent } from 'src/app/components/alert-messages/alert-success.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { StandDetailsComponent } from './detail/stand-details.component';
     NgbPaginationModule,
     ReactiveFormsModule,
     DatepickerComponent,
-    StandDetailsComponent
+    StandDetailsComponent,
+    AlertSuccessComponent
   ]
 })
 export class VeicoliModule { }

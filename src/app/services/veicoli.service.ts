@@ -78,6 +78,7 @@ export class VeicoliService {
   getExtraById(id: number): Observable<Veicoli> {
     return this.http.get<Veicoli>(this.veicoliUrl + '/' + id);
   }
+  successMessage:boolean = false;
   create(veicoli: Veicoli): Observable<Veicoli> {
     return this.http.post<Veicoli>(this.veicoliUrl, veicoli).pipe(
       tap(() => {

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, AfterViewInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
 import { Subscription, endWith } from 'rxjs';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from '../../../services/veicoli.service';
@@ -14,13 +14,13 @@ import { IModello } from 'src/app/interfaces/options-select/imodello';
 import { ISocieta } from 'src/app/interfaces/options-select/isocieta';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
 
-
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit, OnDestroy {
+export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
+
   private subscriptions = new Subscription();
 
   veicoloForm: Veicoli = new Veicoli();
@@ -149,13 +149,11 @@ export class TableComponent implements OnInit, OnDestroy {
 
   }
 
-  /*getAllOninit(){
-    this.veicoliSvc.getAllWithParams(this.page, this.pageSize, this.text = '')
-    .subscribe((data: Veicoli[]) => {
-    this.veicoli = [...data];
-    console.log('veicoliOnInit', this.veicoli);
-  });
-  }*/
+  veicoloSuccess:boolean = false;
+
+  ngAfterViewInit(): void {
+    this.veicoloSuccess  = this.veicoliSvc.successMessage;
+  }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
@@ -168,11 +166,7 @@ export class TableComponent implements OnInit, OnDestroy {
         debounceTime(300),
         map((text) => {
           this.term = text?.trim().toLowerCase() || '';
-          //console.log('setupFilter value term', this.term);
           if(this.term == '' && this.term.length == 0){
-            //è qui che dovrei lavorare per correggere l'ultimo bug
-            //console.log("this.term is '' this.term.length 0", this.term.length);
-            //console.log('veicoliOnInit on setupFilter', this.veicoliOnInit);
           }
           return this.term;
         }),
@@ -194,16 +188,12 @@ export class TableComponent implements OnInit, OnDestroy {
     this.term = text.toLowerCase();
     this.text = this.term;
     this.page = 1;
-
     this.veicoliSvc
       .getAllWithParams(this.page, this.pageSize, this.text)
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data;
-        
         this.collectionSize = this.veicoli[0].arraySize;
         this.myArraySize = this.collectionSize
-        //this.refreshVeicoli();
-
         return this.text;
       });
       
@@ -246,24 +236,6 @@ export class TableComponent implements OnInit, OnDestroy {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-  /*refreshVeicoli() {
-    if (this.term == undefined) {
-      console.log('term value term == undefined', this.term)
-      this.veicoli = this.veicoli;
-    }else if(this.term == '' && this.term.length == 0){
-      console.log("term value term == ''", this.term)
-      console.log('term.length if length is 0', this.term.length)
-      this.filteredVeicoliToShow = [];
-      this.veicoliToShow = [...this.veicoli];
-      console.log('[this.veicoli when term and term length == 0 ]', this.veicoli);
-    }else{
-      console.log("term value term != undefined || ''", this.term)
-      console.log('term.length if length is > 0', this.term.length)
-      this.veicoliToShow = [];
-      this.filteredVeicoliToShow = this.veicoli;
-    }*/
- 
-
   //Variable to receive the brand value and populate the model select accordingly
   selectedMarcaId: number | null = null;
   //modelli

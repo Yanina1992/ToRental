@@ -10,6 +10,7 @@ import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
 import { IAsse } from 'src/app/interfaces/options-select/iasse';
 import { ICambio } from 'src/app/interfaces/options-select/icambio';
 import { Veicoli } from 'src/app/classes/veicoli';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-veicoli',
@@ -33,7 +34,8 @@ export class VeicoliComponent implements OnInit {
 
   constructor(
     //private datePipe: DatePipe,
-    private veicoliSvc: VeicoliService
+    private veicoliSvc: VeicoliService,
+    private router: Router,
   ) {}
 
   isTarga: boolean = false;
@@ -144,7 +146,7 @@ export class VeicoliComponent implements OnInit {
   }
   selectedStatoId:number | undefined = undefined;
   onStatoChange(selectedStatoId:number | undefined){
-    if(selectedStatoId){
+    if(selectedStatoId && selectedStatoId > 0){
       this.veicoloForm.id_stato = selectedStatoId;
   }else{
     this.veicoloForm.id_stato = undefined;
@@ -152,7 +154,7 @@ export class VeicoliComponent implements OnInit {
 }
   selectedDisponibilitaId:number | undefined = undefined;
   onDisponibilitaChange(selectedDisponibilitaId:number | undefined){
-    if(selectedDisponibilitaId) {
+    if(selectedDisponibilitaId && selectedDisponibilitaId > 0) {
       this.veicoloForm.id_disponibilita = selectedDisponibilitaId;
     }else{
       this.veicoloForm.id_disponibilita = undefined;
@@ -188,6 +190,8 @@ export class VeicoliComponent implements OnInit {
         this.veicoliSvc.create(this.veicoloForm).subscribe(
           (res) => {
             console.log('nuovo veicolo:', res);
+            this.veicoliSvc.successMessage = true;
+            this.router.navigate(['/pages/veicoli/table']);
           },
           (error) => {
             console.error('Failed to submit form:', error);

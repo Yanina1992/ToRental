@@ -1,11 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-
     <div class="col col-12">
       <!--Customized search-->
       <form #veicoliForm="ngForm" id="my-form">
         <h3>Ricerca personalizzata</h3>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+        <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3">
           <!--Tipo veicolo-->
           <div class="mb-3 col">
             <label for="tipo_veicolo_nome" class="form-label"
@@ -258,68 +257,135 @@
             </div>
           </div>
         </div>
-      <div class="container">
-        <div class="row row-cols-1 row-cols-md-2">
-          <div class="col">
-            <!--Stato-->
-            <div class="mb-3 col d-flex flex-column">
-              <label for="nome_stato" class="form-label d-block">Stato</label>
+        <div class="container">
+          <div class="row row-cols-1 row-cols-md-2">
+            <div class="col">
+              <!--Stato-->
+              <div class="mb-3 col d-flex flex-column">
+                <label class="form-label d-block">Stato</label>
 
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="stato" id="irregolare" value="3"
-                  [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
-                <label class="form-check-label" for="irregolare">Irregolare</label>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="stato"
+                    id="irregolare"
+                    value="3"
+                    [(ngModel)]="selectedStatoId"
+                    (ngModelChange)="onStatoChange(selectedStatoId)"
+                  />
+                  <label class="form-check-label" for="irregolare"
+                    >Irregolare</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="stato"
+                    id="gravementeIrr"
+                    value="2"
+                    [(ngModel)]="selectedStatoId"
+                    (ngModelChange)="onStatoChange(selectedStatoId)"
+                  />
+                  <label class="form-check-label" for="gravementeIrr"
+                    >Gravemente irregolare</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="stato"
+                    id="regolare"
+                    value="1"
+                    [(ngModel)]="selectedStatoId"
+                    (ngModelChange)="onStatoChange(selectedStatoId)"
+                  />
+                  <label class="form-check-label" for="regolare"
+                    >Regolare</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="stato"
+                    id="tuttiGliStati"
+                    value="0"
+                    [(ngModel)]="selectedStatoId"
+                    (ngModelChange)="onStatoChange(selectedStatoId)"
+                  />
+                  <label class="form-check-label" for="tuttiGliStati"
+                    >Tutti gli stati</label
+                  >
+                </div>
               </div>
-
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="stato" id="gravementeIrr" value="2"
-                  [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
-                <label class="form-check-label" for="gravementeIrr">Gravemente irregolare</label>
-              </div>
-
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="stato" id="regolare" value="1"
-                  [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
-                <label class="form-check-label" for="regolare">Regolare</label>
-              </div>
-
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="stato" id="tuttiGliStati" value="0"
-                  [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
-                <label class="form-check-label" for="tuttiGliStati">Tutti gli stati</label>
-              </div>
-
             </div>
-          </div>
-          <div class="col">
-            <!--Disponibilità-->
-            <div class="mb-3 col d-flex flex-column">
-              <label for="nome_disponibilita" class="form-label d-block">
-                Disponibilità
-              </label>
+            <div class="col">
+              <!--Disponibilità-->
+              <div class="mb-3 col d-flex flex-column">
+                <label class="form-label d-block">
+                  Disponibilità
+                </label>
 
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="disponibilita" id="disponibile" value="1"
-                  [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
-                <label class="form-check-label" for="disponibile">Disponibile</label>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="disponibilita"
+                    id="disponibile"
+                    value="1"
+                    [(ngModel)]="selectedDisponibilitaId"
+                    (ngModelChange)="
+                      onDisponibilitaChange(selectedDisponibilitaId)
+                    "
+                  />
+                  <label class="form-check-label" for="disponibile"
+                    >Disponibile</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="disponibilita"
+                    id="nonDisponibile"
+                    value="2"
+                    [(ngModel)]="selectedDisponibilitaId"
+                    (ngModelChange)="
+                      onDisponibilitaChange(selectedDisponibilitaId)
+                    "
+                  />
+                  <label class="form-check-label" for="nonDisponibile"
+                    >Non disponibile</label
+                  >
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="disponibilita"
+                    id="tutteLeDisponibilita"
+                    value="0"
+                    [(ngModel)]="selectedDisponibilitaId"
+                    (ngModelChange)="
+                      onDisponibilitaChange(selectedDisponibilitaId)
+                    "
+                  />
+                  <label class="form-check-label" for="tutteLeDisponibilita"
+                    >Tutte le disponibilità</label
+                  >
+                </div>
               </div>
-
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="disponibilita" id="nonDisponibile" value="2"
-                  [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
-                <label class="form-check-label" for="nonDisponibile">Non disponibile</label>
-              </div>
-
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="disponibilita" id="tutteLeDisponibilita" value="0"
-                  [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
-                <label class="form-check-label" for="tutteLeDisponibilita">Tutte le disponibilità</label>
-              </div>
-
             </div>
           </div>
         </div>
-      </div>
         <button
           type="submit"
           class="btn my-btn btn-primary"
@@ -354,17 +420,30 @@
   </form>
 </div>
 
-<!--Spinner-->
+<!--Spinner
+<div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>-->
+
+<!--Success message if a new Veicolo is add to de table-->
+<app-alert-success
+  [ngClass]="[veicoloSuccess ? 'd-block' : 'd-none']"
+></app-alert-success>
+
+<!--Table-->
+<div class="table-responsive" id="results-table">
+  <h2 class="m-4 border-bottom">Flotta:</h2>
+
+      <!--Spinner-->
 <div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
   <div class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>
 </div>
 
-<div class="table-responsive" id="results-table">
-  <h2 class="m-4 border-bottom">Flotta:</h2>
   <table class="table table-striped ms-2">
-    
     <thead>
       <tr>
         <th scope="col">Nr. id.</th>
@@ -393,11 +472,13 @@
       </tr>
     </thead>
 
-      <tbody>
+
+
+    <tbody>
       <tr *ngFor="let veicolo of veicoli">
         <td scope="row">{{ veicolo.id }}&nbsp;</td>
 
-        <td [ngClass]="{'text-center': true}">
+        <td [ngClass]="{ 'text-center': true }">
           <i
             class="fa-solid fa-screwdriver-wrench"
             [ngClass]="getStatoIconClass(veicolo.id_stato)"
@@ -415,65 +496,171 @@
           ></i>
         </td>
 
-        <td *ngIf="veicolo.tipo_veicolo_nome != null" class="text-truncate text-center">{{ veicolo.tipo_veicolo_nome }}&nbsp;</td>
-        <td *ngIf="veicolo.tipo_veicolo_nome == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.tipo_veicolo_nome != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.tipo_veicolo_nome }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.tipo_veicolo_nome == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.targa != null" class="text-truncate text-center">{{ veicolo.targa }}&nbsp;</td>
-        <td *ngIf="veicolo.targa == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="veicolo.targa != null" class="text-truncate text-center">
+          {{ veicolo.targa }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.targa == null" class="text-center">- &nbsp;</td>
 
-        <td *ngIf="veicolo.telaio != null" class="text-truncate text-center">{{ veicolo.telaio }}&nbsp;</td>
-        <td *ngIf="veicolo.telaio == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="veicolo.telaio != null" class="text-truncate text-center">
+          {{ veicolo.telaio }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.telaio == null" class="text-center">- &nbsp;</td>
 
-        <td *ngIf="veicolo.marca_nome != null" class="text-truncate text-center">{{ veicolo.marca_nome }}&nbsp;</td>
-        <td *ngIf="veicolo.marca_nome == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.marca_nome != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.marca_nome }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.marca_nome == null" class="text-center">- &nbsp;</td>
 
-        <td *ngIf="veicolo.modello_nome != null" class="text-truncate text-center">{{ veicolo.modello_nome }}&nbsp;</td>
-        <td *ngIf="veicolo.modello_nome == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.modello_nome != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.modello_nome }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.modello_nome == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.cilindrata != null" class="text-truncate text-center">{{ veicolo.cilindrata }}&nbsp;</td>
-        <td *ngIf="veicolo.cilindrata == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.cilindrata != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.cilindrata }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.cilindrata == null" class="text-center">- &nbsp;</td>
 
-        <td *ngIf="veicolo.colore != null" class="text-truncate text-center">{{ veicolo.colore }}&nbsp;</td>
-        <td *ngIf="veicolo.colore == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="veicolo.colore != null" class="text-truncate text-center">
+          {{ veicolo.colore }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.colore == null" class="text-center">- &nbsp;</td>
 
-        <td *ngIf="veicolo.destinazione_uso_nome != null" class="text-truncate text-center">{{ veicolo.destinazione_uso_nome }}&nbsp;</td>
-        <td *ngIf="veicolo.destinazione_uso_nome == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.destinazione_uso_nome != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.destinazione_uso_nome }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.destinazione_uso_nome == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.massa != null" class="text-truncate text-center">{{ veicolo.massa }}&nbsp;</td>
-        <td *ngIf="veicolo.massa == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="veicolo.massa != null" class="text-truncate text-center">
+          {{ veicolo.massa }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.massa == null" class="text-center">- &nbsp;</td>
 
-        <td *ngIf="veicolo.numero_assi != null" class="text-truncate text-center">{{ veicolo.numero_assi }}&nbsp;</td>
-        <td *ngIf="veicolo.numero_assi == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.numero_assi != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.numero_assi }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.numero_assi == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.portata != null" class="text-truncate text-center">{{ veicolo.portata }}&nbsp;</td>
-        <td *ngIf="veicolo.portata == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="veicolo.portata != null" class="text-truncate text-center">
+          {{ veicolo.portata }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.portata == null" class="text-center">- &nbsp;</td>
 
-        <td *ngIf="veicolo.potenza != null" class="text-truncate text-center">{{ veicolo.potenza }}&nbsp;</td>
-        <td *ngIf="veicolo.potenza == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="veicolo.potenza != null" class="text-truncate text-center">
+          {{ veicolo.potenza }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.potenza == null" class="text-center">- &nbsp;</td>
 
-        <td *ngIf="veicolo.proprietario_nome != null" class="text-truncate text-center">{{ veicolo.proprietario_nome }}&nbsp;</td>
-        <td *ngIf="veicolo.proprietario_nome == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.proprietario_nome != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.proprietario_nome }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.proprietario_nome == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.tipo_alimentazione_nome != null" class="text-truncate text-center">{{ veicolo.tipo_alimentazione_nome }}&nbsp;</td>
-        <td *ngIf="veicolo.tipo_alimentazione_nome == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.tipo_alimentazione_nome != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.tipo_alimentazione_nome }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.tipo_alimentazione_nome == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.tipo_allestimento_nome != null" class="text-truncate text-center">{{ veicolo.tipo_allestimento_nome }}&nbsp;</td>
-        <td *ngIf="veicolo.tipo_allestimento_nome == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.tipo_allestimento_nome != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.tipo_allestimento_nome }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.tipo_allestimento_nome == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.tipo_asse_nome != null" class="text-truncate text-center">{{ veicolo.tipo_asse_nome }}&nbsp;</td>
-        <td *ngIf="veicolo.tipo_asse_nome == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.tipo_asse_nome != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.tipo_asse_nome }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.tipo_asse_nome == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.tipo_cambio_nome != null" class="text-truncate text-center">{{ veicolo.tipo_cambio_nome }}&nbsp;</td>
-        <td *ngIf="veicolo.tipo_cambio_nome == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.tipo_cambio_nome != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.tipo_cambio_nome }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.tipo_cambio_nome == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.nome_disponibilita != null" class="text-truncate text-center">{{ veicolo.nome_disponibilita }}&nbsp;</td>
-        <td *ngIf="veicolo.nome_disponibilita == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.nome_disponibilita != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.nome_disponibilita }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.nome_disponibilita == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.larghezza_esterna != null" class="text-truncate text-center">{{ veicolo.larghezza_esterna }}&nbsp;</td>
-        <td *ngIf="veicolo.larghezza_esterna == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.larghezza_esterna != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.larghezza_esterna }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.larghezza_esterna == null" class="text-center">
+          - &nbsp;
+        </td>
 
-        <td *ngIf="veicolo.lunghezza_esterna != null" class="text-truncate text-center">{{ veicolo.lunghezza_esterna }}&nbsp;</td>
-        <td *ngIf="veicolo.lunghezza_esterna == null" class="text-center"> - &nbsp;</td>
+        <td
+          *ngIf="veicolo.lunghezza_esterna != null"
+          class="text-truncate text-center"
+        >
+          {{ veicolo.lunghezza_esterna }}&nbsp;
+        </td>
+        <td *ngIf="veicolo.lunghezza_esterna == null" class="text-center">
+          - &nbsp;
+        </td>
 
         <td class="d-flex">
           <!--Offcanvas-->
@@ -491,7 +678,7 @@
           ></a>
         </td>
       </tr>
-      </tbody>
+    </tbody>
 
     <!--<tbody *ngIf="filteredVeicoliToShow.length > 0">
       <tr *ngFor="let veicolo of filteredVeicoliToShow">
@@ -592,7 +779,6 @@
         </td>
       </tr>
     </tbody>-->
-
   </table>
 </div>
 

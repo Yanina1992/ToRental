@@ -276,9 +276,6 @@
           </div>
         </div>
         </div>
-
-        
-
       <!--Tipo alimentazione-->
       <div class="mb-3 col">
         <label for="tipo_alimentazione_nome" class="form-label"
@@ -440,46 +437,64 @@
       <!--Data immatricolazione-->
       <div class="mb-3 col">
         <label for="data_immatricolazione" class="form-label">Data immatricolazione</label>
-        <app-datepicker (dateChange)="handleDateChange($event)"></app-datepicker>
+        <app-datepicker id="data_immatricolazione" (dateChange)="handleDateChange($event)"></app-datepicker>
       </div>
       
       <div class="container w-100">
         <div class="row">
           <!--Stato-->
           <div class="mb-3 col col-12 col-md-6 d-flex flex-column">
-            <label for="nome_stato" class="form-label d-block">Stato</label>
+            <label class="form-label d-block">Stato</label>
+
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="stato" id="irregolare" value="3"
                 [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
               <label class="form-check-label" for="irregolare">Irregolare</label>
             </div>
+
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="stato" id="gravementeIrr" value="2"
                 [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
               <label class="form-check-label" for="gravementeIrr">Gravemente irregolare</label>
             </div>
+
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="stato" id="regolare" value="1" [(ngModel)]="selectedStatoId"
                 (ngModelChange)="onStatoChange(selectedStatoId)">
               <label class="form-check-label" for="regolare">Regolare</label>
             </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="stato" id="nessunoStato" value="0"
+                [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)">
+              <label class="form-check-label" for="nessunoStato">Nessuno stato</label>
+            </div>
+
           </div>
           <!--Disponibilità-->
           <div class="mb-3 col col-12 col-md-6 d-flex flex-column">
-            <label for="nome_disponibilita" class="form-label d-block">
+            <label class="form-label d-block">
               Disponibilità
             </label>
+
             <div class="form-check form-check-inline">
               <input class="form-check-input" type="radio" name="disponibilita" id="disponibile" value="1"
                 [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
               <label class="form-check-label" for="disponibile">Disponibile</label>
             </div>
-            <div class="form-check form-check-inline">
-      
+
+            <div class="form-check form-check-inline">    
               <input class="form-check-input" type="radio" name="disponibilita" id="nonDisponibile" value="2"
                 [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
               <label class="form-check-label" for="nonDisponibile">Non disponibile</label>
             </div>
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="disponibilita" id="nessunaDisponibilita" value="0"
+                [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="onDisponibilitaChange(selectedDisponibilitaId)">
+              <label class="form-check-label" for="nessunaDisponibilita">Nessuna disponibilità</label>
+            </div>
+
           </div>
         </div>
       </div>
