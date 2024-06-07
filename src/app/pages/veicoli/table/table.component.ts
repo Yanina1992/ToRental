@@ -19,7 +19,7 @@ import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
+export class TableComponent implements OnInit, OnDestroy, OnChanges {
 
   private subscriptions = new Subscription();
 
@@ -151,7 +151,7 @@ export class TableComponent implements OnInit, OnDestroy, AfterViewInit {
 
   veicoloSuccess:boolean = false;
 
-  ngAfterViewInit(): void {
+  ngOnChanges(): void {
     this.veicoloSuccess  = this.veicoliSvc.successMessage;
   }
 

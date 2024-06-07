@@ -1,7 +1,7 @@
 export interface IAlert {
     id_veicolo: number;
-    id?: number | undefined;
-    anno?: number | undefined;
+    id: number;
+    anno?: number;
     data_pagamento: Date;
     inizio_validita: Date;
     fine_validita: Date;
@@ -10,9 +10,10 @@ export interface IAlert {
     polizza: string;
     tipo_scadenza: any;
     livello: number;
-    marca?: string | undefined;
-    modello?: string | undefined;
-    valid?: boolean | undefined;
-    expired?: boolean | undefined;
-    targa?:any
+    marca?: string;
+    modello?: string;
+    valid?: boolean;
+    expired?: boolean;
+    targa?:any;
+    stato:any;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-/*import { VeicoliService } from '../../services/veicoli.service';
+import { VeicoliService } from 'src/app/services/veicoli.service';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
 import { IMarca } from 'src/app/interfaces/options-select/imarca';
 import { IModello } from 'src/app/interfaces/options-select/imodello';
@@ -10,15 +10,16 @@ import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
 import { IAsse } from 'src/app/interfaces/options-select/iasse';
 import { ICambio } from 'src/app/interfaces/options-select/icambio';
 import { Veicoli } from 'src/app/classes/veicoli';
-import { Router } from '@angular/router';*/
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-veicoli',
-  templateUrl: './veicoli.component.html',
-  styleUrls: ['./veicoli.component.scss'],
+  selector: 'app-create',
+  templateUrl: './create.component.html',
+  styleUrls: ['./create.component.scss']
 })
-export class VeicoliComponent {
-/*  veicoloForm: Veicoli = new Veicoli();
+export class CreateComponent {
+  veicoloForm: Veicoli = new Veicoli();
   myDate: any;
 
   //Variables to manage select options
@@ -170,32 +171,41 @@ export class VeicoliComponent {
     this.isTarga = false; //Reset formSubmitted to false when input is detected
   }*/
 
-  /*handleDateChange(date:any){
+  handleDateChange(date:any){
     this.veicoloForm.data_immatricolazione = date;
   }
 
-  creaVeicolo() {
+  creaVeicolo(form: NgForm) {
     this.formSubmitted = true;
-    if(this.veicoloForm.targa == undefined || this.veicoloForm.targa == ''){
+
+    if(form.valid){
+      try{
+         if(this.veicoloForm.targa == undefined || this.veicoloForm.targa == ''){
       this.veicoloForm.targa = 'MANCANTE'
     }
         this.veicoliSvc.create(this.veicoloForm).subscribe(
-          (res) => {
+          (res:any) => {
             console.log('nuovo veicolo:', res);
             this.veicoliSvc.successMessage = true;
             this.router.navigate(['/pages/veicoli/table']);
           },
-          (error) => {
-            console.error('Failed to submit form vedi targa:', error);
+          (error:any) => {
+            console.error('Failed to submit form:', error);
       if (error.status === 400 && error.error.errors && error.error.errors.targa) {
         // Access the specific error message from the backend response
         const errorMessage = error.error.errors.targa[0];
         alert(`Errore: Targa già presente nel database.`);
       } else {
         // Handle other types of errors
-        alert('Errore: Qualcosa è andato storto... Riprova più tardi.');
+        alert('Errore');
       }           
           }
         );
-      }*/
+      }
+      catch(error){
+        throw new Error
+      }
+    }
+   
+      }
     }

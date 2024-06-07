@@ -1,17 +1,13 @@
 <h1 class="p-4">I nostri veicoli</h1>
 <app-table></app-table>
-
-<a class="my-btn btn w-100" routerLink="./create">Crea veicolo</a>
-
-
-<!--Create veicolo-----------------------------------------------
+<!--Create veicolo----------------------------------------------->
 <div class="d-flex flex-column align-items-center container">
   <h2>Nuovo veicolo</h2>
-  <form #veicoliForm="ngForm" class="my-form flex-column">
+  <form #veicoliForm="ngForm" class="my-form flex-column" (ngSubmit)="creaVeicolo(veicoliForm)">
     <h3>Inserisci i dati del veicolo</h3>
     <div class="row row-cols-2 row-cols-md-3">
 
-      <!-Tipo veicolo--
+      <!--Tipo veicolo-->
       <div class="mb-3 col">
         <label for="tipo_veicolo_nome" class="form-label">Tipo veicolo</label>
         <select
@@ -38,7 +34,7 @@
           Selezionare una tipologia di veicolo.
         </div>
       </div>
-      <!-Marca--
+      <!--Marca-->
       <div class="mb-3 col">
         <label for="marca" class="form-label">Marca</label>
         <select
@@ -62,7 +58,7 @@
           Selezionare una marca.
         </div>
       </div>
-      <!-Modello--
+      <!--Modello-->
       <div class="mb-3 col">
         <label for="modello" class="form-label">Modello</label>
         <select
@@ -87,7 +83,7 @@
           Selezionare un modello.
         </div>
       </div>
-      <!-Cilindrata--
+      <!--Cilindrata-->
       <div class="mb-3 col">
         <label for="cilindrata" class="form-label">Cilindrata</label>
         <input
@@ -100,7 +96,7 @@
           #cilindrata="ngModel"
         />
       </div>
-      <!-Colore--
+      <!--Colore-->
       <div class="mb-3 col">
         <label for="colore" class="form-label">Colore</label>
         <input
@@ -112,7 +108,7 @@
           #colore="ngModel"
         />
       </div>
-      <!-Destinazione d'uso--
+      <!--Destinazione d'uso-->
       <div class="mb-3 col">
         <label for="destinazione_uso_nome" class="form-label"
           >Destinazione d'uso</label
@@ -140,7 +136,7 @@
           Selezionare la destinazione d'uso
         </div>
       </div>
-      <!-Massa--
+      <!--Massa-->
       <div class="mb-3 col">
         <label for="massa" class="form-label">Massa</label>
         <input
@@ -153,7 +149,7 @@
           name="massa"
         />
       </div>
-      <!-Numero assi--
+      <!--Numero assi-->
       <div class="mb-3 col">
         <label for="numero_assi" class="form-label">Numero assi</label>
         <input
@@ -173,7 +169,7 @@
           Selezionare il numero di assi.
         </div>
       </div>
-      <!-Portata--
+      <!--Portata-->
       <div class="mb-3 col">
         <label for="portata" class="form-label">Portata</label>
         <input
@@ -185,7 +181,7 @@
           name="portata"
         />
       </div>
-      <!-Potenza--
+      <!--Potenza-->
       <div class="mb-3 col">
         <label for="potenza" class="form-label">Potenza</label>
         <input
@@ -197,7 +193,7 @@
           name="potenza"
         />
       </div>
-      <!-Società--
+      <!--Società-->
       <div class="mb-3 col">
         <label for="societa_nome" class="form-label">Società</label>
         <select
@@ -220,7 +216,7 @@
           Selezionare la società proprietaria del veicolo.
         </div>
       </div>
-      <!-Targa--
+      <!--Targa-->
       <div class="mb-3 col">
         <label for="targa" class="form-label">Targa</label>
         <input
@@ -235,7 +231,7 @@
           #targa="ngModel"
           
         />
-<!-(input)="onInput()"--
+<!--(input)="onInput()"-->
         <div *ngIf="formSubmitted" class="alert text-danger ps-0">
           <div
             *ngIf="targa.errors?.['minlength'] || targa.errors?.['maxlength']"
@@ -244,7 +240,7 @@
           </div>
         </div>
       </div>
-      <!-Telaio--
+      <!--Telaio-->
       <div class="mb-3 col">
         <label for="telaio" class="form-label">Telaio</label>
         <input
@@ -266,12 +262,12 @@
           >
             Il numero di telaio inserito è incompleto.
           </div>
-          <!-<div *ngIf="formSubmitted" class="alert text-danger ps-0">
+          <!--<div *ngIf="formSubmitted" class="alert text-danger ps-0">
             Questo numero telaio è già presente nel database.
-          </div>--
+          </div>-->
         </div>
         </div>
-      <!-Tipo alimentazione--
+      <!--Tipo alimentazione-->
       <div class="mb-3 col">
         <label for="tipo_alimentazione_nome" class="form-label"
           >Alimentazione</label
@@ -299,7 +295,7 @@
           Selezionare un tipo di alimentazione.
         </div>
       </div>
-      <!-Allestimento--
+      <!--Allestimento-->
       <div class="mb-3 col">
         <label for="tipo_allestimento_nome" class="form-label"
           >Allestimento</label
@@ -327,7 +323,7 @@
           Selezionare un tipo di allestimento.
         </div>
       </div>
-      <!- Tipo asse--
+      <!-- Tipo asse-->
       <div class="mb-3 col">
         <label for="tipo_asse_nome" class="form-label">Tipo asse</label>
         <select
@@ -350,7 +346,7 @@
           Selezionare un tipo di asse.
         </div>
       </div>
-      <!-Cambio--
+      <!--Cambio-->
       <div class="mb-3 col">
         <label for="tipo_cambio_nome" class="form-label">Cambio</label>
         <select
@@ -373,7 +369,7 @@
           Selezionare un tipo di cambio.
         </div>
       </div>
-      <!-Larghezza esterna--
+      <!--Larghezza esterna-->
       <div class="mb-3 col">
         <label for="larghezza_esterna" class="form-label"
           >Larghezza esterna</label
@@ -388,7 +384,7 @@
           #larghezza_esterna="ngModel"
         />
       </div>
-      <!-Lunghezza esterna--
+      <!--Lunghezza esterna-->
       <div class="mb-3 col">
         <label for="lunghezza_esterna" class="form-label"
           >Lunghezza esterna</label
@@ -403,7 +399,7 @@
           #lunghezza_esterna="ngModel"
         />
       </div>
-      <!-Note--
+      <!--Note-->
       <div class="mb-3 col">
         <label for="note" class="form-label">Note</label>
         <input
@@ -415,7 +411,7 @@
           #note="ngModel"
         />
       </div>
-      <!-Altre caratteristiche--
+      <!--Altre caratteristiche-->
       <div class="mb-3 col">
         <label for="altre_caratteristiche" class="form-label"
           >Altre caratteristiche</label
@@ -429,7 +425,7 @@
           #altre_caratteristiche="ngModel"
         />
       </div>
-      <!-Data immatricolazione--
+      <!--Data immatricolazione-->
       <div class="mb-3 col">
         <label for="data_immatricolazione" class="form-label">Data immatricolazione</label>
         <app-datepicker id="data_immatricolazione" (dateChange)="handleDateChange($event)"></app-datepicker>
@@ -437,7 +433,7 @@
       
       <div class="container w-100">
         <div class="row">
-          <!-Stato--
+          <!--Stato-->
           <div class="mb-3 col col-12 col-md-6 d-flex flex-column">
             <label class="form-label d-block">Stato</label>
 
@@ -466,7 +462,7 @@
             </div>
 
           </div>
-          <!-Disponibilità--
+          <!--Disponibilità-->
           <div class="mb-3 col col-12 col-md-6 d-flex flex-column">
             <label class="form-label d-block">
               Disponibilità
@@ -496,10 +492,12 @@
       <button
         type="submit"
         class="btn my-btn btn-primary"
-        (click)="creaVeicolo()"
+       
       >
         Salva veicolo
       </button>
+       <!--(click)="creaVeicolo()"-->
     </div>
   </form>
-</div>-->
+
+</div>

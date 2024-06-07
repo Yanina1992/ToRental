@@ -11,13 +11,15 @@ import { DeleteComponent } from './delete/delete.component';
 import { EditComponent } from './edit/edit.component';
 import { StandDetailsComponent } from './detail/stand-details.component';
 import { AlertSuccessComponent } from 'src/app/components/alert-messages/alert-success.component';
+import { CreateComponent } from './create/create.component';
 
 @NgModule({
   declarations: [
     VeicoliComponent,
     TableComponent,
     DeleteComponent,
-    EditComponent
+    EditComponent,
+    CreateComponent
   ],
   imports: [
     CommonModule,

@@ -1,8 +1,10 @@
 import { IAlert } from "../interfaces/ialert";
+import { IAms } from "../interfaces/iams";
+import { IExtra } from "../interfaces/iextra";
 
-export class Veicoli implements IAlert {
-  //getAll properties
-  public id_veicolo!: number;
+export class Veicoli{
+
+  public id?: number;
 
   public id_stato: number | undefined = undefined;
   public nome_stato?: string = '';
@@ -17,22 +19,22 @@ export class Veicoli implements IAlert {
 
   public telaio?: string | undefined;
 
-  public marca?: string | undefined; //da toglieree
+  //public marca?: string | undefined; //da toglieree
   public marca_nome?: string = '';
   public id_marca?: number = 0;
 
-  public modello?: string | undefined; //da togliere
+  //public modello?: string | undefined; //da togliere
   public modello_nome?: string = '';
   public id_modello?: number = 0;
 
-  public cilindrata: number = 0; //+min 0/
+  public cilindrata: number = 0;
 
   public colore: string = '';
 
   public destinazione_uso_nome?: string = '';
   public id_destinazione_uso?: number = 0;
 
-  public massa: string = ''; //è sbagliato, la massa è un numero!
+  public massa: string = '';
 
   public numero_assi: number = 0;
 
@@ -55,124 +57,27 @@ export class Veicoli implements IAlert {
   public tipo_cambio_nome?: string = '';
   public id_tipo_cambio?: number = 0;
 
-  public larghezza_esterna?: number; //----------------------
+  public larghezza_esterna?: number;
+  public lunghezza_esterna?: number;
 
-  public lunghezza_esterna?: number; //----------------------
-
-  public note: string = ''; //----------------------
-
-  public altre_caratteristiche?: string | undefined; //---------------
+  public note: string = '';
+  public altre_caratteristiche?: string | undefined;
 
   public arraySize: number = 0;
 
-  //
   public data_immatricolazione: any;
 
-  public anno?: number | undefined;
-  public data_pagamento!: Date;
-  public inizio_validita!: Date;
-  public fine_validita!: Date;
-  public importo!: number;
-  public agenzia!: string;
-  public polizza!: string;
-  public tipo_scadenza: any;
-  public livello!: number;
-
-  public valid?: boolean | undefined;
-  public expired?: boolean | undefined;
+  public alert:IAlert | undefined;
 
   //'extra', 'current', 'next' and 'past' work only with getById
 
-  public ams: {
-      assicurazione_assistenza_stradale: boolean;
-      assicurazione_atti_vandalici: boolean;
-      assicurazione_bonus_malus: boolean;
-      assicurazione_chilometri: boolean;
-      assicurazione_collisione: boolean;
-      assicurazione_cristalli: boolean;
-      assicurazione_danni_terzi: boolean;
-      assicurazione_eventi_atmosferici: boolean;
-      assicurazione_furto_incendio: boolean;
-      assicurazione_infortuni_conducente: boolean;
-      assicurazione_kasko: boolean;
-      assicurazione_perdita_valore: boolean;
-      assicurazione_rca: boolean;
-      assicurazione_scatola_nera: boolean;
-      assicurazione_temporanea: boolean;
-      atp: boolean;
-      bollo: boolean;
-      bombole: boolean;
-      //gps: boolean;
-      intervento: boolean;
-      multa: boolean;
-      revisione: boolean;
-      sinistro: boolean;
-      tachigrafo: boolean;
-      tagliando: boolean;
-  } | undefined;
+  public extra:IExtra | undefined;
 
-  public extra:
-    | {
-        assicurazione: IAlert[];
-        atp: IAlert[];
-        bollo: IAlert[];
-        bombole: IAlert[];
-        intervento: IAlert[];
-        multa: IAlert[];
-        revisione: IAlert[];
-        sinistro: IAlert[];
-        tachigrafo: IAlert[];
-        tagliando: IAlert[];
-      }
-    | undefined;
+  public current:any;
 
-  public current:
-    | {
-        assicurazione: IAlert[];
-        atp: IAlert[];
-        bollo: IAlert[];
-        bombole: IAlert[];
-        intervento: IAlert[];
-        multa: IAlert[];
-        revisione: IAlert[];
-        sinistro: IAlert[];
-        tachigrafo: IAlert[];
-        tagliando: IAlert[];
-      }
-    | undefined;
+  public next:IExtra | undefined;
 
-  public next:
-    | {
-        assicurazione: IAlert[];
-        atp: IAlert[];
-        bollo: IAlert[];
-        bombole: IAlert[];
-        intervento: IAlert[];
-        multa: IAlert[];
-        revisione: IAlert[];
-        sinistro: IAlert[];
-        tachigrafo: IAlert[];
-        tagliando: IAlert[];
-      }
-    | undefined;
+  public past:IExtra | undefined;
 
-  public past:
-    | {
-        assicurazione: IAlert[];
-        atp: IAlert[];
-        bollo: IAlert[];
-        bombole: IAlert[];
-        intervento: IAlert[];
-        multa: IAlert[];
-        revisione: IAlert[];
-        sinistro: IAlert[];
-        tachigrafo: IAlert[];
-        tagliando: IAlert[];
-      }
-    | undefined;
-
-  public id?: number = 0;
-  id_asse: any;
-  id_Asse: any;
-  id_cambio: any;
+  public ams:IAms [] = [];
 }
