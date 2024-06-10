@@ -1,6 +1,5 @@
 import { IAlert } from "../interfaces/ialert";
 import { IAms } from "../interfaces/iams";
-import { IExtra } from "../interfaces/iextra";
 
 export class Veicoli{
 
@@ -71,13 +70,13 @@ export class Veicoli{
 
   //'extra', 'current', 'next' and 'past' work only with getById
 
-  public extra:IExtra | undefined;
+  public extra:IAlert | undefined;
 
   public current:any;
 
-  public next:IExtra | undefined;
+  public next:IAlert | undefined;
 
-  public past:IExtra | undefined;
+  public past:IAlert | undefined;
 
-  public ams:IAms [] = [];
+  public k:any [] = [];
 }

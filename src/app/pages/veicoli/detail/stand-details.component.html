@@ -4,23 +4,13 @@
       Dettagli del veicolo con targa {{ veicolo.targa }}
     </h4>
 
-    <button
-      type="button"
-      class="btn-close"
-      aria-label="Close"
-      (click)="offcanvas.dismiss('Cross click')"
-    ></button>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
   </div>
   <div class="offcanvas-body">
     <!--Anagrafica-->
     <div class="col">
-      <button
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#anagrafica"
-        aria-expanded="false"
-        aria-controls="anagrafica"
-      >
+      <button type="button" data-bs-toggle="collapse" data-bs-target="#anagrafica" aria-expanded="false"
+        aria-controls="anagrafica">
         Anagrafica
       </button>
 
@@ -76,7 +66,7 @@
             Alimentazione:
             <span class="fst-normal">{{
               veicolo.tipo_alimentazione_nome
-            }}</span>
+              }}</span>
           </p>
           <p class="fst-italic">
             Allestimento:
@@ -112,54 +102,124 @@
 
     <!--Info (alert)-->
     <div class="col">
-      <button
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#datiTecnici"
-        aria-expanded="false"
-        aria-controls="datiTecnici"
-      >
+      <button type="button" data-bs-toggle="collapse" data-bs-target="#datiTecnici" aria-expanded="false"
+        aria-controls="datiTecnici">
         Situazione tecnica, fiscale e amministrativa
       </button>
       <div class="collapse" id="datiTecnici">
         <div class="card card-body">
-          <div
-            *ngIf="
-              myAms &&
-              myAms.length > 0
-            "
-          >
-            <div *ngFor="let ams of myAms">
+          <!--Ok-->
+          <div *ngIf="kListOk && kListOk.length > 0">
+            <div *ngFor="let k of kListOk">
 
-              <p class="text-decoration-underline">{{ ams.tabella }}</p>
-              <p class="fst-italic">
-                Nr. identificativo {{ ams.tabella }}:
-                <span class="fst-normal">{{ ams.id }}</span>
-              </p>
-              <p class="fst-italic">
-                Data pagamento:
-                <span class="fst-normal">{{
-                  ams.data_pagamento
-                }}</span>
-              </p>
-              <p class="fst-italic">
-                Inizio validità:
-                <span class="fst-normal">{{
-                  ams.inizio_validita
-                }}</span>
-              </p>
-              <p class="fst-italic">
-                Fine validità:
-                <span class="fst-normal">{{
-                  ams.fine_validita
-                }}</span>
-              </p>
-              <p class="fst-italic">
-                Importo:
-                <span class="fst-normal">{{ ams.importo }}</span>
-              </p>
+              <button type="button" data-bs-toggle="collapse" data-bs-target="#ok" aria-expanded="false"
+                aria-controls="ok" class="fw-bold text-success">
+                {{ k[1] }}
+              </button>
+
+              <div class="collapse" id="ok">
+                <div *ngFor="let obj of k[2]">
+                  <p class="fst-italic">
+                    Nr. identificativo:
+                    <span class="fst-normal">{{ obj.id }}</span>
+                  </p>
+                  <p class="fst-italic">
+                    Data pagamento:
+                    <span class="fst-normal">{{ obj.data_pagamento }}</span>
+                  </p>
+                  <p class="fst-italic">
+                    Inizio validità:
+                    <span class="fst-normal">{{ obj.inizio_validita }}</span>
+                  </p>
+                  <p class="fst-italic">
+                    Fine validità:
+                    <span class="fst-normal">{{ obj.fine_validita }}</span>
+                  </p>
+                  <p class="fst-italic">
+                    Importo:
+                    <span class="fst-normal">{{ obj.importo }}</span>
+                  </p>
+                 
+                </div> 
+              </div>
             </div>
           </div>
+          <br>
+
+          <!--Scaduto-->
+          <div *ngIf="kListScaduto && kListScaduto.length > 0">
+            <div *ngFor="let k of kListScaduto">
+
+              <button type="button" data-bs-toggle="collapse" data-bs-target="#scaduto" aria-expanded="false"
+                aria-controls="scaduto" class="fw-bold text-danger">
+                {{ k[1] }}</button>
+
+              <div class="collapse" id="scaduto">
+                <div *ngFor="let obj of k[2]">
+                  <p>
+                    Nr. identificativo:
+                    <span class="fst-normal">{{ obj.id }}</span>
+                  </p>
+                  <p class="fst-italic">
+                    Data pagamento:
+                    <span class="fst-normal">{{ obj.data_pagamento }}</span>
+                  </p>
+                  <p class="fst-italic">
+                    Inizio validità:
+                    <span class="fst-normal">{{ obj.inizio_validita }}</span>
+                  </p>
+                  <p class="fst-italic">
+                    Fine validità:
+                    <span class="fst-normal">{{ obj.fine_validita }}</span>
+                  </p>
+                  <p class="fst-italic">
+                    Importo:
+                    <span class="fst-normal">{{ obj.importo }}</span>
+                  </p>
+                  <br>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <br>
+
+          <!--Sospeso-->
+          <div *ngIf="kListSospeso && kListSospeso.length > 0">
+            <div *ngFor="let k of kListSospeso">
+
+              <button type="button" data-bs-toggle="collapse" data-bs-target="#sospeso" aria-expanded="false"
+                aria-controls="sospeso" class="fw-bold text-secondary">{{ k[1] }}</button>
+
+                  <div class="collapse" id="sospeso">
+                    <div *ngFor="let obj of k[2]">
+                      <p>
+                        Nr. identificativo:
+                        <span class="fst-normal">{{ obj.id }}</span>
+                      </p>
+                      <p class="fst-italic">
+                        Data pagamento:
+                        <span class="fst-normal">{{ obj.data_pagamento }}</span>
+                      </p>
+                      <p class="fst-italic">
+                        Inizio validità:
+                        <span class="fst-normal">{{ obj.inizio_validita }}</span>
+                      </p>
+                      <p class="fst-italic">
+                        Fine validità:
+                        <span class="fst-normal">{{ obj.fine_validita }}</span>
+                      </p>
+                      <p class="fst-italic">
+                        Importo:
+                        <span class="fst-normal">{{ obj.importo }}</span>
+                      </p>
+                      <br>
+                    </div>
+                  </div>
+
+            </div>
+          </div>
+
           <!--<div *ngIf="!myAms">
             <p>Non ci sono {{ a }} attive.</p>
           </div>-->
@@ -178,148 +238,10 @@
       <p>Stato: {{ veicolo.nome_stato }}</p>
     </div>
     <br />
-    <!--<div class="text-end">
-                <button type="button" class="btn my-btn w-100" (click)="offcanvas.close('Close click')">Chiudi</button>
-            </div>-->
+
   </div>
 </ng-template>
 
-<!--<button class="btn btn-lg btn-outline-primary mb-2 me-2" (click)="openEnd(content)">Right position</button>-->
 <button class="border-0 bg-transparent" (click)="openEnd(content)">
   <i class="fa-solid fa-circle-info"></i>
 </button>
-
-<!--Assicurazioni-
-   <div *ngIf="assicurazioniAssistenzaStradale && assicurazioniAssistenzaStradale.length > 0">
-        <div *ngFor="let assicurazione of assicurazioniAssistenzaStradale">
-
-            <p class="text-decoration-underline">Assicurazione</p>
-            <p class="fst-italic">Nr. identificativo assicurazione: <span class="fst-normal">{{
-                    assicurazione.id }}</span></p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ assicurazione.data_pagamento
-                    }}</span></p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ assicurazione.inizio_validita
-                    }}</span></p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ assicurazione.fine_validita
-                    }}</span></p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ assicurazione.importo }}</span></p>
-        </div>
-        </div>
-        <div *ngIf="!assicurazioniAssistenzaStradale">
-            <p>Non ci sono assicurazioni attive.</p>
-        </div>
-        !--Atp--
-        <div *ngFor="let atp of atps">
-            <p class="text-decoration-underline">Atp</p>
-            <p class="fst-italic">Nr. identificativo atp: <span class="fst-normal">{{ atp.id }}</span></p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ atp.data_pagamento }}</span>
-            </p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ atp.inizio_validita }}</span>
-            </p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ atp.fine_validita }}</span></p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ atp.importo }}</span></p>
-        </div>
-        !--Bolli--
-        <div *ngFor="let bollo of bolli">
-            <p class="text-decoration-underline">Bollo</p>
-            <p class="fst-italic">Nr. identificativo bollo: <span class="fst-normal">{{ bollo.id }}</span>
-            </p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ bollo.data_pagamento }}</span>
-            </p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ bollo.inizio_validita
-                    }}</span></p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ bollo.fine_validita }}</span>
-            </p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ bollo.importo }}</span></p>
-        </div>
-         !--Bombole--
-        <div *ngFor="let bombola of bombole">
-            <p class="text-decoration-underline">Bombola</p>
-            <p class="fst-italic">Nr. identificativo bombola: <span class="fst-normal">{{ bombola.id
-                    }}</span></p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ bombola.data_pagamento
-                    }}</span></p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ bombola.inizio_validita
-                    }}</span></p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ bombola.fine_validita }}</span>
-            </p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ bombola.importo }}</span></p>
-        </div>
-        !--Interventi--
-        <div *ngFor="let intervento of interventi">
-            <p class="text-decoration-underline">Interventi</p>
-            <p class="fst-italic">Nr. identificativo intervento: <span class="fst-normal">{{ intervento.id
-                    }}</span></p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ intervento.data_pagamento
-                    }}</span></p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ intervento.inizio_validita
-                    }}</span></p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ intervento.fine_validita
-                    }}</span></p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ intervento.importo }}</span></p>
-        </div>
-        !--Multe--
-        <div *ngFor="let multa of multe">
-            <p class="text-decoration-underline">Multe</p>
-            <p class="fst-italic">Nr. identificativo multa: <span class="fst-normal">{{ multa.id }}</span>
-            </p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ multa.data_pagamento }}</span>
-            </p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ multa.inizio_validita
-                    }}</span></p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ multa.fine_validita }}</span>
-            </p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ multa.importo }}</span></p>
-        </div>
-        !--Revisioni--
-        <div *ngFor="let revisione of revisioni">
-            <p class="text-decoration-underline">Revisione</p>
-            <p class="fst-italic">Nr. identificativo revisione: <span class="fst-normal">{{ revisione.id
-                    }}</span></p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ revisione.data_pagamento
-                    }}</span></p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ revisione.inizio_validita
-                    }}</span></p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ revisione.fine_validita
-                    }}</span></p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ revisione.importo }}</span></p>
-        </div>
-        !--Sinistri--
-        <div *ngFor="let sinistro of sinistri">
-            <p class="text-decoration-underline">Sinistri</p>
-            <p class="fst-italic">Nr. identificativo sinistro: <span class="fst-normal">{{ sinistro.id
-                    }}</span></p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ sinistro.data_pagamento
-                    }}</span></p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ sinistro.inizio_validita
-                    }}</span></p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ sinistro.fine_validita
-                    }}</span></p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ sinistro.importo }}</span></p>
-        </div>
-        !--Tachigrafo--
-        <div *ngFor="let tachigrafo of tachigrafi">
-            <p class="text-decoration-underline">Tachigrafo</p>
-            <p class="fst-italic">Nr. identificativo tachigrafo: <span class="fst-normal">{{ tachigrafo.id
-                    }}</span></p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ tachigrafo.data_pagamento
-                    }}</span></p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ tachigrafo.inizio_validita
-                    }}</span></p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ tachigrafo.fine_validita
-                    }}</span></p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ tachigrafo.importo }}</span></p>
-        </div>
-        !--Tagliandi--
-        <div *ngFor="let tagliando of tagliandi">
-            <p class="text-decoration-underline">Tagliando</p>
-            <p class="fst-italic">Nr. identificativo tagliando: <span class="fst-normal">{{ tagliando.id
-                    }}</span></p>
-            <p class="fst-italic">Data pagamento: <span class="fst-normal">{{ tagliando.data_pagamento
-                    }}</span></p>
-            <p class="fst-italic">Inizio validità: <span class="fst-normal">{{ tagliando.inizio_validita
-                    }}</span></p>
-            <p class="fst-italic">Fine validità: <span class="fst-normal">{{ tagliando.fine_validita
-                    }}</span></p>
-            <p class="fst-italic">Importo: <span class="fst-normal">{{ tagliando.importo }}</span></p>
-        </div>-->
