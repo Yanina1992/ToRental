@@ -63,6 +63,21 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   //Variable to handle validation
   formSubmitted: boolean = false;
 
+  veicoloSuccess:boolean = false;
+
+   //Variable to receive the brand value and populate the model select accordingly
+   selectedMarcaId: number | null = null;
+   selectedCambioId: number | null = null;
+   selectedTipoAsseId: number | null = null;
+   selectedAllestimentoId: number = 0;
+   selectedAlimentazioneId: number = 0;
+   selectedSocietaId: number = 0;
+   selectedDestinazioneUsoId: number = 0;
+   selectedModelloId: number = 0;
+   selectedTipoVeicoloId: number = 0;
+   selectedStatoId:number = 0;
+   selectedDisponibilitaId:number = 0;
+
   constructor(
     private veicoliSvc: VeicoliService
   ) {}
@@ -82,7 +97,6 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
         }
       });
       }
-   
   getStatoIconClass(id_stato: number | undefined): string {
     switch (id_stato) {
       case 3:
@@ -148,13 +162,9 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     });
 
   }
-
-  veicoloSuccess:boolean = false;
-
   ngOnChanges(): void {
     this.veicoloSuccess  = this.veicoliSvc.successMessage;
   }
-
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
@@ -180,8 +190,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.myArraySize = this.collectionSize
         }
       });
-    this.subscriptions.add(subscription);
-   
+    this.subscriptions.add(subscription); 
   }
   //Search by targa or telaio
  search(text: string) {
@@ -195,8 +204,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
         this.collectionSize = this.veicoli[0].arraySize;
         this.myArraySize = this.collectionSize
         return this.text;
-      });
-      
+      });    
   }
   customizedSearch() {
     try {
@@ -217,12 +225,9 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.veicoloForm?.id_disponibilita,
         )
         .subscribe((data: Veicoli[]) => {
-          //console.log('stato', this.veicoloForm.id_stato);
-          //console.log('disponibilità', this.veicoloForm.id_disponibilita)
-          
+
           this.veicoli = data.reverse();
           this.veicoli.reverse();
-          //this.refreshVeicoli();
           this.setupFilter();
         });
     } catch (error) {
@@ -236,8 +241,6 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
-  //Variable to receive the brand value and populate the model select accordingly
-  selectedMarcaId: number | null = null;
   //modelli
   onMarcaChange(selectedMarcaId: number | null) {
     if (selectedMarcaId) {
@@ -256,61 +259,51 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
       });
     }
   }
-  selectedCambioId: number | null = null;
   onCambioChange(selectedCambioId: number | null) {
     if (selectedCambioId) {
       this.veicoloForm.id_tipo_cambio = selectedCambioId;
     }
   }
-  selectedTipoAsseId: number | null = null;
   onTipoAsseChange(selectedTipoAsseId: number | null) {
     if (selectedTipoAsseId) {
       this.veicoloForm.id_tipo_asse = selectedTipoAsseId;
     }
   }
-  selectedAllestimentoId: number = 0;
   onAllestimentoChange(selectedAllestimentoId: number) {
     if (selectedAllestimentoId) {
       this.veicoloForm.id_tipo_allestimento = selectedAllestimentoId;
     }
   }
-  selectedAlimentazioneId: number = 0;
   onAlimentazioneChange(selectedAlimentazioneId: number) {
     if (selectedAlimentazioneId) {
       this.veicoloForm.id_alimentazione = selectedAlimentazioneId;
     }
   }
-  selectedSocietaId: number = 0;
   onSocietaChange(selectedSocietaId: number) {
     if (selectedSocietaId) {
       this.veicoloForm.id_proprietario = selectedSocietaId;
     }
   }
-  selectedDestinazioneUsoId: number = 0;
   onDestinazioneUsoChange(selectedDestinazioneUsoId: number) {
     if (selectedDestinazioneUsoId) {
       this.veicoloForm.id_destinazione_uso = selectedDestinazioneUsoId;
     }
   }
-  selectedModelloId: number = 0;
   onModelloChange(selectedModelloId: number) {
     if (selectedModelloId) {
       this.veicoloForm.id_modello = selectedModelloId;
     }
   }
-  selectedTipoVeicoloId: number = 0;
   onTipeVeicoloChange(selectedTipoVeicoloId: number) {
     if (selectedTipoVeicoloId) {
       this.veicoloForm.id_tipo_veicolo = selectedTipoVeicoloId;
     }
   }
-  selectedStatoId:number = 0;
   onStatoChange(selectedStatoId:number){
     if(selectedStatoId){
       this.veicoloForm.id_stato = selectedStatoId;
     }
   }
-  selectedDisponibilitaId:number = 0;
   onDisponibilitaChange(selectedDisponibilitaId:number){
     if(selectedDisponibilitaId) {
       this.veicoloForm.id_disponibilita = selectedDisponibilitaId;

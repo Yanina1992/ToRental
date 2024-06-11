@@ -45,3 +45,10 @@ svg{
 .container-fluid{
   position: fixed;
 }
+.align-self-end{
+  height: inherit;
+  display: flex;
+  align-items: flex-end;
+  background-color: #EC7801;
+  padding: 0 1em;
+}

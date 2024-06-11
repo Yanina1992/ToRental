@@ -1,99 +1,128 @@
 <ng-template #content let-offcanvas>
   <div class="offcanvas-header">
     <h4 class="offcanvas-title">
-      Dettagli del veicolo con targa {{ veicolo.targa }}
+      Dettagli del veicolo con targa <span class="targa">{{ veicolo.targa }}</span>
     </h4>
-
     <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
   </div>
   <div class="offcanvas-body">
+
     <!--Anagrafica-->
     <div class="col">
       <button type="button" data-bs-toggle="collapse" data-bs-target="#anagrafica" aria-expanded="false"
         aria-controls="anagrafica">
         Anagrafica
-      </button>
-
+        <i class="fa-solid fa-caret-down ms-1"></i></button>
       <div class="collapse" id="anagrafica">
         <div class="card card-body">
           <p class="fst-italic">
-            Nr. identificativo: <span class="fst-normal">{{ veicolo.id }}</span>
+            Nr. identificativo: <span class="fst-normal fw-bold">{{ veicolo.id }}</span>
           </p>
           <p class="fst-italic">
             Tipo veicolo:
-            <span class="fst-normal">{{ veicolo.tipo_veicolo_nome }}</span>
+            <span *ngIf="veicolo.tipo_veicolo_nome != null" class="fst-normal fw-bold">{{ veicolo.tipo_veicolo_nome
+              }}</span>
+            <span *ngIf="veicolo.tipo_veicolo_nome == null"> - </span>
           </p>
           <p class="fst-italic">
-            Telaio: <span class="fst-normal">{{ veicolo.telaio }}</span>
+            Telaio: <span *ngIf="veicolo.telaio != null" class="fst-normal fw-bold">{{ veicolo.telaio }}</span>
+            <span *ngIf="veicolo.telaio == null"> - </span>
           </p>
           <p class="fst-italic">
-            Marca: <span class="fst-normal">{{ veicolo.marca_nome }}</span>
+            Marca: <span *ngIf="veicolo.marca_nome != null" class="fst-normal fw-bold">{{ veicolo.marca_nome }}</span>
+            <span *ngIf="veicolo.marca_nome == null"> - </span>
           </p>
           <p class="fst-italic">
-            Modello: <span class="fst-normal">{{ veicolo.modello_nome }}</span>
+            Modello: <span *ngIf="veicolo.modello_nome != null" class="fst-normal fw-bold">{{ veicolo.modello_nome
+              }}</span>
+            <span *ngIf="veicolo.modello_nome == null"> - </span>
           </p>
           <p class="fst-italic">
-            Cilindrata: <span class="fst-normal">{{ veicolo.cilindrata }}</span>
+            Cilindrata: <span *ngIf="veicolo.cilindrata != null" class="fst-normal fw-bold">{{ veicolo.cilindrata
+              }}</span>
+            <span *ngIf="veicolo.cilindrata == null"> - </span>
           </p>
           <p class="fst-italic">
-            Colore: <span class="fst-normal">{{ veicolo.colore }}</span>
+            Colore: <span *ngIf="veicolo.colore != null" class="fst-normal fw-bold">{{ veicolo.colore }}</span>
+            <span *ngIf="veicolo.colore == null"> - </span>
           </p>
           <p class="fst-italic">
             Destinazione d'uso:
-            <span class="fst-normal">{{ veicolo.destinazione_uso_nome }}</span>
+            <span *ngIf="veicolo.destinazione_uso_nome != null" class="fst-normal fw-bold">{{
+              veicolo.destinazione_uso_nome }}</span>
+            <span *ngIf="veicolo.destinazione_uso_nome == null"> - </span>
           </p>
           <p class="fst-italic">
-            Massa: <span class="fst-normal">{{ veicolo.massa }}</span>
+            Massa: <span *ngIf="veicolo.massa != null" class="fst-normal fw-bold">{{ veicolo.massa }}</span>
+            <span *ngIf="veicolo.massa == null"> - </span>
           </p>
           <p class="fst-italic">
             Numero assi:
-            <span class="fst-normal">{{ veicolo.numero_assi }}</span>
+            <span *ngIf="veicolo.numero_assi != null" class="fst-normal fw-bold">{{ veicolo.numero_assi }}</span>
+            <span *ngIf="veicolo.numero_assi == null"> - </span>
           </p>
           <p class="fst-italic">
-            Portata: <span class="fst-normal">{{ veicolo.portata }}</span>
+            Portata: <span *ngIf="veicolo.portata != null" class="fst-normal fw-bold">{{ veicolo.portata }}</span>
+            <span *ngIf="veicolo.portata == null"> - </span>
           </p>
           <p class="fst-italic">
-            Potenza: <span class="fst-normal">{{ veicolo.potenza }}</span>
+            Potenza: <span *ngIf="veicolo.potenza != null" class="fst-normal fw-bold">{{ veicolo.potenza }}</span>
+            <span *ngIf="veicolo.potenza == null"> - </span>
           </p>
           <p class="fst-italic">
             Società:
-            <span class="fst-normal">{{ veicolo.proprietario_nome }}</span>
+            <span *ngIf="veicolo.proprietario_nome != null" class="fst-normal fw-bold">{{ veicolo.proprietario_nome
+              }}</span>
+            <span *ngIf="veicolo.proprietario_nome == null"> - </span>
           </p>
           <p class="fst-italic">
-            Targa: <span class="fst-normal">{{ veicolo.targa }}</span>
+            Targa: <span *ngIf="veicolo.targa != null" class="fst-normal fw-bold">{{ veicolo.targa }}</span>
+            <span *ngIf="veicolo.targa ==  null"> - </span>
           </p>
           <p class="fst-italic">
             Alimentazione:
-            <span class="fst-normal">{{
-              veicolo.tipo_alimentazione_nome
-              }}</span>
+            <span *ngIf="veicolo.tipo_alimentazione_nome != null" class="fst-normal fw-bold">{{
+              veicolo.tipo_alimentazione_nome }}</span>
+            <span *ngIf="veicolo.tipo_alimentazione_nome == null"> - </span>
           </p>
           <p class="fst-italic">
             Allestimento:
-            <span class="fst-normal">{{ veicolo.tipo_allestimento_nome }}</span>
+            <span *ngIf="veicolo.tipo_allestimento_nome != null" class="fst-normal fw-bold">{{
+              veicolo.tipo_allestimento_nome }}</span>
+            <span *ngIf="veicolo.tipo_allestimento_nome == null"> - </span>
           </p>
           <p class="fst-italic">
             Tipo asse:
-            <span class="fst-normal">{{ veicolo.tipo_asse_nome }}</span>
+            <span *ngIf="veicolo.tipo_asse_nome != null" class="fst-normal fw-bold">{{ veicolo.tipo_asse_nome }}</span>
+            <span *ngIf="veicolo.tipo_asse_nome == null"> - </span>
           </p>
           <p class="fst-italic">
             Cambio:
-            <span class="fst-normal">{{ veicolo.tipo_cambio_nome }}</span>
+            <span *ngIf="veicolo.tipo_cambio_nome != null" class="fst-normal fw-bold">{{ veicolo.tipo_cambio_nome
+              }}</span>
+            <span *ngIf="veicolo.tipo_cambio_nome == null"> - </span>
           </p>
           <p class="fst-italic">
             Larghezza esterna:
-            <span class="fst-italic">{{ veicolo.larghezza_esterna }}</span>
+            <span *ngIf="veicolo.larghezza_esterna != null" class="fst-italic fw-bold">{{ veicolo.larghezza_esterna
+              }}</span>
+            <span *ngIf="veicolo.larghezza_esterna == null"> - </span>
           </p>
           <p class="fst-italic">
             Lunghezza esterna:
-            <span class="fst-italic">{{ veicolo.lunghezza_esterna }}</span>
+            <span *ngIf="veicolo.lunghezza_esterna != null" class="fst-italic fw-bold">{{ veicolo.lunghezza_esterna
+              }}</span>
+            <span *ngIf="veicolo.lunghezza_esterna == null"> - </span>
           </p>
           <p class="fst-italic">
-            Note: <span class="fst-italic">{{ veicolo.note }}</span>
+            Note: <span *ngIf="veicolo.note != null" class="fst-italic fw-bold">{{ veicolo.note }}</span>
+            <span *ngIf="veicolo.note == null"> - </span>
           </p>
           <p class="fst-italic">
             Altre caratterisctiche:
-            <span class="fst-italic">{{ veicolo.altre_caratteristiche }}</span>
+            <span *ngIf="veicolo.altre_caratteristiche != null" class="fst-italic fw-bold">{{
+              veicolo.altre_caratteristiche }}</span>
+            <span *ngIf="veicolo.altre_caratteristiche == null"> - </span>
           </p>
         </div>
       </div>
@@ -104,43 +133,64 @@
     <div class="col">
       <button type="button" data-bs-toggle="collapse" data-bs-target="#datiTecnici" aria-expanded="false"
         aria-controls="datiTecnici">
-        Situazione tecnica, fiscale e amministrativa
+        Situazione tecnica, fiscale e amministrativa<i class="fa-solid fa-caret-down ms-2"></i>
       </button>
       <div class="collapse" id="datiTecnici">
         <div class="card card-body">
+
           <!--Ok-->
           <div *ngIf="kListOk && kListOk.length > 0">
-            <div *ngFor="let k of kListOk">
+            <div *ngFor="let k of kListOk; let i = index">
 
-              <button type="button" data-bs-toggle="collapse" data-bs-target="#ok" aria-expanded="false"
-                aria-controls="ok" class="fw-bold text-success">
-                {{ k[1] }}
+              <button type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#ok' + i" aria-expanded="false"
+                [attr.aria-controls]="'ok' + i" class="green">
+                {{ k[1] }}<i class="fa-solid fa-caret-down ms-2"></i>
               </button>
 
-              <div class="collapse" id="ok">
-                <div *ngFor="let obj of k[2]">
-                  <p class="fst-italic">
-                    Nr. identificativo:
-                    <span class="fst-normal">{{ obj.id }}</span>
-                  </p>
-                  <p class="fst-italic">
-                    Data pagamento:
-                    <span class="fst-normal">{{ obj.data_pagamento }}</span>
-                  </p>
-                  <p class="fst-italic">
-                    Inizio validità:
-                    <span class="fst-normal">{{ obj.inizio_validita }}</span>
-                  </p>
-                  <p class="fst-italic">
-                    Fine validità:
-                    <span class="fst-normal">{{ obj.fine_validita }}</span>
-                  </p>
-                  <p class="fst-italic">
-                    Importo:
-                    <span class="fst-normal">{{ obj.importo }}</span>
-                  </p>
-                 
-                </div> 
+              <div class="collapse" [attr.id]="'ok' + i">
+
+                <div *ngIf="k[2].length > 0">
+                  <div *ngFor="let obj of k[2]">
+                    <p class="fst-italic">
+                      Nr. identificativo:
+                      <span *ngIf="obj.id != null" class="fst-normal fw-bold">{{ obj.id }}</span>
+                      <span *ngIf="obj.id == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Data pagamento:
+                      <span *ngIf="obj.data_pagamento != null" class="fst-normal fw-bold">{{ obj.data_pagamento
+                        }}</span>
+                      <span *ngIf="obj.data_pagamento == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Inizio validità:
+                      <span *ngIf="obj.inizio_validita != null" class="fst-normal fw-bold">{{ obj.inizio_validita
+                        }}</span>
+                      <span *ngIf="obj.inizio_validita == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Fine validità:
+                      <span *ngIf="obj.fine_validita != null" class="fst-normal fw-bold">{{ obj.fine_validita }}</span>
+                      <span *ngIf="obj.fine_validita == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Importo:
+                      <span *ngIf="obj.importo != null" class="fst-normal fw-bold">{{ obj.importo }}</span>
+                      <span *ngIf="obj.importo == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Polizza:
+                      <span *ngIf="obj.polizza != null" class="fst-normal fw-bold">{{ obj.polizza }}</span>
+                      <span *ngIf="obj.polizza == null"> - &nbsp;</span>
+                    </p>
+                    <hr>
+                  </div>
+                </div>
+
+                <div *ngIf="k[2].length == 0">
+                  <p> - </p>
+                </div>
+
               </div>
             </div>
           </div>
@@ -148,36 +198,57 @@
 
           <!--Scaduto-->
           <div *ngIf="kListScaduto && kListScaduto.length > 0">
-            <div *ngFor="let k of kListScaduto">
+            <div *ngFor="let k of kListScaduto; let i = index">
 
-              <button type="button" data-bs-toggle="collapse" data-bs-target="#scaduto" aria-expanded="false"
-                aria-controls="scaduto" class="fw-bold text-danger">
-                {{ k[1] }}</button>
+              <button type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#scaduto' + i"
+                aria-expanded="false" aria-controls="'scaduto' + i" class="red">
+                {{ k[1] }}<i class="fa-solid fa-caret-down ms-2"></i>
+              </button>
 
-              <div class="collapse" id="scaduto">
-                <div *ngFor="let obj of k[2]">
-                  <p>
-                    Nr. identificativo:
-                    <span class="fst-normal">{{ obj.id }}</span>
-                  </p>
-                  <p class="fst-italic">
-                    Data pagamento:
-                    <span class="fst-normal">{{ obj.data_pagamento }}</span>
-                  </p>
-                  <p class="fst-italic">
-                    Inizio validità:
-                    <span class="fst-normal">{{ obj.inizio_validita }}</span>
-                  </p>
-                  <p class="fst-italic">
-                    Fine validità:
-                    <span class="fst-normal">{{ obj.fine_validita }}</span>
-                  </p>
-                  <p class="fst-italic">
-                    Importo:
-                    <span class="fst-normal">{{ obj.importo }}</span>
-                  </p>
-                  <br>
+              <div class="collapse" [attr.id]="'scaduto' + i">
+
+                <div *ngIf="k[2].length > 0">
+                  <div *ngFor="let obj of k[2]">
+                    <p>
+                      Nr. identificativo:
+                      <span *ngIf="obj.id != null" class="fst-normal fw-bold">{{ obj.id }}</span>
+                      <span *ngIf="obj.id == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Data pagamento:
+                      <span *ngIf="obj.data_pagamento != null" class="fst-normal fw-bold">{{ obj.data_pagamento
+                        }}</span>
+                      <span *ngIf="obj.data_pagamento == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Inizio validità:
+                      <span *ngIf="obj.inizio_validita != null" class="fst-normal fw-bold">{{ obj.inizio_validita
+                        }}</span>
+                      <span *ngIf="obj.inizio_validita == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Fine validità:
+                      <span *ngIf="obj.fine_validita != null" class="fst-normal fw-bold">{{ obj.fine_validita }}</span>
+                      <span *ngIf="obj.fine_validita == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Importo:
+                      <span *ngIf="obj.importo != null" class="fst-normal fw-bold">{{ obj.importo }}</span>
+                      <span *ngIf="obj.importo == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Polizza:
+                      <span *ngIf="obj.polizza != null" class="fst-normal fw-bold">{{ obj.polizza }}</span>
+                      <span *ngIf="obj.polizza == null"> - &nbsp;</span>
+                    </p>
+                    <hr>
+                  </div>
                 </div>
+
+                <div *ngIf="k[2].length == 0">
+                  <p> - </p>
+                </div>
+
               </div>
 
             </div>
@@ -186,56 +257,84 @@
 
           <!--Sospeso-->
           <div *ngIf="kListSospeso && kListSospeso.length > 0">
-            <div *ngFor="let k of kListSospeso">
+            <div *ngFor="let k of kListSospeso; let i = index">
 
-              <button type="button" data-bs-toggle="collapse" data-bs-target="#sospeso" aria-expanded="false"
-                aria-controls="sospeso" class="fw-bold text-secondary">{{ k[1] }}</button>
+              <button type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#sospeso' + i"
+                aria-expanded="false" [attr.aria-controls]="'sospeso' + i" class="grey">
+                {{ k[1] }}<i class="fa-solid fa-caret-down ms-2"></i>
+              </button>
 
-                  <div class="collapse" id="sospeso">
-                    <div *ngFor="let obj of k[2]">
-                      <p>
-                        Nr. identificativo:
-                        <span class="fst-normal">{{ obj.id }}</span>
-                      </p>
-                      <p class="fst-italic">
-                        Data pagamento:
-                        <span class="fst-normal">{{ obj.data_pagamento }}</span>
-                      </p>
-                      <p class="fst-italic">
-                        Inizio validità:
-                        <span class="fst-normal">{{ obj.inizio_validita }}</span>
-                      </p>
-                      <p class="fst-italic">
-                        Fine validità:
-                        <span class="fst-normal">{{ obj.fine_validita }}</span>
-                      </p>
-                      <p class="fst-italic">
-                        Importo:
-                        <span class="fst-normal">{{ obj.importo }}</span>
-                      </p>
-                      <br>
-                    </div>
+              <div class="collapse" [attr.id]="'sospeso' + i">
+
+                <div *ngIf="k[2].length > 0">
+                  <div *ngFor="let obj of k[2]">
+                    <p>
+                      Nr. identificativo:
+                      <span *ngIf="obj.id != null" class="fst-normal fw-bold">{{ obj.id }}</span>
+                      <span *ngIf="obj.id == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Data pagamento:
+                      <span *ngIf="obj.data_pagamento != null" class="fst-normal fw-bold">{{ obj.data_pagamento
+                        }}</span>
+                      <span *ngIf="obj.data_pagamento == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Inizio validità:
+                      <span *ngIf="obj.inizio_validita != null" class="fst-normal fw-bold">{{ obj.inizio_validita
+                        }}</span>
+                      <span *ngIf="obj.inizio_validita == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Fine validità:
+                      <span *ngIf="obj.fine_validita != null" class="fst-normal fw-bold">{{ obj.fine_validita
+                        }}</span>
+                      <span *ngIf="obj.fine_validita == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Importo:
+                      <span *ngIf="obj.importo != null" class="fst-normal fw-bold">{{ obj.importo }}</span>
+                      <span *ngIf="obj.importo == null"> - &nbsp;</span>
+                    </p>
+                    <p class="fst-italic">
+                      Polizza:
+                      <span *ngIf="obj.polizza != null" class="fst-normal fw-bold">{{ obj.polizza }}</span>
+                      <span *ngIf="obj.polizza == null"> - &nbsp;</span>
+                    </p>
+                    <hr>
                   </div>
+                </div>
+
+                <div *ngIf="k[2].length == 0">
+                  <p> - </p>
+                </div>
+
+              </div>
 
             </div>
           </div>
 
-          <!--<div *ngIf="!myAms">
-            <p>Non ci sono {{ a }} attive.</p>
-          </div>-->
         </div>
       </div>
     </div>
-
     <br />
+
     <!--Disponibilità-->
     <div class="col">
-      <p>Disponibilità: {{ veicolo.nome_disponibilita }}</p>
+      <p class="pointer">Stato: <span [ngClass]="{
+          'gre': veicolo.id_disponibilita == 1,
+          're': veicolo.id_disponibilita == 2
+        }">{{ veicolo.nome_disponibilita }}</span></p>
     </div>
     <br />
+
     <!--Stato-->
     <div class="col">
-      <p>Stato: {{ veicolo.nome_stato }}</p>
+      <p class="pointer">Disponibilità: <span [ngClass]="{
+        'gre': veicolo.id_stato == 1,
+        're': veicolo.id_stato == 2,
+        'oran': veicolo.id_stato == 3
+      }">{{ veicolo.nome_stato }}</span></p>
     </div>
     <br />
 

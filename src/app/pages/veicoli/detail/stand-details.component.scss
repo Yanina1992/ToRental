@@ -4,9 +4,59 @@ button{
     color: rgb(0 0 36);
     padding: 0;
 }
+
 button:hover{
     color: #EC7801;
 }
+
 p{
     margin: 0;
+}
+
+.green{
+    color: green;
+}
+
+.red{
+    color: red;
+}
+
+.grey{
+    color: grey;
+}
+.orange{
+    color: #ffa200;
+}
+
+.green:hover, .red:hover, .grey:hover{
+    color:#EC7801;
+}
+
+.targa{
+    color:#EC7801;
+    font-weight: 700
+}
+
+.pointer{
+    cursor: default;
+}
+
+.gre{
+    color: green;
+}
+.re{
+    color: red;
+}
+.oran{
+    color:#ffa200;
+}
+
+.gre:hover{
+    color: green;
+}
+.re:hover{
+    color:red;
+}
+.oran:hover{
+    color:#ffa200;
 }

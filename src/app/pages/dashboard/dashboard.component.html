@@ -1,5 +1,7 @@
-<div class="container-fluid pt-3">
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+<div class="container-fluid">
+  <h1 class="p-4">Alert</h1>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 m-4">
+
     <!--Revisione-->
     <div class="col">
       <div class="card mb-3">
@@ -7,28 +9,28 @@
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-clipboard-check orange my-icon"></i>
-            <p class="m-0 fw-bold">{{ nRevisioniScadenzaBreveTermine }}<span class="fw-normal"> revisioni in scadenza tra 0-6 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nRevisioniScadenzaBreveTermine }}<span class="fw-normal"> revisioni in scadenza
+                tra 0-6 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-clipboard-check yellow my-icon"></i>
-            <p class="m-0 fw-bold">{{ nRevisioniScadenzaMedioTermine }} <span class="fw-normal"> revisioni in scadenza tra 7-14 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nRevisioniScadenzaMedioTermine }} <span class="fw-normal"> revisioni in scadenza
+                tra 7-14 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-clipboard-check green my-icon"></i>
-            <p class="m-0 fw-bold">{{ nRevisioniScadenzaLungoTermine }}<span class="fw-normal"> revisioni in scadenza tra 15-30 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nRevisioniScadenzaLungoTermine }}<span class="fw-normal"> revisioni in scadenza
+                tra 15-30 giorni</span></p>
           </div>
         </div>
 
         <div class="card-footer bg-transparent">
-          <i
-            class="fa-solid fa-circle-exclamation"
-            [ngClass]="isRevisioniScadute ? 'red' : 'grey'"
-          ></i>
+          <i class="fa-solid fa-circle-exclamation" [ngClass]="isRevisioniScadute ? 'red' : 'grey'"></i>
           <span [ngClass]="isRevisioniScadute ? 'red ' : 'grey'">
             {{
-              isRevisioniScadute
-                ? "Ci sono " + nRevisioniScadute + " veicoli non revisionati"
-                : "Non ci sono revisioni scadute"
+            isRevisioniScadute
+            ? "Ci sono " + nRevisioniScadute + " veicoli non revisionati"
+            : "Non ci sono revisioni scadute"
             }}
           </span>
         </div>
@@ -87,30 +89,29 @@
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-shield-halved orange my-icon"></i>
-            <p class="m-0 fw-bold">{{ nAssicurazioniScadenzaBreveTermine }}<span class="fw-normal"> assicurazioni in scadenza tra 0-6 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nAssicurazioniScadenzaBreveTermine }}<span class="fw-normal"> assicurazioni in
+                scadenza tra 0-6 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-shield-halved yellow my-icon"></i>
-            <p class="m-0 fw-bold">{{ nAssicurazioniScadenzaMedioTermine }}<span class="fw-normal"> assicurazioni in scadenza tra 7-14 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nAssicurazioniScadenzaMedioTermine }}<span class="fw-normal"> assicurazioni in
+                scadenza tra 7-14 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-shield-halved green my-icon"></i>
-            <p class="m-0 fw-bold">{{ nAssicurazioniScadenzaLungoTermine }}<span class="fw-normal"> assicurazioni in scadenza tra 15-30 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nAssicurazioniScadenzaLungoTermine }}<span class="fw-normal"> assicurazioni in
+                scadenza tra 15-30 giorni</span></p>
           </div>
         </div>
 
         <div class="card-footer bg-transparent">
-          <i
-            class="fa-solid fa-circle-exclamation"
-            [ngClass]="isAssicurazioniScadute ? 'red' : 'grey'"
-          ></i>
+          <i class="fa-solid fa-circle-exclamation" [ngClass]="isAssicurazioniScadute ? 'red' : 'grey'"></i>
           <span [ngClass]="isAssicurazioniScadute ? 'red ' : 'grey'">
             {{
-              isAssicurazioniScadute
-                ? "Ci sono " + nAssicurazioniScadute + " assicurazioni scadute"
-                : "Non ci sono assicurazioni scadute"
-            }}</span
-          >
+            isAssicurazioniScadute
+            ? "Ci sono " + nAssicurazioniScadute + " assicurazioni scadute"
+            : "Non ci sono assicurazioni scadute"
+            }}</span>
         </div>
       </div>
     </div>
@@ -122,30 +123,29 @@
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-truck-droplet orange my-icon"></i>
-            <p class="m-0 fw-bold">{{ nAtpScadenzaBreveTermine }}<span class="fw-normal"> certificati in scadenza tra 0-6 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nAtpScadenzaBreveTermine }}<span class="fw-normal"> certificati in scadenza tra
+                0-6 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-truck-droplet yellow my-icon"></i>
-            <p class="m-0 fw-bold">{{ nAtpScadenzaMedioTermine }}<span class="fw-normal"> certificati in scadenza tra 7-14 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nAtpScadenzaMedioTermine }}<span class="fw-normal"> certificati in scadenza tra
+                7-14 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-truck-droplet green my-icon"></i>
-            <p class="m-0 fw-bold">{{ nAtpScadenzaLungoTermine }}<span class="fw-normal"> certificati in scadenza tra 15-30 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nAtpScadenzaLungoTermine }}<span class="fw-normal"> certificati in scadenza tra
+                15-30 giorni</span></p>
           </div>
         </div>
 
         <div class="card-footer bg-transparent">
-          <i
-            class="fa-solid fa-circle-exclamation"
-            [ngClass]="isAtpScaduti ? 'red' : 'grey'"
-          ></i>
+          <i class="fa-solid fa-circle-exclamation" [ngClass]="isAtpScaduti ? 'red' : 'grey'"></i>
           <span [ngClass]="isAtpScaduti ? 'red ' : 'grey'">
             {{
-              isAtpScaduti
-                ? "Ci sono " + nAtpScaduti + " certificati Atp scaduti"
-                : "Non ci sono certificati Atp scaduti"
-            }}</span
-          >
+            isAtpScaduti
+            ? "Ci sono " + nAtpScaduti + " certificati Atp scaduti"
+            : "Non ci sono certificati Atp scaduti"
+            }}</span>
         </div>
       </div>
     </div>
@@ -157,30 +157,29 @@
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-stamp orange my-icon"></i>
-            <p class="m-0 fw-bold">{{ nBolliScadenzaBreveTermine }}<span class="fw-normal"> bolli in scadenza tra 0-6 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nBolliScadenzaBreveTermine }}<span class="fw-normal"> bolli in scadenza tra 0-6
+                giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-stamp yellow my-icon"></i>
-            <p class="m-0 fw-bold">{{ nBolliScadenzaMedioTermine }}<span class="fw-normal"> bolli in scadenza tra 7-14 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nBolliScadenzaMedioTermine }}<span class="fw-normal"> bolli in scadenza tra 7-14
+                giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-stamp green my-icon"></i>
-            <p class="m-0 fw-bold">{{ nBolliScadenzaLungoTermine }}<span class="fw-normal"> bolli in scadenza tra 15-30 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nBolliScadenzaLungoTermine }}<span class="fw-normal"> bolli in scadenza tra 15-30
+                giorni</span></p>
           </div>
         </div>
 
         <div class="card-footer bg-transparent">
-          <i
-            class="fa-solid fa-circle-exclamation"
-            [ngClass]="isBolliScaduti ? 'red' : 'grey'"
-          ></i>
+          <i class="fa-solid fa-circle-exclamation" [ngClass]="isBolliScaduti ? 'red' : 'grey'"></i>
           <span [ngClass]="isBolliScaduti ? 'red ' : 'grey'">
             {{
-              isBolliScaduti
-                ? "Ci sono " + nBolliScaduti + " bolli scaduti"
-                : "Non ci sono bolli scaduti"
-            }}</span
-          >
+            isBolliScaduti
+            ? "Ci sono " + nBolliScaduti + " bolli scaduti"
+            : "Non ci sono bolli scaduti"
+            }}</span>
         </div>
       </div>
     </div>
@@ -191,40 +190,30 @@
         <div class="card-header fst-italic">Bombole</div>
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
-            <img
-              src="../../../assets/icons/red-tank.png"
-              alt="tank-icon"
-              class="custom-icons orange"
-            /><p class="m-0 fw-bold">{{ nBomboleScadenzaBreveTermine }}<span class="fw-normal"> bombole da revisionare tra 0-6 giorni</span></p>
+            <img src="../../../assets/icons/red-tank.png" alt="tank-icon" class="custom-icons orange" />
+            <p class="m-0 fw-bold">{{ nBomboleScadenzaBreveTermine }}<span class="fw-normal"> bombole da revisionare tra
+                0-6 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
-            <img
-              src="../../../assets/icons/yellow-tank.png"
-              alt="tank-icon"
-              class="custom-icons yellow"
-            /><p class="m-0 fw-bold">{{ nBomboleScadenzaMedioTermine }}<span class="fw-normal"> bombole da revisionare tra 7-14 giorni</span></p>
+            <img src="../../../assets/icons/yellow-tank.png" alt="tank-icon" class="custom-icons yellow" />
+            <p class="m-0 fw-bold">{{ nBomboleScadenzaMedioTermine }}<span class="fw-normal"> bombole da revisionare tra
+                7-14 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
-            <img
-              src="../../../assets/icons/green-tank.png"
-              alt="tank-icon"
-              class="custom-icons green"
-            /><p class="m-0 fw-bold">{{ nBomboleScadenzaLungoTermine }}<span class="fw-normal"> bombole da revisionare tra 15-30 giorni</span></p>
+            <img src="../../../assets/icons/green-tank.png" alt="tank-icon" class="custom-icons green" />
+            <p class="m-0 fw-bold">{{ nBomboleScadenzaLungoTermine }}<span class="fw-normal"> bombole da revisionare tra
+                15-30 giorni</span></p>
           </div>
         </div>
 
         <div class="card-footer bg-transparent">
-          <i
-            class="fa-solid fa-circle-exclamation"
-            [ngClass]="isBomboleScadute ? 'red' : 'grey'"
-          ></i>
+          <i class="fa-solid fa-circle-exclamation" [ngClass]="isBomboleScadute ? 'red' : 'grey'"></i>
           <span [ngClass]="isBomboleScadute ? 'red ' : 'grey'">
             {{
-              isBomboleScadute
-                ? "Ci sono " + nBomboleScadute + " bombole con la revisione scaduta"
-                : "Non ci sono bombole con la revisione scaduta"
-            }}</span
-          >
+            isBomboleScadute
+            ? "Ci sono " + nBomboleScadute + " bombole con la revisione scaduta"
+            : "Non ci sono bombole con la revisione scaduta"
+            }}</span>
         </div>
       </div>
     </div>
@@ -281,30 +270,29 @@
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-stopwatch orange my-icon"></i>
-            <p class="m-0 fw-bold">{{ nTachigrafiScadenzaBreveTermine }}<span class="fw-normal"> tachigrafi da revisionare tra 0-6 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nTachigrafiScadenzaBreveTermine }}<span class="fw-normal"> tachigrafi da
+                revisionare tra 0-6 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-stopwatch yellow my-icon"></i>
-            <p class="m-0 fw-bold">{{ nTachigrafiScadenzaMedioTermine }}<span class="fw-normal"> tachigrafi da revisionare tra 7-14 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nTachigrafiScadenzaMedioTermine }}<span class="fw-normal"> tachigrafi da
+                revisionare tra 7-14 giorni</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-stopwatch green my-icon"></i>
-            <p class="m-0 fw-bold">{{ nTachigrafiScadenzaLungoTermine }}<span class="fw-normal"> tachigrafi da revisionare tra 15-30 giorni</span></p>
+            <p class="m-0 fw-bold">{{ nTachigrafiScadenzaLungoTermine }}<span class="fw-normal"> tachigrafi da
+                revisionare tra 15-30 giorni</span></p>
           </div>
         </div>
 
         <div class="card-footer bg-transparent">
-          <i
-            class="fa-solid fa-circle-exclamation"
-            [ngClass]="isTachigrafiScaduti ? 'red' : 'grey'"
-          ></i>
+          <i class="fa-solid fa-circle-exclamation" [ngClass]="isTachigrafiScaduti ? 'red' : 'grey'"></i>
           <span [ngClass]="isTachigrafiScaduti ? 'red ' : 'grey'">
             {{
-              isTachigrafiScaduti
-                ? "Ci sono " + nTachigrafiScaduti + " tachigrafi non revisionati"
-                : "Non ci sono tachigrafi con la revisione scaduta"
-            }}</span
-          >
+            isTachigrafiScaduti
+            ? "Ci sono " + nTachigrafiScaduti + " tachigrafi non revisionati"
+            : "Non ci sono tachigrafi con la revisione scaduta"
+            }}</span>
         </div>
       </div>
     </div>
@@ -316,32 +304,29 @@
         <div class="card-body d-flex flex-column justify-content-evenly">
           <div class="d-flex justify-content-evenly align-items-center">
             <i class="fa-solid fa-screwdriver-wrench orange my-icon"></i>
-            <p class="m-0 fw-bold">{{ nTagliandiScadenzaBreveTermine }}<span class="fw-normal"> tagliandi in scadenza tra 0-6 giorni??</span></p>
+            <p class="m-0 fw-bold">{{ nTagliandiScadenzaBreveTermine }}<span class="fw-normal"> tagliandi in scadenza
+                tra 0-6 giorni??</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
-            <i class="fa-solid fa-screwdriver-wrench yellow my-icon"></i
-              >
-            <p class="m-0 fw-bold">{{ nTagliandiScadenzaMedioTermine }}<span class="fw-normal"> tagliandi in scadenza tra 7-14 giorni??</span></p>
+            <i class="fa-solid fa-screwdriver-wrench yellow my-icon"></i>
+            <p class="m-0 fw-bold">{{ nTagliandiScadenzaMedioTermine }}<span class="fw-normal"> tagliandi in scadenza
+                tra 7-14 giorni??</span></p>
           </div>
           <div class="d-flex justify-content-evenly align-items-center">
-            <i class="fa-solid fa-screwdriver-wrench green my-icon"></i
-              >
-            <p class="m-0 fw-bold">{{ nTagliandiScadenzaLungoTermine }}<span class="fw-normal"> tagliandi in scadenza tra 15-30 giorni??</span></p>
+            <i class="fa-solid fa-screwdriver-wrench green my-icon"></i>
+            <p class="m-0 fw-bold">{{ nTagliandiScadenzaLungoTermine }}<span class="fw-normal"> tagliandi in scadenza
+                tra 15-30 giorni??</span></p>
           </div>
         </div>
 
         <div class="card-footer bg-transparent">
-          <i
-            class="fa-solid fa-circle-exclamation"
-            [ngClass]="isTagliandiScaduti ? 'red' : 'grey'"
-          ></i>
+          <i class="fa-solid fa-circle-exclamation" [ngClass]="isTagliandiScaduti ? 'red' : 'grey'"></i>
           <span [ngClass]="isTagliandiScaduti ? 'red ' : 'grey'">
             {{
-              isTagliandiScaduti
-                ? "Ci sono " + nTagliandiScaduti + " veicoli che non hanno eseguito il tagliando periodico"
-                : "Non ci sono tagliandi urgenti"
-            }}</span
-          >
+            isTagliandiScaduti
+            ? "Ci sono " + nTagliandiScaduti + " veicoli che non hanno eseguito il tagliando periodico"
+            : "Non ci sono tagliandi urgenti"
+            }}</span>
         </div>
       </div>
     </div>

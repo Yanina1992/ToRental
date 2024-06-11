@@ -7,22 +7,11 @@ canvas{
     height: 100%;
 }
 
-.card{
-    transition: box-shadow 0.3s ease;
-}
-.card:hover{
-    box-shadow: 5px 5px 5px 5px grey;
-}
 .custom-icons{
     width: 2em;
 }
 .custom-icons{
     margin: 1em;
-}
-
-@media screen and (min-width: 576px) {
-    canvas{
-    }
 }
 
 .my-icon{
@@ -33,7 +22,7 @@ canvas{
     color: #ff0000 !important;
 }
 .orange{
-    color: #ff6000 !important;
+    color: #ff4900 !important;
 }
 .yellow{
     color:#ffa200 !important;
@@ -42,20 +31,16 @@ canvas{
 color: #24923A !important;
 }
 .grey{
-    color:grey !important;
+    color:rgb(80, 76, 76) !important;
 }
-.card{
-    border: 0 !important;
-}
+
 .card-header{
     text-align: center;
+    background-color: white;
 }
 
 .container{
     margin: 2em 0;
-}
-.card-header{
-    background-color: rgb(4 12 41 / 11%);
 }
 
 .bord-success{
@@ -63,6 +48,32 @@ color: #24923A !important;
 }
 .fw-normal{
     font-size: 0.8em;
+}
+
+.card{
+    height: 350px;
+    border-top: 0;
+    border-right: 0;
+    transition: background-color 0.5s ease, font-weight 0.5s ease;
+}
+
+.card:hover{
+    background-color: #ec7801d1;
+    font-weight: bold;
+}
+h1{
+    background-image: url('../../../assets/alert.jpg');
+    height: 200px;
+    background-position: center;
+    background-size: inherit;
+    background-repeat: no-repeat;
+    background-color: #950d0df5;
+    background-blend-mode: screen;
+    margin-left: 0;
+    margin-right: 0;
+}
+.container-fluid{
+    padding: 0;
 }
 
 //<a href="https://www.flaticon.com/free-icons/gas" title="gas icons">Gas icons created by smashingstocks - Flaticon</a>
