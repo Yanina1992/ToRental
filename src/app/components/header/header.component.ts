@@ -1,4 +1,4 @@
-import { Component, HostListener, ChangeDetectorRef, OnInit  } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit  } from '@angular/core';
 import { ServizioService } from 'src/app/services/servizio.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -10,9 +10,6 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  /*isMobileSize:boolean = false;
-  buttonClass:string = '';
-  divClass:string = '';*/
   currentPageName:string = '';
   private subscriptions:Subscription = new Subscription();
   isLoggedIn:boolean = false;

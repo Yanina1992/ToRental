@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ILogin } from '../interface/ilogin';
 import { Router } from '@angular/router';
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +18,6 @@ export class LoginComponent {
 
   constructor(private authSvc: AuthService,
               private router: Router,
-              private http:HttpClient
               ) {}
 
   passwordVisible = false;
@@ -31,10 +29,7 @@ export class LoginComponent {
   isLoginOk: boolean = false;
 
   login() {
-    console.log('Login method called');
-
     this.formSubmitted = true;
-
     if (this.formData.email && this.formData.password) {
       this.isLoginOk = true;
       this.authSvc.login(this.formData).subscribe(
@@ -45,7 +40,6 @@ export class LoginComponent {
           console.error('Login error', error);
           this.isLoginOk = false;
           console.log(this.isLoginOk);
-
         }
       );
     }

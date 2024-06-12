@@ -149,13 +149,14 @@
         />
       </svg>
     </a>
-
+    <!--Current page-->
     <div class="d-flex" id="right-div">
-      <div class="align-self-end">
+      <div class="align-self-end"
+      [ngClass]="currentPageName ? 'current-page' : ''">
         <p class="m-0">{{ currentPageName }}</p>
       </div>
       <!--User-->
-      <div class="d-flex flex-column align-items-center m-3" id="user">
+      <div class="d-flex flex-column align-items-center ms-2 justify-content-end" id="user">
         <i routerLink="" class="fa-solid fa-user me-1"></i>
         <a
           appAuthStatusToggle

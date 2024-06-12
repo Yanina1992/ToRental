@@ -54,21 +54,21 @@ color: #24923A !important;
     height: 350px;
     border-top: 0;
     border-right: 0;
-    transition: background-color 0.5s ease, font-weight 0.5s ease;
+    background-color: #F5F5F5;
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+
 }
 
 .card:hover{
-    background-color: #ec7801d1;
-    font-weight: bold;
+    background-color: white;
+    border-color:#EC7801;
 }
 h1{
-    background-image: url('../../../assets/alert.jpg');
+    background-image: url('../../../assets/header-image-alert.jpeg');
     height: 200px;
-    background-position: center;
+    background-position: top;
     background-size: inherit;
     background-repeat: no-repeat;
-    background-color: #950d0df5;
-    background-blend-mode: screen;
     margin-left: 0;
     margin-right: 0;
 }
