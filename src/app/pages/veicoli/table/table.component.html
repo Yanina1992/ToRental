@@ -218,7 +218,7 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="btn my-btn btn-primary" (click)="customizedSearch()">
+        <button type="submit" class="btn my-btn btn-primary" id="cerca" (click)="customizedSearch()">
           Cerca veicolo
         </button>
       </form>
@@ -299,15 +299,15 @@
         <td *ngIf="veicolo.targa != null" class="text-truncate text-center">
           {{ veicolo.targa }}&nbsp;
         </td>
-        <td *ngIf="veicolo.targa == null" class="text-center">- &nbsp;</td>
+        <td *ngIf="veicolo.targa == null" class="text-center"> - &nbsp;</td>
         <td *ngIf="veicolo.telaio != null" class="text-truncate text-center">
           {{ veicolo.telaio }}&nbsp;
         </td>
-        <td *ngIf="veicolo.telaio == null" class="text-center">- &nbsp;</td>
+        <td *ngIf="veicolo.telaio == null" class="text-center"> - &nbsp;</td>
         <td *ngIf="veicolo.marca_nome != null" class="text-truncate text-center">
           {{ veicolo.marca_nome }}&nbsp;
         </td>
-        <td *ngIf="veicolo.marca_nome == null" class="text-center">- &nbsp;</td>
+        <td *ngIf="veicolo.marca_nome == null" class="text-center"> - &nbsp;</td>
         <td *ngIf="veicolo.modello_nome != null" class="text-truncate text-center">
           {{ veicolo.modello_nome }}&nbsp;
         </td>
@@ -317,11 +317,11 @@
         <td *ngIf="veicolo.cilindrata != null" class="text-truncate text-center">
           {{ veicolo.cilindrata }}&nbsp;
         </td>
-        <td *ngIf="veicolo.cilindrata == null" class="text-center">- &nbsp;</td>
+        <td *ngIf="veicolo.cilindrata == null" class="text-center"> - &nbsp;</td>
         <td *ngIf="veicolo.colore != null" class="text-truncate text-center">
           {{ veicolo.colore }}&nbsp;
         </td>
-        <td *ngIf="veicolo.colore == null" class="text-center">- &nbsp;</td>
+        <td *ngIf="veicolo.colore == null" class="text-center"> - &nbsp;</td>
         <td *ngIf="veicolo.destinazione_uso_nome != null" class="text-truncate text-center">
           {{ veicolo.destinazione_uso_nome }}&nbsp;
         </td>
@@ -331,7 +331,7 @@
         <td *ngIf="veicolo.massa != null" class="text-truncate text-center">
           {{ veicolo.massa }}&nbsp;
         </td>
-        <td *ngIf="veicolo.massa == null" class="text-center">- &nbsp;</td>
+        <td *ngIf="veicolo.massa == null" class="text-center"> - &nbsp;</td>
         <td *ngIf="veicolo.numero_assi != null" class="text-truncate text-center">
           {{ veicolo.numero_assi }}&nbsp;
         </td>
@@ -341,11 +341,11 @@
         <td *ngIf="veicolo.portata != null" class="text-truncate text-center">
           {{ veicolo.portata }}&nbsp;
         </td>
-        <td *ngIf="veicolo.portata == null" class="text-center">- &nbsp;</td>
+        <td *ngIf="veicolo.portata == null" class="text-center"> - &nbsp;</td>
         <td *ngIf="veicolo.potenza != null" class="text-truncate text-center">
           {{ veicolo.potenza }}&nbsp;
         </td>
-        <td *ngIf="veicolo.potenza == null" class="text-center">- &nbsp;</td>
+        <td *ngIf="veicolo.potenza == null" class="text-center"> - &nbsp;</td>
         <td *ngIf="veicolo.proprietario_nome != null" class="text-truncate text-center">
           {{ veicolo.proprietario_nome }}&nbsp;
         </td>
@@ -390,7 +390,7 @@
         </td>
         <td class="d-flex">
           <!--Offcanvas-->
-          <app-stand-details *ngIf="veicolo.id != undefined" [id]="veicolo.id"></app-stand-details>
+          <app-stand-details *ngIf="veicolo.id != undefined" [id]="veicolo.id" class="me-1"></app-stand-details>
           <a [routerLink]="['edit', veicolo.id]"><i class="fa-solid fa-pen-to-square"></i></a>
           <a [routerLink]="['delete', veicolo.id]"><i class="fa-solid fa-trash"></i></a>
         </td>

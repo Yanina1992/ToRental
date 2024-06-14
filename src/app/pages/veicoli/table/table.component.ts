@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { Subscription, endWith } from 'rxjs';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from '../../../services/veicoli.service';
@@ -20,7 +20,6 @@ import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit, OnDestroy, OnChanges {
-
   private subscriptions = new Subscription();
 
   veicoloForm: Veicoli = new Veicoli();
@@ -28,11 +27,11 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   page = 1;
   pageSize = 10;
   veicoli: Veicoli[] = [];
-  veicoliOnInit: Veicoli[] = [];
   collectionSize = 0;
+
   filter = new FormControl('');
 
-  term:string | undefined;
+  term: string | undefined;
 
   myArraySize: number = 0;
   text: string = '';
@@ -63,27 +62,25 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   //Variable to handle validation
   formSubmitted: boolean = false;
 
-  veicoloSuccess:boolean = false;
+  veicoloSuccess: boolean = false;
 
-   //Variable to receive the brand value and populate the model select accordingly
-   selectedMarcaId: number | null = null;
-   selectedCambioId: number | null = null;
-   selectedTipoAsseId: number | null = null;
-   selectedAllestimentoId: number = 0;
-   selectedAlimentazioneId: number = 0;
-   selectedSocietaId: number = 0;
-   selectedDestinazioneUsoId: number = 0;
-   selectedModelloId: number = 0;
-   selectedTipoVeicoloId: number = 0;
-   selectedStatoId:number = 0;
-   selectedDisponibilitaId:number = 0;
+  //Variable to receive the brand value and populate the model select accordingly
+  selectedMarcaId: number | null = null;
+  selectedCambioId: number | null = null;
+  selectedTipoAsseId: number | null = null;
+  selectedAllestimentoId: number = 0;
+  selectedAlimentazioneId: number = 0;
+  selectedSocietaId: number = 0;
+  selectedDestinazioneUsoId: number = 0;
+  selectedModelloId: number = 0;
+  selectedTipoVeicoloId: number = 0;
+  selectedStatoId: number = 0;
+  selectedDisponibilitaId: number = 0;
 
-  constructor(
-    private veicoliSvc: VeicoliService
-  ) {}
+  constructor(private veicoliSvc: VeicoliService) {}
 
   public getAllVeicoli() {
-       this.veicoliSvc
+    this.veicoliSvc
       .getAllWithParams(this.page, this.pageSize, this.text)
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data.reverse();
@@ -96,7 +93,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.spinner = false;
         }
       });
-      }
+  }
   getStatoIconClass(id_stato: number | undefined): string {
     switch (id_stato) {
       case 3:
@@ -130,7 +127,6 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     this.veicoliSvc.refreshVeicoliTable$.subscribe(() => {
       this.getAllVeicoli();
     });
-
     //Selects:
     this.veicoliSvc.getAllTipiVeicoli().subscribe((data: ITipoVeicolo[]) => {
       this.tipiVeicoli = data;
@@ -160,10 +156,9 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     this.veicoliSvc.getAllTipiCambio().subscribe((data: ICambio[]) => {
       this.tipiCambio = data;
     });
-
   }
   ngOnChanges(): void {
-    this.veicoloSuccess  = this.veicoliSvc.successMessage;
+    this.veicoloSuccess = this.veicoliSvc.successMessage;
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
@@ -172,28 +167,24 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     //When values changes in 'filter' form -> serch input
     const subscription = this.filter.valueChanges
       .pipe(
-        startWith(''),
         debounceTime(300),
         map((text) => {
           this.term = text?.trim().toLowerCase() || '';
-          if(this.term == '' && this.term.length == 0){
-          }
           return this.term;
-        }),
-        endWith('')
+        })
       )
       .subscribe((t) => {
         if (t && t.length > 0) {
           this.search(t);
         } else {
           this.collectionSize = this.veicoli[0].arraySize;
-          this.myArraySize = this.collectionSize
+          this.myArraySize = this.collectionSize;
         }
       });
-    this.subscriptions.add(subscription); 
+    this.subscriptions.add(subscription);
   }
   //Search by targa or telaio
- search(text: string) {
+  search(text: string) {
     this.term = text.toLowerCase();
     this.text = this.term;
     this.page = 1;
@@ -202,16 +193,16 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data;
         this.collectionSize = this.veicoli[0].arraySize;
-        this.myArraySize = this.collectionSize
+        this.myArraySize = this.collectionSize;
         return this.text;
-      });    
+      });
   }
   customizedSearch() {
     try {
       this.veicoliSvc
         .getAllWithCustomizedParams(
           this.page,
-          this.pageSize,          
+          this.pageSize,
           this.veicoloForm?.id_tipo_veicolo,
           this.veicoloForm?.id_marca,
           this.veicoloForm?.id_modello,
@@ -222,10 +213,9 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.veicoloForm?.id_tipo_asse,
           this.veicoloForm?.id_tipo_cambio,
           this.veicoloForm?.id_stato,
-          this.veicoloForm?.id_disponibilita,
+          this.veicoloForm?.id_disponibilita
         )
         .subscribe((data: Veicoli[]) => {
-
           this.veicoli = data.reverse();
           this.veicoli.reverse();
           this.setupFilter();
@@ -233,7 +223,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     } catch (error) {
       console.error('Errorrrrr', error);
     }
-   this.scrollToResults()
+    this.scrollToResults();
   }
   scrollToResults() {
     const element = document.getElementById('results-table');
@@ -299,14 +289,14 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
       this.veicoloForm.id_tipo_veicolo = selectedTipoVeicoloId;
     }
   }
-  onStatoChange(selectedStatoId:number){
-    if(selectedStatoId){
+  onStatoChange(selectedStatoId: number) {
+    if (selectedStatoId) {
       this.veicoloForm.id_stato = selectedStatoId;
     }
   }
-  onDisponibilitaChange(selectedDisponibilitaId:number){
-    if(selectedDisponibilitaId) {
+  onDisponibilitaChange(selectedDisponibilitaId: number) {
+    if (selectedDisponibilitaId) {
       this.veicoloForm.id_disponibilita = selectedDisponibilitaId;
     }
   }
- }
+}

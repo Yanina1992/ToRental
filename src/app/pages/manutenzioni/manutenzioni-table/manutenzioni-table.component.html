@@ -1,18 +1,11 @@
 <!--Searching by targa-->
 <form id="search-form">
   <div class="mb-3 row justify-content-center">
-    <label
-      for="table-filtering-search"
-      class="col-xs-3 col-sm-auto col-form-label"
-      >Inserisci la targa del veicolo:</label
-    >
+    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Inserisci la targa del
+      veicolo:</label>
     <div class="col-xs-3 col-sm-auto">
-      <input
-        id="table-filtering-search"
-        class="form-control"
-        type="text"
-        [formControl]="filter"
-      />
+      <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" />
+      <!--(input)="setupFilter()"-->
     </div>
   </div>
 </form>
@@ -27,68 +20,69 @@
 </div>
 
 <div class="table-responsive">
-<table class="table table-striped ms-2">
-  <thead>
-    <tr>
-      <th scope="col">Targa</th>
-      <th scope="col">Nr. id {{ tipo }}</th>
-      <th scope="col">Nr. id. veicolo</th>
-      <th scoper="col">Agenzia</th>
-      <th scope="col">Data pagamento</th>
-      <th scope="col">Inizio validità</th>
-      <th scope="col">Fine validità</th>
-      <th scope="col">Importo</th>
-      <th scope="col">Polizza</th>
-      <th scoper="col">Note</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr *ngFor="let manutenzione of manutenzioniToShow">
-      <td>{{ manutenzione.targa }}</td>
-      <td>{{ manutenzione.id }}</td>
-      <td>{{ manutenzione.id_veicolo }}</td>
-      <td>{{ manutenzione.agenzia }}</td>
-      <td>{{ manutenzione.data_pagamento }}</td>
-      <td>{{ manutenzione.inizio_validita }}</td>
-      <td>{{ manutenzione.fine_validita }}</td>
-      <td>€{{ manutenzione.importo }}</td>
-      <td>{{ manutenzione.polizza }}</td>
-      <td>{{ manutenzione.note }}</td>
-      <td class="d-flex justify-content-between">
-        <a [routerLink]="['manutenzioni-details', manutenzione.id]"
-          ><i class="fa-solid fa-circle-info"></i
-        ></a>
-
-        <a [routerLink]="['manutenzioni-edit', manutenzione.id]"
-          ><i class="fa-solid fa-pen-to-square"></i
-        ></a>
-        <a [routerLink]="['manutenzioni-delete', manutenzione.id]"
-          ><i class="fa-solid fa-trash"></i
-        ></a>
-      </td>
-    </tr>
-  </tbody>
-</table>
- </div>
+  <table class="table table-striped ms-2">
+    <thead>
+      <tr>
+        <th scope="col" class="text-center">Targa</th>
+        <th scope="col" class="text-center">Telaio</th>
+        <th scope="col" class="text-center">Nr. id {{ tipo }}</th>
+        <th scope="col" class="text-center">Nr. id. veicolo</th>
+        <th scope="col" class="text-center">Agenzia</th>
+        <th scope="col" class="text-center">Data pagamento</th>
+        <th scope="col" class="text-center">Inizio validità</th>
+        <th scope="col" class="text-center">Fine validità</th>
+        <th scope="col" class="text-center">Importo</th>
+        <th scope="col" class="text-center">Polizza</th>
+        <th scope="col" class="text-center">Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let manutenzione of manutenzioni">
+        <td *ngIf="manutenzione.targa != null" class="text-truncate text-center">{{ manutenzione.targa }}&nbsp;</td>
+        <td *ngIf="manutenzione.targa == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="manutenzione.telaio != null" class="text-truncate text-center">{{ manutenzione.telaio }}&nbsp;</td>
+        <td *ngIf="manutenzione.telaio == null" class="text-center"> - &nbsp;</td>
+        <td class="text-truncate text-center">{{ manutenzione.id }}&nbsp;</td>
+        <td *ngIf="manutenzione.id_veicolo != null" class="text-center text-truncate">{{ manutenzione.id_veicolo
+          }}&nbsp;</td>
+        <td *ngIf="manutenzione.id_veicolo == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="manutenzione.agenzia != null" class="text-truncate text-center">{{ manutenzione.agenzia }}&nbsp;</td>
+        <td *ngIf="manutenzione.agenzia == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="manutenzione.data_pagamento != null" class="text-truncate text-center">{{ manutenzione.data_pagamento
+          | slice:0:10 }}&nbsp;</td>
+        <td *ngIf="manutenzione.data_pagamento == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="manutenzione.inizio_validita != null" class="text-truncate text-center">{{
+          manutenzione.inizio_validita | slice:0:10 }}&nbsp;</td>
+        <td *ngIf="manutenzione.inizio_validita == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="manutenzione.fine_validita != null" class="text-truncate text-center">{{ manutenzione.fine_validita |
+          slice:0:10 }}&nbsp;</td>
+        <td *ngIf="manutenzione.fine_validita == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="manutenzione.importo != null" class="text-truncate text-center">{{ manutenzione.importo }}€&nbsp;
+        </td>
+        <td *ngIf="manutenzione.importo == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="manutenzione.polizza != null" class="text-truncate text-center">{{ manutenzione.polizza }}&nbsp;</td>
+        <td *ngIf="manutenzione.polizza == null" class="text-center"> - &nbsp;</td>
+        <td *ngIf="manutenzione.note != null" class="text-truncate text-center">{{ manutenzione.note }}&nbsp;</td>
+        <td *ngIf="manutenzione.note == null" class="text-center"> - &nbsp;</td>
+        <td class="d-flex">
+          <a [routerLink]="['manutenzioni-details', manutenzione.id]"><i class="fa-solid fa-circle-info"></i></a>
+          <a [routerLink]="['manutenzioni-edit', manutenzione.id]"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a [routerLink]="['manutenzioni-delete', manutenzione.id]"><i class="fa-solid fa-trash"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <!--Pagination-->
 <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
-  <ngb-pagination
-    [collectionSize]="collectionSize"
-    [(page)]="page"
-    [pageSize]="pageSize"
-    (pageChange)="refreshManutenzioni()"
-    [maxSize]="4"
-    [rotate]="true"
-    [boundaryLinks]="true"
-    [directionLinks]="true"
-    id="pag"
-  >
+  <ngb-pagination [collectionSize]="myArraySize" [(page)]="page" [pageSize]="pageSize"
+    (pageChange)="getAllManutenzioni()" [maxSize]="4" [rotate]="true" [boundaryLinks]="true" [directionLinks]="true"
+    id="pag">
     >
   </ngb-pagination>
 
-  <select
+  <!--<select
     class="form-select"
     style="width: auto"
     [(ngModel)]="pageSize"
@@ -98,9 +92,9 @@
     <option [ngValue]="2">Visualizza 2 manutenzioni per pagina</option>
     <option [ngValue]="4">Visualizza 4 manutenzioni per pagina</option>
     <option [ngValue]="6">Visualizza 6 manutenzioni per pagina</option>
-  </select>
+  </select>-->
 </div>
 
 <hr />
-   <!--Create-->
-    <a class="btn btn-primary my-btn" routerLink='./create-manutenzione'>Crea</a>
+<!--Create-->
+<a class="btn btn-primary my-btn" routerLink='./create-manutenzione'>Nuova {{ tipo }}</a>

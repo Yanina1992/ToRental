@@ -53,22 +53,20 @@ h2{
 }
 
 form {
-  width: 100%;
   border: solid 1px gainsboro;
   padding: 2em;
   background-color: white;
   border-top: 0;
   border-right: 0;
+  margin: 2em;
 }
 
 .my-btn {
   border: 0 !important;
-  //background: linear-gradient(to right, #2843F0, #779EB6);
   background: #EC7801 !important;
   color: white !important;
   font-family: "Poppins", sans-serif !important;
   font-weight: 700 !important;
-  //width: -moz-available;
   width:inherit;
   max-width: -webkit-fill-available;
   max-width: -moz-available;
@@ -82,12 +80,6 @@ ul {
   border: 0 !important;
   width: fit-content;
 }
-
-/*Form*/
-form {
-  margin: 2em;
-}
-//---------------------
 i{
   color: rgb(0 0 36) !important;
 }
@@ -104,22 +96,5 @@ svg{
 .spinner-border{
   width: 5em !important;
   height: 5em !important;
-}
-
-@media screen and (min-width: 476px) {
-}
-
-@media screen and (min-width: 576px) {
-}
-
-@media screen and (min-width: 768px) {
-}
-
-@media screen and (min-width: 992px) {
-}
-
-@media screen and (min-width: 1200px) {
-}
-@media screen and (min-width: 1400px) {
 }
 

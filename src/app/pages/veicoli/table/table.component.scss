@@ -8,6 +8,9 @@
 #spinner{
     color:#EC7801;
 }
+#cerca{
+    width: -webkit-fill-available;
+}
 i{
     margin: 0.2em;
 }
@@ -17,13 +20,11 @@ i{
 .form-select{
     width: fit-content !important;
 }
-
 #my-form{
    border-top: 0;
    border-right: 0;
    max-width: -webkit-fill-available;
 }
-
 .my-orange-icon{
     color:#ffa200 !important;
 }
@@ -36,10 +37,7 @@ i{
 .my-grey-icon{
     color: grey !important;
 }
-
 h3{
     text-align: center;
     margin: 1em;
 }
-
-

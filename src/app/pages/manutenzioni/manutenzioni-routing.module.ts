@@ -44,6 +44,5 @@ const routes: Routes =
 export class ManutenzioniRoutingModule {
   constructor(router: Router) {
     const replacer = (key: any, value: { name: any; }) => (typeof value === 'function') ? value.name : value;
-    console.log('Routes: ', JSON.stringify(router.config, replacer, 2));
   }
 }

@@ -9,6 +9,8 @@ export interface IManutenzione {
     importo:number;
     polizza:string;
     targa:string;
+    telaio?:string;
     tipo_scadenza:any;
     note:string;
+    arraySize?: number;
 }

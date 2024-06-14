@@ -29,10 +29,13 @@ export class ServizioService {
     return this._refreshTable$;
   }
 
-  getAll(firstParam:string): Observable<IManutenzione[]> {
-    return this.http.get<IManutenzione[]>(this.url + `/` + firstParam);
+  getAllWithParams(firstParam: string | null, page: number, pageSize: number, text?: string): Observable<IManutenzione[]> {
+    // Costruisci l'URL con template literals
+    const url = `${this.url}/${firstParam}?page=${page}&pageSize=${pageSize}&search=${text || ''}`;
+    return this.http.get<IManutenzione[]>(url);
   }
-
+  
+//(this.url + `/` + firstParam)
   getById(firstParam: string, id: number): Observable<IManutenzione> {
     return this.http.get<IManutenzione>(`${this.url}/${firstParam}/${id}`);
   }

@@ -139,6 +139,7 @@
         <div class="card card-body">
 
           <!--Ok-->
+          <h5>Regolari</h5>
           <div *ngIf="kListOk && kListOk.length > 0">
             <div *ngFor="let k of kListOk; let i = index">
 
@@ -158,19 +159,19 @@
                     </p>
                     <p class="fst-italic">
                       Data pagamento:
-                      <span *ngIf="obj.data_pagamento != null" class="fst-normal fw-bold">{{ obj.data_pagamento
-                        }}</span>
+                      <span *ngIf="obj.data_pagamento != null" class="fst-normal fw-bold">{{ obj.data_pagamento | slice:0:10 }}
+                      </span>
                       <span *ngIf="obj.data_pagamento == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">
                       Inizio validità:
-                      <span *ngIf="obj.inizio_validita != null" class="fst-normal fw-bold">{{ obj.inizio_validita
+                      <span *ngIf="obj.inizio_validita != null" class="fst-normal fw-bold">{{ obj.inizio_validita | slice:0:10
                         }}</span>
                       <span *ngIf="obj.inizio_validita == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">
                       Fine validità:
-                      <span *ngIf="obj.fine_validita != null" class="fst-normal fw-bold">{{ obj.fine_validita }}</span>
+                      <span *ngIf="obj.fine_validita != null" class="fst-normal fw-bold">{{ obj.fine_validita | slice:0:10 }}</span>
                       <span *ngIf="obj.fine_validita == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">
@@ -197,6 +198,7 @@
           <br>
 
           <!--Scaduto-->
+          <h5>Irregolari</h5>
           <div *ngIf="kListScaduto && kListScaduto.length > 0">
             <div *ngFor="let k of kListScaduto; let i = index">
 
@@ -216,24 +218,24 @@
                     </p>
                     <p class="fst-italic">
                       Data pagamento:
-                      <span *ngIf="obj.data_pagamento != null" class="fst-normal fw-bold">{{ obj.data_pagamento
+                      <span *ngIf="obj.data_pagamento != null" class="fst-normal fw-bold">{{ obj.data_pagamento | slice:0:10
                         }}</span>
                       <span *ngIf="obj.data_pagamento == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">
                       Inizio validità:
-                      <span *ngIf="obj.inizio_validita != null" class="fst-normal fw-bold">{{ obj.inizio_validita
+                      <span *ngIf="obj.inizio_validita != null" class="fst-normal fw-bold">{{ obj.inizio_validita | slice:0:10
                         }}</span>
                       <span *ngIf="obj.inizio_validita == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">
                       Fine validità:
-                      <span *ngIf="obj.fine_validita != null" class="fst-normal fw-bold">{{ obj.fine_validita }}</span>
+                      <span *ngIf="obj.fine_validita != null" class="fst-normal fw-bold">{{ obj.fine_validita | slice:0:10 }}</span>
                       <span *ngIf="obj.fine_validita == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">
                       Importo:
-                      <span *ngIf="obj.importo != null" class="fst-normal fw-bold">{{ obj.importo }}</span>
+                      <span *ngIf="obj.importo != null" class="fst-normal fw-bold">{{ obj.importo }}€</span>
                       <span *ngIf="obj.importo == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">
@@ -256,6 +258,7 @@
           <br>
 
           <!--Sospeso-->
+          <h5>Sospesi</h5>
           <div *ngIf="kListSospeso && kListSospeso.length > 0">
             <div *ngFor="let k of kListSospeso; let i = index">
 
@@ -275,25 +278,27 @@
                     </p>
                     <p class="fst-italic">
                       Data pagamento:
-                      <span *ngIf="obj.data_pagamento != null" class="fst-normal fw-bold">{{ obj.data_pagamento
-                        }}</span>
+                      <span *ngIf="obj.data_pagamento != null && k[1] != 'Multa' && k[1] != 'Sinistro' " class="fst-normal fw-bold">{{ obj.data_pagamento | slice:0:10 }}
+                        </span>
+                        <span *ngIf="k[1] == 'Multa' || k[2] == 'Sinistro' ">{{ obj.data_pagamento }}</span>
                       <span *ngIf="obj.data_pagamento == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">
                       Inizio validità:
-                      <span *ngIf="obj.inizio_validita != null" class="fst-normal fw-bold">{{ obj.inizio_validita
-                        }}</span>
-                      <span *ngIf="obj.inizio_validita == null"> - &nbsp;</span>
+                      <span *ngIf="obj.inizio_validita != null && k[1] != 'Multa' && k[1] != 'Sinistro' " class="fst-normal fw-bold">{{ obj.inizio_validita | slice:0:10 }}
+                      </span>
+                      <span *ngIf="k[1] == 'Multa' || k[2] == 'Sinistro' ">{{ obj.inizio_validita }}</span>
+                    <span *ngIf="obj.inizio_validita == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">
                       Fine validità:
-                      <span *ngIf="obj.fine_validita != null" class="fst-normal fw-bold">{{ obj.fine_validita
-                        }}</span>
-                      <span *ngIf="obj.fine_validita == null"> - &nbsp;</span>
-                    </p>
+                      <span *ngIf="obj.fine_validita != null && k[1] != 'Multa' && k[1] != 'Sinistro' " class="fst-normal fw-bold">{{ obj.fine_validita | slice:0:10 }}
+                      </span>
+                      <span *ngIf="k[1] == 'Multa' || k[2] == 'Sinistro' ">{{ obj.fine_validita }}</span>
+                    <span *ngIf="obj.fine_validita == null"> - &nbsp;</span>
                     <p class="fst-italic">
                       Importo:
-                      <span *ngIf="obj.importo != null" class="fst-normal fw-bold">{{ obj.importo }}</span>
+                      <span *ngIf="obj.importo != null" class="fst-normal fw-bold">{{ obj.importo }} €</span>
                       <span *ngIf="obj.importo == null"> - &nbsp;</span>
                     </p>
                     <p class="fst-italic">

@@ -28,7 +28,11 @@ export class StandDetailsComponent {
   kListScaduto: any[] = [];
   kListSospeso: any[] = [];
   kListDaNonMostrare: any[] = [];
-  
+
+  format = 'shortDate';
+  timezone = 'Europe/Rome';
+  locale = 'it-IT';
+
   constructor(
     private offcanvasService: NgbOffcanvas,
     private veicoliSvc: VeicoliService
@@ -41,19 +45,18 @@ export class StandDetailsComponent {
       if (this.veicolo) {
         this.veicolo.k.forEach((el) => {
           const status = el[0];
-            if (status == 'OK') {
-              this.kListOk.push(el);      
-            } else if (status == 'SCADUTO') {
-              this.kListScaduto.push(el);
-            } else if (status == 'SOSPESO') {
-              this.kListSospeso.push(el);
-            } else if (status == 'DA NON MOSTRARE') {
-              this.kListDaNonMostrare.push(el);
-            }
+          if (status == 'OK') {
+            this.kListOk.push(el);
+          } else if (status == 'SCADUTO') {
+            this.kListScaduto.push(el);
+          } else if (status == 'SOSPESO') {
+            this.kListSospeso.push(el);
+          } else if (status == 'DA NON MOSTRARE') {
+            this.kListDaNonMostrare.push(el);
+          }
         });
       }
       console.log(this.veicolo);
-      
     });
   }
 }
