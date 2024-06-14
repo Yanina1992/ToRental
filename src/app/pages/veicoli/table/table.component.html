@@ -390,7 +390,7 @@
         </td>
         <td class="d-flex">
           <!--Offcanvas-->
-          <app-stand-details *ngIf="veicolo.id != undefined" [id]="veicolo.id" class="me-1"></app-stand-details>
+          <app-stand-details *ngIf="veicolo.id != undefined" [id]="veicolo.id"></app-stand-details>
           <a [routerLink]="['edit', veicolo.id]"><i class="fa-solid fa-pen-to-square"></i></a>
           <a [routerLink]="['delete', veicolo.id]"><i class="fa-solid fa-trash"></i></a>
         </td>

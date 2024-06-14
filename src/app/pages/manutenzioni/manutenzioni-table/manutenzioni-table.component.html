@@ -5,7 +5,6 @@
       veicolo:</label>
     <div class="col-xs-3 col-sm-auto">
       <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" />
-      <!--(input)="setupFilter()"-->
     </div>
   </div>
 </form>
@@ -23,7 +22,8 @@
   <table class="table table-striped ms-2">
     <thead>
       <tr>
-        <th scope="col" class="text-center">Targa</th>
+        <th scope="col" class="text-center">Targa revisione</th>
+        <th scope="col" class="text-center">Targa attuale</th>
         <th scope="col" class="text-center">Telaio</th>
         <th scope="col" class="text-center">Nr. id {{ tipo }}</th>
         <th scope="col" class="text-center">Nr. id. veicolo</th>
@@ -38,8 +38,12 @@
     </thead>
     <tbody>
       <tr *ngFor="let manutenzione of manutenzioni">
-        <td *ngIf="manutenzione.targa != null" class="text-truncate text-center">{{ manutenzione.targa }}&nbsp;</td>
+        <td *ngIf="manutenzione.targa != null" class="text-truncate text-center text-primary">{{ manutenzione.targa }}&nbsp;</td>
         <td *ngIf="manutenzione.targa == null" class="text-center"> - &nbsp;</td>
+        <!--targa revisione > da array-->
+
+         <td class="text-center">{{ manutenzione.targa_attuale }}</td>
+
         <td *ngIf="manutenzione.telaio != null" class="text-truncate text-center">{{ manutenzione.telaio }}&nbsp;</td>
         <td *ngIf="manutenzione.telaio == null" class="text-center"> - &nbsp;</td>
         <td class="text-truncate text-center">{{ manutenzione.id }}&nbsp;</td>
@@ -65,7 +69,11 @@
         <td *ngIf="manutenzione.note != null" class="text-truncate text-center">{{ manutenzione.note }}&nbsp;</td>
         <td *ngIf="manutenzione.note == null" class="text-center"> - &nbsp;</td>
         <td class="d-flex">
+                
+          <!--Offcanvas
           <a [routerLink]="['manutenzioni-details', manutenzione.id]"><i class="fa-solid fa-circle-info"></i></a>
+          -->
+          <app-stand-manutenzioni-details *ngIf="manutenzione.id" [id]="manutenzione.id" class="me-1"></app-stand-manutenzioni-details>
           <a [routerLink]="['manutenzioni-edit', manutenzione.id]"><i class="fa-solid fa-pen-to-square"></i></a>
           <a [routerLink]="['manutenzioni-delete', manutenzione.id]"><i class="fa-solid fa-trash"></i></a>
         </td>

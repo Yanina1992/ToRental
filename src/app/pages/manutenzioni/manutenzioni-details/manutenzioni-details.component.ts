@@ -10,17 +10,17 @@ import { ServizioService } from 'src/app/services/servizio.service';
 })
 export class ManutenzioniDetailsComponent implements OnInit {
 
-  manutenzione:IManutenzione | undefined;
+  /*manutenzione:IManutenzione | undefined;
   tipo:string = '';
 
   constructor(
     private svc:ServizioService,
     private route:ActivatedRoute
-  ){}
+  ){}*/
 
   ngOnInit(){
 
-    this.route.params.subscribe((params) => {
+    /*this.route.params.subscribe((params) => {
       let firstParam = params['tipo'];
       this.tipo = firstParam;
       let id = params['id'];
@@ -29,7 +29,7 @@ export class ManutenzioniDetailsComponent implements OnInit {
         this.manutenzione = res;
         console.log('manutenzioni details', res)
       })
-    })
+    })*/
 
   }
 }

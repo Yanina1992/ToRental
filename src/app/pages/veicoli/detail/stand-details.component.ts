@@ -2,7 +2,7 @@ import {
   Component,
   TemplateRef,
   ViewEncapsulation,
-  Input,
+  Input
 } from '@angular/core';
 import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
@@ -15,7 +15,7 @@ import { VeicoliService } from 'src/app/services/veicoli.service';
   imports: [CommonModule],
   templateUrl: './stand-details.component.html',
   styleUrls: ['./stand-details.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class StandDetailsComponent {
   @Input() id: number = 0;

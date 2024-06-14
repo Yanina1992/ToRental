@@ -1,3 +1,5 @@
+import { SafeResourceUrl } from "@angular/platform-browser";
+
 export interface IManutenzione {
     agenzia:string;
     anno:number;
@@ -9,8 +11,10 @@ export interface IManutenzione {
     importo:number;
     polizza:string;
     targa:string;
+    targa_attuale?:string;
     telaio?:string;
     tipo_scadenza:any;
     note:string;
     arraySize?: number;
+    targhe?: { attiva: boolean, targa:string , data_immatricolazione: Date}[]; 
 }

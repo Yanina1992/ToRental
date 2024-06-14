@@ -1,0 +1,51 @@
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title">
+      Dettagli
+    </h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body">
+
+    <div class="col">
+      <p class="text-decoration-underline">{{ tipo | uppercase }}</p>
+      <p class="fst-italic" *ngIf="manutenzione">
+        Nr. identificativo: {{ tipo }}: <span class="fst-normal">{{ manutenzione.id }}</span>
+      </p>
+      <p class="fst-italic" *ngIf="manutenzione">
+        Nr. id veicolo:
+        <span class="fst-normal">{{ manutenzione.id_veicolo }}</span>
+      </p>
+      <p class="fst-italic">
+        Targa revisione: <span class="fst-normal">{{ manutenzione?.targa }}</span>
+      </p>
+      <p class="fst-italic">
+        Targa attuale: <span class="fst-normal">{{ manutenzione?.targa_attuale }}</span>
+      </p>
+      <p class="fst-italic">
+        Anno: <span class="fst-normal">{{ manutenzione?.anno }}</span>
+      </p>
+      <p class="fst-italic">
+        Data pagamento: <span class="fst-normal">{{ manutenzione?.data_pagamento | date: 'dd-MM-yyyy' }}</span>
+      </p>
+      <p class="fst-italic">
+        Inizio validità: <span class="fst-normal">{{ manutenzione?.inizio_validita | date: 'dd-MM-yyyy' }}</span>
+      </p>
+      <p class="fst-italic">
+        Fine validità: <span class="fst-normal">{{ manutenzione?.fine_validita | date: 'dd-MM-yyyy' }}</span>
+      </p>
+      <p class="fst-italic">
+        Importo: <span class="fst-normal">{{ manutenzione?.importo }}€</span>
+      </p>
+      <p class="fst-italic">
+        Note: <span class="fst-normal">{{ manutenzione?.note }}</span>
+      </p>
+      <hr/>
+    </div>
+
+  </div>
+</ng-template>
+
+<button class="border-0 bg-transparent pe-0" (click)="openEnd(content)">
+  <i class="fa-solid fa-circle-info"></i>
+</button>

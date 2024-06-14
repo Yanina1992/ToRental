@@ -13,6 +13,7 @@ import { NgbDatepickerModule, NgbTypeaheadModule, NgbPaginationModule } from '@n
 import { RouterModule } from '@angular/router';
 import { CreateManutenzioneComponent } from './create-manutenzione/create-manutenzione.component';
 import { DatepickerComponent } from 'src/app/components/datepicker/datepicker.component';
+import { StandManutenzioniDetailsComponent } from './manutenzione-detail/stand-manutenzioni-details.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { DatepickerComponent } from 'src/app/components/datepicker/datepicker.co
     NgbPaginationModule,
     ReactiveFormsModule,
     RouterModule,
-    DatepickerComponent
+    DatepickerComponent,
+    StandManutenzioniDetailsComponent
   ]
 })
 export class ManutenzioniModule { }
