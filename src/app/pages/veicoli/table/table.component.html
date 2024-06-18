@@ -226,7 +226,7 @@
   </div>
 </div>
 
-<!--Searching by targa-->
+<!--Searching by targa or telaio-->
 <div class="col col-12">
   <form id="search-by-targa">
     <h3>Cerca per targa o telaio</h3>
@@ -399,10 +399,21 @@
   </table>
 </div>
 
+<!--Veicoli not found-->
+<app-no-elements [ngClass]="[veicoloNotFound ? 'd-block' : 'd-none']"></app-no-elements>
+
 <!--Pagination-->
 <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
-  <ngb-pagination [collectionSize]="myArraySize" [(page)]="page" [pageSize]="pageSize" (pageChange)="getAllVeicoli()"
-    [maxSize]="4" [rotate]="true" [boundaryLinks]="true" [directionLinks]="true" id="pag">
+  <ngb-pagination
+  [collectionSize]="myArraySize"
+  [(page)]="page"
+  [pageSize]="pageSize"
+  (pageChange)="getAllVeicoli()"
+  [maxSize]="4"
+  [rotate]="true"
+  [boundaryLinks]="true"
+  [directionLinks]="true"
+  id="pag">
   </ngb-pagination>
 </div>
 <hr />

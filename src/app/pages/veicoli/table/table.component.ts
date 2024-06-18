@@ -19,6 +19,24 @@ import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
+
+/*
+export class Utilities {
+
+  veicoli: Veicoli[] = [];
+  collectionSize = 0;
+
+    getArraySize() {
+
+
+      this.collectionSize = this.veicoli[0].arraySize;
+      this.myArraySize = this.collectionSize;
+    }
+
+}
+    */
+
+
 export class TableComponent implements OnInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription();
 
@@ -64,6 +82,8 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
 
   veicoloSuccess: boolean = false;
 
+  veicoloNotFound: boolean = false;
+
   //Variable to receive the brand value and populate the model select accordingly
   selectedMarcaId: number | null = null;
   selectedCambioId: number | null = null;
@@ -77,7 +97,9 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   selectedStatoId: number = 0;
   selectedDisponibilitaId: number = 0;
 
-  constructor(private veicoliSvc: VeicoliService) {}
+  constructor(private veicoliSvc: VeicoliService) {
+    //super();
+  }
 
   public getAllVeicoli() {
     this.veicoliSvc
@@ -174,14 +196,25 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
         })
       )
       .subscribe((t) => {
+        /*
         if (t && t.length > 0) {
           this.search(t);
         } else {
           this.collectionSize = this.veicoli[0].arraySize;
           this.myArraySize = this.collectionSize;
         }
+          */
+         
+        /*-----------------------------------*/
+        this.search(t);
+        if(this.veicoli.length>0) {
+        this.collectionSize = this.veicoli[0].arraySize;
+        } else {this.collectionSize=0;}
+        this.myArraySize = this.collectionSize;
+        /*-----------------------------------*/
+
       });
-    this.subscriptions.add(subscription);
+    //this.subscriptions.add(subscription);
   }
   //Search by targa or telaio
   search(text: string) {
@@ -192,7 +225,11 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
       .getAllWithParams(this.page, this.pageSize, this.text)
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data;
+        /*-----------------------------------*/
+        if(this.veicoli.length>0) {
         this.collectionSize = this.veicoli[0].arraySize;
+        } else {this.collectionSize=0;}
+        /*-----------------------------------*/
         this.myArraySize = this.collectionSize;
         return this.text;
       });

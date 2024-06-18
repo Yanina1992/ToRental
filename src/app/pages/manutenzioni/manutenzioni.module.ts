@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { CreateManutenzioneComponent } from './create-manutenzione/create-manutenzione.component';
 import { DatepickerComponent } from 'src/app/components/datepicker/datepicker.component';
 import { StandManutenzioniDetailsComponent } from './manutenzione-detail/stand-manutenzioni-details.component';
+import { NoElementsComponent } from 'src/app/components/alert-messages/no-elements/no-elements.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { StandManutenzioniDetailsComponent } from './manutenzione-detail/stand-m
     ReactiveFormsModule,
     RouterModule,
     DatepickerComponent,
-    StandManutenzioniDetailsComponent
+    StandManutenzioniDetailsComponent,
+    NoElementsComponent
   ]
 })
 export class ManutenzioniModule { }

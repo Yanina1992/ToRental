@@ -38,12 +38,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let manutenzione of manutenzioni">
+        <!--If there are more values for 'manutenzione.targa' given in brackets, it means that those values were triggered by the search, but they are not the license plate valid at the time of the maintenance-->
         <td *ngIf="manutenzione.targa != null" class="text-truncate text-center text-primary">{{ manutenzione.targa }}&nbsp;</td>
         <td *ngIf="manutenzione.targa == null" class="text-center"> - &nbsp;</td>
-        <!--targa revisione > da array-->
-
-         <td class="text-center">{{ manutenzione.targa_attuale }}</td>
-
+        <td class="text-center">{{ manutenzione.targa_attuale }}</td>
         <td *ngIf="manutenzione.telaio != null" class="text-truncate text-center">{{ manutenzione.telaio }}&nbsp;</td>
         <td *ngIf="manutenzione.telaio == null" class="text-center"> - &nbsp;</td>
         <td class="text-truncate text-center">{{ manutenzione.id }}&nbsp;</td>
@@ -82,25 +80,22 @@
   </table>
 </div>
 
+<app-no-elements [ngClass]="[veicoloNotFound ? 'd-block' : 'd-none']"></app-no-elements>
+
 <!--Pagination-->
 <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
-  <ngb-pagination [collectionSize]="myArraySize" [(page)]="page" [pageSize]="pageSize"
-    (pageChange)="getAllManutenzioni()" [maxSize]="4" [rotate]="true" [boundaryLinks]="true" [directionLinks]="true"
-    id="pag">
-    >
-  </ngb-pagination>
-
-  <!--<select
-    class="form-select"
-    style="width: auto"
-    [(ngModel)]="pageSize"
-    (ngModelChange)="refreshManutenzioni()"
-    name="pagination"
+  <ngb-pagination
+  [collectionSize]="myArraySize"
+  [(page)]="page"
+  [pageSize]="pageSize"
+  (pageChange)="getAllManutenzioni()"
+  [maxSize]="4"
+  [rotate]="true"
+  [boundaryLinks]="true"
+  [directionLinks]="true"
+  id="pag">
   >
-    <option [ngValue]="2">Visualizza 2 manutenzioni per pagina</option>
-    <option [ngValue]="4">Visualizza 4 manutenzioni per pagina</option>
-    <option [ngValue]="6">Visualizza 6 manutenzioni per pagina</option>
-  </select>-->
+  </ngb-pagination>
 </div>
 
 <hr />

@@ -29,6 +29,7 @@ export class ServizioService {
     return this._refreshTable$;
   }
 
+  notFoundMessage:boolean = false;
   getAllWithParams(firstParam: string | null, page: number, pageSize: number, text?: string): Observable<IManutenzione[]> {
     // Costruisci l'URL con template literals
     const url = `${this.url}/${firstParam}?page=${page}&pageSize=${pageSize}&search=${text || ''}`;

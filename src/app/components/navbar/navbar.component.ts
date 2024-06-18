@@ -30,11 +30,13 @@ export class NavbarComponent implements OnInit {
       this.authSvc.isLoggedIn$.subscribe(isLoggedIn => {
         this.isNavbar = isLoggedIn;
         this.cdr.detectChanges();
+        //console.log('is logged in', isLoggedIn);
+        
       })
   }
 
   ngAfterViewInit():void{
-      this.changeAreaExpanded();
+      //this.changeAreaExpanded();
       this.cdr.detectChanges();
   }
 

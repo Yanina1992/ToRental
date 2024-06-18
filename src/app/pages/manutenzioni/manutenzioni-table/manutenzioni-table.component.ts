@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, debounceTime, map } from 'rxjs';
+import { Subscription, debounceTime, map, take } from 'rxjs';
 import { IManutenzione } from 'src/app/interfaces/imanutenzione';
 import { ServizioService } from 'src/app/services/servizio.service';
 
@@ -10,7 +10,7 @@ import { ServizioService } from 'src/app/services/servizio.service';
   templateUrl: './manutenzioni-table.component.html',
   styleUrls: ['./manutenzioni-table.component.scss'],
 })
-export class ManutenzioniTableComponent implements OnInit, OnDestroy {
+export class ManutenzioniTableComponent implements OnInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription();
 
   tipo: string | null = '';
@@ -19,16 +19,21 @@ export class ManutenzioniTableComponent implements OnInit, OnDestroy {
   manutenzioni: IManutenzione[] = [];
   collectionSize: number | undefined;
   filter = new FormControl('');
-  term: string = '';
+  term?: string;
   myArraySize: any;
-  text: string = '';
+  text?: string;
   spinner: boolean | undefined = true;
   formSubmitted: boolean = false;
   manutenzioneSuccess: boolean = false;
   targheAttive: string[] = [];
 
-  constructor(private route: ActivatedRoute, private svc: ServizioService) {}
+  veicoloNotFound: boolean = false;
 
+  constructor(private route: ActivatedRoute, private svc: ServizioService) {}
+  
+  ngOnChanges(): void {
+    this.veicoloNotFound = this.svc.notFoundMessage;
+  }
   //Define the method for calling manutenzioni's list
   public getAllManutenzioni() {
     this.svc
@@ -38,38 +43,15 @@ export class ManutenzioniTableComponent implements OnInit, OnDestroy {
         this.collectionSize = this.manutenzioni[0]?.arraySize ?? 0;
         this.myArraySize = this.collectionSize;
         this.spinner = false;
-
-        //console.log(this.manutenzioni);
-
         this.manutenzioni.forEach((revisione) => {
-          let ultimaData: Date = new Date(0);
           revisione.targhe?.forEach((targa) => {
-            console.log(ultimaData);
             if (targa.attiva) {
-              //this.targheAttive.push(el.targa)
               revisione.targa_attuale = targa.targa;
-
-              /*console.log(targa.data_immatricolazione , ultimaData, new Date(targa.data_immatricolazione).getTime() > ultimaData.getTime(), targa.targa);
-
-              if (revisione.targa_attuale == null) {
-                revisione.targa_attuale = targa.targa;
-                ultimaData = targa.data_immatricolazione;
-              } else {
-                if (
-                  ultimaData == null ||
-                  new Date(targa.data_immatricolazione).getTime() > new Date (ultimaData).getTime()
-                ) {
-                  revisione.targa_attuale = targa.targa;
-                  ultimaData = targa.data_immatricolazione;
-              }}*/
             }
           });
         });
-        //console.log('targheAttive', this.targheAttive)
       });
-    this.setupFilter();
   }
-
   ngOnInit(): void {
     //Get the type of manutenzione
     this.route.paramMap.subscribe((params) => {
@@ -82,11 +64,18 @@ export class ManutenzioniTableComponent implements OnInit, OnDestroy {
     this.getAllManutenzioni();
     this.setupFilter();
   }
-  /*ngOnChanges(): void {
-    this.manutenzioneSuccess  = this.svc.successMessage;
-  }*/
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
+  }
+  getArraySize() {
+    if(this.manutenzioni.length > 0) {
+      this.veicoloNotFound = false;
+      return(this.manutenzioni[0].arraySize);
+    } else {
+      this.veicoloNotFound = true;
+      console.log('this.veicoloNotFound', this.veicoloNotFound);
+      return(0);
+    }
   }
   setupFilter() {
     const subscription = this.filter.valueChanges
@@ -94,35 +83,27 @@ export class ManutenzioniTableComponent implements OnInit, OnDestroy {
         debounceTime(300),
         map((text) => {
           const term = text ? text.trim().toLowerCase() : '';
-          //console.log('text', text);
           return term;
         })
       )
       .subscribe((t) => {
-        if (t && t.length > 0) {
+          this.text=t;
           this.search(t);
-          //console.log('term', t);
-        } else {
-          this.collectionSize = this.manutenzioni[0]?.arraySize ?? 0;
-          this.myArraySize = this.collectionSize;
-        }
+          console.log (this.manutenzioni.length);     
+          this.myArraySize = this.getArraySize();      
+          console.log('array size',this.myArraySize)
       });
-    this.subscriptions.add(subscription);
   }
   search(text: string) {
     console.log('search text', text);
-
+    console.log('search term', this.term);
     this.page = 1;
-    this.svc
+    const subsc = this.svc
       .getAllWithParams(this.tipo, this.page, this.pageSize, text)
       .subscribe((data: IManutenzione[]) => {
         this.manutenzioni = data;
-        console.log('data', data);
-
-        this.collectionSize = this.manutenzioni.length
-          ? this.manutenzioni[0].arraySize
-          : 0;
-        this.myArraySize = this.collectionSize;
+        this.myArraySize = this.getArraySize();
       });
+      this.subscriptions.add(subsc)
   }
 }

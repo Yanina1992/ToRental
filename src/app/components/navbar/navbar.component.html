@@ -1,23 +1,25 @@
-<nav class="navbar navbar-expand-lg"
+<!--<nav class="navbar navbar-expand-lg"
 [ngClass]="isNavbar ? 'd-flex' : 'bg-dark'"
 >
+
   <div id="fixing-sidebar">
     <div class="container-fluid d-flex">
       <button
-        [ngClass]="buttonClass"
         type="button"
         id="toggle-btn"
         data-bs-toggle="collapse"
         data-bs-target="#navbarNavAltMarkup"
         aria-controls="navbarNavAltMarkup"
-        [attr.aria-expanded]="isMobileSize ? 'true' : 'false'"
         aria-label="Toggle navigation"
+        [ngClass]="buttonClass"
+        [attr.aria-expanded]="isMobileSize ? 'true' : 'false'"
       >
-        <span class="navbar-toggler-icon"></span>
+   
+        <span class="navbar-toggler-icon d-block d-sm-none"></span>
       </button>
       <div [ngClass]="divClass" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <!--Dashboard-->
+          <--Dashboard--
           <div class="icon-link">
             <i class="fa-solid fa-gauge"></i>
             <a
@@ -30,7 +32,7 @@
               Dashboard
             </a>
           </div>
-          <!--Veicoli-->
+          <--Veicoli--
           <div class="icon-link">
             <i class="fa-solid fa-car"></i>
             <a
@@ -41,10 +43,10 @@
               >Veicoli</a
             >
           </div>
-          <!--Alert-->
+          <--Alert--
           <div class="icon-link">
             <i class="fa-solid fa-triangle-exclamation"></i>
-            <!--Dropdown-->
+            <--Dropdown--
             <div class="row">
               <div class="col">
                 <div ngbDropdown class="d-inline-block">
@@ -69,7 +71,7 @@
               </div>
             </div>
           </div>
-          <!--Manutenzione-->
+          <--Manutenzione--
           <div class="icon-link">
             <i class="fa-solid fa-screwdriver-wrench"></i>
             <a
@@ -79,7 +81,7 @@
               (click)="currentPage('Manutenzione')"
               [ngClass]="!isNavbar ? 'disabled' : ''"
             >
-              Manutenzione
+              Manutenzioni
             </a>
           </div>
 
@@ -87,4 +89,31 @@
       </div>
     </div>
   </div>
+</nav>-->
+   <!-------------------------------->
+
+<div *ngIf="isNavbar">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-lg-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item d-lg-flex align-items-lg-center flex-lg-column m-1">
+          <i class="fa-solid fa-gauge"></i>
+          <a class="nav-link" routerLink="../../pages/dashboard" aria-current="page">Dashboard</a>
+        </li>
+        <li class="nav-item d-lg-flex align-items-lg-center flex-lg-column m-1">
+          <i class="fa-solid fa-car"></i>
+          <a class="nav-link" routerLink="../pages/veicoli">Veicoli</a>
+        </li>
+        <li class="nav-item d-lg-flex align-items-lg-center flex-lg-column m-1">
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+          <a class="nav-link" routerLink="../manutenzioni">Manutenzioni</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
+</div>

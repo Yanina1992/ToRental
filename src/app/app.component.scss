@@ -4,21 +4,19 @@ app-header {
   z-index: 3;
   padding-right: 0;
 }
-.col-md-2 {
-  background-color: #08062714;
-  position: relative;
-  z-index: 1;
-  border-right: 0.5px solid grey;
-  box-shadow: 1px -2px 5px 0px;
+#navbar {
+  //background-color: #08062714;
+  //position: relative;
+  //z-index: 1;
+  border-right: 0.5px solid orange;
+  //box-shadow: 1px -2px 5px 0px;
 }
 app-footer{
   padding-right: 0;
 }
-#navbar{
+/*.is-navbar{
   border-right: 1px solid #EC7801;
-}
-@media screen and (max-width: 576px) {
-  #navbar{
-    height: 6vh !important;
-  }  
+}*/
+#overflow{
+  overflow-x: clip;
 }

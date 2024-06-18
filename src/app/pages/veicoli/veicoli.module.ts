@@ -12,6 +12,7 @@ import { EditComponent } from './edit/edit.component';
 import { StandDetailsComponent } from './detail/stand-details.component';
 import { AlertSuccessComponent } from 'src/app/components/alert-messages/alert-success.component';
 import { CreateComponent } from './create/create.component';
+import { NoElementsComponent } from 'src/app/components/alert-messages/no-elements/no-elements.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CreateComponent } from './create/create.component';
     ReactiveFormsModule,
     DatepickerComponent,
     StandDetailsComponent,
-    AlertSuccessComponent
+    AlertSuccessComponent,
+    NoElementsComponent
   ]
 })
 export class VeicoliModule { }

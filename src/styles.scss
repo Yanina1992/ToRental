@@ -1,7 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /*Button
 
-
 https://www.realtimecolors.com/?colors=131516-f5f8fa-3b9bc4-85cfef-fea334&fonts=Poppins-Poppins
 
 ARANCIONE E BLU, SFONDO GRIGIASTRO
@@ -11,7 +10,6 @@ secondary:#779eb65e > blu grigiastro
 accent:#EC7801 > arancione
 icone e link: rgb(0 0 36)*/
 
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 @import "bootstrap/scss/bootstrap";
@@ -20,21 +18,18 @@ html,
 body {
   height: 100%;
 }
-
 body {
   margin: 0;
   font-family: "Poppins", sans-serif !important;
   color: #000000;
   background-color: #F5F5F5 !important;
 }
-
 h1 {
   font-family: "Roboto", sans-serif;
   text-align: center;
   font-weight: 900 !important;
   margin: 1em;
 }
-
 h2, h3, h4, h5{
   font-family: "Roboto", sans-serif;
   font-weight: 500 !important;
@@ -46,12 +41,10 @@ h2{
   font-weight: 700 !important;
   border-bottom: 0;
 }
-
 .my-form {
   display: flex;
   justify-content: center;
 }
-
 form {
   border: solid 1px gainsboro;
   padding: 2em;
@@ -60,7 +53,6 @@ form {
   border-right: 0;
   margin: 2em;
 }
-
 .my-btn {
   border: 0 !important;
   background: #EC7801 !important;
@@ -75,7 +67,6 @@ form {
 .btn:hover {
   background: #ff8206 !important;
 }
-
 ul {
   border: 0 !important;
   width: fit-content;
@@ -83,16 +74,13 @@ ul {
 i{
   color: rgb(0 0 36) !important;
 }
-
 svg{
   width: 20vw;
 }
-
 .table-responsive{
   overflow-x: auto;
   width: 100%;
 }
-
 .spinner-border{
   width: 5em !important;
   height: 5em !important;
