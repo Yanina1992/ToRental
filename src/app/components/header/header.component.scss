@@ -5,6 +5,8 @@ form {
 
 #header {
   background: linear-gradient(45deg, rgb(0 0 36), transparent);
+  //position: fixed;
+  //top: 0;
 }
 
 .search-btn {
@@ -12,39 +14,44 @@ form {
   background-color: transparent;
 }
 
-i{
-      font-size:large;
-      cursor: pointer;
+i {
+  font-size: large;
+  cursor: pointer;
 }
 
-a{
-  color:rgb(0 0 36);
+a {
+  color: rgb(0 0 36);
   font-size: 1rem;
 }
-a:hover{
-  color:   #EC7801;
+
+a:hover {
+  color: #EC7801;
 }
-nav{
-  padding:0;
+
+nav {
+  padding: 0;
   height: 70px;
 }
-svg{
+
+svg {
   width: 220px;
 }
 
-.flex-nowrap{
+.flex-nowrap {
   height: inherit;
   border-bottom: 1px solid #EC7801;
 }
 
-#right-div{
+#right-div {
   height: inherit;
 }
-.container-fluid{
+
+.container-fluid {
   position: fixed;
   top: 0;
 }
-.current-page{
+
+.current-page {
   height: inherit;
   display: flex;
   align-items: flex-end;

@@ -63,6 +63,10 @@ form {
   max-width: -webkit-fill-available;
   max-width: -moz-available;
   margin: 1em;
+
+  width: 100%;
+  max-width: -moz-available;
+  max-width: -webkit-fill-available;
 }
 .btn:hover {
   background: #ff8206 !important;

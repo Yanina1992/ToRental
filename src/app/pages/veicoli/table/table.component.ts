@@ -35,8 +35,6 @@ export class Utilities {
 
 }
     */
-
-
 export class TableComponent implements OnInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription();
 
@@ -178,9 +176,13 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     this.veicoliSvc.getAllTipiCambio().subscribe((data: ICambio[]) => {
       this.tipiCambio = data;
     });
+    
+    this.veicoloSuccess = this.veicoliSvc.successMessage;
+    console.log('success', this.veicoloSuccess);
   }
   ngOnChanges(): void {
-    this.veicoloSuccess = this.veicoliSvc.successMessage;
+    //this.veicoloSuccess = this.veicoliSvc.successMessage;
+    //console.log('success', this.veicoloSuccess);
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
@@ -204,15 +206,19 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.myArraySize = this.collectionSize;
         }
           */
-         
+
         /*-----------------------------------*/
         this.search(t);
-        if(this.veicoli.length>0) {
-        this.collectionSize = this.veicoli[0].arraySize;
-        } else {this.collectionSize=0;}
+        if (this.veicoli.length > 0) {
+          this.collectionSize = this.veicoli[0].arraySize;
+          this.veicoloNotFound = false;
+        } else {
+          this.collectionSize = 0;
+          this.veicoloNotFound = true;
+          console.log('veicolo not found', this.veicoloNotFound);
+        }
         this.myArraySize = this.collectionSize;
         /*-----------------------------------*/
-
       });
     //this.subscriptions.add(subscription);
   }
@@ -226,9 +232,13 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data;
         /*-----------------------------------*/
-        if(this.veicoli.length>0) {
-        this.collectionSize = this.veicoli[0].arraySize;
-        } else {this.collectionSize=0;}
+        if (this.veicoli.length > 0) {
+          this.collectionSize = this.veicoli[0].arraySize;
+          this.veicoloNotFound = false;
+        } else {
+          this.collectionSize = 0;
+          this.veicoloNotFound = true;
+        }
         /*-----------------------------------*/
         this.myArraySize = this.collectionSize;
         return this.text;
@@ -237,9 +247,10 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   customizedSearch() {
     try {
       this.veicoliSvc
-        .getAllWithCustomizedParams(
+        .getAllWithParams(
           this.page,
           this.pageSize,
+          this.text,
           this.veicoloForm?.id_tipo_veicolo,
           this.veicoloForm?.id_marca,
           this.veicoloForm?.id_modello,
@@ -256,6 +267,15 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.veicoli = data.reverse();
           this.veicoli.reverse();
           this.setupFilter();
+          console.log('customized search res', this.veicoli);
+          if (this.veicoli.length > 0) {
+            this.collectionSize = this.veicoli[0].arraySize;
+            this.veicoloNotFound = false;
+          } else {
+            this.collectionSize = 0;
+            this.veicoloNotFound = true;
+          }
+          this.myArraySize = this.collectionSize;
         });
     } catch (error) {
       console.error('Errorrrrr', error);

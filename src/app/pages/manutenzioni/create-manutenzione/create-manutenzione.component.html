@@ -2,7 +2,9 @@
 <form #manutenzioniForm="ngForm">
   <h3>Inserisci i dati richiesti</h3>
 
-  <div class="mb-3">
+  <div class="row row-cols-2 row-cols-md-3">
+
+  <div class="mb-3 col">
     <label for="targa" class="form-label">Targa</label>
     <input
       type="text"
@@ -14,7 +16,7 @@
     />
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 col">
     <label for="anno" class="form-label">Anno</label>
     <input
       type="number"
@@ -26,22 +28,22 @@
     />
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 col">
     <label for="data_pagamento" class="form-label">Data pagamento</label>
     <app-datepicker (dateChange)="handlePagamentoChange($event)"></app-datepicker>
   </div>
   
-  <div class="mb-3">
+  <div class="mb-3 col">
     <label for="inizio_validita" class="form-label">Inizio validità</label>
     <app-datepicker (dateChange)="handleInizioValiditaChange($event)"></app-datepicker>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 col">
     <label for="fine_validita" class="form-label">Fine validità</label>
     <app-datepicker (dateChange)="handleFineValiditaChange($event)"></app-datepicker>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3 col">
     <label for="importo" class="form-label">Importo</label>
     <input
       type="number"
@@ -53,7 +55,7 @@
     />
   </div>
 
-  <!--<div class="mb-3">
+  <!--<div class="mb-3 col">
     <label for="id_veicolo" class="form-label">Nr. id veicolo</label>
     <input
       type="number"
@@ -65,7 +67,7 @@
     />
   </div>-->
 
-  <div class="mb-3">
+  <div class="mb-3 col">
     <label for="note" class="form-label">Note</label>
     <input
       type="text"
@@ -77,9 +79,11 @@
     />
   </div>
 
+</div>
+
 <button
 type="submit"
-class="btn my btn btn-primary"
+class="btn my-btn btn-primary"
 (click)="creaManutenzione()">
   Salva
 </button>

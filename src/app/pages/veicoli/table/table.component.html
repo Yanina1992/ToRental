@@ -408,7 +408,7 @@
   [collectionSize]="myArraySize"
   [(page)]="page"
   [pageSize]="pageSize"
-  (pageChange)="getAllVeicoli()"
+  (pageChange)="customizedSearch()"
   [maxSize]="4"
   [rotate]="true"
   [boundaryLinks]="true"
@@ -417,3 +417,5 @@
   </ngb-pagination>
 </div>
 <hr />
+
+<a class="my-btn btn w-100" routerLink="../create">Crea veicolo</a>

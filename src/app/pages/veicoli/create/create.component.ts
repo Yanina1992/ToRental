@@ -187,6 +187,8 @@ export class CreateComponent {
           (res:any) => {
             console.log('nuovo veicolo:', res);
             this.veicoliSvc.successMessage = true;
+            console.log();
+            
             this.router.navigate(['/pages/veicoli/table']);
           },
           (error:any) => {

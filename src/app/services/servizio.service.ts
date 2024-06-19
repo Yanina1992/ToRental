@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, SimpleChanges } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route } from '@angular/router';
 import { IManutenzione } from '../interfaces/imanutenzione';
 import { BehaviorSubject } from 'rxjs';
 
@@ -21,8 +21,10 @@ export class ServizioService {
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    //private router:Route,
   ) {}
+
 
   private _refreshTable$ = new Subject<void>();
   get refreshTable$() {
@@ -31,7 +33,6 @@ export class ServizioService {
 
   notFoundMessage:boolean = false;
   getAllWithParams(firstParam: string | null, page: number, pageSize: number, text?: string): Observable<IManutenzione[]> {
-    // Costruisci l'URL con template literals
     const url = `${this.url}/${firstParam}?page=${page}&pageSize=${pageSize}&search=${text || ''}`;
     return this.http.get<IManutenzione[]>(url);
   }

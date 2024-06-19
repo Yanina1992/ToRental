@@ -38,13 +38,15 @@ export class VeicoliService {
   }
 
   //CRUD Veicoli
-  getAllWithParams(page:number, pageSize:number, text?:string):Observable<Veicoli[]>{
+  /*getAllWithParams(page:number, pageSize:number, text?:string):Observable<Veicoli[]>{
     return this.http.get<Veicoli[]>(this.veicoliUrl + '?page=' + page + '&pageSize=' + pageSize + '&search=' + text)
-  }
+  }*/
 
-  getAllWithCustomizedParams(
+  //getAllWithCustomizedParams(
+  getAllWithParams(
     page:number,
     pageSize:number,
+    text?:string,
     tipoVeicolo?:number,
     marca?:number,
     modello?:number,
@@ -59,8 +61,10 @@ export class VeicoliService {
   )
     : Observable<Veicoli[]> {
     return this.http.get<Veicoli[]>(
-      this.veicoliUrl + '?page=' + page +
+      this.veicoliUrl +
+      '?page=' + page +
       '&pageSize=' + pageSize +
+      '&search=' + text +
       '&id_tipo_veicolo=' + tipoVeicolo +
       '&id_marca=' + marca +
       '&id_modello=' + modello +
@@ -83,6 +87,7 @@ export class VeicoliService {
     return this.http.post<Veicoli>(this.veicoliUrl, veicoli).pipe(
       tap(() => {
         this._refreshVeicoliTable$.next();
+        this.successMessage = true
       })
     );
   }

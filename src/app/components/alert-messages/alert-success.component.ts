@@ -29,9 +29,9 @@ export class AlertSuccessComponent {
 		this.reset();
 	}
 
-	close(alert: Alert) {
+	/*close(alert: Alert) {
 		this.alerts.splice(this.alerts.indexOf(alert), 1);
-	}
+	}*/
 
 	reset() {
 		this.alerts = Array.from(ALERTS);
