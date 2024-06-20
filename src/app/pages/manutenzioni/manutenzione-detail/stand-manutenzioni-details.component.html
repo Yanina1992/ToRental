@@ -1,44 +1,46 @@
 <ng-template #content let-offcanvas>
   <div class="offcanvas-header">
+    <div class="flex-grow-1">
     <h4 class="offcanvas-title">
-      Dettagli
+      Dettagli {{ tipo }}
     </h4>
+    </div>
     <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
   </div>
   <div class="offcanvas-body">
 
     <div class="col">
-      <p class="text-decoration-underline">{{ tipo | uppercase }}</p>
+      <!--<p class="text-decoration-underline">{{ tipo | uppercase }}</p>-->
       <p class="fst-italic" *ngIf="manutenzione">
-        Nr. identificativo: {{ tipo }}: <span class="fst-normal">{{ manutenzione.id }}</span>
+        Nr. identificativo: <span class="fst-normal">{{ manutenzione.id }}</span>
       </p>
       <p class="fst-italic" *ngIf="manutenzione">
         Nr. id veicolo:
-        <span class="fst-normal">{{ manutenzione.id_veicolo }}</span>
+        <span class="fst-normal fw-bold">{{ manutenzione.id_veicolo }}</span>
       </p>
       <p class="fst-italic">
-        Targa revisione: <span class="fst-normal">{{ manutenzione?.targa }}</span>
+        Targa revisione: <span class="fst-normal fw-bold">{{ manutenzione?.targa }}</span>
       </p>
       <p class="fst-italic">
-        Targa attuale: <span class="fst-normal">{{ manutenzione?.targa_attuale }}</span>
+        Targa attuale: <span class="fst-normal fw-bold">{{ manutenzione?.targa_attuale }}</span>
       </p>
       <p class="fst-italic">
-        Anno: <span class="fst-normal">{{ manutenzione?.anno }}</span>
+        Anno: <span class="fst-normal fw-bold">{{ manutenzione?.anno }}</span>
       </p>
       <p class="fst-italic">
-        Data pagamento: <span class="fst-normal">{{ manutenzione?.data_pagamento | date: 'dd-MM-yyyy' }}</span>
+        Data pagamento: <span class="fst-normal fw-bold">{{ manutenzione?.data_pagamento | date: 'dd-MM-yyyy' }}</span>
       </p>
       <p class="fst-italic">
-        Inizio validità: <span class="fst-normal">{{ manutenzione?.inizio_validita | date: 'dd-MM-yyyy' }}</span>
+        Inizio validità: <span class="fst-normal fw-bold">{{ manutenzione?.inizio_validita | date: 'dd-MM-yyyy' }}</span>
       </p>
       <p class="fst-italic">
-        Fine validità: <span class="fst-normal">{{ manutenzione?.fine_validita | date: 'dd-MM-yyyy' }}</span>
+        Fine validità: <span class="fst-normal fw-bold">{{ manutenzione?.fine_validita | date: 'dd-MM-yyyy' }}</span>
       </p>
       <p class="fst-italic">
-        Importo: <span class="fst-normal">{{ manutenzione?.importo }}€</span>
+        Importo: <span class="fst-normal fw-bold">€{{ manutenzione?.importo }}</span>
       </p>
       <p class="fst-italic">
-        Note: <span class="fst-normal">{{ manutenzione?.note }}</span>
+        Note: <span class="fst-normal fw-bold">{{ manutenzione?.note }}</span>
       </p>
       <hr/>
     </div>

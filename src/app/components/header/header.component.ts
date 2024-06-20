@@ -1,4 +1,5 @@
-import { Component, ChangeDetectorRef, OnInit  } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ServizioService } from 'src/app/services/servizio.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -10,25 +11,28 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  currentPageName:string = '';
-  private subscriptions:Subscription = new Subscription();
-  isLoggedIn:boolean = false;
+  currentPageName: string = '';
+  private subscriptions: Subscription = new Subscription();
+  isLoggedIn: boolean = false;
 
   constructor(
-    private svc:ServizioService,
-    private cdr:ChangeDetectorRef,
-    private authSvc:AuthService
+    private svc: ServizioService,
+    private cdr: ChangeDetectorRef,
+    private authSvc: AuthService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit():void {
+
+  ngOnInit(): void { 
     this.subscriptions.add(
-      this.authSvc.isLoggedIn$.subscribe(isLoggedIn => {
+      this.authSvc.isLoggedIn$.subscribe((isLoggedIn) => {
         this.isLoggedIn = isLoggedIn;
-        if(isLoggedIn){
+        if (isLoggedIn) {
           this.subscriptions.add(
-            this.svc.currentPageName$.subscribe(pageName => {
+            this.svc.currentPageName$.subscribe((pageName) => {
               this.currentPageName = pageName;
-              this.cdr.detectChanges()
+              this.cdr.detectChanges();
             })
           );
         } else {
@@ -36,16 +40,12 @@ export class HeaderComponent implements OnInit {
         }
       })
     );
-    }
+    
+  }
 
-    ngOnDestroy(){
-      this.subscriptions.unsubscribe();
-    }
-  
-  currentPage(page: string) {
-    if(this.isLoggedIn){
-      this.svc.currentPage(page);
-    }
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
   }
 
   /*private checkLoginStatus(){
@@ -64,4 +64,4 @@ export class HeaderComponent implements OnInit {
       this.isLoggedIn = false;
     }
   }*/
-}
+

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ServizioService } from 'src/app/services/servizio.service';
 /*import { VeicoliService } from '../../services/veicoli.service';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
 import { IMarca } from 'src/app/interfaces/options-select/imarca';
@@ -17,7 +19,12 @@ import { Router } from '@angular/router';*/
   templateUrl: './veicoli.component.html',
   styleUrls: ['./veicoli.component.scss'],
 })
-export class VeicoliComponent {
+export class VeicoliComponent implements OnInit{
+  constructor(
+    private router: Router,
+    private svc: ServizioService){}
+
+  label:any;
 /*  veicoloForm: Veicoli = new Veicoli();
   myDate: any;
 
@@ -198,4 +205,14 @@ export class VeicoliComponent {
           }
         );
       }*/
+    ngOnInit(): void {
+      this.readUrl()
     }
+    readUrl():void{
+      let labelToModify = this.router.url
+      this.label = labelToModify.slice(7)
+      
+      this.svc.currentPage(this.label)
+      console.log('url', this.label);
+    }
+      }

@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { AlertService } from 'src/app/services/alert.service';
 import { Chart } from 'chart.js';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { IAlert } from 'src/app/interfaces/ialert';
+import { Router } from '@angular/router';
+import { ServizioService } from 'src/app/services/servizio.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +14,9 @@ import { IAlert } from 'src/app/interfaces/ialert';
 })
 export class DashboardComponent implements OnInit {
   constructor(private alertSvc: AlertService,
-              private http: HttpClient
+              private http: HttpClient,
+              private router: Router,
+              private svc:ServizioService
               ) {}
 
   //CHARTS-------------------------------------------------------------------
@@ -206,8 +210,7 @@ export class DashboardComponent implements OnInit {
   get isTagliandiScaduti(): boolean {
     return this.nTagliandiScaduti > 0;
   }
-
-
+  label:any;
   ngOnInit() {
     //Get all REVISIONI Alert
     this.alertSvc.getAllRevisioniAlert().subscribe((response: any) => {
@@ -380,5 +383,13 @@ export class DashboardComponent implements OnInit {
     });
     //Initialize Line Chart in the ngOnInit method
     //this.initializeLineChart();
+this.readUrl()
+  }
+  readUrl():void{
+    let labelToModify = this.router.url
+    this.label = labelToModify.slice(7)
+    
+    this.svc.currentPage(this.label)
+    console.log('url', this.label);
   }
 }

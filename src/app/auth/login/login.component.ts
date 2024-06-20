@@ -1,24 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { ILogin } from '../interface/ilogin';
 import { Router } from '@angular/router';
+import { ServizioService } from 'src/app/services/servizio.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   formData: ILogin = {
     email: '',
     password: '',
   };
 
+  label:any = '';
+
   formSubmitted: boolean = false;
 
   constructor(private authSvc: AuthService,
               private router: Router,
+              private svc: ServizioService
               ) {}
+  ngOnInit(): void {
+    this.readUrl()
+  }
 
   passwordVisible = false;
 
@@ -43,5 +50,10 @@ export class LoginComponent {
         }
       );
     }
+  }
+
+  readUrl():void{
+    this.svc.currentPage(this.label)
+    console.log('url', this.label);
   }
 }

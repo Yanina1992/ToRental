@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, SimpleChanges } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { IManutenzione } from '../interfaces/imanutenzione';
 import { BehaviorSubject } from 'rxjs';
 
@@ -10,6 +10,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ServizioService {
+
+
   private url: string =  environment.generalEndPoint;
 
   private currentPageNameSubject = new BehaviorSubject<string>('Dashboard');
@@ -17,12 +19,15 @@ export class ServizioService {
 
   currentPage(currentPage:string){
     this.currentPageNameSubject.next(currentPage);
+    /*currentPage = this.router.url
+    console.log('current page from service svc', currentPage);*/
+    
   }
 
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,
-    //private router:Route,
+    private router:Router,
   ) {}
 
 

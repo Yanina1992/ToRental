@@ -17,6 +17,7 @@ import { AuthInterceptorInterceptor } from './auth/auth-interceptor.interceptor'
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { CookieService } from 'ngx-cookie-service';
+import { RouterModule } from '@angular/router';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');

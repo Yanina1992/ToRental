@@ -191,6 +191,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     //When values changes in 'filter' form -> serch input
     const subscription = this.filter.valueChanges
       .pipe(
+        ///forse il tempo è da aumentare...
         debounceTime(300),
         map((text) => {
           this.term = text?.trim().toLowerCase() || '';
@@ -221,6 +222,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
         /*-----------------------------------*/
       });
     //this.subscriptions.add(subscription);
+    
   }
   //Search by targa or telaio
   search(text: string) {
@@ -243,6 +245,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
         this.myArraySize = this.collectionSize;
         return this.text;
       });
+      
   }
   customizedSearch() {
     try {
@@ -356,4 +359,17 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
       this.veicoloForm.id_disponibilita = selectedDisponibilitaId;
     }
   }
+
+  /*prova() {
+    setInterval(function(){
+      let formElement = document.getElementById('my-form');
+      if (formElement)
+        {
+        formElement.onsubmit?
+        } else {
+        console.error('Elemento con ID "my-form" non trovato');
+      }
+    }, 0);
+  }*/
+  
 }

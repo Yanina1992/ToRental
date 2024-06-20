@@ -234,7 +234,10 @@
       <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Inserisci la targa o il numero di
         telaio</label>
       <div class="col-xs-3 col-sm-auto">
-        <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" />
+        <!--<input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" onchange="setInterval(function(){
+          document.getElementById('my-form').submit();
+        },0)" />-->
+        <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter"/>
       </div>
     </div>
   </form>
@@ -390,9 +393,9 @@
         </td>
         <td class="d-flex">
           <!--Offcanvas-->
-          <app-stand-details *ngIf="veicolo.id != undefined" [id]="veicolo.id"></app-stand-details>
+          <app-stand-details class="me-1" *ngIf="veicolo.id != undefined" [id]="veicolo.id"></app-stand-details>
           <a [routerLink]="['edit', veicolo.id]"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a [routerLink]="['delete', veicolo.id]"><i class="fa-solid fa-trash"></i></a>
+          <a [routerLink]="['delete', veicolo.id]"><i class="fa-solid fa-trash me-3"></i></a>
         </td>
       </tr>
     </tbody>
@@ -418,4 +421,4 @@
 </div>
 <hr />
 
-<a class="my-btn btn w-100" routerLink="../create">Crea veicolo</a>
+<a class="my-btn btn w-100" routerLink="./create">Crea veicolo</a>

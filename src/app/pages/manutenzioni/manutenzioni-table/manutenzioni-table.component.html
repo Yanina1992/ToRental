@@ -19,7 +19,7 @@
 </div>
 
 <div class="table-responsive">
-  <table class="table table-striped ms-2">
+  <table class="table table-striped ms-2 ms-lg-0">
     <thead>
       <tr>
         <th scope="col" class="text-center">Targa revisione</th>
@@ -73,7 +73,7 @@
           -->
           <app-stand-manutenzioni-details *ngIf="manutenzione.id" [id]="manutenzione.id" class="me-1"></app-stand-manutenzioni-details>
           <a [routerLink]="['manutenzioni-edit', manutenzione.id]"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a [routerLink]="['manutenzioni-delete', manutenzione.id]"><i class="fa-solid fa-trash"></i></a>
+          <a [routerLink]="['manutenzioni-delete', manutenzione.id]"><i class="fa-solid fa-trash me-3"></i></a>
         </td>
       </tr>
     </tbody>
