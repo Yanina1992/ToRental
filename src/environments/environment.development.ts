@@ -33,4 +33,7 @@ export const environment = {
 
   //Assicurazione, Revisione, ecc > CRUD
   generalEndPoint: 'http://dev.backend.torental.bentraining.it',
+
+  //Scadenze
+  scadenzeEndPoint: 'http://dev.backend.torental.bentraining.it/veicolo/scadenze',
 };

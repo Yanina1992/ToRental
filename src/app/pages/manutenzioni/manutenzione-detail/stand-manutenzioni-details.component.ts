@@ -45,7 +45,10 @@ export class StandManutenzioniDetailsComponent {
       this.offcanvasService.open(content, { position: 'end' });
 
       this.svc.getById(firstParam, this.id).subscribe((res) => {
+        //debugger
         this.manutenzione = res;
+        console.log('is firstParam in getById?', firstParam);
+        
         console.log('manutenzioni details', res);
       });
     });

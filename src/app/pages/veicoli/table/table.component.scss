@@ -5,15 +5,15 @@
     padding-bottom: 0;
     margin-bottom: 0;
 }
-#spinner{
-    color:#EC7801;
-}
 #cerca{
     width: -webkit-fill-available;
 }
 i{
     margin: 0.2em;
 }
+i:hover{
+    color:#EC7801 !important;
+  }
 #pag{
     z-index: 0;
 }

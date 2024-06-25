@@ -1,16 +1,19 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, debounceTime, map, take } from 'rxjs';
+import { Subscription, debounceTime, map } from 'rxjs';
 import { IManutenzione } from 'src/app/interfaces/imanutenzione';
 import { ServizioService } from 'src/app/services/servizio.service';
+import { VeicoliService } from 'src/app/services/veicoli.service';
 
 @Component({
   selector: 'app-manutenzioni-table',
   templateUrl: './manutenzioni-table.component.html',
   styleUrls: ['./manutenzioni-table.component.scss'],
 })
-export class ManutenzioniTableComponent implements OnInit, OnDestroy, OnChanges {
+export class ManutenzioniTableComponent
+  implements OnInit, OnDestroy, OnChanges
+{
   private subscriptions = new Subscription();
 
   tipo: string | null = '';
@@ -28,9 +31,15 @@ export class ManutenzioniTableComponent implements OnInit, OnDestroy, OnChanges 
   targheAttive: string[] = [];
 
   veicoloNotFound: boolean = false;
+  readIdFromScadenze = this.veicoliService.idFromScadenze;
 
-  constructor(private route: ActivatedRoute, private svc: ServizioService) {}
-  
+  constructor(
+    private route: ActivatedRoute,
+    private svc: ServizioService,
+    private veicoliService: VeicoliService,
+    private cdr: ChangeDetectorRef
+  ) {}
+
   ngOnChanges(): void {
     this.veicoloNotFound = this.svc.notFoundMessage;
   }
@@ -43,38 +52,57 @@ export class ManutenzioniTableComponent implements OnInit, OnDestroy, OnChanges 
         this.collectionSize = this.manutenzioni[0]?.arraySize ?? 0;
         this.myArraySize = this.collectionSize;
         this.spinner = false;
-        this.manutenzioni.forEach((revisione) => {
-          revisione.targhe?.forEach((targa) => {
+        this.manutenzioni.forEach((e) => {
+          e.targhe?.forEach((targa) => {
             if (targa.attiva) {
-              revisione.targa_attuale = targa.targa;
+              e.targa_attuale = targa.targa;
             }
           });
         });
       });
   }
+
   ngOnInit(): void {
-    //Get the type of manutenzione
-    this.route.paramMap.subscribe((params) => {
-      this.tipo = params.get('tipo');
-    });
-    //Call the method which gets the list of manutenzioni
-    this.svc.refreshTable$.subscribe(() => {
-      this.getAllManutenzioni();
-    });
-    this.getAllManutenzioni();
-    this.setupFilter();
+    this.veicoliService.savedManutenzioni$.subscribe(
+      (manutenzioneFromScadenze) => {
+        if (manutenzioneFromScadenze) {
+          this.manutenzioni = manutenzioneFromScadenze;
+          console.log('man from scad', manutenzioneFromScadenze);
+          console.log(this.manutenzioni);
+          this.cdr.detectChanges();
+          this.spinner = false;
+        } else {
+          //Get the type of manutenzione
+          this.route.paramMap.subscribe((params) => {
+            this.tipo = params.get('tipo');
+          });
+          //Call the method which gets the list of manutenzioni
+          this.svc.refreshTable$.subscribe(() => {
+            this.getAllManutenzioni();
+          });
+          this.getAllManutenzioni();
+          this.setupFilter();
+
+          //Scadenze
+          if (this.readIdFromScadenze) {
+            console.log(this.readIdFromScadenze);
+          }
+        }
+      }
+    );
   }
+
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
   }
   getArraySize() {
-    if(this.manutenzioni.length > 0) {
+    if (this.manutenzioni.length > 0) {
       this.veicoloNotFound = false;
-      return(this.manutenzioni[0].arraySize);
+      return this.manutenzioni[0].arraySize;
     } else {
       this.veicoloNotFound = true;
       console.log('this.veicoloNotFound', this.veicoloNotFound);
-      return(0);
+      return 0;
     }
   }
   setupFilter() {
@@ -87,11 +115,11 @@ export class ManutenzioniTableComponent implements OnInit, OnDestroy, OnChanges 
         })
       )
       .subscribe((t) => {
-          this.text=t;
-          this.search(t);
-          console.log (this.manutenzioni.length);     
-          this.myArraySize = this.getArraySize();      
-          console.log('array size',this.myArraySize)
+        this.text = t;
+        this.search(t);
+        console.log(this.manutenzioni.length);
+        this.myArraySize = this.getArraySize();
+        console.log('array size', this.myArraySize);
       });
   }
   search(text: string) {
@@ -104,6 +132,6 @@ export class ManutenzioniTableComponent implements OnInit, OnDestroy, OnChanges 
         this.manutenzioni = data;
         this.myArraySize = this.getArraySize();
       });
-      this.subscriptions.add(subsc)
+    this.subscriptions.add(subsc);
   }
 }

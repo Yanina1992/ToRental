@@ -12,14 +12,14 @@
     <div class="col">
       <!--<p class="text-decoration-underline">{{ tipo | uppercase }}</p>-->
       <p class="fst-italic" *ngIf="manutenzione">
-        Nr. identificativo: <span class="fst-normal">{{ manutenzione.id }}</span>
+        Nr. identificativo: <span class="fst-normal fw-bold">{{ manutenzione.id }}</span>
       </p>
       <p class="fst-italic" *ngIf="manutenzione">
         Nr. id veicolo:
         <span class="fst-normal fw-bold">{{ manutenzione.id_veicolo }}</span>
       </p>
-      <p class="fst-italic">
-        Targa revisione: <span class="fst-normal fw-bold">{{ manutenzione?.targa }}</span>
+      <p class="fst-italic" *ngIf="manutenzione">
+        Targa revisione: <span class="fst-normal fw-bold">{{ manutenzione.targa }}</span>
       </p>
       <p class="fst-italic">
         Targa attuale: <span class="fst-normal fw-bold">{{ manutenzione?.targa_attuale }}</span>

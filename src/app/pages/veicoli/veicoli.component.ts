@@ -210,9 +210,8 @@ export class VeicoliComponent implements OnInit{
     }
     readUrl():void{
       let labelToModify = this.router.url
-      this.label = labelToModify.slice(7)
-      
+      this.label = labelToModify.slice(7)   
       this.svc.currentPage(this.label)
-      console.log('url', this.label);
+      //console.log('url', this.label);
     }
       }

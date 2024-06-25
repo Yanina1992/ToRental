@@ -256,7 +256,13 @@
     </div>
   </div>
   <!---->
-  <table class="table table-striped">
+  <!--Switch-->
+  <div class="form-check form-switch ms-4">
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" (change)="onSwitchChange($event)">
+    <label class="form-check-label" for="flexSwitchCheckChecked">Cerca su tutte le targhe (anche su quelle dismesse)</label>
+  </div>
+
+  <table class="table table-striped ms-2 ms-lg-0">
     <thead>
       <tr>
         <th scope="col">Nr. id.</th>
@@ -421,4 +427,4 @@
 </div>
 <hr />
 
-<a class="my-btn btn w-100" routerLink="./create">Crea veicolo</a>
+<a class="my-btn btn w-100 me-lg-4" routerLink="./create">Crea veicolo</a>

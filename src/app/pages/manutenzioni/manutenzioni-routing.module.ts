@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { ManutenzioniComponent } from './manutenzioni.component';
-import { ManutenzioniDetailsComponent } from './manutenzioni-details/manutenzioni-details.component';
 import { ManutenzioniEditComponent } from './manutenzioni-edit/manutenzioni-edit.component';
 import { ManutenzioniDeleteComponent } from './manutenzioni-delete/manutenzioni-delete.component';
 import { ManutenzioniTableComponent } from './manutenzioni-table/manutenzioni-table.component';
@@ -16,10 +15,6 @@ const routes: Routes =
   {
     path: ':tipo',
     component: ManutenzioniTableComponent,
-  },
-  {
-    path: ':tipo/manutenzioni-details/:id',
-    component: ManutenzioniDetailsComponent
   },
   {
     path: ':tipo/manutenzioni-edit/:id',

@@ -20,21 +20,15 @@ import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
   styleUrls: ['./table.component.scss'],
 })
 
-/*
-export class Utilities {
-
+/*export class Utilities {
   veicoli: Veicoli[] = [];
   collectionSize = 0;
-
     getArraySize() {
-
-
       this.collectionSize = this.veicoli[0].arraySize;
       this.myArraySize = this.collectionSize;
     }
-
-}
-    */
+}*/
+    
 export class TableComponent implements OnInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription();
 
@@ -44,6 +38,8 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   pageSize = 10;
   veicoli: Veicoli[] = [];
   collectionSize = 0;
+  
+  targa_attiva:boolean = false;
 
   filter = new FormControl('');
 
@@ -101,7 +97,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
 
   public getAllVeicoli() {
     this.veicoliSvc
-      .getAllWithParams(this.page, this.pageSize, this.text)
+      .getAllWithParams(this.page, this.pageSize, this.text, this.targa_attiva)
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data.reverse();
         this.veicoli.reverse();
@@ -109,6 +105,13 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
         this.myArraySize = this.collectionSize;
         this.setupFilter();
 
+        /*this.veicoli.forEach((e)=>{
+          if(e.targa_attiva == false){
+            console.log('oninit targa_attiva == 0', this.veicoli);
+          }
+        })*/
+        
+        
         if (data) {
           this.spinner = false;
         }
@@ -178,7 +181,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     });
     
     this.veicoloSuccess = this.veicoliSvc.successMessage;
-    console.log('success', this.veicoloSuccess);
+    //console.log('success', this.veicoloSuccess);
   }
   ngOnChanges(): void {
     //this.veicoloSuccess = this.veicoliSvc.successMessage;
@@ -230,13 +233,20 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     this.text = this.term;
     this.page = 1;
     this.veicoliSvc
-      .getAllWithParams(this.page, this.pageSize, this.text)
+      .getAllWithParams(this.page, this.pageSize, this.text, this.targa_attiva)
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data;
         /*-----------------------------------*/
         if (this.veicoli.length > 0) {
           this.collectionSize = this.veicoli[0].arraySize;
           this.veicoloNotFound = false;
+
+          /*data.forEach((e)=>{
+            if(e.targa_attiva == false){
+              console.log('targhe non attive', e);
+            }
+          })*/
+          
         } else {
           this.collectionSize = 0;
           this.veicoloNotFound = true;
@@ -254,6 +264,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.page,
           this.pageSize,
           this.text,
+          this.targa_attiva,
           this.veicoloForm?.id_tipo_veicolo,
           this.veicoloForm?.id_marca,
           this.veicoloForm?.id_modello,
@@ -264,13 +275,21 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.veicoloForm?.id_tipo_asse,
           this.veicoloForm?.id_tipo_cambio,
           this.veicoloForm?.id_stato,
-          this.veicoloForm?.id_disponibilita
+          this.veicoloForm?.id_disponibilita 
         )
         .subscribe((data: Veicoli[]) => {
           this.veicoli = data.reverse();
           this.veicoli.reverse();
           this.setupFilter();
+
+          /*this.veicoli.forEach((e) => {
+            if(e.targa_attiva == false){
+              console.log(e);
+            }
+          });*/
+
           console.log('customized search res', this.veicoli);
+
           if (this.veicoli.length > 0) {
             this.collectionSize = this.veicoli[0].arraySize;
             this.veicoloNotFound = false;
@@ -358,6 +377,12 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     if (selectedDisponibilitaId) {
       this.veicoloForm.id_disponibilita = selectedDisponibilitaId;
     }
+  }
+
+  onSwitchChange(event: Event):void{
+    //console.log('it is be false', this.switchToggle);
+    this.targa_attiva = !this.targa_attiva
+    //console.log('it is be true', this.switchToggle);
   }
 
   /*prova() {

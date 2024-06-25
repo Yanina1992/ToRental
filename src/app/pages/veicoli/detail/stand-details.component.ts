@@ -42,6 +42,8 @@ export class StandDetailsComponent {
     this.offcanvasService.open(content, { position: 'end' });
     this.veicoliSvc.getExtraById(this.id).subscribe((res) => {
       this.veicolo = res;
+      console.log('veicolo.k', this.veicolo);
+      
       if (this.veicolo) {
         this.veicolo.k.forEach((el) => {
           const status = el[0];

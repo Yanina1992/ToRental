@@ -1,37 +1,510 @@
 <h2 class="m-4 text-center">Manutenzione</h2>
 <div class="container">
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
 
-<!--<div class="d-grid gap-2 col-6 mx-auto">-->
-  <div class="col">
-  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione']"
-    >Assicurazioni</a
-  >
-</div>
-<div class="col">
-  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'atp']">Atp</a>
-</div>
-  <div class="col">
-  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bollo']">Bolli</a>
-  </div>
-  <div class="col">
-    <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bombole']"
-    >Bombole</a
-  >
-  </div>
-  <div class="col">
-  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'revisione']"
-    >Revisioni</a
-  ></div>
-  <div class="col">
-  <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tachigrafo']"
-    >Tachigrafi</a
-  ></div>
-  <div class="col">
-      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tagliando']"
-    >Tagliandi</a
-  >
-  </div>
+    <!--<div class="d-grid gap-2 col-6 mx-auto">-->
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione']">Assicurazioni</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'atp']">Atp</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bollo']">Bolli</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bombole']">Bombole</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'revisione']">Revisioni</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tachigrafo']">Tachigrafi</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tagliando']">Tagliandi</a>
+    </div>
 
+  </div>
 </div>
+
+<!--Table-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-12">
+      <!--Customized search
+      <form #veicoliForm="ngForm" id="my-form">
+        <h3>Ricerca personalizzata</h3>
+        <div class="row row-cols-1 row-cols-lg-2 row-cols-xxl-3">
+          <--Tipo veicolo--
+          <div class="mb-3 col">
+            <label for="tipo_veicolo_nome" class="form-label">Tipo veicolo</label>
+            <select id="tipo_veicolo_nome" class="form-select" required [(ngModel)]="selectedTipoVeicoloId"
+              (ngModelChange)="onTipeVeicoloChange(selectedTipoVeicoloId)" name="tipo_veicolo_nome"
+              #tipo_veicolo_nome="ngModel">
+              <option selected [value]="0">Seleziona un tipo di veicolo</option>
+              <option *ngFor="let tipoVeicolo of tipiVeicoli" [value]="tipoVeicolo.id">
+                {{ tipoVeicolo.nome }}
+              </option>
+            </select>
+
+            <div *ngIf="selectedTipoVeicoloId == 0 && formSubmitted" class="alert text-danger ps-0">
+              Selezionare una tipologia di veicolo.
+            </div>
+          </div>
+          <--Marca--
+          <div class="mb-3 col">
+            <label for="marca" class="form-label">Marca</label>
+            <select id="marca" class="form-select" required [(ngModel)]="selectedMarcaId"
+              (ngModelChange)="onMarcaChange(selectedMarcaId)" name="marca" #marca="ngModel">
+              <option selected [value]="0">Seleziona una marca</option>
+              <option *ngFor="let marca of marche" [value]="marca.id">
+                {{ marca.nome }}
+              </option>
+            </select>
+
+            <div *ngIf="selectedMarcaId == null && formSubmitted" class="alert text-danger ps-0">
+              Selezionare una marca.
+            </div>
+          </div>
+          <--Modello--
+          <div class="mb-3 col">
+            <label for="modello" class="form-label">Modello</label>
+            <select id="modello" class="form-select" [disabled]="!selectedMarcaId" required
+              [(ngModel)]="selectedModelloId" (ngModelChange)="onModelloChange(selectedModelloId)" name="modello"
+              #modello="ngModel">
+              <option selected [value]="0">Seleziona un modello</option>
+              <option *ngFor="let modello of modelli" [value]="modello.id">
+                {{ modello.nome }}
+              </option>
+            </select>
+
+            <div *ngIf="selectedModelloId == 0 && formSubmitted" class="alert text-danger ps-0">
+              Selezionare un modello.
+            </div>
+          </div>
+          <--Destinazione d'uso--
+          <div class="mb-3 col">
+            <label for="destinazione_uso_nome" class="form-label">Destinazione d'uso</label>
+            <select id="destinazione_uso_nome" class="form-select" [(ngModel)]="selectedDestinazioneUsoId" required
+              (ngModelChange)="
+                onDestinazioneUsoChange(selectedDestinazioneUsoId)
+              " name="destinazioneUso">
+              <option selected [value]="0">
+                Seleziona la destinazione d'uso
+              </option>
+              <option *ngFor="let destinazione of destinazioni" [value]="destinazione.id">
+                {{ destinazione.nome }}
+              </option>
+            </select>
+
+            <div *ngIf="selectedDestinazioneUsoId == 0 && formSubmitted" class="alert text-danger ps-0">
+              Selezionare la destinazione d'uso
+            </div>
+          </div>
+          !--Società--
+          <div class="mb-3 col">
+            <label for="societa_nome" class="form-label">Società</label>
+            <select id="societa_nome" class="form-select" [(ngModel)]="selectedSocietaId" required
+              (ngModelChange)="onSocietaChange(selectedSocietaId)" name="societa">
+              <option selected [value]="0">Seleziona una società</option>
+              <option *ngFor="let societa of societas" [value]="societa.id">
+                {{ societa.nome }}
+              </option>
+            </select>
+
+            <div *ngIf="selectedSocietaId == 0 && formSubmitted" class="alert text-danger ps-0">
+              Selezionare la società proprietaria del veicolo.
+            </div>
+          </div>
+          <--Tipo alimentazione--
+          <div class="mb-3 col">
+            <label for="tipo_alimentazione_nome" class="form-label">Alimentazione</label>
+            <select id="tipo_alimentazione_nome" name="alimentazione" class="form-select"
+              [(ngModel)]="selectedAlimentazioneId" required
+              (ngModelChange)="onAlimentazioneChange(selectedAlimentazioneId)">
+              <option selected [value]="0">
+                Seleziona un tipo di alimentazione
+              </option>
+              <option *ngFor="let tipoAlimentazione of tipiAlimentazione" [value]="tipoAlimentazione.id">
+                {{ tipoAlimentazione.nome }}
+              </option>
+            </select>
+
+            <div *ngIf="selectedAlimentazioneId == 0 && formSubmitted" class="alert text-danger ps-0">
+              Selezionare un tipo di alimentazione.
+            </div>
+          </div>
+          <--Allestimento--
+          <div class="mb-3 col">
+            <label for="tipo_allestimento_nome" class="form-label">Allestimento</label>
+            <select id="tipo_allestimento_nome" class="form-select" [(ngModel)]="selectedAllestimentoId" required
+              (ngModelChange)="onAllestimentoChange(selectedAllestimentoId)" name="allestimento">
+              <option selected [value]="0">
+                Seleziona un tipo di allestimento
+              </option>
+              <option *ngFor="let allestimento of allestimenti" [value]="allestimento.id">
+                {{ allestimento.nome }}
+              </option>
+            </select>
+
+            <div *ngIf="selectedAllestimentoId == 0 && formSubmitted" class="alert text-danger ps-0">
+              Selezionare un tipo di allestimento.
+            </div>
+          </div>
+          <-- Tipo asse--
+          <div class="mb-3 col">
+            <label for="tipo_asse_nome" class="form-label">Tipo asse</label>
+            <select id="tipo_asse_nome" class="form-select" [(ngModel)]="selectedTipoAsseId" required
+              (ngModelChange)="onTipoAsseChange(selectedTipoAsseId)" name="tipoAsse">
+              <option selected [value]="0">Seleziona un tipo di asse</option>
+              <option *ngFor="let tipoAsse of tipiAsse" [value]="tipoAsse.id">
+                {{ tipoAsse.nome }}
+              </option>
+            </select>
+
+            <div *ngIf="selectedTipoAsseId == null && formSubmitted" class="alert text-danger ps-0">
+              Selezionare un tipo di asse.
+            </div>
+          </div>
+          <--Cambio--
+          <div class="mb-3 col">
+            <label for="tipo_cambio_nome" class="form-label">Cambio</label>
+            <select id="tipo_cambio_nome" class="form-select" [(ngModel)]="selectedCambioId" required
+              (ngModelChange)="onCambioChange(selectedCambioId)" name="cambio">
+              <option selected [value]="0">Seleziona un tipo di cambio</option>
+              <option *ngFor="let tipoCambio of tipiCambio" [value]="tipoCambio.id">
+                {{ tipoCambio.nome }}
+              </option>
+            </select>
+
+            <div *ngIf="selectedCambioId == null && formSubmitted" class="alert text-danger ps-0">
+              Selezionare un tipo di cambio.
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row row-cols-1 row-cols-md-2">
+            <div class="col">
+              <--Stato--
+              <div class="mb-3 col d-flex flex-column">
+                <label class="form-label d-block">Stato</label>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="stato" id="irregolare" value="3"
+                    [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)" />
+                  <label class="form-check-label" for="irregolare">Irregolare</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="stato" id="gravementeIrr" value="2"
+                    [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)" />
+                  <label class="form-check-label" for="gravementeIrr">Gravemente irregolare</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="stato" id="regolare" value="1"
+                    [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)" />
+                  <label class="form-check-label" for="regolare">Regolare</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="stato" id="tuttiGliStati" value="0"
+                    [(ngModel)]="selectedStatoId" (ngModelChange)="onStatoChange(selectedStatoId)" />
+                  <label class="form-check-label" for="tuttiGliStati">Tutti gli stati</label>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <--Disponibilità--
+              <div class="mb-3 col d-flex flex-column">
+                <label class="form-label d-block">
+                  Disponibilità
+                </label>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="disponibilita" id="disponibile" value="1"
+                    [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="
+                      onDisponibilitaChange(selectedDisponibilitaId)
+                    " />
+                  <label class="form-check-label" for="disponibile">Disponibile</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="disponibilita" id="nonDisponibile" value="2"
+                    [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="
+                      onDisponibilitaChange(selectedDisponibilitaId)
+                    " />
+                  <label class="form-check-label" for="nonDisponibile">Non disponibile</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="disponibilita" id="tutteLeDisponibilita" value="0"
+                    [(ngModel)]="selectedDisponibilitaId" (ngModelChange)="
+                      onDisponibilitaChange(selectedDisponibilitaId)
+                    " />
+                  <label class="form-check-label" for="tutteLeDisponibilita">Tutte le disponibilità</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="btn my-btn btn-primary" id="cerca" (click)="customizedSearch()">
+          Cerca veicolo
+        </button>
+      </form>-->
+    </div>
+  </div>
 </div>
+
+<!--Searching by targa or telaio
+<div class="col col-12">
+  <form id="search-by-targa">
+    <h3>Cerca per targa o telaio</h3>
+    <div class="mb-3 row justify-content-center">
+      <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Inserisci la targa o il numero di
+        telaio</label>
+      <div class="col-xs-3 col-sm-auto">
+        <--<input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" onchange="setInterval(function(){
+          document.getElementById('my-form').submit();
+        },0)" />--
+        <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter"/>
+      </div>
+    </div>
+  </form>
+</div>-->
+
+<!--Success message if a new Veicolo is add to de table
+<app-alert-success [ngClass]="[veicoloSuccess ? 'd-block' : 'd-none']"></app-alert-success>-->
+
+<!--Table-->
+<div class="table-responsive" id="results-table">
+  <h2 class="m-4 border-bottom">Flotta:</h2>
+  <!--Spinner-->
+  <div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <!---->
+  <!--Switch
+  <div class="form-check form-switch ms-4">
+    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" (change)="onSwitchChange($event)">
+    <label class="form-check-label" for="flexSwitchCheckChecked">Cerca su tutte le targhe (anche su quelle dismesse)</label>
+  </div>-->
+
+  <table class="table table-striped ms-2 ms-lg-0 me-2">
+    <thead>
+      <tr>
+        <th scope="col">Nr. id. veicolo</th>
+        <th scope="col" class="text-center">Targa</th>
+        <th scope="col" class="text-center">Telaio</th>
+
+        <th scope="col" class="text-center">Assicurazione Assistenza Stradale</th>
+        <th scope="col" class="text-center">Assicurazione Cristalli</th>
+        <th scope="col" class="text-center">Assicurazione Furto Incendio</th>
+        <th scope="col" class="text-center">Assicurazione Infortuni Conducente</th>
+        <th scope="col" class="text-center">Assicurazione Kasko</th>
+        <th scope="col" class="text-center">Assicurazione Rca</th>
+        <th scope="col" class="text-center">Atp</th>
+        <th scope="col" class="text-center">Bollo</th>
+        <th scope="col" class="text-center">Bombole</th>
+        <th scope="col" class="text-center">Intervento</th>
+        <th scope="col" class="text-center">Revisione</th>
+        <th scope="col" class="text-center">Tachigrafo</th>
+        <th scope="col" class="text-center">Tagliando</th>
+        <th scope="col" class="text-center">Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let scadenza of scadenze">
+        <td scope="row">{{ scadenza.id }}&nbsp;</td>
+
+        <td *ngIf="scadenza.targa != null" class="text-truncate text-center">
+          {{ scadenza.targa }}&nbsp;
+        </td>
+        <td *ngIf="scadenza.targa == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="scadenza.telaio != null" class="text-truncate text-center">
+          {{ scadenza.telaio }}&nbsp;
+        </td>
+        <td *ngIf="scadenza.telaio == null" class="text-center"> - &nbsp;</td>
+
+
+
+
+
+        
+        <td
+          *ngIf="scadenza.assicurazione_assistenza_stradale != null && scadenza.assicurazione_assistenza_stradale != 'Mai eseguito'"
+          class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'assicurazione_assistenza_stradale']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('assicurazione_assistenza_stradale', scadenza.id, scadenza.id_assicurazione_assistenza_stradale)">
+            {{ scadenza.assicurazione_assistenza_stradale }}&nbsp;
+          </a>
+        </td>
+        <td
+          *ngIf="scadenza.assicurazione_assistenza_stradale != null && scadenza.assicurazione_assistenza_stradale == 'Mai eseguito'"
+          class="text-truncate text-center">
+          {{ scadenza.assicurazione_assistenza_stradale }}&nbsp;</td>
+        <td *ngIf="scadenza.assicurazione_assistenza_stradale == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="scadenza.assicurazione_cristalli != null && scadenza.assicurazione_cristalli != 'Mai eseguito'"
+          class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'assicurazione_cristalli']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('assicurazione_cristalli', scadenza.id, scadenza.id_assicurazione_cristalli)">
+            {{ scadenza.assicurazione_cristalli }}&nbsp;
+          </a>
+        </td>
+        <td *ngIf="scadenza.assicurazione_cristalli != null && scadenza.assicurazione_cristalli == 'Mai eseguito'"
+          class="text-center text-truncate">
+          {{ scadenza.assicurazione_cristalli }}&nbsp;</td>
+        <td *ngIf="scadenza.assicurazione_cristalli == null" class="text-center"> - &nbsp;</td>
+
+        <td
+          *ngIf="scadenza.assicurazione_furto_incendio != null && scadenza.assicurazione_furto_incendio != 'Mai eseguito'"
+          class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'assicurazione_furto_incendio']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('assicurazione_furto_incendio', scadenza.id, scadenza.id_assicurazione_furto_incendio)">
+            {{ scadenza.assicurazione_furto_incendio }}&nbsp;</a>
+        </td>
+        <td
+          *ngIf="scadenza.assicurazione_furto_incendio != null && scadenza.assicurazione_furto_incendio == 'Mai eseguito'"
+          class="text-center text-truncate">
+          {{ scadenza.assicurazione_furto_incendio }}&nbsp;
+        </td>
+        <td *ngIf="scadenza.assicurazione_furto_incendio == null" class="text-center"> - &nbsp;</td>
+
+        <td
+          *ngIf="scadenza.assicurazione_infortuni_conducente != null && scadenza.assicurazione_infortuni_conducente != 'Mai eseguito'"
+          class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'assicurazione_infortuni_conducente']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('assicurazione_infortuni_conducente', scadenza.id, scadenza.id_assicurazione_infortuni_conducente)">
+            {{ scadenza.assicurazione_infortuni_conducente }}&nbsp;
+          </a>
+        </td>
+        <td
+          *ngIf="scadenza.assicurazione_infortuni_conducente != null && scadenza.assicurazione_infortuni_conducente == 'Mai eseguito'"
+          class="text-center text-truncate">
+          {{ scadenza.assicurazione_infortuni_conducente }}&nbsp;</td>
+        <td *ngIf="scadenza.assicurazione_infortuni_conducente == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="scadenza.assicurazione_kasko != null && scadenza.assicurazione_kasko != 'Mai eseguito'"
+          class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'assicurazione_kasko']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('assicurazione_kasko', scadenza.id, scadenza.id_assicurazione_kasko)">
+            {{ scadenza.assicurazione_kasko }}&nbsp;</a>
+        </td>
+        <td *ngIf="scadenza.assicurazione_kasko != null && scadenza.assicurazione_kasko == 'Mai eseguito'"
+          class="text-center text-truncate">
+          {{ scadenza.assicurazione_kasko }}&nbsp;</td>
+        <td *ngIf="scadenza.assicurazione_kasko == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="scadenza.assicurazione_rca != null && scadenza.assicurazione_rca != 'Mai eseguito'"
+          class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'assicurazione_rca']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('assicurazione_rca', scadenza.id, scadenza.id_assicurazione_rca)">
+            {{ scadenza.assicurazione_rca }}&nbsp;
+          </a>
+        </td>
+        <td *ngIf="scadenza.assicurazione_rca != null && scadenza.assicurazione_rca == 'Mai eseguito'"
+          class="text-center text-truncate">
+          {{ scadenza.assicurazione_rca }}&nbsp;</td>
+        <td *ngIf="scadenza.assicurazione_rca == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="scadenza.atp != null && scadenza.atp != 'Mai eseguito'" class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'atp']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('atp', scadenza.id, scadenza.id_atp)">
+            {{ scadenza.atp }}&nbsp;
+          </a>
+        </td>
+        <td *ngIf="scadenza.atp != null && scadenza.atp == 'Mai eseguito'" class="text-center text-truncate">{{
+          scadenza.atp }}&nbsp;</td>
+        <td *ngIf="scadenza.atp == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="scadenza.bollo != null && scadenza.bollo != 'Mai eseguito'" class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'bollo']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('bollo', scadenza.id, scadenza.id_bollo)">
+            {{ scadenza.bollo }}&nbsp;
+          </a>
+        </td>
+        <td *ngIf="scadenza.bollo != null && scadenza.bollo == 'Mai eseguito'" class="text-center text-truncate">
+          {{ scadenza.bollo }} &nbsp;</td>
+        <td *ngIf="scadenza.bollo == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="scadenza.bombole != null && scadenza.bollo != 'Mai eseguito'" class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'bombole']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('bombole', scadenza.id, scadenza.id_bombole)">
+            {{ scadenza.bombole }}&nbsp;
+          </a>
+        </td>
+        <td *ngIf="scadenza.bombole != null && scadenza.bombole == 'Mai eseguito'" class="text-center text-truncate">
+          {{ scadenza.bombole }}&nbsp;</td>
+        <td *ngIf="scadenza.bombole == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="scadenza.intervento != null && scadenza.intervento != 'Mai eseguito'"
+          class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'intervento']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('intervento', scadenza.id, scadenza.id_intervento)">
+            {{ scadenza.intervento }}&nbsp;
+          </a>
+        </td>
+        <td *ngIf="scadenza.intervento != null && scadenza.intervento == 'Mai eseguito'"
+          class="text-center text-truncate">{{ scadenza.intervento }}&nbsp;</td>
+        <td *ngIf="scadenza.intervento == null" class="text-center">- &nbsp;</td>
+
+        <td *ngIf="scadenza.revisione != null && scadenza.revisione != 'Mai eseguito'"
+          class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'revisione']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('revisione', scadenza.id, scadenza.id_revisione)">
+            {{ scadenza.revisione }}&nbsp;
+          </a>
+        </td>
+        <td *ngIf="scadenza.revisione != null && scadenza.revisione == 'Mai eseguito'"
+          class="text-truncate text-center">{{ scadenza.revisione }}&nbsp;</td>
+        <td *ngIf="scadenza.revisione == null" class="text-center"> - &nbsp;</td>
+
+
+        <td *ngIf="scadenza.tachigrafo != null && scadenza.tachigrafo != 'Mai eseguito'"
+          class="text-truncate text-center">
+          <a [routerLink]="['/manutenzioni', 'tachigrafo']" [id]="scadenza.id"
+            (click)="getIdFromScadenze('tachigrafo', scadenza.id, scadenza.id_tachigrafo)">
+            {{ scadenza.tachigrafo }}&nbsp;
+          </a>
+        </td>
+        <td *ngIf="scadenza.tachigrafo != null && scadenza.tachigrafo == 'Mai eseguito'"
+          class="text-center text-truncate">{{ scadenza.tachigrafo }}&nbsp;</td>
+        <td *ngIf="scadenza.tachigrafo == null" class="text-center"> - &nbsp;</td>
+
+
+        <td *ngIf="scadenza.tagliando != null && scadenza.tagliando != 'Mai eseguito'"
+          class="text-truncate text-center">{{ scadenza.tagliando }}&nbsp;</td>
+        <td *ngIf="scadenza.tagliando != null && scadenza.tagliando == 'Mai eseguito'"
+          class="text-truncate text-center">{{ scadenza.tagliando }}&nbsp;</td>
+        <td *ngIf="scadenza.tagliando == null" class="text-center"> - &nbsp;</td>
+
+        <td *ngIf="scadenza.note != null && scadenza.note != undefined && scadenza.note != ''" class="text-truncate text-center">{{ scadenza.note }}&nbsp;</td>
+        <td *ngIf="scadenza.note == null || scadenza.note == undefined || scadenza.note == ''" class="text-center text-truncate"> - &nbsp;</td>
+
+        <!--<td class="d-flex">
+          Offcanvas
+          <app-stand-details class="me-1" *ngIf="veicolo.id != undefined" [id]="veicolo.id"></app-stand-details>
+          <a [routerLink]="['edit', veicolo.id]"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a [routerLink]="['delete', veicolo.id]"><i class="fa-solid fa-trash me-3"></i></a>
+        </td>-->
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Veicoli not found-->
+<app-no-elements [ngClass]="[veicoloNotFound ? 'd-block' : 'd-none']"></app-no-elements>
+
+<!--Pagination-->
+<div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
+  <ngb-pagination [collectionSize]="myArraySize" [(page)]="page" [pageSize]="pageSize" (pageChange)="customizedSearch()"
+    [maxSize]="4" [rotate]="true" [boundaryLinks]="true" [directionLinks]="true" id="pag">
+  </ngb-pagination>
+</div>
+<hr />

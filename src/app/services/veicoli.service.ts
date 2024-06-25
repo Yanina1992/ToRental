@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { Veicoli } from '../classes/veicoli';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
 import { IMarca } from 'src/app/interfaces/options-select/imarca';
@@ -12,12 +12,14 @@ import { IAlimentazione } from 'src/app/interfaces/options-select/ialimentazione
 import { IAllestimento } from 'src/app/interfaces/options-select/iallestimento';
 import { IAsse } from 'src/app/interfaces/options-select/iasse';
 import { ICambio } from 'src/app/interfaces/options-select/icambio';
+import { IScadenze } from '../interfaces/iscadenze';
+import { IManutenzione } from '../interfaces/imanutenzione';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VeicoliService {
-  //Veicoli
+  
   veicoliUrl: string = environment.veicoliEndPoint;
   //Select
   tipoVeicoliUrl: string = environment.tipoVeicoloEndPoint;
@@ -30,6 +32,15 @@ export class VeicoliService {
   tipoAsseUrl: string = environment.tipoAsseEndPoint;
   cambioUrl: string = environment.cambioEndPoint;
 
+  //Scadenze
+  scadenzeEndPoint:string = environment.generalEndPoint;
+  scadenzeUrl:string = environment.scadenzeEndPoint;
+  idFromScadenze:number | undefined;
+
+  //savedManutenzioni:IManutenzione[] = [];
+  private savedManutenzioniSubject = new BehaviorSubject<IManutenzione[]>([]);
+  savedManutenzioni$ = this.savedManutenzioniSubject.asObservable();
+
   constructor(private http: HttpClient) {}
 
   private _refreshVeicoliTable$ = new Subject<void>();
@@ -37,16 +48,17 @@ export class VeicoliService {
     return this._refreshVeicoliTable$;
   }
 
+  //VEICOLI-----------------------------------------------
   //CRUD Veicoli
   /*getAllWithParams(page:number, pageSize:number, text?:string):Observable<Veicoli[]>{
     return this.http.get<Veicoli[]>(this.veicoliUrl + '?page=' + page + '&pageSize=' + pageSize + '&search=' + text)
   }*/
-
-  //getAllWithCustomizedParams(
   getAllWithParams(
     page:number,
     pageSize:number,
     text?:string,
+    targa_attiva?:boolean,
+
     tipoVeicolo?:number,
     marca?:number,
     modello?:number,
@@ -57,7 +69,7 @@ export class VeicoliService {
     tipoAsse?:number,
     cambio?:number,
     stato?:number,
-    disponibilita?:number
+    disponibilita?:number,
   )
     : Observable<Veicoli[]> {
     return this.http.get<Veicoli[]>(
@@ -65,6 +77,7 @@ export class VeicoliService {
       '?page=' + page +
       '&pageSize=' + pageSize +
       '&search=' + text +
+      '&targa_attiva=' + targa_attiva +
       '&id_tipo_veicolo=' + tipoVeicolo +
       '&id_marca=' + marca +
       '&id_modello=' + modello +
@@ -78,7 +91,6 @@ export class VeicoliService {
       '&id_disponibilita=' + disponibilita
     );
   }
-
   getExtraById(id: number): Observable<Veicoli> {
     return this.http.get<Veicoli>(this.veicoliUrl + '/' + id);
   }
@@ -97,7 +109,6 @@ export class VeicoliService {
   delete(veicolo: Veicoli) {
     return this.http.delete(this.veicoliUrl + '/' + veicolo.id);
   }
-
   //Tipo veicolo
   getAllTipiVeicoli(): Observable<ITipoVeicolo[]> {
     return this.http.get<ITipoVeicolo[]>(this.tipoVeicoliUrl);
@@ -133,5 +144,55 @@ export class VeicoliService {
   //Cambio
   getAllTipiCambio(): Observable<ICambio[]> {
     return this.http.get<ICambio[]>(this.cambioUrl);
+  }
+
+  //SCADENZE-----------------------------------------------
+  getScadenze(
+    page:number,
+    pageSize:number,
+    text?:string,
+
+    tipoVeicolo?:number,
+    marca?:number,
+    modello?:number,
+    destinazioneDUso?:number,
+    societa?:number,
+    alimentazione?:number,
+    allestimento?:number,
+    tipoAsse?:number,
+    cambio?:number,
+    stato?:number,
+    disponibilita?:number,
+  ): Observable<IScadenze[]>{
+    return this.http.get<IScadenze[]>(
+      this.scadenzeUrl +
+      '?page=' + page +
+      '&pageSize=' + pageSize +
+      '&search=' + text +
+
+      '&id_tipo_veicolo=' + tipoVeicolo +
+      '&id_marca=' + marca +
+      '&id_modello=' + modello +
+      '&id_destinazione_uso=' + destinazioneDUso +
+      '&id_proprietario=' + societa +
+      '&id_alimentazione=' + alimentazione +
+      '&id_tipo_allestimento=' + allestimento +
+      '&id_tipo_asse=' + tipoAsse +
+      '&id_tipo_cambio=' + cambio +
+      '&id_stato=' + stato +
+      '&id_disponibilita=' + disponibilita
+    );
+  }
+  getScadenzaById(tipo:string, idVeicolo:number, idScadenza:number):Observable<IManutenzione[]>{
+    return this.http.get<IManutenzione[]>(
+      `${this.scadenzeEndPoint}/${tipo}?id_veicolo=${idVeicolo}&id=${idScadenza}`
+    ).pipe(
+      tap((data:IManutenzione[]) => this.saveResFromGetScadenze(data))
+    )
+  }
+  saveResFromGetScadenze(data:IManutenzione[]){
+    this.savedManutenzioniSubject.next(data)
+    console.log('saved manutenzioni in service', data);
+    
   }
 }

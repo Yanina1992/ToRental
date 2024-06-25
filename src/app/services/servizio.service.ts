@@ -11,7 +11,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ServizioService {
 
-
   private url: string =  environment.generalEndPoint;
 
   private currentPageNameSubject = new BehaviorSubject<string>('Dashboard');
@@ -21,7 +20,6 @@ export class ServizioService {
     this.currentPageNameSubject.next(currentPage);
     /*currentPage = this.router.url
     console.log('current page from service svc', currentPage);*/
-    
   }
 
   constructor(
@@ -29,7 +27,6 @@ export class ServizioService {
     private route: ActivatedRoute,
     private router:Router,
   ) {}
-
 
   private _refreshTable$ = new Subject<void>();
   get refreshTable$() {
@@ -46,11 +43,9 @@ export class ServizioService {
   getById(firstParam: string, id: number): Observable<IManutenzione> {
     return this.http.get<IManutenzione>(`${this.url}/${firstParam}/${id}`);
   }
-  
   getExtraById(id: number): Observable<IManutenzione> {
     return this.http.get<IManutenzione>(this.url + id);
   }
-
   create(firstParam:string, element: IManutenzione): Observable<IManutenzione> {
     return this.http
       .post<IManutenzione>(`${this.url}/${firstParam}`, element)
@@ -60,14 +55,12 @@ export class ServizioService {
         })
       );
   }
-
   update(firstParam:string, element: IManutenzione): Observable<IManutenzione> {
     return this.http.put<IManutenzione>(
       this.url + `/${firstParam}/` + element.id,
       element
     );
   }
-
   delete(firstParam:string, element: IManutenzione) {
     return this.http.delete(
       this.url + `/${firstParam}` + `/` + element.id

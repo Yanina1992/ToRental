@@ -79,4 +79,6 @@ export class Veicoli{
   public past:IAlert | undefined;
 
   public k:any [] = [];
+
+  public targa_attiva:boolean = false;
 }
