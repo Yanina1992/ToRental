@@ -32,6 +32,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col col-12">
+      
       <!--Customized search
       <form #veicoliForm="ngForm" id="my-form">
         <h3>Ricerca personalizzata</h3>
@@ -253,11 +254,12 @@
           Cerca veicolo
         </button>
       </form>-->
+
     </div>
   </div>
 </div>
 
-<!--Searching by targa or telaio
+<!--Searching by targa or telaio-->
 <div class="col col-12">
   <form id="search-by-targa">
     <h3>Cerca per targa o telaio</h3>
@@ -265,14 +267,14 @@
       <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Inserisci la targa o il numero di
         telaio</label>
       <div class="col-xs-3 col-sm-auto">
-        <--<input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" onchange="setInterval(function(){
+        <!--<input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" onchange="setInterval(function(){
           document.getElementById('my-form').submit();
-        },0)" />--
+        },0)" />-->
         <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter"/>
       </div>
     </div>
   </form>
-</div>-->
+</div>
 
 <!--Success message if a new Veicolo is add to de table
 <app-alert-success [ngClass]="[veicoloSuccess ? 'd-block' : 'd-none']"></app-alert-success>-->
@@ -295,25 +297,25 @@
 
   <table class="table table-striped ms-2 ms-lg-0 me-2">
     <thead>
-      <tr>
-        <th scope="col">Nr. id. veicolo</th>
-        <th scope="col" class="text-center">Targa</th>
-        <th scope="col" class="text-center">Telaio</th>
+      <tr class="dark-grey">
+        <th scope="col" class="text-center text-truncate">Nr. id. veicolo</th>
+        <th scope="col" class="text-center text-truncate">Targa</th>
+        <th scope="col" class="text-center text-truncate">Telaio</th>
 
-        <th scope="col" class="text-center">Assicurazione Assistenza Stradale</th>
-        <th scope="col" class="text-center">Assicurazione Cristalli</th>
-        <th scope="col" class="text-center">Assicurazione Furto Incendio</th>
-        <th scope="col" class="text-center">Assicurazione Infortuni Conducente</th>
-        <th scope="col" class="text-center">Assicurazione Kasko</th>
-        <th scope="col" class="text-center">Assicurazione Rca</th>
-        <th scope="col" class="text-center">Atp</th>
-        <th scope="col" class="text-center">Bollo</th>
-        <th scope="col" class="text-center">Bombole</th>
-        <th scope="col" class="text-center">Intervento</th>
-        <th scope="col" class="text-center">Revisione</th>
-        <th scope="col" class="text-center">Tachigrafo</th>
-        <th scope="col" class="text-center">Tagliando</th>
-        <th scope="col" class="text-center">Note</th>
+        <th scope="col" class="text-center text-truncate">Assicurazione ass. stradale</th>
+        <th scope="col" class="text-center text-truncate">Assicurazione cristalli</th>
+        <th scope="col" class="text-center text-truncate">Assicurazione furto inc.</th>
+        <th scope="col" class="text-center text-truncate">Assicurazione infortuni cond.</th>
+        <th scope="col" class="text-center text-truncate">Assicurazione kasko</th>
+        <th scope="col" class="text-center text-truncate">Assicurazione rca</th>
+        <th scope="col" class="text-center text-truncate">Atp</th>
+        <th scope="col" class="text-center text-truncate">Bollo</th>
+        <th scope="col" class="text-center text-truncate">Bombole</th>
+        <th scope="col" class="text-center text-truncate">Intervento</th>
+        <th scope="col" class="text-center text-truncate">Revisione</th>
+        <th scope="col" class="text-center text-truncate">Tachigrafo</th>
+        <th scope="col" class="text-center text-truncate">Tagliando</th>
+        <th scope="col" class="text-center text-truncate">Note</th>
       </tr>
     </thead>
     <tbody>
@@ -329,11 +331,6 @@
           {{ scadenza.telaio }}&nbsp;
         </td>
         <td *ngIf="scadenza.telaio == null" class="text-center"> - &nbsp;</td>
-
-
-
-
-
         
         <td
           *ngIf="scadenza.assicurazione_assistenza_stradale != null && scadenza.assicurazione_assistenza_stradale != 'Mai eseguito'"
@@ -432,7 +429,10 @@
           {{ scadenza.bollo }} &nbsp;</td>
         <td *ngIf="scadenza.bollo == null" class="text-center"> - &nbsp;</td>
 
-        <td *ngIf="scadenza.bombole != null && scadenza.bollo != 'Mai eseguito'" class="text-truncate text-center">
+
+
+
+        <td *ngIf="scadenza.bombole != null && scadenza.bombole != 'Mai eseguito'" class="text-truncate text-center">
           <a [routerLink]="['/manutenzioni', 'bombole']" [id]="scadenza.id"
             (click)="getIdFromScadenze('bombole', scadenza.id, scadenza.id_bombole)">
             {{ scadenza.bombole }}&nbsp;
@@ -441,6 +441,9 @@
         <td *ngIf="scadenza.bombole != null && scadenza.bombole == 'Mai eseguito'" class="text-center text-truncate">
           {{ scadenza.bombole }}&nbsp;</td>
         <td *ngIf="scadenza.bombole == null" class="text-center"> - &nbsp;</td>
+
+
+
 
         <td *ngIf="scadenza.intervento != null && scadenza.intervento != 'Mai eseguito'"
           class="text-truncate text-center">

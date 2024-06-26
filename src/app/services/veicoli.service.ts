@@ -57,7 +57,7 @@ export class VeicoliService {
     page:number,
     pageSize:number,
     text?:string,
-    targa_attiva?:boolean,
+    targhe_attive?:boolean,
 
     tipoVeicolo?:number,
     marca?:number,
@@ -77,7 +77,7 @@ export class VeicoliService {
       '?page=' + page +
       '&pageSize=' + pageSize +
       '&search=' + text +
-      '&targa_attiva=' + targa_attiva +
+      '&targhe_attive=' + targhe_attive +
       '&id_tipo_veicolo=' + tipoVeicolo +
       '&id_marca=' + marca +
       '&id_modello=' + modello +

@@ -184,6 +184,74 @@
                       <span *ngIf="obj.polizza != null" class="fst-normal fw-bold">{{ obj.polizza }}</span>
                       <span *ngIf="obj.polizza == null"> - &nbsp;</span>
                     </p>
+
+                    <div *ngIf="k[1] == 'Assicurazione Assistenza Stradale'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_assistenza_stradale']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_assistenza_stradale', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Cristalli'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_cristalli']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_cristalli', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Furto Incendio'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_furto_incendio']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ furto_incendio', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Perdita Valore'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_perdita_valore']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ perdita_valore', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Scatola Nera'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_scatola_nera']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ scatola_nera', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Temporanea'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_temporanea']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ temporanea', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Bollo'">
+                      <a [routerLink]="['/manutenzioni', 'bollo']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('bollo', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Gps'">
+                      <a [routerLink]="['/manutenzioni', 'gps']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('gps', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Multa'">
+                      <a [routerLink]="['/manutenzioni', 'multa']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('multa', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Revisione'">
+                      <a [routerLink]="['/manutenzioni', 'revisione']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('revisione', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Sinistro'">
+                      <a [routerLink]="['/manutenzioni', 'sinistro']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('sinistro', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    
                     <hr>
                   </div>
                 </div>
@@ -243,6 +311,74 @@
                       <span *ngIf="obj.polizza != null" class="fst-normal fw-bold">{{ obj.polizza }}</span>
                       <span *ngIf="obj.polizza == null"> - &nbsp;</span>
                     </p>
+
+                    <div *ngIf="k[1] == 'Assicurazione Assistenza Stradale'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_assistenza_stradale']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_assistenza_stradale', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Cristalli'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_cristalli']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_cristalli', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Furto Incendio'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_furto_incendio']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ furto_incendio', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Perdita Valore'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_perdita_valore']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ perdita_valore', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Scatola Nera'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_scatola_nera']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ scatola_nera', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Temporanea'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_temporanea']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ temporanea', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Bollo'">
+                      <a [routerLink]="['/manutenzioni', 'bollo']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('bollo', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Gps'">
+                      <a [routerLink]="['/manutenzioni', 'gps']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('gps', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Multa'">
+                      <a [routerLink]="['/manutenzioni', 'multa']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('multa', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Revisione'">
+                      <a [routerLink]="['/manutenzioni', 'revisione']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('revisione', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Sinistro'">
+                      <a [routerLink]="['/manutenzioni', 'sinistro']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('sinistro', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+
                     <hr>
                   </div>
                 </div>
@@ -306,6 +442,74 @@
                       <span *ngIf="obj.polizza != null" class="fst-normal fw-bold">{{ obj.polizza }}</span>
                       <span *ngIf="obj.polizza == null"> - &nbsp;</span>
                     </p>
+
+                    <div *ngIf="k[1] == 'Assicurazione Assistenza Stradale'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_assistenza_stradale']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_assistenza_stradale', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Cristalli'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_cristalli']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_cristalli', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Furto Incendio'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_furto_incendio']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ furto_incendio', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Perdita Valore'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_perdita_valore']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ perdita_valore', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Scatola Nera'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_scatola_nera']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ scatola_nera', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Assicurazione Temporanea'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_temporanea']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('assicurazione_ temporanea', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Bollo'">
+                      <a [routerLink]="['/manutenzioni', 'bollo']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('bollo', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Gps'">
+                      <a [routerLink]="['/manutenzioni', 'gps']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('gps', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Multa'">
+                      <a [routerLink]="['/manutenzioni', 'multa']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('multa', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Revisione'">
+                      <a [routerLink]="['/manutenzioni', 'revisione']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('revisione', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+                    <div *ngIf="k[1] == 'Sinistro'">
+                      <a [routerLink]="['/manutenzioni', 'sinistro']" [id]="veicolo.id"
+                      (click)="getIdFromScadenze('sinistro', veicolo.id ? veicolo.id : 0, obj.id ? obj.id : 0)">
+                      Più info
+                    </a>
+                    </div>
+
                     <hr>
                   </div>
                 </div>

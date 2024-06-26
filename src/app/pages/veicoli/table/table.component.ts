@@ -39,7 +39,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   veicoli: Veicoli[] = [];
   collectionSize = 0;
   
-  targa_attiva:boolean = false;
+  targhe_attive:boolean = false;
 
   filter = new FormControl('');
 
@@ -97,7 +97,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
 
   public getAllVeicoli() {
     this.veicoliSvc
-      .getAllWithParams(this.page, this.pageSize, this.text, this.targa_attiva)
+      .getAllWithParams(this.page, this.pageSize, this.text, this.targhe_attive)
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data.reverse();
         this.veicoli.reverse();
@@ -233,7 +233,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     this.text = this.term;
     this.page = 1;
     this.veicoliSvc
-      .getAllWithParams(this.page, this.pageSize, this.text, this.targa_attiva)
+      .getAllWithParams(this.page, this.pageSize, this.text, this.targhe_attive)
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data;
         /*-----------------------------------*/
@@ -264,7 +264,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.page,
           this.pageSize,
           this.text,
-          this.targa_attiva,
+          this.targhe_attive,
           this.veicoloForm?.id_tipo_veicolo,
           this.veicoloForm?.id_marca,
           this.veicoloForm?.id_modello,
@@ -380,9 +380,10 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onSwitchChange(event: Event):void{
-    //console.log('it is be false', this.switchToggle);
-    this.targa_attiva = !this.targa_attiva
-    //console.log('it is be true', this.switchToggle);
+    console.log('it should be false', this.targhe_attive);
+    this.targhe_attive = !this.targhe_attive
+    console.log('it should be true', this.targhe_attive);
+    this.getAllVeicoli()
   }
 
   /*prova() {

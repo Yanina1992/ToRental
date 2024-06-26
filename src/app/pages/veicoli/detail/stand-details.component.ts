@@ -8,11 +8,13 @@ import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { Veicoli } from 'src/app/classes/veicoli';
 import { VeicoliService } from 'src/app/services/veicoli.service';
+import { IManutenzione } from 'src/app/interfaces/imanutenzione';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-stand-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './stand-details.component.html',
   styleUrls: ['./stand-details.component.scss'],
   encapsulation: ViewEncapsulation.None
@@ -29,13 +31,21 @@ export class StandDetailsComponent {
   kListSospeso: any[] = [];
   kListDaNonMostrare: any[] = [];
 
+  allVeicoliToShow:any[] = [];
+
   format = 'shortDate';
   timezone = 'Europe/Rome';
   locale = 'it-IT';
 
+  secondParameter:string = '';
+
+  public dynamicRoute: string = '/manutenzioni/assicurazione_assistenza_stradale';
+  public dynamicVehicleId: number = 0
+  public dynamicObjId: number = 0
+
   constructor(
     private offcanvasService: NgbOffcanvas,
-    private veicoliSvc: VeicoliService
+    private veicoliSvc: VeicoliService,
   ) {}
 
   openEnd(content: TemplateRef<any>) {
@@ -58,7 +68,55 @@ export class StandDetailsComponent {
           }
         });
       }
-      console.log(this.veicolo);
+
+      /*this.allVeicoliToShow = [...this.kListOk, ...this.kListScaduto, ...this.kListSospeso]
+      this.allVeicoliToShow.forEach((e)=>{
+        console.log(e);     
+      })*/
+
     });
   }
+
+  idFromScadenze:number | undefined = 0;
+  tipoFromScadenze:string | undefined;
+
+ /* getIdFromScadenze(tipo:string, idVeicolo:number | undefined, idScadenza:number){
+    
+   
+
+    this.idFromScadenze = idScadenza;
+    this.tipoFromScadenze = tipo
+
+    this.veicoliSvc.getScadenzaById(tipo, idVeicolo!, idScadenza)
+    .subscribe((data: IManutenzione[]) =>{
+      console.log('does getScadenzaFromId work?', data);
+      this.veicoliSvc.saveResFromGetScadenze(data)
+    }) 
+  }*/
+
+  setDynamicValues(route: string, vehicleId: number, objId: number): void {
+    this.dynamicRoute = route;
+    this.dynamicVehicleId = vehicleId;
+    this.dynamicObjId = objId;
+  }
+  getIdFromScadenze(tipo: string, idVeicolo: number | undefined, idScadenza: number): void {
+    if (idVeicolo === undefined) {
+      console.error('Invalid vehicle ID');
+      return;
+    }
+
+    this.idFromScadenze = idScadenza;
+    this.tipoFromScadenze = tipo;
+
+    this.veicoliSvc.getScadenzaById(tipo, idVeicolo, idScadenza)
+      .subscribe((data: IManutenzione[]) => {
+        console.log('does getScadenzaFromId work?', data);
+        this.veicoliSvc.saveResFromGetScadenze(data);
+  })
 }
+
+}
+/*<div *ngIf="k[1] == 'Assicurazione Assistenza Stradale'">
+                      <a [routerLink]="['/manutenzioni', 'assicurazione_assistenza_stradale']" [id]="obj.id"
+                      (click)="getIdFromScadenze"></a>
+                    </div>*/

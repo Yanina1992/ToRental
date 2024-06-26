@@ -80,5 +80,5 @@ export class Veicoli{
 
   public k:any [] = [];
 
-  public targa_attiva:boolean = false;
+  public targhe_attive:boolean = false;
 }

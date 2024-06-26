@@ -21,25 +21,25 @@
 <div class="table-responsive">
   <table class="table table-striped ms-2 ms-lg-0">
     <thead>
-      <tr>
-        <th scope="col" class="text-center">Targa revisione</th>
-        <th scope="col" class="text-center">Targa attuale</th>
-        <th scope="col" class="text-center">Telaio</th>
-        <th scope="col" class="text-center">Nr. id {{ tipo }}</th>
-        <th scope="col" class="text-center">Nr. id. veicolo</th>
-        <th scope="col" class="text-center">Agenzia</th>
-        <th scope="col" class="text-center">Data pagamento</th>
-        <th scope="col" class="text-center">Inizio validità</th>
-        <th scope="col" class="text-center">Fine validità</th>
-        <th scope="col" class="text-center">Importo</th>
-        <th scope="col" class="text-center">Polizza</th>
-        <th scope="col" class="text-center">Note</th>
+      <tr class="dark-grey">
+        <th scope="col" class="text-center text-truncate">Targa revisione</th>
+        <th scope="col" class="text-center text-truncate">Targa attuale</th>
+        <th scope="col" class="text-center text-truncate">Telaio</th>
+        <th scope="col" class="text-center text-truncate">Nr. id {{ tipo }}</th>
+        <th scope="col" class="text-center text-truncate">Nr. id. veicolo</th>
+        <th scope="col" class="text-center text-truncate">Agenzia</th>
+        <th scope="col" class="text-center text-truncate">Data pagamento</th>
+        <th scope="col" class="text-center text-truncate">Inizio validità</th>
+        <th scope="col" class="text-center text-truncate">Fine validità</th>
+        <th scope="col" class="text-center text-truncate">Importo</th>
+        <th scope="col" class="text-center text-truncate">Polizza</th>
+        <th scope="col" class="text-center text-truncate">Note</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let manutenzione of manutenzioni">
         <!--If there are more values for 'manutenzione.targa' given in brackets, it means that those values were triggered by the search, but they are not the license plate valid at the time of the maintenance-->
-        <td *ngIf="manutenzione.targa != null" class="text-truncate text-center text-primary">{{ manutenzione.targa }}&nbsp;</td>
+        <td *ngIf="manutenzione.targa != null" class="text-truncate text-center">{{ manutenzione.targa }}&nbsp;</td>
         <td *ngIf="manutenzione.targa == null" class="text-center"> - &nbsp;</td>
         <td class="text-center">{{ manutenzione.targa_attuale }}</td>
         <td *ngIf="manutenzione.telaio != null" class="text-truncate text-center">{{ manutenzione.telaio }}&nbsp;</td>
