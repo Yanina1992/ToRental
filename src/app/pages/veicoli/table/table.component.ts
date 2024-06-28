@@ -20,15 +20,6 @@ import { ITipoVeicolo } from 'src/app/interfaces/options-select/itipo-veicolo';
   styleUrls: ['./table.component.scss'],
 })
 
-/*export class Utilities {
-  veicoli: Veicoli[] = [];
-  collectionSize = 0;
-    getArraySize() {
-      this.collectionSize = this.veicoli[0].arraySize;
-      this.myArraySize = this.collectionSize;
-    }
-}*/
-    
 export class TableComponent implements OnInit, OnDestroy, OnChanges {
   private subscriptions = new Subscription();
 
@@ -91,9 +82,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   selectedStatoId: number = 0;
   selectedDisponibilitaId: number = 0;
 
-  constructor(private veicoliSvc: VeicoliService) {
-    //super();
-  }
+  constructor(private veicoliSvc: VeicoliService) {}
 
   public getAllVeicoli() {
     this.veicoliSvc
@@ -104,14 +93,6 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
         this.collectionSize = this.veicoli[0].arraySize;
         this.myArraySize = this.collectionSize;
         this.setupFilter();
-
-        /*this.veicoli.forEach((e)=>{
-          if(e.targa_attiva == false){
-            console.log('oninit targa_attiva == 0', this.veicoli);
-          }
-        })*/
-        
-        
         if (data) {
           this.spinner = false;
         }
@@ -194,7 +175,6 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     //When values changes in 'filter' form -> serch input
     const subscription = this.filter.valueChanges
       .pipe(
-        ///forse il tempo è da aumentare...
         debounceTime(300),
         map((text) => {
           this.term = text?.trim().toLowerCase() || '';
@@ -202,16 +182,6 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
         })
       )
       .subscribe((t) => {
-        /*
-        if (t && t.length > 0) {
-          this.search(t);
-        } else {
-          this.collectionSize = this.veicoli[0].arraySize;
-          this.myArraySize = this.collectionSize;
-        }
-          */
-
-        /*-----------------------------------*/
         this.search(t);
         if (this.veicoli.length > 0) {
           this.collectionSize = this.veicoli[0].arraySize;
@@ -222,10 +192,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           console.log('veicolo not found', this.veicoloNotFound);
         }
         this.myArraySize = this.collectionSize;
-        /*-----------------------------------*/
       });
-    //this.subscriptions.add(subscription);
-    
   }
   //Search by targa or telaio
   search(text: string) {
@@ -236,22 +203,13 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
       .getAllWithParams(this.page, this.pageSize, this.text, this.targhe_attive)
       .subscribe((data: Veicoli[]) => {
         this.veicoli = data;
-        /*-----------------------------------*/
         if (this.veicoli.length > 0) {
           this.collectionSize = this.veicoli[0].arraySize;
           this.veicoloNotFound = false;
-
-          /*data.forEach((e)=>{
-            if(e.targa_attiva == false){
-              console.log('targhe non attive', e);
-            }
-          })*/
-          
         } else {
           this.collectionSize = 0;
           this.veicoloNotFound = true;
         }
-        /*-----------------------------------*/
         this.myArraySize = this.collectionSize;
         return this.text;
       });
@@ -281,13 +239,6 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
           this.veicoli = data.reverse();
           this.veicoli.reverse();
           this.setupFilter();
-
-          /*this.veicoli.forEach((e) => {
-            if(e.targa_attiva == false){
-              console.log(e);
-            }
-          });*/
-
           console.log('customized search res', this.veicoli);
 
           if (this.veicoli.length > 0) {
@@ -385,17 +336,4 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
     console.log('it should be true', this.targhe_attive);
     this.getAllVeicoli()
   }
-
-  /*prova() {
-    setInterval(function(){
-      let formElement = document.getElementById('my-form');
-      if (formElement)
-        {
-        formElement.onsubmit?
-        } else {
-        console.error('Elemento con ID "my-form" non trovato');
-      }
-    }, 0);
-  }*/
-  
 }

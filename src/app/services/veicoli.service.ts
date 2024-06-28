@@ -52,10 +52,6 @@ export class VeicoliService {
   }
 
   //VEICOLI-----------------------------------------------
-  //CRUD Veicoli
-  /*getAllWithParams(page:number, pageSize:number, text?:string):Observable<Veicoli[]>{
-    return this.http.get<Veicoli[]>(this.veicoliUrl + '?page=' + page + '&pageSize=' + pageSize + '&search=' + text)
-  }*/
   getAllWithParams(
     page:number,
     pageSize:number,

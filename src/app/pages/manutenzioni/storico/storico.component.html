@@ -1,4 +1,3 @@
-
 <!--Searching by targa-->
 <form id="search-form">
     <div class="mb-3 row justify-content-center">
@@ -71,11 +70,9 @@
           <td *ngIf="manutenzione.note == null" class="text-center"> - &nbsp;</td>
           <td class="d-flex">
                   
-            <!--Offcanvas
-            <a [routerLink]="['manutenzioni-details', manutenzione.id]"><i class="fa-solid fa-circle-info"></i></a>
-            -->
+            <!--Offcanvas-->
             <app-stand-manutenzioni-details *ngIf="manutenzione.id" [id]="manutenzione.id" class="me-1"></app-stand-manutenzioni-details>
-            <a [routerLink]="['manutenzioni-edit', manutenzione.id]"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a [routerLink]="['manutenzioni-edit', manutenzione.id]"><i class="fa-solid fa-pen-to-square me-1"></i></a>
             <a [routerLink]="['manutenzioni-delete', manutenzione.id]"><i class="fa-solid fa-trash me-3"></i></a>
           </td>
         </tr>

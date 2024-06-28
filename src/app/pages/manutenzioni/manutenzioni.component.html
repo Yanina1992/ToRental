@@ -2,10 +2,25 @@
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
 
-    <!--<div class="d-grid gap-2 col-6 mx-auto">-->
     <div class="col">
-      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione', 'storico']" (click)="reset()">Assicurazioni</a>
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione_rca', 'storico']" (click)="reset()">Assicurazioni Rca</a>
     </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione_assistenza_stradale', 'storico']" (click)="reset()">Assicurazioni Assistenza Stradale</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione_cristalli', 'storico']" (click)="reset()">Assicurazioni Cristalli</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione_furto_incendio', 'storico']" (click)="reset()">Assicurazioni Furto Incendio</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione_infortuni_conducente', 'storico']" (click)="reset()">Assicurazioni Infortuni Conducente</a>
+    </div>
+    <div class="col">
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione_kasko', 'storico']" (click)="reset()">Assicurazioni Kasko</a>
+    </div>
+
     <div class="col">
       <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'atp', 'storico']" (click)="reset()">Atp</a>
     </div>
@@ -487,13 +502,6 @@
 
         <td *ngIf="scadenza.note != null && scadenza.note != undefined && scadenza.note != ''" class="text-truncate text-center">{{ scadenza.note }}&nbsp;</td>
         <td *ngIf="scadenza.note == null || scadenza.note == undefined || scadenza.note == ''" class="text-center text-truncate"> - &nbsp;</td>
-
-        <!--<td class="d-flex">
-          Offcanvas
-          <app-stand-details class="me-1" *ngIf="veicolo.id != undefined" [id]="veicolo.id"></app-stand-details>
-          <a [routerLink]="['edit', veicolo.id]"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a [routerLink]="['delete', veicolo.id]"><i class="fa-solid fa-trash me-3"></i></a>
-        </td>-->
 
       </tr>
     </tbody>

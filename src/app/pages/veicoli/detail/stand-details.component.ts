@@ -68,31 +68,11 @@ export class StandDetailsComponent {
           }
         });
       }
-
-      /*this.allVeicoliToShow = [...this.kListOk, ...this.kListScaduto, ...this.kListSospeso]
-      this.allVeicoliToShow.forEach((e)=>{
-        console.log(e);     
-      })*/
-
     });
   }
 
   idFromScadenze:number | undefined = 0;
   tipoFromScadenze:string | undefined;
-
- /* getIdFromScadenze(tipo:string, idVeicolo:number | undefined, idScadenza:number){
-    
-   
-
-    this.idFromScadenze = idScadenza;
-    this.tipoFromScadenze = tipo
-
-    this.veicoliSvc.getScadenzaById(tipo, idVeicolo!, idScadenza)
-    .subscribe((data: IManutenzione[]) =>{
-      console.log('does getScadenzaFromId work?', data);
-      this.veicoliSvc.saveResFromGetScadenze(data)
-    }) 
-  }*/
 
   setDynamicValues(route: string, vehicleId: number, objId: number): void {
     this.dynamicRoute = route;
@@ -100,7 +80,7 @@ export class StandDetailsComponent {
     this.dynamicObjId = objId;
   }
   getIdFromScadenze(tipo: string, idVeicolo: number | undefined, idScadenza: number): void {
-    if (idVeicolo === undefined) {
+    if (idVeicolo == undefined) {
       console.error('Invalid vehicle ID');
       return;
     }
@@ -113,10 +93,6 @@ export class StandDetailsComponent {
         console.log('does getScadenzaFromId work?', data);
         this.veicoliSvc.saveResFromGetScadenze(data);
   })
+this.offcanvasService.dismiss('Cross click')
 }
-
 }
-/*<div *ngIf="k[1] == 'Assicurazione Assistenza Stradale'">
-                      <a [routerLink]="['/manutenzioni', 'assicurazione_assistenza_stradale']" [id]="obj.id"
-                      (click)="getIdFromScadenze"></a>
-                    </div>*/
