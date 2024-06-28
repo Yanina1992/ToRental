@@ -13,6 +13,7 @@ import { CreateManutenzioneComponent } from './create-manutenzione/create-manute
 import { DatepickerComponent } from 'src/app/components/datepicker/datepicker.component';
 import { StandManutenzioniDetailsComponent } from './manutenzione-detail/stand-manutenzioni-details.component';
 import { NoElementsComponent } from 'src/app/components/alert-messages/no-elements/no-elements.component';
+import { StoricoComponent } from './storico/storico.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NoElementsComponent } from 'src/app/components/alert-messages/no-elemen
     ManutenzioniEditComponent,
     ManutenzioniDeleteComponent,
     ManutenzioniTableComponent,
-    CreateManutenzioneComponent
+    CreateManutenzioneComponent,
+    StoricoComponent
   ],
   imports: [
     CommonModule,

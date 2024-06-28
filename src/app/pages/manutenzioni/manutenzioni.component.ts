@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { ServizioService } from 'src/app/services/servizio.service';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { IManutenzione } from 'src/app/interfaces/imanutenzione';
   templateUrl: './manutenzioni.component.html',
   styleUrls: ['./manutenzioni.component.scss'],
 })
-export class ManutenzioniComponent implements OnInit, OnDestroy, OnChanges{
+export class ManutenzioniComponent implements OnInit, OnDestroy{
 
   idFromScadenze:number | undefined = 0;
   tipoFromScadenze:string | undefined;
@@ -21,39 +21,17 @@ export class ManutenzioniComponent implements OnInit, OnDestroy, OnChanges{
   private subscriptions = new Subscription();
 
   scadenzeForm:any ;
-
   page = 1;
   pageSize = 10;
   scadenze: IScadenze[] = [];
   collectionSize = 0;
-  
-  //targa_attiva:boolean = false;
-
   filter = new FormControl('');
-
   term: string | undefined;
-
   myArraySize: number = 0;
   text: string = '';
-
   spinner: boolean | undefined = true;
-
-  /*redIconList: Veicoli[] = [];
-  orangeIconList: Veicoli[] = [];
-  greenIconList: Veicoli[] = [];
-  greyIconList: Veicoli[] = [];
-
-  isVeicoloPartiallyOk: boolean = false;
-  isVeicoloNotOk: boolean = false;
-  isVeicoloOk: boolean = false;
-  isVeicoloStatoNotDefined: boolean = false;*/
-
-  //Variable to handle validation
-  //formSubmitted: boolean = false;
-
-  //veicoloSuccess: boolean = false;
-
-  veicoloNotFound: boolean = false;
+  veicoloNotFound: boolean = false;  
+  label:any;
 
   constructor(
     private router: Router,
@@ -61,52 +39,33 @@ export class ManutenzioniComponent implements OnInit, OnDestroy, OnChanges{
     private veicoliSvc: VeicoliService
   ){}
 
-  label:any;
-
   ngOnInit() {
     this.getAllScadenze();
     this.veicoliSvc.refreshVeicoliTable$.subscribe(() => {
       this.getAllScadenze();
     });
-    /*this.veicoloSuccess = this.veicoliSvc.successMessage;
-    console.log('success', this.veicoloSuccess);*/
     this.readUrl()
   }
   readUrl():void{
     let labelToModify = this.router.url
-    this.label = labelToModify.slice(1)
-    
+    this.label = labelToModify.slice(1) 
     this.svc.currentPage(this.label)
-    //console.log('url', this.label);
   }
 
   public getAllScadenze() {
     this.veicoliSvc
       .getScadenze(this.page, this.pageSize, this.text)
       .subscribe((data: IScadenze[]) => {
-        console.log(data);
-        
+        console.log('getALlScadenze', data);
         this.scadenze = data.reverse();
         this.scadenze.reverse();
         this.collectionSize = this.scadenze[0].arraySize;
         this.myArraySize = this.collectionSize;
-        this.setupFilter();
-
-        /*this.scadenze.forEach((e)=>{
-          if(e.targa_attiva == false){
-            console.log('oninit targa_attiva == 0', this.veicoli);
-          }
-        })*/
-        
+        this.setupFilter();   
         if (data) {
           this.spinner = false;
         }
       });
-  }
-
-  ngOnChanges(): void {
-    //this.veicoloSuccess = this.veicoliSvc.successMessage;
-    //console.log('success', this.veicoloSuccess);
   }
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
@@ -168,17 +127,6 @@ export class ManutenzioniComponent implements OnInit, OnDestroy, OnChanges{
           this.page,
           this.pageSize,
           this.text,
-          /*this.veicoloForm?.id,
-          this.veicoloForm?.id_marca,
-          this.veicoloForm?.id_modello,
-          this.veicoloForm?.id_destinazione_uso,
-          this.veicoloForm?.id_proprietario,
-          this.veicoloForm?.id_alimentazione,
-          this.veicoloForm?.id_tipo_allestimento,
-          this.veicoloForm?.id_tipo_asse,
-          this.veicoloForm?.id_tipo_cambio,
-          this.veicoloForm?.id_stato,
-          this.veicoloForm?.id_disponibilita */
         )
         .subscribe((data: IScadenze[]) => {
           this.scadenze = data.reverse();
@@ -208,17 +156,18 @@ export class ManutenzioniComponent implements OnInit, OnDestroy, OnChanges{
   }
   
   getIdFromScadenze(tipo:string, idVeicolo:number, idScadenza:number){
-  
-
     this.idFromScadenze = idScadenza;
     this.tipoFromScadenze = tipo
     this.veicoliSvc.getScadenzaById(tipo, idVeicolo, idScadenza)
     .subscribe((data: IManutenzione[]) =>{
-      console.log('does getScadenzaFromId work?', data);
-      
-      this.veicoliSvc.saveResFromGetScadenze(data)
+      console.log('does getScadenzaFromId work?', data); 
+      //this.veicoliSvc.saveResFromGetScadenze(data)
+
+      this.veicoliSvc.isId = true
     })
 
   }
- 
+ reset(){
+  this.veicoliSvc.resetManScadenze()
+ }
 }

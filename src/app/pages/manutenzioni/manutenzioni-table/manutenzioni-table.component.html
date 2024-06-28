@@ -1,3 +1,4 @@
+
 <!--Searching by targa-->
 <form id="search-form">
   <div class="mb-3 row justify-content-center">
@@ -34,9 +35,11 @@
         <th scope="col" class="text-center text-truncate">Importo</th>
         <th scope="col" class="text-center text-truncate">Polizza</th>
         <th scope="col" class="text-center text-truncate">Note</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
+
       <tr *ngFor="let manutenzione of manutenzioni">
         <!--If there are more values for 'manutenzione.targa' given in brackets, it means that those values were triggered by the search, but they are not the license plate valid at the time of the maintenance-->
         <td *ngIf="manutenzione.targa != null" class="text-truncate text-center">{{ manutenzione.targa }}&nbsp;</td>
@@ -76,6 +79,7 @@
           <a [routerLink]="['manutenzioni-delete', manutenzione.id]"><i class="fa-solid fa-trash me-3"></i></a>
         </td>
       </tr>
+
     </tbody>
   </table>
 </div>

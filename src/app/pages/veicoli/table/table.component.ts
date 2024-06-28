@@ -39,7 +39,7 @@ export class TableComponent implements OnInit, OnDestroy, OnChanges {
   veicoli: Veicoli[] = [];
   collectionSize = 0;
   
-  targhe_attive:boolean = false;
+  targhe_attive:boolean = true;
 
   filter = new FormControl('');
 

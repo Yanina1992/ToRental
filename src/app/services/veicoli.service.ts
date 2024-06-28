@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
+import { Observable, Subject, tap } from 'rxjs';
 import { Veicoli } from '../classes/veicoli';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
@@ -38,8 +38,11 @@ export class VeicoliService {
   idFromScadenze:number | undefined;
 
   //savedManutenzioni:IManutenzione[] = [];
-  private savedManutenzioniSubject = new BehaviorSubject<IManutenzione[]>([]);
-  savedManutenzioni$ = this.savedManutenzioniSubject.asObservable();
+  private _savedManutenzioniSubject$ = new Subject<IManutenzione[]>();
+  //savedManutenzioni$ = this.savedManutenzioniSubject.asObservable();
+  get savedManutenzioniSubject$(){
+    return this._savedManutenzioniSubject$
+  }
 
   constructor(private http: HttpClient) {}
 
@@ -145,7 +148,6 @@ export class VeicoliService {
   getAllTipiCambio(): Observable<ICambio[]> {
     return this.http.get<ICambio[]>(this.cambioUrl);
   }
-
   //SCADENZE-----------------------------------------------
   getScadenze(
     page:number,
@@ -191,8 +193,16 @@ export class VeicoliService {
     )
   }
   saveResFromGetScadenze(data:IManutenzione[]){
-    this.savedManutenzioniSubject.next(data)
+    this.savedManutenzioniSubject$.next(data)
     console.log('saved manutenzioni in service', data);
-    
+  }
+
+  isId?:boolean;
+
+  callGetAll:boolean = false;
+  resetManScadenze(){
+    this.savedManutenzioniSubject$.next([])
+    this.callGetAll = true;
+    this.isId = false;
   }
 }

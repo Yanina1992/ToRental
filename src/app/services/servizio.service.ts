@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, SimpleChanges } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Subject, tap } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
-import { ActivatedRoute, Route, Router } from '@angular/router';
 import { IManutenzione } from '../interfaces/imanutenzione';
 import { BehaviorSubject } from 'rxjs';
 
@@ -18,14 +17,10 @@ export class ServizioService {
 
   currentPage(currentPage:string){
     this.currentPageNameSubject.next(currentPage);
-    /*currentPage = this.router.url
-    console.log('current page from service svc', currentPage);*/
   }
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute,
-    private router:Router,
   ) {}
 
   private _refreshTable$ = new Subject<void>();

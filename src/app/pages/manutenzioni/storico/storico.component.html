@@ -1,0 +1,110 @@
+
+<!--Searching by targa-->
+<form id="search-form">
+    <div class="mb-3 row justify-content-center">
+      <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Inserisci la targa del
+        veicolo:</label>
+      <div class="col-xs-3 col-sm-auto">
+        <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter" />
+      </div>
+    </div>
+  </form>
+  
+  <h2 class="text-center">{{ tipo | uppercase }}</h2>
+  
+  <!--Spinner-->
+  <div *ngIf="spinner" class="d-flex justify-content-center" id="spinner">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  
+  <div class="table-responsive">
+    <table class="table table-striped ms-2 ms-lg-0">
+      <thead>
+        <tr class="dark-grey">
+          <th scope="col" class="text-center text-truncate">Targa revisione</th>
+          <th scope="col" class="text-center text-truncate">Targa attuale</th>
+          <th scope="col" class="text-center text-truncate">Telaio</th>
+          <th scope="col" class="text-center text-truncate">Nr. id {{ tipo }}</th>
+          <th scope="col" class="text-center text-truncate">Nr. id. veicolo</th>
+          <th scope="col" class="text-center text-truncate">Agenzia</th>
+          <th scope="col" class="text-center text-truncate">Data pagamento</th>
+          <th scope="col" class="text-center text-truncate">Inizio validità</th>
+          <th scope="col" class="text-center text-truncate">Fine validità</th>
+          <th scope="col" class="text-center text-truncate">Importo</th>
+          <th scope="col" class="text-center text-truncate">Polizza</th>
+          <th scope="col" class="text-center text-truncate">Note</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+  
+        <tr *ngFor="let manutenzione of manutenzioni">
+          <!--If there are more values for 'manutenzione.targa' given in brackets, it means that those values were triggered by the search, but they are not the license plate valid at the time of the maintenance-->
+          <td *ngIf="manutenzione.targa != null" class="text-truncate text-center">{{ manutenzione.targa }}&nbsp;</td>
+          <td *ngIf="manutenzione.targa == null" class="text-center"> - &nbsp;</td>
+          <td class="text-center">{{ manutenzione.targa_attuale }}</td>
+          <td *ngIf="manutenzione.telaio != null" class="text-truncate text-center">{{ manutenzione.telaio }}&nbsp;</td>
+          <td *ngIf="manutenzione.telaio == null" class="text-center"> - &nbsp;</td>
+          <td class="text-truncate text-center">{{ manutenzione.id }}&nbsp;</td>
+          <td *ngIf="manutenzione.id_veicolo != null" class="text-center text-truncate">{{ manutenzione.id_veicolo
+            }}&nbsp;</td>
+          <td *ngIf="manutenzione.id_veicolo == null" class="text-center"> - &nbsp;</td>
+          <td *ngIf="manutenzione.agenzia != null" class="text-truncate text-center">{{ manutenzione.agenzia }}&nbsp;</td>
+          <td *ngIf="manutenzione.agenzia == null" class="text-center"> - &nbsp;</td>
+          <td *ngIf="manutenzione.data_pagamento != null" class="text-truncate text-center">{{ manutenzione.data_pagamento
+            | slice:0:10 }}&nbsp;</td>
+          <td *ngIf="manutenzione.data_pagamento == null" class="text-center"> - &nbsp;</td>
+          <td *ngIf="manutenzione.inizio_validita != null" class="text-truncate text-center">{{
+            manutenzione.inizio_validita | slice:0:10 }}&nbsp;</td>
+          <td *ngIf="manutenzione.inizio_validita == null" class="text-center"> - &nbsp;</td>
+          <td *ngIf="manutenzione.fine_validita != null" class="text-truncate text-center">{{ manutenzione.fine_validita |
+            slice:0:10 }}&nbsp;</td>
+          <td *ngIf="manutenzione.fine_validita == null" class="text-center"> - &nbsp;</td>
+          <td *ngIf="manutenzione.importo != null" class="text-truncate text-center">{{ manutenzione.importo }}€&nbsp;
+          </td>
+          <td *ngIf="manutenzione.importo == null" class="text-center"> - &nbsp;</td>
+          <td *ngIf="manutenzione.polizza != null" class="text-truncate text-center">{{ manutenzione.polizza }}&nbsp;</td>
+          <td *ngIf="manutenzione.polizza == null" class="text-center"> - &nbsp;</td>
+          <td *ngIf="manutenzione.note != null" class="text-truncate text-center">{{ manutenzione.note }}&nbsp;</td>
+          <td *ngIf="manutenzione.note == null" class="text-center"> - &nbsp;</td>
+          <td class="d-flex">
+                  
+            <!--Offcanvas
+            <a [routerLink]="['manutenzioni-details', manutenzione.id]"><i class="fa-solid fa-circle-info"></i></a>
+            -->
+            <app-stand-manutenzioni-details *ngIf="manutenzione.id" [id]="manutenzione.id" class="me-1"></app-stand-manutenzioni-details>
+            <a [routerLink]="['manutenzioni-edit', manutenzione.id]"><i class="fa-solid fa-pen-to-square"></i></a>
+            <a [routerLink]="['manutenzioni-delete', manutenzione.id]"><i class="fa-solid fa-trash me-3"></i></a>
+          </td>
+        </tr>
+  
+      </tbody>
+    </table>
+  </div>
+  
+  <app-no-elements [ngClass]="[veicoloNotFound ? 'd-block' : 'd-none']"></app-no-elements>
+  
+  <!--Pagination-->
+  <div class="d-flex flex-column flex-lg-row justify-content-between p-2 ms-2">
+    <ngb-pagination
+    [collectionSize]="myArraySize"
+    [(page)]="page"
+    [pageSize]="pageSize"
+    (pageChange)="getAllManutenzioni()"
+    [maxSize]="4"
+    [rotate]="true"
+    [boundaryLinks]="true"
+    [directionLinks]="true"
+    id="pag">
+    >
+    </ngb-pagination>
+  </div>
+  
+  <hr />
+  <!--Create-->
+  
+  <div>
+  <a class="btn my-btn btn-primary me-lg-4" routerLink='./create-manutenzione'>Crea</a>
+  </div>

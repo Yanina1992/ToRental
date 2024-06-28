@@ -5,6 +5,7 @@ import { ManutenzioniEditComponent } from './manutenzioni-edit/manutenzioni-edit
 import { ManutenzioniDeleteComponent } from './manutenzioni-delete/manutenzioni-delete.component';
 import { ManutenzioniTableComponent } from './manutenzioni-table/manutenzioni-table.component';
 import { CreateManutenzioneComponent } from './create-manutenzione/create-manutenzione.component';
+import { StoricoComponent } from './storico/storico.component';
 
 const routes: Routes = 
 [
@@ -15,6 +16,10 @@ const routes: Routes =
   {
     path: ':tipo',
     component: ManutenzioniTableComponent,
+  },
+  {
+    path: ':tipo/storico',
+    component: StoricoComponent
   },
   {
     path: ':tipo/manutenzioni-edit/:id',

@@ -4,31 +4,30 @@
 
     <!--<div class="d-grid gap-2 col-6 mx-auto">-->
     <div class="col">
-      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione']">Assicurazioni</a>
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'assicurazione', 'storico']" (click)="reset()">Assicurazioni</a>
     </div>
     <div class="col">
-      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'atp']">Atp</a>
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'atp', 'storico']" (click)="reset()">Atp</a>
     </div>
     <div class="col">
-      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bollo']">Bolli</a>
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bollo', 'storico']" (click)="reset()">Bolli</a>
     </div>
     <div class="col">
-      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bombole']">Bombole</a>
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'bombole', 'storico']" (click)="reset()">Bombole</a>
     </div>
     <div class="col">
-      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'revisione']">Revisioni</a>
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'revisione', 'storico']" (click)="reset()">Revisioni</a>
     </div>
     <div class="col">
-      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tachigrafo']">Tachigrafi</a>
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tachigrafo', 'storico']" (click)="reset()">Tachigrafi</a>
     </div>
     <div class="col">
-      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tagliando']">Tagliandi</a>
+      <a class="btn btn-primary" [routerLink]="['/manutenzioni', 'tagliando', 'storico']" (click)="reset()">Tagliandi</a>
     </div>
 
   </div>
 </div>
 
-<!--Table-->
 <div class="container-fluid">
   <div class="row">
     <div class="col col-12">

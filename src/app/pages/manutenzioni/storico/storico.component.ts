@@ -3,8 +3,7 @@ import {
   OnInit,
   OnDestroy,
   OnChanges,
-  ChangeDetectorRef,
-  Input,
+  ChangeDetectorRef
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -14,11 +13,12 @@ import { ServizioService } from 'src/app/services/servizio.service';
 import { VeicoliService } from 'src/app/services/veicoli.service';
 
 @Component({
-  selector: 'app-manutenzioni-table',
-  templateUrl: './manutenzioni-table.component.html',
-  styleUrls: ['./manutenzioni-table.component.scss'],
+  selector: 'app-storico',
+  templateUrl: './storico.component.html',
+  
+  styleUrls: ['./storico.component.scss']
 })
-export class ManutenzioniTableComponent
+export class StoricoComponent
   implements OnInit, OnDestroy, OnChanges
 {
   private subscriptions = new Subscription();
@@ -81,49 +81,21 @@ export class ManutenzioniTableComponent
   }
 
   ngOnInit(): void {
-    //this.getTheType()
-    //this.getAllManutenzioni()
-    //let callGetAll:boolean = true;
-    //this.veicoliService.callGetAll
-    //console.log('callGetAll', this.veicoliService.callGetAll);
-
-    //debugger
-    //if (this.veicoliService.isId == true) {
-      const savedManutenzioniSub =
-        this.veicoliService.savedManutenzioniSubject$.subscribe(
-          (manutenzioneFromScadenze) => {
-            if (manutenzioneFromScadenze.length > 0) {
-              this.manutenzioni = manutenzioneFromScadenze;
-              console.log('this manutenzioni', this.manutenzioni);
-              this.spinner = false;
-            } 
-            /*else {
-              //Get the type of manutenzione
-              this.getAllManutenzioni();
-              //Call the method which gets the list of manutenzioni
-              const refreshTableSub = this.svc.refreshTable$.subscribe(() => {
-                this.getAllManutenzioni();
-              });
-              this.getAllManutenzioni();
-              //callGetAll=false;
-              this.setupFilter();
-              this.subscriptions.add(refreshTableSub);
-            }*/
-            this.subscriptions.add(savedManutenzioniSub);
+    //Get the type of manutenzione
+    this.route.paramMap.subscribe((params) => {
+      this.tipo = params.get('tipo');
+    });
+    //Call the method which gets the list of manutenzioni
+    this.svc.refreshTable$.subscribe(() => {
+      this.getAllManutenzioni();
+    });
+    this.getAllManutenzioni();
+    this.setupFilter();
+          //Scadenze
+          if (this.readIdFromScadenze) {
+            console.log(this.readIdFromScadenze);
           }
-     
-        );
-    //} else {
-      //this.getAllManutenzioni();
-    //}
-
-    
-    
-    //if(callGetAll==true) {
-
-    //this.getAllManutenzioni();
-    //}
-  }
+        }
 
   ngOnDestroy() {
     this.subscriptions.unsubscribe();
@@ -168,4 +140,5 @@ export class ManutenzioniTableComponent
       });
     this.subscriptions.add(subsc);
   }
-}
+
+  }
